@@ -132,6 +132,7 @@ function classifyDisabledCapability(
   result: CommandResult
 ) {
   const message = normalizeMessage(result);
+  const integrationBlocked = /resource not accessible by integration/i.test(message);
 
   if (
     capability === 'code-scanning' &&
@@ -147,7 +148,7 @@ function classifyDisabledCapability(
 
   if (
     capability === 'secret-scanning' &&
-    /secret scanning is disabled/i.test(message)
+    (/secret scanning is disabled/i.test(message) || integrationBlocked)
   ) {
     return {
       capability,
@@ -171,7 +172,7 @@ function classifyDisabledCapability(
 
   if (
     capability === 'vulnerability-alerts' &&
-    /vulnerability alerts are disabled/i.test(message)
+    (/vulnerability alerts are disabled/i.test(message) || integrationBlocked)
   ) {
     return {
       capability,
