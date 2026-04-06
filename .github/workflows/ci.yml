@@ -52,17 +52,17 @@ jobs:
       - run: pnpm install --frozen-lockfile=false
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm verify:release-readiness
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-release-manifest
           path: .runtime-cache/release-artifacts/manifest.json
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-submission-readiness
           path: .runtime-cache/release-artifacts/submission-readiness.json
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-store-candidate-zips
           path: |
@@ -75,12 +75,12 @@ jobs:
             .runtime-cache/release-artifacts/apps/ext-walmart/zip/*.zip
             .runtime-cache/release-artifacts/apps/ext-weee/zip/*.zip
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-suite-internal-alpha-zip
           path: .runtime-cache/release-artifacts/apps/ext-shopping-suite/zip/*.zip
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-store-built-extension-directories
           path: |
@@ -93,7 +93,7 @@ jobs:
             .runtime-cache/release-artifacts/apps/ext-walmart/bundle/**
             .runtime-cache/release-artifacts/apps/ext-weee/bundle/**
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-suite-internal-alpha-directory
           path: .runtime-cache/release-artifacts/apps/ext-shopping-suite/bundle/**
@@ -183,7 +183,7 @@ jobs:
           export SHOPFLOW_SURFACE="${{ matrix.surface }}"
           export SHOPFLOW_APP_DIR="${{ matrix.app_dir }}"
           pnpm release:write-review-artifact-manifest
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: shopflow-${{ matrix.app_id }}-${{ matrix.review_channel }}
           path: |
