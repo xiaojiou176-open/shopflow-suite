@@ -45,9 +45,23 @@ export type PublicSurfaceOps = {
   cleanupClone: (cwd: string) => void;
 };
 
-function runGhJson<T>(args: string[]) {
+export function runGhJson<T>(args: string[]) {
+  const tokenResult = spawnSync('gh', ['auth', 'token'], {
+    encoding: 'utf8',
+  });
+  const ghToken =
+    process.env.GH_TOKEN ||
+    process.env.GITHUB_TOKEN ||
+    (tokenResult.status === 0 ? tokenResult.stdout.trim() : '');
   const result = spawnSync('gh', args, {
     encoding: 'utf8',
+    env: ghToken
+      ? {
+          ...process.env,
+          GH_TOKEN: ghToken,
+          GITHUB_TOKEN: ghToken,
+        }
+      : process.env,
   });
 
   if (result.status !== 0) {
@@ -57,7 +71,7 @@ function runGhJson<T>(args: string[]) {
   return JSON.parse(result.stdout) as T;
 }
 
-function clonePublicRepo(repo: string) {
+export function clonePublicRepo(repo: string) {
   const cloneRoot = mkdtempSync(resolve(tmpdir(), 'shopflow-public-scan-'));
   const cloneResult = spawnSync(
     'git',
@@ -90,44 +104,62 @@ export function scanGitHubTextSurface(
   return findings;
 }
 
-export const defaultOps: PublicSurfaceOps = {
-  viewRepo: (repo) =>
-    runGhJson<RepoView>(['repo', 'view', repo, '--json', 'isPrivate,visibility,url']),
-  cloneRepo: clonePublicRepo,
-  scanCurrent: (cwd) => {
-    const originalCwd = process.cwd();
-    try {
-      process.chdir(cwd);
-      return scanCurrentSurface();
-    } finally {
-      process.chdir(originalCwd);
-    }
-  },
-  scanHistory: (cwd) => {
-    const originalCwd = process.cwd();
-    try {
-      process.chdir(cwd);
-      return scanGitHistory();
-    } finally {
-      process.chdir(originalCwd);
-    }
-  },
-  listIssues: (repo) =>
-    runGhJson<GitHubTextRecord[]>([
-      'api',
-      `repos/${repo}/issues?state=all&per_page=100`,
-    ]).filter((issue) => !issue.pull_request),
-  listPulls: (repo) =>
-    runGhJson<GitHubTextRecord[]>([
-      'api',
-      `repos/${repo}/pulls?state=all&per_page=100`,
-    ]),
-  listReleases: (repo) =>
-    runGhJson<GitHubTextRecord[]>(['api', `repos/${repo}/releases?per_page=100`]),
-  cleanupClone: (cwd) => {
-    rmSync(cwd, { recursive: true, force: true });
-  },
-};
+export function createPublicSurfaceOps(
+  ghJson = runGhJson,
+  cloneRepo = clonePublicRepo
+): PublicSurfaceOps {
+  return {
+    viewRepo: (repo) => {
+      const repoView = ghJson<{
+        private: boolean;
+        visibility: string;
+        html_url: string;
+      }>(['api', `repos/${repo}`]);
+
+      return {
+        isPrivate: repoView.private,
+        visibility: repoView.visibility,
+        url: repoView.html_url,
+      };
+    },
+    cloneRepo,
+    scanCurrent: (cwd) => {
+      const originalCwd = process.cwd();
+      try {
+        process.chdir(cwd);
+        return scanCurrentSurface();
+      } finally {
+        process.chdir(originalCwd);
+      }
+    },
+    scanHistory: (cwd) => {
+      const originalCwd = process.cwd();
+      try {
+        process.chdir(cwd);
+        return scanGitHistory();
+      } finally {
+        process.chdir(originalCwd);
+      }
+    },
+    listIssues: (repo) =>
+      ghJson<GitHubTextRecord[]>([
+        'api',
+        `repos/${repo}/issues?state=all&per_page=100`,
+      ]).filter((issue) => !issue.pull_request),
+    listPulls: (repo) =>
+      ghJson<GitHubTextRecord[]>([
+        'api',
+        `repos/${repo}/pulls?state=all&per_page=100`,
+      ]),
+    listReleases: (repo) =>
+      ghJson<GitHubTextRecord[]>(['api', `repos/${repo}/releases?per_page=100`]),
+    cleanupClone: (cwd) => {
+      rmSync(cwd, { recursive: true, force: true });
+    },
+  };
+}
+
+export const defaultOps: PublicSurfaceOps = createPublicSurfaceOps();
 
 export function collectPublicSurfaceFindings(
   ops: PublicSurfaceOps = defaultOps
@@ -151,7 +183,7 @@ export function collectPublicSurfaceFindings(
   for (const repo of publicRepos) {
     const repoView = ops.viewRepo(repo);
 
-    if (repoView.isPrivate || repoView.visibility !== 'PUBLIC') {
+    if (repoView.isPrivate || repoView.visibility.toUpperCase() !== 'PUBLIC') {
       findings.push({
         ruleId: 'public-surface-unavailable',
         file: repoView.url,

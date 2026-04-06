@@ -40,9 +40,24 @@ export type GitHubPlatformSecurityOps = {
 
 export const defaultOps: GitHubPlatformSecurityOps = {
   runGh: (args) => {
+    const tokenResult = spawnSync('gh', ['auth', 'token'], {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+    });
+    const ghToken =
+      process.env.GH_TOKEN ||
+      process.env.GITHUB_TOKEN ||
+      (tokenResult.status === 0 ? tokenResult.stdout.trim() : '');
     const result = spawnSync('gh', args, {
       cwd: process.cwd(),
       encoding: 'utf8',
+      env: ghToken
+        ? {
+            ...process.env,
+            GH_TOKEN: ghToken,
+            GITHUB_TOKEN: ghToken,
+          }
+        : process.env,
     });
 
     return {

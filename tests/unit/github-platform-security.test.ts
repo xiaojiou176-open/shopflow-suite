@@ -2,9 +2,14 @@ import { describe, expect, it } from 'vitest';
 import {
   classifyCapabilityResult,
   collectGitHubPlatformSecuritySummary,
+  formatGitHubPlatformSecuritySummary,
+  hasBlockingGitHubPlatformSecurityFinding,
   inferRepoSlugFromRemote,
+  writeGitHubPlatformSecuritySummary,
   type GitHubPlatformSecurityOps,
 } from '../../tooling/verification/github-platform-security';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
 
 describe('github platform security helpers', () => {
   it('infers the repo slug from ssh remotes', () => {
@@ -33,6 +38,27 @@ describe('github platform security helpers', () => {
 
     expect(enabledWithAlerts.status).toBe('alerts-open');
     expect(enabledWithAlerts.openAlertCount).toBe(2);
+  });
+
+  it('classifies enabled alert endpoints with zero findings as clean', () => {
+    const enabledWithoutAlerts = classifyCapabilityResult('dependabot-alerts', {
+      status: 0,
+      stdout: '[]',
+      stderr: '',
+    });
+
+    expect(enabledWithoutAlerts.status).toBe('enabled');
+    expect(enabledWithoutAlerts.openAlertCount).toBe(0);
+  });
+
+  it('classifies unexpected errors without pretending the platform is disabled', () => {
+    const unexpected = classifyCapabilityResult('code-scanning', {
+      status: 1,
+      stdout: '{"message":"boom","status":"500"}',
+      stderr: 'gh: boom (HTTP 500)',
+    });
+
+    expect(unexpected.status).toBe('unexpected-error');
   });
 
   it('collects a mixed capability summary from mocked gh responses', () => {
@@ -96,5 +122,46 @@ describe('github platform security helpers', () => {
       'enabled',
       'disabled',
     ]);
+  });
+
+  it('formats and writes a markdown summary without inventing blockers', () => {
+    const summary = {
+      repoSlug: 'acme/shopflow-suite',
+      visibility: 'PRIVATE',
+      isPrivate: true,
+      capabilities: [
+        {
+          capability: 'secret-scanning' as const,
+          status: 'disabled' as const,
+          message: 'disabled',
+          openAlertCount: null,
+        },
+        {
+          capability: 'dependabot-alerts' as const,
+          status: 'alerts-open' as const,
+          message: '2 open alert(s)',
+          openAlertCount: 2,
+        },
+      ],
+    };
+
+    const formatted = formatGitHubPlatformSecuritySummary(summary);
+    expect(formatted).toContain('GitHub platform security summary for acme/shopflow-suite');
+    expect(hasBlockingGitHubPlatformSecurityFinding(summary)).toBe(true);
+
+    const tempDir = mkdtempSync('github-platform-summary-');
+    const summaryPath = join(tempDir, 'summary.md');
+    process.env.GITHUB_STEP_SUMMARY = summaryPath;
+    writeGitHubPlatformSecuritySummary(summary);
+    delete process.env.GITHUB_STEP_SUMMARY;
+
+    const written = readFileSync(summaryPath, 'utf8');
+    expect(written).toContain('dependabot-alerts');
+    expect(written).toContain('secret-scanning');
+    rmSync(tempDir, { recursive: true, force: true });
+  });
+
+  it('returns null when the remote is not a GitHub slug', () => {
+    expect(inferRepoSlugFromRemote('ssh://example.invalid/repo.git')).toBeNull();
   });
 });
