@@ -11,6 +11,7 @@ import {
   collectZipEntries,
   removeDirectoryWithRetries,
   requiredBundleFilesFor,
+  sleep,
   stagePackageArtifacts,
   waitForBundleFiles,
   waitForZipEntries,
@@ -67,6 +68,10 @@ describe('stage package artifacts tooling', () => {
     expect(waitForZipEntries(outputRoot)).toEqual(['alpha.zip']);
   });
 
+  it('exposes the zero-wait sleep helper as a harmless no-op for retry callers', () => {
+    expect(() => sleep(0)).not.toThrow();
+  });
+
   it('returns immediately when required bundle files already exist', () => {
     const storefrontRoot = createTempRoot('shopflow-stage-storefront-');
     const storefrontBundle = join(storefrontRoot, 'chrome-mv3');
@@ -103,5 +108,13 @@ describe('stage package artifacts tooling', () => {
     expect(
       collectZipEntries(join(staleStageRoot, 'zip'))
     ).toEqual(['shopflow-ext-amazon.zip']);
+  });
+
+  it('fails loudly when no app directories are provided', () => {
+    const repoRoot = createTempRoot('shopflow-stage-empty-');
+
+    expect(() => stagePackageArtifacts([], repoRoot)).toThrow(
+      'Expected at least one app directory argument.'
+    );
   });
 });
