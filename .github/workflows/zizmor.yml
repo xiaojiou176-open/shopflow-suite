@@ -19,6 +19,6 @@ jobs:
         with:
           persist-credentials: false
       - name: Install zizmor
-        run: cargo install --locked --git https://github.com/zizmorcore/zizmor --tag v1.23.1 zizmor
+        run: cargo install --locked --version 1.23.1 zizmor
       - name: Run zizmor
         run: ~/.cargo/bin/zizmor .github/workflows
