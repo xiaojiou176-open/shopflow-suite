@@ -1,0 +1,1 @@
+Shopflow is a Chrome-first shopping extension family and contract-first operator runtime. It gives builders typed workflow truth, builder snapshots, workflow briefs, repo-local read-only outcome tooling, review packaging, and current-scope distribution packets for Codex, Claude Code, and OpenClaw without pretending every ecosystem already has an official listing surface.

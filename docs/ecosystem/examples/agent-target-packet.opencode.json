@@ -1,0 +1,118 @@
+{
+  "surfaceId": "agent-target-packet",
+  "schemaVersion": "shopflow.agent-target-packet.v1",
+  "readOnly": true,
+  "target": "opencode",
+  "placement": "ecosystem-secondary",
+  "currentEntryState": "ecosystem-secondary-docs",
+  "quickstartPath": "docs/ecosystem/agent-quickstarts.md",
+  "primaryCommand": "pnpm cli:read-only -- agent-target-packet --target opencode",
+  "recommendedCommands": [
+    "pnpm cli:read-only -- public-distribution-bundle",
+    "pnpm cli:read-only -- outcome-bundle --app ext-kroger"
+  ],
+  "repoOwnedArtifacts": [
+    "docs/ecosystem/agent-quickstarts.md",
+    "docs/ecosystem/integration-recipes.md"
+  ],
+  "capabilities": [
+    {
+      "id": "integration-surface",
+      "label": "Builder integration surface",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- integration-surface",
+      "sourceDocs": [
+        "docs/ecosystem/builder-start-here.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Gives coding agents one machine-readable map of today/current-scope/later/no-go/owner-decision."
+    },
+    {
+      "id": "runtime-seam",
+      "label": "Provider runtime seam",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- runtime-seam",
+      "sourceDocs": [
+        "docs/adr/ADR-004-switchyard-provider-runtime-seam.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Makes the Shopflow-vs-runtime boundary explicit without turning the repo into a public runtime product."
+    },
+    {
+      "id": "runtime-consumer",
+      "label": "Thin runtime consumer snapshot",
+      "state": "current-scope-now",
+      "sourceCommand": "pnpm cli:read-only -- runtime-consumer --base-url http://127.0.0.1:4317",
+      "sourceDocs": [
+        "docs/ecosystem/builder-start-here.md",
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/codex-quickstart.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands"
+      ],
+      "summary": "Turns the read-only Switchyard seam into concrete acquisition routes when a real base URL exists."
+    },
+    {
+      "id": "outcome-bundle",
+      "label": "Joined outcome bundle",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- outcome-bundle --app ext-kroger",
+      "sourceDocs": [
+        "docs/ecosystem/integration-recipes.md",
+        "docs/ecosystem/codex-quickstart.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands"
+      ],
+      "summary": "Gives one joined read-only JSON bundle without hidden runtime-payload writes."
+    },
+    {
+      "id": "submission-readiness",
+      "label": "Submission readiness report",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- submission-readiness",
+      "sourceDocs": [
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/public-distribution-bundle.ready.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Surfaces what still blocks release or submission without pretending those external steps are already done."
+    }
+  ],
+  "skills": [],
+  "pluginMetadata": null,
+  "summary": "OpenCode stays an ecosystem-secondary reference, but the repo now exposes the same onboarding bundle and metadata packet so later packaging work no longer starts from prose only.",
+  "boundaryNote": "This bundle turns agent-specific onboarding, MCP capability prep, skills scaffolds, starter bundles, sample configs, proof loops, and plugin metadata into one repo-owned packet. It does not prove any official integration, official listing, published plugin, or distributed skills pack already exists.",
+  "mustNotClaim": [
+    "Main front-door placement",
+    "Official OpenCode package"
+  ],
+  "nextHumanStep": "Use the onboarding bundle as a packaging reference only if OpenCode becomes a chosen external distribution target later."
+}

@@ -1,0 +1,18 @@
+{
+  "surfaceId": "operator-decision-brief",
+  "schemaVersion": "shopflow.operator-decision-brief.v1",
+  "readOnly": true,
+  "appTitle": "Shopflow for Albertsons Family",
+  "stage": "claim-gated",
+  "summary": "2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists.",
+  "whyNow": [
+    "www.safeway.com · cart",
+    "Open supported workflow is runnable right now.",
+    "2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists."
+  ],
+  "nextStep": "Reconfirm repo verification is green before opening a live Safeway cart session.",
+  "primaryRouteLabel": "Open supported workflow",
+  "primaryRouteHref": "https://www.safeway.com/shop/cart",
+  "primaryRouteOrigin": "evidence-source",
+  "claimBoundary": "Currently verified on Safeway. Public wording stays gated until live receipt review is complete."
+}

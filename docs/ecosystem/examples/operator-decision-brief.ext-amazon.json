@@ -1,0 +1,18 @@
+{
+  "surfaceId": "operator-decision-brief",
+  "schemaVersion": "shopflow.operator-decision-brief.v1",
+  "readOnly": true,
+  "appTitle": "Shopflow for Amazon",
+  "stage": "ready-now",
+  "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+  "whyNow": [
+    "www.amazon.com · search",
+    "Extract Amazon search results is runnable right now.",
+    "Keep public wording inside the current repo-verified scope."
+  ],
+  "nextStep": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.",
+  "primaryRouteLabel": "Open current review start page",
+  "primaryRouteHref": "https://www.amazon.com/s?k=coffee+storage",
+  "primaryRouteOrigin": "merchant-source",
+  "claimBoundary": "Keep public wording inside the current repo-verified scope."
+}

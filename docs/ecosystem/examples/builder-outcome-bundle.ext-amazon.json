@@ -1,0 +1,711 @@
+{
+  "bundleId": "builder-outcome-bundle",
+  "schemaVersion": "shopflow.builder-outcome-bundle.v2",
+  "readOnly": true,
+  "generatedAt": "2026-04-06T11:16:38.231Z",
+  "appId": "ext-amazon",
+  "integrationSurface": {
+    "surfaceId": "builder-integration-surface",
+    "schemaVersion": "shopflow.builder-integration-surface.v1",
+    "readOnly": true,
+    "apiSubstrateFirst": {
+      "today": [
+        "Typed store-adapter contracts and verified-scope boundaries",
+        "Agent-specific onboarding bundle that gives Codex / Claude Code a truthful quickstart path and gives OpenClaw a public-ready route without pretending official listing is already done",
+        "Read-only provider-runtime seam contract that keeps external runtime acquisition boundaries explicit without turning Shopflow into a provider runtime",
+        "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
+        "Workflow decision briefs and workflow-copilot briefs",
+        "Review-bundle and submission-readiness artifacts",
+        "Repo-local read-only outcome bundle command that joins the integration surface, prefers generated runtime payload files when available, and adds generated artifact summaries plus source pointers when repo outputs exist"
+      ],
+      "currentScopeNow": [
+        "Keep the builder-facing integration substrate machine-readable and stable",
+        "Ship Codex / Claude Code plugin-level public distribution bundles with starter bundle, sample config, install docs, proof loop, and listing payload while keeping official-listing claims conditional on real official surfaces",
+        "Keep AI inside the operator workflow instead of in a generic chat surface",
+        "Keep public copy English-first while product UI stays English-default with zh-CN support through shared locale catalogs",
+        "Keep new user-visible strings out of scattered bilingual literals",
+        "Keep repo-local outcome tooling read-only and truthful instead of presenting it as a public CLI commitment"
+      ],
+      "later": [
+        "Read-only MCP surface backed by the same runtime truth",
+        "Read-only public API transport",
+        "Generated client or thin SDK",
+        "CLI wrapper or skills pack built on the same read models"
+      ],
+      "noGo": [
+        "Write-capable MCP",
+        "Hosted SaaS control plane",
+        "Generic autonomous shopping assistant",
+        "Public wording that outruns reviewed live evidence"
+      ],
+      "ownerDecision": [
+        "Public CLI commitments",
+        "Official-listing language for ecosystems that may or may not expose an official public surface",
+        "Publisher namespace / slug / irreversible channel choices",
+        "Public API publication beyond the current repo-owned substrate"
+      ]
+    },
+    "surfaceCatalog": [
+      {
+        "id": "agent-integration-bundle",
+        "label": "Agent integration bundle",
+        "category": "artifact-report",
+        "availability": "current-scope-now",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:agentIntegrationBundle",
+            "note": "Use when a coding tool needs one machine-readable packet for agent quickstarts, MCP capability prep, skills scaffolds, and plugin listing-payload bundles."
+          },
+          {
+            "kind": "command",
+            "value": "pnpm cli:read-only -- agent-integration-bundle"
+          },
+          {
+            "kind": "command",
+            "value": "pnpm cli:read-only -- agent-target-packet --target <target>",
+            "note": "Use when one target ecosystem needs a smaller handoff packet instead of the full onboarding bundle."
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/agent-quickstarts.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/codex-quickstart.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/claude-code-quickstart.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/openclaw-comparison.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/agent-distribution-artifacts.md"
+          }
+        ]
+      },
+      {
+        "id": "builder-integration-surface",
+        "label": "Builder integration surface contract",
+        "category": "contract-truth",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:builderIntegrationSurface",
+            "note": "Use when a builder needs the machine-readable today/current-scope/later/no-go/owner-decision matrix."
+          },
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:builderIntegrationSurfaceSchema"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/builder-read-models.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/builder-start-here.md",
+            "note": "Fastest builder-facing front door when a reader needs the current-scope map before diving into imports or examples."
+          }
+        ]
+      },
+      {
+        "id": "provider-runtime-seam",
+        "label": "Provider runtime seam contract",
+        "category": "contract-truth",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:providerRuntimeSeam",
+            "note": "Use when a builder needs the explicit Shopflow-vs-runtime ownership boundary before wiring any external acquisition flow."
+          },
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:providerRuntimeSeamSchema"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/adr/ADR-004-switchyard-provider-runtime-seam.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/builder-read-models.md",
+            "note": "Builder-facing explanation of why the seam is read-only contract truth, not merchant live proof."
+          }
+        ]
+      },
+      {
+        "id": "provider-runtime-consumer",
+        "label": "Provider runtime consumer snapshot",
+        "category": "read-model",
+        "availability": "current-scope-now",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/core:createProviderRuntimeConsumer",
+            "note": "Use when a Shopflow-side consumer needs thin Switchyard acquisition routes without turning the seam into a public runtime product."
+          },
+          {
+            "kind": "command",
+            "value": "pnpm cli:read-only -- runtime-consumer --base-url <switchyard-url>",
+            "note": "Repo-local packet for consuming the Switchyard seam through a real Shopflow consumer path."
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/builder-read-models.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md"
+          }
+        ]
+      },
+      {
+        "id": "public-distribution-bundle",
+        "label": "Public distribution bundle",
+        "category": "artifact-report",
+        "availability": "current-scope-now",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:publicDistributionBundle",
+            "note": "Use when a reader needs one machine-readable packet for current repo-owned public distribution execution across public API / MCP / skills / plugin-marketplace surfaces without claiming public release."
+          },
+          {
+            "kind": "command",
+            "value": "pnpm cli:read-only -- public-distribution-bundle"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/public-distribution-bundle.ready.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/ready-to-sync-artifacts.md"
+          }
+        ]
+      },
+      {
+        "id": "builder-app-snapshot",
+        "label": "Builder app snapshot",
+        "category": "read-model",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/runtime:createBuilderAppSnapshot"
+          },
+          {
+            "kind": "import",
+            "value": "@shopflow/runtime:builderAppSnapshotSchema"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-app-snapshot.ext-albertsons.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-app-snapshot.ext-amazon.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-app-snapshot.ext-kroger.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-app-snapshot.ext-temu.json"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/examples/README.md"
+          }
+        ]
+      },
+      {
+        "id": "operator-decision-brief",
+        "label": "Operator decision brief",
+        "category": "workflow-brief",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/core:createOperatorDecisionBrief"
+          },
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:operatorDecisionBriefSchema"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/operator-decision-brief.ext-albertsons.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/operator-decision-brief.ext-amazon.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/operator-decision-brief.ext-kroger.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/operator-decision-brief.ext-temu.json"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/examples/README.md"
+          }
+        ]
+      },
+      {
+        "id": "workflow-copilot-brief",
+        "label": "Workflow copilot brief schema",
+        "category": "workflow-brief",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "import",
+            "value": "@shopflow/contracts:workflowCopilotBriefSchema"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/workflow-copilot-brief.ext-albertsons.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/workflow-copilot-brief.ext-amazon.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/workflow-copilot-brief.ext-kroger.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/workflow-copilot-brief.ext-temu.json"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/builder-read-models.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/examples/README.md"
+          }
+        ]
+      },
+      {
+        "id": "submission-readiness-report",
+        "label": "Submission readiness report",
+        "category": "artifact-report",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "command",
+            "value": "pnpm release:write-submission-readiness-report"
+          },
+          {
+            "kind": "generated-artifact",
+            "value": ".runtime-cache/release-artifacts/submission-readiness.json"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md",
+            "note": "Recipe page for release-state consumption without implying a public release platform."
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/ready-to-sync-artifacts.md"
+          }
+        ]
+      },
+      {
+        "id": "builder-outcome-bundle",
+        "label": "Builder outcome bundle",
+        "category": "artifact-report",
+        "availability": "today",
+        "readOnly": true,
+        "entrypoints": [
+          {
+            "kind": "command",
+            "value": "pnpm builder:write-outcome-bundle",
+            "note": "Repo-local read-only bundle that prefers generated runtime payload files when they exist, falls back to checked-in examples when they do not, and adds generated release-artifact summaries."
+          },
+          {
+            "kind": "generated-artifact",
+            "value": ".runtime-cache/builder/builder-outcome-bundle.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-outcome-bundle.ext-albertsons.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-outcome-bundle.ext-amazon.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-outcome-bundle.ext-kroger.json"
+          },
+          {
+            "kind": "example-json",
+            "value": "docs/ecosystem/examples/builder-outcome-bundle.ext-temu.json"
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/integration-recipes.md",
+            "note": "Recipe page for consuming the read-only outcome tooling without implying a public CLI or API."
+          },
+          {
+            "kind": "docs",
+            "value": "docs/ecosystem/examples/README.md"
+          }
+        ]
+      }
+    ],
+    "repoLocalTooling": [
+      {
+        "id": "write-builder-runtime-payloads",
+        "label": "Repo-local builder runtime payload writer",
+        "availability": "today",
+        "readOnly": true,
+        "command": "pnpm builder:write-runtime-payloads -- --app <appId>",
+        "outputPath": ".runtime-cache/builder/",
+        "summary": "Writes repo-local builder snapshot, operator decision brief, and workflow-copilot brief JSON files from canonical runtime truth for supported current-scope apps such as ext-albertsons, ext-amazon, ext-kroger, and ext-temu."
+      },
+      {
+        "id": "write-builder-example-rack",
+        "label": "Repo-local checked-in example rack refresh",
+        "availability": "today",
+        "readOnly": true,
+        "command": "pnpm builder:refresh-example-rack",
+        "outputPath": "docs/ecosystem/examples/",
+        "summary": "Refreshes the checked-in multi-app example rack from repo-owned generated runtime payloads and outcome bundles for ext-albertsons, ext-amazon, ext-kroger, and ext-temu."
+      },
+      {
+        "id": "write-builder-outcome-bundle",
+        "label": "Repo-local builder outcome bundle writer",
+        "availability": "today",
+        "readOnly": true,
+        "command": "pnpm builder:write-outcome-bundle",
+        "outputPath": ".runtime-cache/builder/builder-outcome-bundle.json",
+        "summary": "Writes a repo-local read-only bundle that prefers generated runtime payload files, falls back to checked-in examples when needed, and adds generated artifact summaries without claiming a public CLI."
+      },
+      {
+        "id": "read-only-cli-prototype",
+        "label": "Repo-local read-only CLI prototype",
+        "availability": "current-scope-now",
+        "readOnly": true,
+        "command": "pnpm cli:read-only -- integration-surface",
+        "outputPath": ".runtime-cache/cli/",
+        "summary": "Provides one repo-local read-only CLI wrapper for agent-integration-bundle, agent-target-packet, integration-surface, runtime-seam, runtime-consumer, public-distribution-bundle, outcome-bundle, and submission-readiness without turning that convenience wrapper into a public CLI commitment."
+      }
+    ],
+    "ecosystemFit": [
+      {
+        "target": "codex",
+        "placement": "front-door-primary",
+        "truthfulWordingNow": "Strong builder fit through typed contracts, workflow briefs, read-only builder snapshots, and a plugin-level public distribution bundle with starter packet, sample config, install docs, proof loop, and listing payload.",
+        "mustNotClaimNow": [
+          "Official integration",
+          "Official plugin",
+          "Official listing"
+        ]
+      },
+      {
+        "target": "claude-code",
+        "placement": "front-door-primary",
+        "truthfulWordingNow": "Strong builder fit for the same builder-facing reasons as Codex, plus a stronger skills-facing plugin-level public distribution bundle.",
+        "mustNotClaimNow": [
+          "Official integration",
+          "Official plugin",
+          "Official listing",
+          "Shipped skills pack"
+        ]
+      },
+      {
+        "target": "opencode",
+        "placement": "ecosystem-secondary",
+        "truthfulWordingNow": "Useful comparison and later-facing integration candidate when CLI or skills packaging becomes explicit.",
+        "mustNotClaimNow": [
+          "Main front-door placement",
+          "Official package"
+        ]
+      },
+      {
+        "target": "openhands",
+        "placement": "ecosystem-secondary",
+        "truthfulWordingNow": "Useful comparison context for agentic coding and workflow automation.",
+        "mustNotClaimNow": [
+          "Main front-door placement",
+          "Official package"
+        ]
+      },
+      {
+        "target": "openclaw",
+        "placement": "public-ready-secondary",
+        "truthfulWordingNow": "Public-ready secondary route with explicit install, discovery, and proof paths, while official-listing claims remain conditional on real external surfaces.",
+        "mustNotClaimNow": [
+          "Official OpenClaw listing already live",
+          "Official OpenClaw integration already approved"
+        ]
+      }
+    ],
+    "productLanguageBoundary": {
+      "publicSurfaceDefault": "en",
+      "productUiDefault": "en",
+      "productUiOptionalLocale": "zh-CN",
+      "shellLevelLocaleRouteToggle": true,
+      "persistedLanguageSettingsSystem": false,
+      "noScatteredBilingualLiterals": true
+    }
+  },
+  "discoverabilityRoutes": [
+    {
+      "id": "builder-start-here",
+      "audience": "builder",
+      "kind": "docs",
+      "value": "docs/ecosystem/builder-start-here.md",
+      "summary": "Shortest builder-facing front door for choosing the right current-scope entrypoint without overclaiming a public platform."
+    },
+    {
+      "id": "integration-recipes",
+      "audience": "builder",
+      "kind": "docs",
+      "value": "docs/ecosystem/integration-recipes.md",
+      "summary": "Step-by-step current-scope recipes for inspecting contracts, generating a joined outcome bundle, and consuming ready-to-sync copy."
+    },
+    {
+      "id": "examples-index",
+      "audience": "builder",
+      "kind": "docs",
+      "value": "docs/ecosystem/examples/README.md",
+      "summary": "Index page for the checked-in snapshot, decision-brief, workflow-brief, and outcome-bundle examples."
+    },
+    {
+      "id": "builder-read-models",
+      "audience": "maintainer",
+      "kind": "docs",
+      "value": "docs/ecosystem/builder-read-models.md",
+      "summary": "Reference page for the typed builder read models, workflow briefs, and repo-local outcome tooling."
+    },
+    {
+      "id": "local-outcome-bundle-command",
+      "audience": "builder",
+      "kind": "command",
+      "value": "pnpm builder:write-outcome-bundle -- --stdout",
+      "summary": "Fastest repo-local way to emit one read-only joined bundle for builders and coding tools."
+    }
+  ],
+  "payloads": {
+    "builderAppSnapshot": {
+      "surfaceId": "builder-app-snapshot",
+      "schemaVersion": "shopflow.builder-app-snapshot.v1",
+      "readOnly": true,
+      "appId": "ext-amazon",
+      "storeId": "amazon",
+      "publicName": "Shopflow for Amazon",
+      "claimState": "repo-verified",
+      "wave": "wave-1",
+      "tier": "storefront-shell",
+      "detection": {
+        "appId": "ext-amazon",
+        "url": "https://www.amazon.com/s?k=coffee+storage",
+        "updatedAt": "2026-04-02T09:10:00.000Z",
+        "detection": {
+          "storeId": "amazon",
+          "verifiedScopes": [
+            "amazon"
+          ],
+          "matchedHost": "www.amazon.com",
+          "pageKind": "search",
+          "confidence": 0.92,
+          "capabilityStates": [
+            {
+              "capability": "extract_search",
+              "status": "ready"
+            },
+            {
+              "capability": "run_action",
+              "status": "unsupported_page"
+            },
+            {
+              "capability": "export_data",
+              "status": "ready"
+            }
+          ]
+        }
+      },
+      "latestOutput": {
+        "appId": "ext-amazon",
+        "storeId": "amazon",
+        "kind": "search",
+        "pageUrl": "https://www.amazon.com/s?k=coffee+storage",
+        "capturedAt": "2026-04-02T09:10:00.000Z",
+        "headline": "Amazon JSON-LD Storage Crate",
+        "summary": "Captured Amazon search results from a page-owned JSON-LD item list.",
+        "previewLines": [
+          "Top result: Amazon JSON-LD Storage Crate",
+          "Results captured: 2"
+        ]
+      },
+      "recentActivities": [
+        {
+          "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
+          "appId": "ext-amazon",
+          "label": "www.amazon.com · search",
+          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
+          "timestampLabel": "2:10 AM",
+          "href": "https://www.amazon.com/s?k=coffee+storage"
+        }
+      ],
+      "bestRoute": {
+        "origin": "merchant-source",
+        "label": "Inspect latest source page",
+        "href": "https://www.amazon.com/s?k=coffee+storage",
+        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
+      },
+      "builderSurfaceBoundary": {
+        "today": [
+          "Typed store-adapter contracts and verified-scope metadata",
+          "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
+          "Review-bundle and submission-readiness artifacts produced by repo-owned tooling"
+        ],
+        "later": [
+          "Read-only MCP surface backed by the same runtime truth",
+          "Read-only public API contract",
+          "Generated client or thin SDK built on top of the same read models"
+        ],
+        "noGo": [
+          "Write-capable MCP",
+          "Hosted SaaS control plane",
+          "Generic autonomous workflow execution that outruns reviewed live evidence"
+        ]
+      }
+    },
+    "operatorDecisionBrief": {
+      "surfaceId": "operator-decision-brief",
+      "schemaVersion": "shopflow.operator-decision-brief.v1",
+      "readOnly": true,
+      "appTitle": "Shopflow for Amazon",
+      "stage": "ready-now",
+      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+      "whyNow": [
+        "www.amazon.com · search",
+        "Extract Amazon search results is runnable right now.",
+        "Keep public wording inside the current repo-verified scope."
+      ],
+      "nextStep": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.",
+      "primaryRouteLabel": "Open current review start page",
+      "primaryRouteHref": "https://www.amazon.com/s?k=coffee+storage",
+      "primaryRouteOrigin": "merchant-source",
+      "claimBoundary": "Keep public wording inside the current repo-verified scope."
+    },
+    "workflowCopilotBrief": {
+      "tone": "ready-now",
+      "title": "Workflow copilot",
+      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+      "bullets": [
+        {
+          "label": "Current surface",
+          "value": "www.amazon.com · search"
+        },
+        {
+          "label": "Runnable now",
+          "value": "Extract Amazon search results is runnable right now."
+        },
+        {
+          "label": "Claim gate",
+          "value": "Keep public wording inside the current repo-verified scope."
+        }
+      ],
+      "nextAction": {
+        "label": "Open current review start page",
+        "reason": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised."
+      }
+    }
+  },
+  "payloadSources": {
+    "builderAppSnapshot": {
+      "surfaceId": "builder-app-snapshot",
+      "kind": "generated-runtime-file",
+      "path": ".runtime-cache/builder/builder-app-snapshot.ext-amazon.json"
+    },
+    "operatorDecisionBrief": {
+      "surfaceId": "operator-decision-brief",
+      "kind": "generated-runtime-file",
+      "path": ".runtime-cache/builder/operator-decision-brief.ext-amazon.json"
+    },
+    "workflowCopilotBrief": {
+      "surfaceId": "workflow-copilot-brief",
+      "kind": "generated-runtime-file",
+      "path": ".runtime-cache/builder/workflow-copilot-brief.ext-amazon.json"
+    }
+  },
+  "artifactPointers": [
+    {
+      "id": "artifact-manifest",
+      "path": ".runtime-cache/release-artifacts/manifest.json",
+      "command": "pnpm package:artifacts",
+      "summary": "Release manifest now proves 9 app entries. ext-amazon is storefront-shell-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-amazon/bundle and 1 packaged zip artifact."
+    },
+    {
+      "id": "submission-readiness-report",
+      "path": ".runtime-cache/release-artifacts/submission-readiness.json",
+      "command": "pnpm release:write-submission-readiness-report",
+      "summary": "Submission readiness marks ext-amazon as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-amazon/bundle/shopflow-review-artifact.json. Manual review starts at https://www.amazon.com. Review bundle is complete, but public wording must stay inside the current repo-verified scope."
+    }
+  ],
+  "readyToSyncArtifacts": [
+    {
+      "id": "public-copy-packet",
+      "path": "docs/ecosystem/public-copy.ready.md",
+      "destination": "sync packet overview",
+      "summary": "Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim."
+    },
+    {
+      "id": "paste-ready-public-copy",
+      "path": "docs/ecosystem/ready-to-sync-public-copy.md",
+      "destination": "GitHub about, release notes, or social/page drafts",
+      "summary": "Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful."
+    },
+    {
+      "id": "release-body",
+      "path": "docs/ecosystem/release-body.ready.md",
+      "destination": "release body starter",
+      "summary": "Short release-note block that stays inside current claim boundaries."
+    },
+    {
+      "id": "repo-description",
+      "path": "docs/ecosystem/repo-description.ready.md",
+      "destination": "GitHub repo description",
+      "summary": "One-line repo description that names the product shape without implying public API, MCP, or CLI availability."
+    }
+  ]
+}

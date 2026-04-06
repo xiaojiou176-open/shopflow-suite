@@ -1,0 +1,49 @@
+{
+  "repoOwnedStatus": "plugin-level-public-distribution-bundle",
+  "publicReleaseState": "not-yet-published",
+  "entries": [
+    {
+      "id": "shopflow-read-only-runtime-seam-consumption",
+      "label": "Shopflow read-only runtime seam consumption",
+      "sourcePath": ".agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "codex",
+        "claude-code"
+      ],
+      "summary": "Keeps Switchyard seam consumption honest: read-only, repo-local, and separate from merchant live proof while serving as a starter-bundle companion for Codex and Claude Code.",
+      "mustNotClaim": [
+        "Public skill already distributed"
+      ]
+    },
+    {
+      "id": "shopflow-live-browser-ops",
+      "label": "Shopflow live browser ops",
+      "sourcePath": ".agents/skills/shopflow-live-browser-ops/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "claude-code",
+        "codex"
+      ],
+      "summary": "Encodes the browser/profile ownership rules, login-attempt ceiling, and focus-safe live helper order for operator lanes, which makes the Claude Code starter bundle more plug-and-play without claiming a public skills pack.",
+      "mustNotClaim": [
+        "Public live-browser skill already distributed"
+      ]
+    },
+    {
+      "id": "shopflow-builder-facing-discoverability-and-ready-sync",
+      "label": "Shopflow builder-facing discoverability and ready-sync",
+      "sourcePath": ".agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "openclaw"
+      ],
+      "summary": "Keeps agent-facing front doors, starter bundles, and ready-to-sync copy truthful instead of overclaiming public distribution.",
+      "mustNotClaim": [
+        "Public discoverability skill pack already shipped"
+      ]
+    }
+  ]
+}

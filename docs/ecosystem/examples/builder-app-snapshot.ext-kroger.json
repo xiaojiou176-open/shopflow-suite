@@ -1,0 +1,109 @@
+{
+  "surfaceId": "builder-app-snapshot",
+  "schemaVersion": "shopflow.builder-app-snapshot.v1",
+  "readOnly": true,
+  "appId": "ext-kroger",
+  "storeId": "kroger",
+  "publicName": "Shopflow for Kroger Family",
+  "claimState": "repo-verified",
+  "wave": "wave-3",
+  "tier": "capability-heavy-product",
+  "verifiedScopeCopy": "Currently verified on Fred Meyer + QFC.",
+  "detection": {
+    "appId": "ext-kroger",
+    "url": "https://www.fredmeyer.com/savings/coupons",
+    "updatedAt": "2026-04-02T09:20:00.000Z",
+    "detection": {
+      "storeId": "kroger",
+      "verifiedScopes": [
+        "fred-meyer",
+        "qfc"
+      ],
+      "matchedHost": "www.fredmeyer.com",
+      "pageKind": "deal",
+      "confidence": 0.92,
+      "capabilityStates": [
+        {
+          "capability": "extract_deals",
+          "status": "ready"
+        },
+        {
+          "capability": "run_action",
+          "status": "unsupported_page"
+        },
+        {
+          "capability": "export_data",
+          "status": "ready"
+        }
+      ]
+    }
+  },
+  "latestOutput": {
+    "appId": "ext-kroger",
+    "storeId": "kroger",
+    "kind": "deal",
+    "pageUrl": "https://www.fredmeyer.com/savings/coupons",
+    "capturedAt": "2026-04-02T09:20:00.000Z",
+    "headline": "Fred Meyer Blueberries",
+    "summary": "Captured Kroger family deal details from the current family coupon surface.",
+    "previewLines": [
+      "Price: $3.99",
+      "Label: Digital coupon"
+    ]
+  },
+  "recentActivities": [
+    {
+      "id": "ext-kroger:https://www.fredmeyer.com/savings/coupons",
+      "appId": "ext-kroger",
+      "label": "www.fredmeyer.com · deal",
+      "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as capability-heavy-candidate.",
+      "timestampLabel": "2:20 AM",
+      "href": "https://www.fredmeyer.com/savings/coupons"
+    }
+  ],
+  "evidenceQueue": {
+    "appId": "ext-kroger",
+    "totalCount": 2,
+    "needsCaptureCount": 2,
+    "captureCount": 0,
+    "recaptureCount": 0,
+    "missingCount": 2,
+    "captureInProgressCount": 0,
+    "reviewPendingCount": 0,
+    "reviewedCount": 0,
+    "rejectedCount": 0,
+    "expiredCount": 0,
+    "blockerSummary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+    "nextCaptureId": "fred-meyer-verified-scope-live-receipt",
+    "nextStatus": "missing-live-receipt",
+    "nextOperatorPath": "capture",
+    "nextRequirementTitle": "Fred meyer verified scope live receipt",
+    "nextStep": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.",
+    "nextSourcePageUrl": "https://www.fredmeyer.com/savings/coupons",
+    "nextSourcePageLabel": "Open current evidence route",
+    "nextSourceRouteLabel": "Open current evidence route"
+  },
+  "bestRoute": {
+    "origin": "evidence-source",
+    "label": "Open current evidence route",
+    "href": "https://www.fredmeyer.com/savings/coupons",
+    "summary": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move."
+  },
+  "builderSurfaceBoundary": {
+    "today": [
+      "Typed store-adapter contracts and verified-scope metadata",
+      "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
+      "Review-bundle and submission-readiness artifacts produced by repo-owned tooling"
+    ],
+    "later": [
+      "Read-only MCP surface backed by the same runtime truth",
+      "Read-only public API contract",
+      "Generated client or thin SDK built on top of the same read models"
+    ],
+    "noGo": [
+      "Write-capable MCP",
+      "Hosted SaaS control plane",
+      "Generic autonomous workflow execution that outruns reviewed live evidence"
+    ]
+  }
+}

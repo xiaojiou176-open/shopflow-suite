@@ -1,0 +1,228 @@
+{
+  "surfaceId": "agent-target-packet",
+  "schemaVersion": "shopflow.agent-target-packet.v1",
+  "readOnly": true,
+  "target": "claude-code",
+  "placement": "front-door-primary",
+  "currentEntryState": "repo-local-quickstart",
+  "quickstartPath": "docs/ecosystem/claude-code-quickstart.md",
+  "primaryCommand": "pnpm cli:read-only -- agent-target-packet --target claude-code",
+  "recommendedCommands": [
+    "pnpm cli:read-only -- integration-surface",
+    "pnpm cli:read-only -- runtime-seam",
+    "pnpm cli:read-only -- submission-readiness",
+    "pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-skills-catalog.json",
+    "pnpm cli:read-only -- plugin-marketplace-metadata --target claude-code --output .runtime-cache/cli/plugin-marketplace-metadata.claude-code.json"
+  ],
+  "repoOwnedArtifacts": [
+    "docs/ecosystem/claude-code-quickstart.md",
+    ".agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md",
+    "docs/ecosystem/public-distribution-bundle.ready.md",
+    "docs/ecosystem/examples/agent-target-packet.claude-code.json",
+    "docs/ecosystem/examples/public-skills-catalog.json",
+    "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json"
+  ],
+  "capabilities": [
+    {
+      "id": "integration-surface",
+      "label": "Builder integration surface",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- integration-surface",
+      "sourceDocs": [
+        "docs/ecosystem/builder-start-here.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Gives coding agents one machine-readable map of today/current-scope/later/no-go/owner-decision."
+    },
+    {
+      "id": "runtime-seam",
+      "label": "Provider runtime seam",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- runtime-seam",
+      "sourceDocs": [
+        "docs/adr/ADR-004-switchyard-provider-runtime-seam.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Makes the Shopflow-vs-runtime boundary explicit without turning the repo into a public runtime product."
+    },
+    {
+      "id": "runtime-consumer",
+      "label": "Thin runtime consumer snapshot",
+      "state": "current-scope-now",
+      "sourceCommand": "pnpm cli:read-only -- runtime-consumer --base-url http://127.0.0.1:4317",
+      "sourceDocs": [
+        "docs/ecosystem/builder-start-here.md",
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/codex-quickstart.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands"
+      ],
+      "summary": "Turns the read-only Switchyard seam into concrete acquisition routes when a real base URL exists."
+    },
+    {
+      "id": "outcome-bundle",
+      "label": "Joined outcome bundle",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- outcome-bundle --app ext-kroger",
+      "sourceDocs": [
+        "docs/ecosystem/integration-recipes.md",
+        "docs/ecosystem/codex-quickstart.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands"
+      ],
+      "summary": "Gives one joined read-only JSON bundle without hidden runtime-payload writes."
+    },
+    {
+      "id": "submission-readiness",
+      "label": "Submission readiness report",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- submission-readiness",
+      "sourceDocs": [
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/public-distribution-bundle.ready.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Surfaces what still blocks release or submission without pretending those external steps are already done."
+    }
+  ],
+  "skills": [
+    {
+      "id": "shopflow-read-only-runtime-seam-consumption",
+      "label": "Shopflow read-only runtime seam consumption",
+      "sourcePath": ".agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "codex",
+        "claude-code"
+      ],
+      "summary": "Keeps Switchyard seam consumption honest: read-only, repo-local, and separate from merchant live proof while serving as a starter-bundle companion for Codex and Claude Code.",
+      "mustNotClaim": [
+        "Public skill already distributed"
+      ]
+    },
+    {
+      "id": "shopflow-live-browser-ops",
+      "label": "Shopflow live browser ops",
+      "sourcePath": ".agents/skills/shopflow-live-browser-ops/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "claude-code",
+        "codex"
+      ],
+      "summary": "Encodes the browser/profile ownership rules, login-attempt ceiling, and focus-safe live helper order for operator lanes, which makes the Claude Code starter bundle more plug-and-play without claiming a public skills pack.",
+      "mustNotClaim": [
+        "Public live-browser skill already distributed"
+      ]
+    },
+    {
+      "id": "shopflow-builder-facing-discoverability-and-ready-sync",
+      "label": "Shopflow builder-facing discoverability and ready-sync",
+      "sourcePath": ".agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "openclaw"
+      ],
+      "summary": "Keeps agent-facing front doors, starter bundles, and ready-to-sync copy truthful instead of overclaiming public distribution.",
+      "mustNotClaim": [
+        "Public discoverability skill pack already shipped"
+      ]
+    }
+  ],
+  "pluginMetadata": {
+    "target": "claude-code",
+    "placement": "front-door-primary",
+    "packagingState": "plugin-level-public-distribution-bundle",
+    "suggestedSlug": "shopflow-read-only-operator-packet",
+    "title": "Shopflow Read-only Operator Packet",
+    "summary": "Plugin-level public distribution bundle for Claude Code with starter bundle, sample config, install docs, proof loop, listing payload, and a skills-facing companion packet.",
+    "boundaryNote": "Starter bundle and listing payload are repo-owned today. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until the real official surface and auth path are confirmed.",
+    "screenshotSources": [
+      "docs/ecosystem/claude-code-quickstart.md",
+      "docs/ecosystem/agent-quickstarts.md",
+      "docs/ecosystem/public-distribution-bundle.ready.md"
+    ],
+    "capabilityRefs": [
+      "integration-surface",
+      "runtime-seam",
+      "submission-readiness"
+    ],
+    "skillsRefs": [
+      "shopflow-read-only-runtime-seam-consumption",
+      "shopflow-live-browser-ops"
+    ],
+    "distributionBundle": {
+      "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
+      "officialSurfaceStatus": "official-surface-confirmed-auth-required",
+      "starterBundlePaths": [
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/agent-quickstarts.md",
+        "docs/ecosystem/examples/agent-target-packet.claude-code.json",
+        "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json",
+        "docs/ecosystem/examples/public-skills-catalog.json"
+      ],
+      "sampleConfigPaths": [
+        "docs/ecosystem/examples/agent-target-packet.claude-code.json",
+        "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json",
+        "docs/ecosystem/examples/public-skills-catalog.json"
+      ],
+      "installDocs": [
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/agent-quickstarts.md",
+        "docs/ecosystem/public-skills-catalog.ready.md",
+        "docs/ecosystem/public-distribution-bundle.ready.md"
+      ],
+      "proofLoopCommands": [
+        "pnpm cli:read-only -- agent-target-packet --target claude-code",
+        "pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-skills-catalog.json",
+        "pnpm cli:read-only -- plugin-marketplace-metadata --target claude-code --output .runtime-cache/cli/plugin-marketplace-metadata.claude-code.json"
+      ],
+      "listingPayloadPaths": [
+        "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json"
+      ]
+    },
+    "mustNotClaim": [
+      "Published Claude Code plugin",
+      "Distributed public Claude Code skills pack",
+      "Official Claude Code listing"
+    ]
+  },
+  "summary": "Claude Code now has a plugin-level public distribution bundle with a starter packet, sample config, install docs, proof loop, and listing payload, plus a stronger skills-facing companion path.",
+  "boundaryNote": "This bundle turns agent-specific onboarding, MCP capability prep, skills scaffolds, starter bundles, sample configs, proof loops, and plugin metadata into one repo-owned packet. It does not prove any official integration, official listing, published plugin, or distributed skills pack already exists.",
+  "mustNotClaim": [
+    "Official Claude Code integration",
+    "Published Claude Code plugin",
+    "Official Claude Code listing",
+    "Shipped public skills pack"
+  ],
+  "nextHumanStep": "Use the bundle as the strongest truthful public distribution surface today, and only move to an official Claude Code listing or write-side skills distribution flow after the real official surface and auth path are confirmed."
+}

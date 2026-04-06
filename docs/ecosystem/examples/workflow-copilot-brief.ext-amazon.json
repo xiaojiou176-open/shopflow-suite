@@ -1,0 +1,23 @@
+{
+  "tone": "ready-now",
+  "title": "Workflow copilot",
+  "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+  "bullets": [
+    {
+      "label": "Current surface",
+      "value": "www.amazon.com · search"
+    },
+    {
+      "label": "Runnable now",
+      "value": "Extract Amazon search results is runnable right now."
+    },
+    {
+      "label": "Claim gate",
+      "value": "Keep public wording inside the current repo-verified scope."
+    }
+  ],
+  "nextAction": {
+    "label": "Open current review start page",
+    "reason": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised."
+  }
+}

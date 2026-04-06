@@ -1,0 +1,151 @@
+{
+  "surfaceId": "agent-target-packet",
+  "schemaVersion": "shopflow.agent-target-packet.v1",
+  "readOnly": true,
+  "target": "openclaw",
+  "placement": "public-ready-secondary",
+  "currentEntryState": "ready-to-publish-packet",
+  "quickstartPath": "docs/ecosystem/openclaw-comparison.md",
+  "primaryCommand": "pnpm cli:read-only -- agent-target-packet --target openclaw",
+  "recommendedCommands": [
+    "pnpm cli:read-only -- plugin-marketplace-metadata --target openclaw",
+    "pnpm cli:read-only -- public-distribution-bundle",
+    "pnpm cli:read-only -- agent-integration-bundle"
+  ],
+  "repoOwnedArtifacts": [
+    "docs/ecosystem/openclaw-comparison.md",
+    "docs/ecosystem/openclaw-public-ready-matrix.md",
+    "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+  ],
+  "capabilities": [
+    {
+      "id": "integration-surface",
+      "label": "Builder integration surface",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- integration-surface",
+      "sourceDocs": [
+        "docs/ecosystem/builder-start-here.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Gives coding agents one machine-readable map of today/current-scope/later/no-go/owner-decision."
+    },
+    {
+      "id": "runtime-seam",
+      "label": "Provider runtime seam",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- runtime-seam",
+      "sourceDocs": [
+        "docs/adr/ADR-004-switchyard-provider-runtime-seam.md",
+        "docs/ecosystem/integration-recipes.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Makes the Shopflow-vs-runtime boundary explicit without turning the repo into a public runtime product."
+    },
+    {
+      "id": "submission-readiness",
+      "label": "Submission readiness report",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm cli:read-only -- submission-readiness",
+      "sourceDocs": [
+        "docs/ecosystem/claude-code-quickstart.md",
+        "docs/ecosystem/public-distribution-bundle.ready.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Surfaces what still blocks release or submission without pretending those external steps are already done."
+    }
+  ],
+  "skills": [
+    {
+      "id": "shopflow-builder-facing-discoverability-and-ready-sync",
+      "label": "Shopflow builder-facing discoverability and ready-sync",
+      "sourcePath": ".agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md",
+      "distributionState": "repo-local-skill-scaffold",
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "openclaw"
+      ],
+      "summary": "Keeps agent-facing front doors, starter bundles, and ready-to-sync copy truthful instead of overclaiming public distribution.",
+      "mustNotClaim": [
+        "Public discoverability skill pack already shipped"
+      ]
+    }
+  ],
+  "pluginMetadata": {
+    "target": "openclaw",
+    "placement": "public-ready-secondary",
+    "packagingState": "ready-to-publish-packet",
+    "suggestedSlug": "shopflow-openclaw-read-only-packet",
+    "title": "Shopflow OpenClaw Read-only Packet",
+    "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
+    "boundaryNote": "Ready-to-publish packet only. Do not claim an official OpenClaw listing or official-org integration until a real public repo or approved listing surface is live.",
+    "screenshotSources": [
+      "docs/ecosystem/openclaw-comparison.md",
+      "docs/ecosystem/openclaw-public-ready-matrix.md",
+      "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+    ],
+    "capabilityRefs": [
+      "integration-surface",
+      "submission-readiness"
+    ],
+    "skillsRefs": [
+      "shopflow-builder-facing-discoverability-and-ready-sync"
+    ],
+    "distributionBundle": {
+      "truthfulSurfaceStatus": "ready-to-publish-packet",
+      "officialSurfaceStatus": "official-surface-confirmed-auth-required",
+      "starterBundlePaths": [
+        "docs/ecosystem/openclaw-comparison.md",
+        "docs/ecosystem/openclaw-public-ready-matrix.md",
+        "docs/ecosystem/examples/agent-target-packet.openclaw.json"
+      ],
+      "sampleConfigPaths": [
+        "docs/ecosystem/examples/agent-target-packet.openclaw.json",
+        "docs/ecosystem/examples/plugin-marketplace-metadata.openclaw.json"
+      ],
+      "installDocs": [
+        "docs/ecosystem/openclaw-comparison.md",
+        "docs/ecosystem/openclaw-public-ready-matrix.md",
+        "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+      ],
+      "proofLoopCommands": [
+        "pnpm cli:read-only -- agent-target-packet --target openclaw",
+        "pnpm cli:read-only -- plugin-marketplace-metadata --target openclaw",
+        "pnpm cli:read-only -- public-distribution-bundle"
+      ],
+      "listingPayloadPaths": [
+        "docs/ecosystem/examples/plugin-marketplace-metadata.openclaw.json"
+      ]
+    },
+    "mustNotClaim": [
+      "Official OpenClaw listing already live",
+      "Official OpenClaw integration already approved"
+    ]
+  },
+  "summary": "OpenClaw is now carried as a public-ready but not-yet-published packet: install path, discovery path, and proof loop are explicit, while the final external publish step stays truthfully outside the repo boundary.",
+  "boundaryNote": "This bundle turns agent-specific onboarding, MCP capability prep, skills scaffolds, starter bundles, sample configs, proof loops, and plugin metadata into one repo-owned packet. It does not prove any official integration, official listing, published plugin, or distributed skills pack already exists.",
+  "mustNotClaim": [
+    "Official OpenClaw listing already live",
+    "Official OpenClaw integration already approved"
+  ],
+  "nextHumanStep": "Create or authorize the public GitHub plugin repo, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
+}

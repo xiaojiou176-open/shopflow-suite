@@ -1,0 +1,18 @@
+{
+  "surfaceId": "operator-decision-brief",
+  "schemaVersion": "shopflow.operator-decision-brief.v1",
+  "readOnly": true,
+  "appTitle": "Shopflow for Temu",
+  "stage": "claim-gated",
+  "summary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+  "whyNow": [
+    "www.temu.com · search",
+    "Temu search extraction and the warehouse filter workflow are runnable right now.",
+    "1 live evidence packet still gate public wording."
+  ],
+  "nextStep": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.",
+  "primaryRouteLabel": "Open current evidence route",
+  "primaryRouteHref": "https://www.temu.com/search_result.html?search_key=warehouse",
+  "primaryRouteOrigin": "evidence-source",
+  "claimBoundary": "Keep public wording inside the current repo-verified scope."
+}

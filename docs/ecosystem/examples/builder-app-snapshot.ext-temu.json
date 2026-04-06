@@ -1,0 +1,107 @@
+{
+  "surfaceId": "builder-app-snapshot",
+  "schemaVersion": "shopflow.builder-app-snapshot.v1",
+  "readOnly": true,
+  "appId": "ext-temu",
+  "storeId": "temu",
+  "publicName": "Shopflow for Temu",
+  "claimState": "repo-verified",
+  "wave": "wave-2",
+  "tier": "storefront-shell",
+  "detection": {
+    "appId": "ext-temu",
+    "url": "https://www.temu.com/search_result.html?search_key=warehouse",
+    "updatedAt": "2026-04-02T09:30:00.000Z",
+    "detection": {
+      "storeId": "temu",
+      "verifiedScopes": [
+        "temu"
+      ],
+      "matchedHost": "www.temu.com",
+      "pageKind": "search",
+      "confidence": 0.92,
+      "capabilityStates": [
+        {
+          "capability": "extract_search",
+          "status": "ready"
+        },
+        {
+          "capability": "run_action",
+          "status": "ready"
+        },
+        {
+          "capability": "export_data",
+          "status": "ready"
+        }
+      ]
+    }
+  },
+  "latestOutput": {
+    "appId": "ext-temu",
+    "storeId": "temu",
+    "kind": "search",
+    "pageUrl": "https://www.temu.com/search_result.html?search_key=warehouse",
+    "capturedAt": "2026-04-02T09:30:00.000Z",
+    "headline": "Temu Lamp",
+    "summary": "Captured Temu search results on the differentiated warehouse filter workflow.",
+    "previewLines": [
+      "Top result: Temu Lamp",
+      "Filter workflow: ready"
+    ]
+  },
+  "recentActivities": [
+    {
+      "id": "ext-temu:https://www.temu.com/search_result.html?search_key=warehouse",
+      "appId": "ext-temu",
+      "label": "www.temu.com · search",
+      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as storefront-shell-candidate.",
+      "timestampLabel": "2:30 AM",
+      "href": "https://www.temu.com/search_result.html?search_key=warehouse"
+    }
+  ],
+  "evidenceQueue": {
+    "appId": "ext-temu",
+    "totalCount": 1,
+    "needsCaptureCount": 1,
+    "captureCount": 0,
+    "recaptureCount": 0,
+    "missingCount": 1,
+    "captureInProgressCount": 0,
+    "reviewPendingCount": 0,
+    "reviewedCount": 0,
+    "rejectedCount": 0,
+    "expiredCount": 0,
+    "blockerSummary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+    "nextCaptureId": "temu-filter-live-receipt",
+    "nextStatus": "missing-live-receipt",
+    "nextOperatorPath": "capture",
+    "nextRequirementTitle": "Temu filter live receipt",
+    "nextStep": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.",
+    "nextSourcePageUrl": "https://www.temu.com/search_result.html?search_key=warehouse",
+    "nextSourcePageLabel": "Open current evidence route",
+    "nextSourceRouteLabel": "Open current evidence route"
+  },
+  "bestRoute": {
+    "origin": "evidence-source",
+    "label": "Open current evidence route",
+    "href": "https://www.temu.com/search_result.html?search_key=warehouse",
+    "summary": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move."
+  },
+  "builderSurfaceBoundary": {
+    "today": [
+      "Typed store-adapter contracts and verified-scope metadata",
+      "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
+      "Review-bundle and submission-readiness artifacts produced by repo-owned tooling"
+    ],
+    "later": [
+      "Read-only MCP surface backed by the same runtime truth",
+      "Read-only public API contract",
+      "Generated client or thin SDK built on top of the same read models"
+    ],
+    "noGo": [
+      "Write-capable MCP",
+      "Hosted SaaS control plane",
+      "Generic autonomous workflow execution that outruns reviewed live evidence"
+    ]
+  }
+}

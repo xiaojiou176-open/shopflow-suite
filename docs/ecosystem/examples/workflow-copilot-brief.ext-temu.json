@@ -1,0 +1,23 @@
+{
+  "tone": "claim-gated",
+  "title": "Workflow copilot",
+  "summary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+  "bullets": [
+    {
+      "label": "Current surface",
+      "value": "www.temu.com · search"
+    },
+    {
+      "label": "Runnable now",
+      "value": "Temu search extraction and the warehouse filter workflow are runnable right now."
+    },
+    {
+      "label": "Claim gate",
+      "value": "1 live evidence packet still gate public wording."
+    }
+  ],
+  "nextAction": {
+    "label": "Open current evidence route",
+    "reason": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move."
+  }
+}

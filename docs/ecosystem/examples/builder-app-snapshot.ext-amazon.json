@@ -1,0 +1,85 @@
+{
+  "surfaceId": "builder-app-snapshot",
+  "schemaVersion": "shopflow.builder-app-snapshot.v1",
+  "readOnly": true,
+  "appId": "ext-amazon",
+  "storeId": "amazon",
+  "publicName": "Shopflow for Amazon",
+  "claimState": "repo-verified",
+  "wave": "wave-1",
+  "tier": "storefront-shell",
+  "detection": {
+    "appId": "ext-amazon",
+    "url": "https://www.amazon.com/s?k=coffee+storage",
+    "updatedAt": "2026-04-02T09:10:00.000Z",
+    "detection": {
+      "storeId": "amazon",
+      "verifiedScopes": [
+        "amazon"
+      ],
+      "matchedHost": "www.amazon.com",
+      "pageKind": "search",
+      "confidence": 0.92,
+      "capabilityStates": [
+        {
+          "capability": "extract_search",
+          "status": "ready"
+        },
+        {
+          "capability": "run_action",
+          "status": "unsupported_page"
+        },
+        {
+          "capability": "export_data",
+          "status": "ready"
+        }
+      ]
+    }
+  },
+  "latestOutput": {
+    "appId": "ext-amazon",
+    "storeId": "amazon",
+    "kind": "search",
+    "pageUrl": "https://www.amazon.com/s?k=coffee+storage",
+    "capturedAt": "2026-04-02T09:10:00.000Z",
+    "headline": "Amazon JSON-LD Storage Crate",
+    "summary": "Captured Amazon search results from a page-owned JSON-LD item list.",
+    "previewLines": [
+      "Top result: Amazon JSON-LD Storage Crate",
+      "Results captured: 2"
+    ]
+  },
+  "recentActivities": [
+    {
+      "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
+      "appId": "ext-amazon",
+      "label": "www.amazon.com · search",
+      "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
+      "timestampLabel": "2:10 AM",
+      "href": "https://www.amazon.com/s?k=coffee+storage"
+    }
+  ],
+  "bestRoute": {
+    "origin": "merchant-source",
+    "label": "Inspect latest source page",
+    "href": "https://www.amazon.com/s?k=coffee+storage",
+    "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
+  },
+  "builderSurfaceBoundary": {
+    "today": [
+      "Typed store-adapter contracts and verified-scope metadata",
+      "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
+      "Review-bundle and submission-readiness artifacts produced by repo-owned tooling"
+    ],
+    "later": [
+      "Read-only MCP surface backed by the same runtime truth",
+      "Read-only public API contract",
+      "Generated client or thin SDK built on top of the same read models"
+    ],
+    "noGo": [
+      "Write-capable MCP",
+      "Hosted SaaS control plane",
+      "Generic autonomous workflow execution that outruns reviewed live evidence"
+    ]
+  }
+}
