@@ -1,0 +1,192 @@
+name: shopflow-ci
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+permissions: {}
+
+jobs:
+  sensitive-public-surface:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
+      - uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm verify:sensitive-public-surface
+      - run: pnpm verify:github-platform-security
+
+  verify:
+    needs: sensitive-public-surface
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
+      - uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm verify:release-readiness
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-release-manifest
+          path: .runtime-cache/release-artifacts/manifest.json
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-submission-readiness
+          path: .runtime-cache/release-artifacts/submission-readiness.json
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-store-candidate-zips
+          path: |
+            .runtime-cache/release-artifacts/apps/ext-albertsons/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-amazon/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-costco/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-kroger/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-target/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-temu/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-walmart/zip/*.zip
+            .runtime-cache/release-artifacts/apps/ext-weee/zip/*.zip
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-suite-internal-alpha-zip
+          path: .runtime-cache/release-artifacts/apps/ext-shopping-suite/zip/*.zip
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-store-built-extension-directories
+          path: |
+            .runtime-cache/release-artifacts/apps/ext-albertsons/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-amazon/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-costco/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-kroger/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-target/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-temu/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-walmart/bundle/**
+            .runtime-cache/release-artifacts/apps/ext-weee/bundle/**
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-suite-internal-alpha-directory
+          path: .runtime-cache/release-artifacts/apps/ext-shopping-suite/bundle/**
+          if-no-files-found: error
+
+  package-review-artifacts:
+    needs: verify
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app_id: ext-albertsons
+            package_name: '@shopflow/ext-albertsons'
+            app_dir: apps/ext-albertsons
+            review_channel: store-review
+            surface: capability-heavy-product
+          - app_id: ext-kroger
+            package_name: '@shopflow/ext-kroger'
+            app_dir: apps/ext-kroger
+            review_channel: store-review
+            surface: capability-heavy-product
+          - app_id: ext-amazon
+            package_name: '@shopflow/ext-amazon'
+            app_dir: apps/ext-amazon
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-costco
+            package_name: '@shopflow/ext-costco'
+            app_dir: apps/ext-costco
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-walmart
+            package_name: '@shopflow/ext-walmart'
+            app_dir: apps/ext-walmart
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-weee
+            package_name: '@shopflow/ext-weee'
+            app_dir: apps/ext-weee
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-target
+            package_name: '@shopflow/ext-target'
+            app_dir: apps/ext-target
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-temu
+            package_name: '@shopflow/ext-temu'
+            app_dir: apps/ext-temu
+            review_channel: store-review
+            surface: storefront-shell
+          - app_id: ext-shopping-suite
+            package_name: '@shopflow/ext-shopping-suite'
+            app_dir: apps/ext-shopping-suite
+            review_channel: internal-alpha-review
+            surface: internal-alpha
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
+      - uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile=false
+      - name: Build review bundle
+        run: |
+          pnpm --filter "${{ matrix.package_name }}" build
+          pnpm --filter "${{ matrix.package_name }}" zip
+      - name: Sanity check bundle
+        run: |
+          bundle_dir="${{ matrix.app_dir }}/.output/chrome-mv3"
+          test -f "${bundle_dir}/manifest.json"
+          test -f "${bundle_dir}/background.js"
+          test -f "${bundle_dir}/sidepanel.html"
+          find "${{ matrix.app_dir }}/.output" -name '*.zip' -print -quit | grep -q .
+          if [ "${{ matrix.surface }}" != "internal-alpha" ]; then
+            test -f "${bundle_dir}/popup.html"
+          fi
+      - name: Write artifact manifest
+        run: |
+          export SHOPFLOW_APP_ID="${{ matrix.app_id }}"
+          export SHOPFLOW_PACKAGE_NAME="${{ matrix.package_name }}"
+          export SHOPFLOW_REVIEW_CHANNEL="${{ matrix.review_channel }}"
+          export SHOPFLOW_SURFACE="${{ matrix.surface }}"
+          export SHOPFLOW_APP_DIR="${{ matrix.app_dir }}"
+          pnpm release:write-review-artifact-manifest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shopflow-${{ matrix.app_id }}-${{ matrix.review_channel }}
+          path: |
+            ${{ matrix.app_dir }}/.output/chrome-mv3/**
+            ${{ matrix.app_dir }}/.output/**/*.zip
+          retention-days: 14

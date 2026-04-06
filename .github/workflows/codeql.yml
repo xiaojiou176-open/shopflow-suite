@@ -1,0 +1,40 @@
+name: codeql
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain skipped CodeQL when the platform gate is closed
+        if: ${{ github.event.repository.private && vars.SHOPFLOW_ENABLE_CODE_SCANNING != 'true' }}
+        run: |
+          {
+            echo "## CodeQL capability gap"
+            echo
+            echo "CodeQL is currently skipped because this repository is private and \`SHOPFLOW_ENABLE_CODE_SCANNING\` is not enabled."
+            echo "Turn that variable on only after the repository platform supports truthful green runs for private-repo code scanning."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v6.0.2
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_CODE_SCANNING == 'true' }}
+        with:
+          fetch-depth: 0
+      - uses: github/codeql-action/init@v4.35.1
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_CODE_SCANNING == 'true' }}
+        with:
+          languages: javascript-typescript
+      - uses: github/codeql-action/autobuild@v4.35.1
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_CODE_SCANNING == 'true' }}
+      - uses: github/codeql-action/analyze@v4.35.1
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_CODE_SCANNING == 'true' }}
+        with:
+          category: /language:javascript-typescript

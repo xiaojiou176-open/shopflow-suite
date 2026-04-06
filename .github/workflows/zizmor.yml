@@ -1,0 +1,24 @@
+name: workflow-zizmor
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - codex/**
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - name: Install zizmor
+        run: cargo install --locked --git https://github.com/zizmorcore/zizmor --tag v1.23.1 zizmor
+      - name: Run zizmor
+        run: ~/.cargo/bin/zizmor .github/workflows

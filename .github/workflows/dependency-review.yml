@@ -1,0 +1,26 @@
+name: dependency-review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain skipped dependency review when the platform gate is closed
+        if: ${{ github.event.repository.private && vars.SHOPFLOW_ENABLE_DEPENDENCY_REVIEW != 'true' }}
+        run: |
+          {
+            echo "## Dependency Review capability gap"
+            echo
+            echo "Dependency Review is currently skipped because this repository is private and \`SHOPFLOW_ENABLE_DEPENDENCY_REVIEW\` is not enabled."
+            echo "Turn that variable on after the repository platform supports truthful green runs for private-repo dependency review."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v6.0.2
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_DEPENDENCY_REVIEW == 'true' }}
+      - uses: actions/dependency-review-action@v4.9.0
+        if: ${{ !github.event.repository.private || vars.SHOPFLOW_ENABLE_DEPENDENCY_REVIEW == 'true' }}

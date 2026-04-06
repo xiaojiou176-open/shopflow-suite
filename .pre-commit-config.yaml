@@ -1,0 +1,24 @@
+repos:
+  - repo: local
+    hooks:
+      - id: shopflow-verify-local-hygiene
+        name: shopflow verify local hygiene
+        entry: pnpm verify:local-hygiene
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+      - id: shopflow-commitlint
+        name: shopflow commitlint
+        entry: pnpm exec commitlint --edit
+        language: system
+        pass_filenames: true
+        always_run: true
+        stages: [commit-msg]
+      - id: shopflow-verify-release-readiness
+        name: shopflow verify release readiness
+        entry: pnpm verify:release-readiness
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
