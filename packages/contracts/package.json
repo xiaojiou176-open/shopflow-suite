@@ -1,0 +1,26 @@
+{
+  "name": "@shopflow/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./action-receipt": "./src/action-receipt.ts",
+    "./capabilities": "./src/capabilities.ts",
+    "./detection-result": "./src/detection-result.ts",
+    "./error-codes": "./src/error-codes.ts",
+    "./live-receipt-capture-plan": "./src/live-receipt-capture-plan.ts",
+    "./public-claim-boundary": "./src/public-claim-boundary.ts",
+    "./store-adapter": "./src/store-adapter.ts",
+    "./store-catalog": "./src/store-catalog.ts"
+  },
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --passWithNoTests --config vitest.config.ts"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}

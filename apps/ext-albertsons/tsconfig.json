@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@shopflow/contracts": ["../../packages/contracts/src/index.ts"],
+      "@shopflow/contracts/*": ["../../packages/contracts/src/*"],
+      "@shopflow/core": [
+        "../../packages/core/src/side-panel-home-view-model.ts"
+      ],
+      "@shopflow/core/*": ["../../packages/core/src/*"],
+      "@shopflow/ui": ["../../packages/ui/src/index.ts"],
+      "@shopflow/ui/*": ["../../packages/ui/src/*"],
+      "@shopflow/runtime": ["../../packages/runtime/src/index.ts"],
+      "@shopflow/store-albertsons": [
+        "../../packages/store-albertsons/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "entrypoints/**/*.ts",
+    "entrypoints/**/*.tsx",
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}

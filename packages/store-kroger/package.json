@@ -1,0 +1,17 @@
+{
+  "name": "@shopflow/store-kroger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "pnpm --dir ../.. exec vitest run tests/contract/store-kroger.contract.test.ts --config vitest.config.ts --passWithNoTests"
+  },
+  "dependencies": {
+    "@shopflow/contracts": "workspace:*"
+  }
+}

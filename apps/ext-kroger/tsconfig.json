@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shopflow/contracts": ["../../packages/contracts/src/index.ts"],
+      "@shopflow/core": ["../../packages/core/src/index.ts"],
+      "@shopflow/runtime": ["../../packages/runtime/src/index.ts"],
+      "@shopflow/store-kroger": ["../../packages/store-kroger/src/index.ts"],
+      "@shopflow/ui": ["../../packages/ui/src/index.ts"]
+    },
+    "types": ["node", "chrome"]
+  },
+  "include": [
+    "entrypoints/**/*.ts",
+    "entrypoints/**/*.tsx",
+    "src/**/*.ts",
+    "wxt.config.ts"
+  ]
+}

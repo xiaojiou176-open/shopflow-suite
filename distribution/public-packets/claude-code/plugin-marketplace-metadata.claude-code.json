@@ -1,0 +1,58 @@
+{
+  "target": "claude-code",
+  "placement": "front-door-primary",
+  "packagingState": "plugin-level-public-distribution-bundle",
+  "suggestedSlug": "shopflow-read-only-operator-packet",
+  "title": "Shopflow Read-only Operator Packet",
+  "summary": "Plugin-level public distribution bundle for Claude Code with starter bundle, sample config, install docs, proof loop, listing payload, and a skills-facing companion packet.",
+  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until the real official surface and auth path are confirmed.",
+  "screenshotSources": [
+    "docs/ecosystem/claude-code-quickstart.md",
+    "docs/ecosystem/agent-quickstarts.md",
+    "docs/ecosystem/public-distribution-bundle.ready.md"
+  ],
+  "capabilityRefs": [
+    "integration-surface",
+    "runtime-seam",
+    "submission-readiness"
+  ],
+  "skillsRefs": [
+    "shopflow-read-only-runtime-seam-consumption",
+    "shopflow-live-browser-ops"
+  ],
+  "distributionBundle": {
+    "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
+    "officialSurfaceStatus": "official-surface-confirmed-auth-required",
+    "starterBundlePaths": [
+      "docs/ecosystem/claude-code-quickstart.md",
+      "docs/ecosystem/agent-quickstarts.md",
+      "docs/ecosystem/examples/agent-target-packet.claude-code.json",
+      "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json",
+      "docs/ecosystem/examples/public-skills-catalog.json"
+    ],
+    "sampleConfigPaths": [
+      "docs/ecosystem/examples/agent-target-packet.claude-code.json",
+      "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json",
+      "docs/ecosystem/examples/public-skills-catalog.json"
+    ],
+    "installDocs": [
+      "docs/ecosystem/claude-code-quickstart.md",
+      "docs/ecosystem/agent-quickstarts.md",
+      "docs/ecosystem/public-skills-catalog.ready.md",
+      "docs/ecosystem/public-distribution-bundle.ready.md"
+    ],
+    "proofLoopCommands": [
+      "pnpm cli:read-only -- agent-target-packet --target claude-code",
+      "pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-skills-catalog.json",
+      "pnpm cli:read-only -- plugin-marketplace-metadata --target claude-code --output .runtime-cache/cli/plugin-marketplace-metadata.claude-code.json"
+    ],
+    "listingPayloadPaths": [
+      "docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json"
+    ]
+  },
+  "mustNotClaim": [
+    "Published Claude Code plugin",
+    "Distributed public Claude Code skills pack",
+    "Official Claude Code listing"
+  ]
+}

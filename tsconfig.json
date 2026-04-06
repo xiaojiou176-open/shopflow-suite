@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": ["node", "chrome", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@shopflow/contracts": ["packages/contracts/src/index.ts"],
+      "@shopflow/core": ["packages/core/src/index.ts"],
+      "@shopflow/runtime": ["packages/runtime/src/index.ts"],
+      "@shopflow/ui": ["packages/ui/src/index.ts"],
+      "@shopflow/testkit": ["packages/testkit/src/index.ts"],
+      "@shopflow/store-albertsons": ["packages/store-albertsons/src/index.ts"],
+      "@shopflow/store-amazon": ["packages/store-amazon/src/index.ts"],
+      "@shopflow/store-costco": ["packages/store-costco/src/index.ts"],
+      "@shopflow/store-kroger": ["packages/store-kroger/src/index.ts"],
+      "@shopflow/store-walmart": ["packages/store-walmart/src/index.ts"],
+      "@shopflow/store-weee": ["packages/store-weee/src/index.ts"],
+      "@shopflow/store-target": ["packages/store-target/src/index.ts"],
+      "@shopflow/store-temu": ["packages/store-temu/src/index.ts"]
+    }
+  },
+  "include": [
+    "apps/**/*",
+    "packages/**/*",
+    "tests/**/*",
+    "tooling/**/*",
+    "wxt-env.d.ts"
+  ]
+}

@@ -1,0 +1,17 @@
+export const errorCodeValues = [
+  'UNSUPPORTED_SITE',
+  'UNSUPPORTED_PAGE',
+  'PERMISSION_REQUIRED',
+  'SELECTOR_MISSING',
+  'PARSE_FAILED',
+  'ACTION_PRECONDITION_FAILED',
+  'ACTION_STEP_FAILED',
+  'ACTION_PARTIAL',
+  'RATE_LIMITED',
+  'USER_ABORTED',
+  'STORAGE_UNAVAILABLE',
+  'INTERNAL_ERROR',
+  'NOT_IMPLEMENTED',
+] as const;
+
+export type ErrorCode = (typeof errorCodeValues)[number];

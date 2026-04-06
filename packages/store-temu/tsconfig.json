@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shopflow/contracts": ["../../packages/contracts/src/index.ts"],
+      "@shopflow/contracts/*": ["../../packages/contracts/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

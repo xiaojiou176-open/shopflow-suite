@@ -1,0 +1,30 @@
+{
+  "name": "@shopflow/ext-temu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build --level warn",
+    "zip": "wxt zip --level warn",
+    "lint": "eslint src entrypoints wxt.config.ts --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "pnpm --dir ../.. exec vitest run tests/contract/store-temu.contract.test.ts --config vitest.config.ts --passWithNoTests && env -u NO_COLOR pnpm --dir ../.. exec playwright test tests/e2e/ext-temu.smoke.spec.ts --pass-with-no-tests"
+  },
+  "dependencies": {
+    "@shopflow/contracts": "workspace:*",
+    "@shopflow/core": "workspace:*",
+    "@shopflow/runtime": "workspace:*",
+    "@shopflow/store-temu": "workspace:*",
+    "@shopflow/ui": "workspace:*",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@wxt-dev/module-react": "^1.2.2",
+    "wxt": "^0.20.20"
+  }
+}

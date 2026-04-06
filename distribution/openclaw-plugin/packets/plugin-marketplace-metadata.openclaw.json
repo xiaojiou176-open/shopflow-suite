@@ -1,0 +1,51 @@
+{
+  "target": "openclaw",
+  "placement": "public-ready-secondary",
+  "packagingState": "ready-to-publish-packet",
+  "suggestedSlug": "shopflow-openclaw-read-only-packet",
+  "title": "Shopflow OpenClaw Read-only Packet",
+  "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
+  "boundaryNote": "Ready-to-publish packet only. Do not claim an official OpenClaw listing or official-org integration until a real public repo or approved listing surface is live.",
+  "screenshotSources": [
+    "docs/ecosystem/openclaw-comparison.md",
+    "docs/ecosystem/openclaw-public-ready-matrix.md",
+    "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+  ],
+  "capabilityRefs": [
+    "integration-surface",
+    "submission-readiness"
+  ],
+  "skillsRefs": [
+    "shopflow-builder-facing-discoverability-and-ready-sync"
+  ],
+  "distributionBundle": {
+    "truthfulSurfaceStatus": "ready-to-publish-packet",
+    "officialSurfaceStatus": "official-surface-confirmed-auth-required",
+    "starterBundlePaths": [
+      "docs/ecosystem/openclaw-comparison.md",
+      "docs/ecosystem/openclaw-public-ready-matrix.md",
+      "docs/ecosystem/examples/agent-target-packet.openclaw.json"
+    ],
+    "sampleConfigPaths": [
+      "docs/ecosystem/examples/agent-target-packet.openclaw.json",
+      "docs/ecosystem/examples/plugin-marketplace-metadata.openclaw.json"
+    ],
+    "installDocs": [
+      "docs/ecosystem/openclaw-comparison.md",
+      "docs/ecosystem/openclaw-public-ready-matrix.md",
+      "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+    ],
+    "proofLoopCommands": [
+      "pnpm cli:read-only -- agent-target-packet --target openclaw",
+      "pnpm cli:read-only -- plugin-marketplace-metadata --target openclaw",
+      "pnpm cli:read-only -- public-distribution-bundle"
+    ],
+    "listingPayloadPaths": [
+      "docs/ecosystem/examples/plugin-marketplace-metadata.openclaw.json"
+    ]
+  },
+  "mustNotClaim": [
+    "Official OpenClaw listing already live",
+    "Official OpenClaw integration already approved"
+  ]
+}
