@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Safeway Inline Search Payload Without Store Config Fixture</title>
+  </head>
+  <body>
+    <main
+      data-page-kind="search"
+      data-shopflow-search-term="granola"
+      data-testid="search-root"
+    ></main>
+    <script>
+      window.SWY = window.SWY || {};
+      window.SWY.CONFIGSERVICE = window.SWY.CONFIGSERVICE || {};
+      SWY.CONFIGSERVICE.initSearchConfig('{"apimProgramSearchPath":"/abs/pub/xapi","apimProgramSearchProductsEndpoint":"/pgmsearch/v1/search/products","apimProgramSubscriptionKey":"fixture-search-key"}');
+      SWY.CONFIGSERVICE.init('{"wineStoreId":"5799","sns.arservice.apim.subkeyHeader":"ocp-apim-subscription-key"}');
+    </script>
+    <script type="application/json">
+      {
+        "results": {
+          "products": [
+            {
+              "name": "Safeway Inline Granola Clusters",
+              "productUrl": "/shop/product-details.5101.html",
+              "imageUrl": "https://www.safeway.com/images/shopflow-inline-granola-clusters.jpg",
+              "price": {
+                "amount": 6.29,
+                "displayText": "$6.29"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+  </body>
+</html>

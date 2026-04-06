@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Safeway Search API Context Fixture</title>
+  </head>
+  <body>
+    <main
+      data-page-kind="search"
+      data-shopflow-search-term="granola"
+      data-testid="search-root"
+    ></main>
+    <script>
+      window.SWY = window.SWY || {};
+      window.SWY.CONFIGSERVICE = window.SWY.CONFIGSERVICE || {};
+      SWY.CONFIGSERVICE.initSearchConfig('{"apimProgramSearchPath":"/abs/pub/xapi","apimProgramSearchProductsEndpoint":"/pgmsearch/v1/search/products","apimProgramSubscriptionKey":"fixture-search-key"}');
+      SWY.CONFIGSERVICE.initStoreResolutionConfig('{"shopDefaultZipcode":"94611","shopDefaultStoreId":"3132","bannerDefaultZipcode":"94611","bannerDefaultStoreId":"3132"}');
+      SWY.CONFIGSERVICE.init('{"wineStoreId":"5799","sns.arservice.apim.subkeyHeader":"ocp-apim-subscription-key"}');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Safeway Search Inline Payload Assignment Fixture</title>
+  </head>
+  <body>
+    <main data-page-kind="search">
+      <section class="payload-shell">
+        Embedded assignment-backed payload should keep Safeway search extraction
+        page-owned even when DOM cards are absent.
+      </section>
+    </main>
+    <script>
+      window.__PRELOADED_STATE__ = {
+        "response": {
+          "productCards": [
+            {
+              "product": {
+                "displayName": "Safeway Vanilla Yogurt",
+                "url": "/shop/product-details.8801.html",
+                "image": {
+                  "url": "https://www.safeway.com/images/shopflow-vanilla-yogurt.jpg"
+                }
+              },
+              "pricing": {
+                "amount": 4.79,
+                "displayText": "$4.79"
+              }
+            },
+            {
+              "name": "Safeway Breakfast Bites",
+              "productUrl": "/shop/product-details.8802.html",
+              "imageUrl": "https://www.safeway.com/images/shopflow-breakfast-bites.jpg",
+              "price": {
+                "amount": 5.29,
+                "displayText": "$5.29"
+              }
+            }
+          ]
+        }
+      };
+    </script>
+  </body>
+</html>

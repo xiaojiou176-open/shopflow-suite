@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Costco Search Typeahead Variant</title>
+    <script>
+      window.lwTypeAhead = {
+        endpoint: 'https://search.costco.com/typeahead?query={query}',
+        basicAuth: 'shopflow-fixture-basic-auth',
+      };
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Rewrite-backed Costco search shell</h1>
+      <p>
+        This page omits fixture-only cards and JSON-LD so the page-owned
+        typeahead wiring remains the primary search truth source.
+      </p>
+    </main>
+  </body>
+</html>

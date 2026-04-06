@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Amazon Search JSON-LD Variant</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Product",
+              "name": "Amazon JSON-LD Storage Crate",
+              "sku": "B0JSONA001",
+              "url": "/gp/product/B0JSONA001/ref=shopflow_jsonld_result_1",
+              "image": "/images/jsonld-storage-crate.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "24.99"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Product",
+              "name": "Amazon JSON-LD Pantry Bin",
+              "productID": "B0JSONA002",
+              "url": "/s?k=coffee+storage&asin=B0JSONA002",
+              "image": "https://www.amazon.com/images/jsonld-pantry-bin.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "31.49"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main data-page-kind="search">
+      <p>
+        This fixture keeps the DOM shell intentionally thin so Amazon search
+        JSON-LD remains the strongest available truth source.
+      </p>
+    </main>
+  </body>
+</html>

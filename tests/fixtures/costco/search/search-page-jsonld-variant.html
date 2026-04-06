@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Costco Search JSON-LD Variant</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Product",
+              "name": "Kirkland Colombian Cold Brew",
+              "url": "https://www.costco.com/kirkland-colombian-cold-brew.product.400123.html",
+              "image": "https://www.costco.com/images/cold-brew-400123.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "17.49"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Product",
+              "name": "Kirkland Vanilla Latte Pack",
+              "url": "https://www.costco.com/kirkland-vanilla-latte-pack.product.400124.html",
+              "image": "https://www.costco.com/images/latte-400124.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": 19.99
+              }
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main data-page-kind="search">
+      <h1>Search results for cold brew</h1>
+      <p>Structured search data is present on this page even when fixture-only cards are not.</p>
+    </main>
+  </body>
+</html>

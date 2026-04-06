@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kroger Deal Payload Nested Variant</title>
+  </head>
+  <body>
+    <script type="application/json" data-kroger-page-state="deal-results">
+      {
+        "offers": [
+          {
+            "coupon": {
+              "title": "QFC Curry Sauce",
+              "badge": {
+                "text": "Clip coupon"
+              },
+              "link": {
+                "href": "/savings/cl/coupon/9903"
+              }
+            },
+            "price": {
+              "amount": 2.79,
+              "displayText": "$2.79"
+            }
+          },
+          {
+            "offer": {
+              "name": "Fred Meyer Frozen Dumplings",
+              "label": "Digital coupon",
+              "url": "https://www.fredmeyer.com/savings/cl/coupon/9904"
+            },
+            "offers": [
+              {
+                "currentPrice": {
+                  "amount": 4.59,
+                  "displayText": "$4.59"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <main data-page-kind="deal">
+      <section class="payload-shell">
+        Nested family deal payload should remain the primary truth source.
+      </section>
+    </main>
+  </body>
+</html>

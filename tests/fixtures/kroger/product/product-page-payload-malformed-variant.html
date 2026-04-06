@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kroger Family Product Payload Malformed Variant Fixture</title>
+  </head>
+  <body>
+    <script type="application/json" data-kroger-page-state="product-detail">
+      {
+        "data": {
+          "product": {
+            "links": {
+              "productUrl": "/p/qfc-blueberry-waffles/7701"
+            },
+            "images": [
+              {
+                "url": "https://www.qfc.com/images/qfc-blueberry-waffles.jpg"
+              }
+            ],
+            "pricing": {
+              "currentPrice": {
+                "amount": "5.79",
+                "displayText": "$5.79"
+              }
+            },
+            "upc": "KROGER-PAYLOAD-7701"
+          }
+        }
+      }
+    </script>
+    <main data-page-kind="product">
+      <section class="payload-shell">
+        Serialized product payload exists here, but the product row is missing
+        its owned title.
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Vons Search API Context Fixture</title>
+  </head>
+  <body>
+    <main
+      data-page-kind="search"
+      data-shopflow-search-term="granola"
+      data-testid="search-root"
+    ></main>
+    <script>
+      window.SWY = window.SWY || {};
+      window.SWY.CONFIGSERVICE = window.SWY.CONFIGSERVICE || {};
+      SWY.CONFIGSERVICE.initSearchConfig('{"apimProgramSearchPath":"/abs/pub/xapi","apimProgramSearchProductsEndpoint":"/pgmsearch/v1/search/products","apimProgramSubscriptionKey":"fixture-vons-search-key"}');
+      SWY.CONFIGSERVICE.initStoreResolutionConfig('{"shopDefaultZipcode":"92110","shopDefaultStoreId":"2053","bannerDefaultZipcode":"92110","bannerDefaultStoreId":"2053"}');
+      SWY.CONFIGSERVICE.init('{"wineStoreId":"5799","sns.arservice.apim.subkeyHeader":"ocp-apim-subscription-key"}');
+    </script>
+    <script type="application/json">
+      {
+        "results": {
+          "products": [
+            {
+              "name": "Vons API Granola Clusters",
+              "productUrl": "/shop/product-details.7001.html",
+              "imageUrl": "https://www.vons.com/images/shopflow-api-granola-clusters.jpg",
+              "price": {
+                "amount": 6.19,
+                "displayText": "$6.19"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+  </body>
+</html>

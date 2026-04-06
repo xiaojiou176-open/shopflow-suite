@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kroger Search Payload Identifier Variant</title>
+  </head>
+  <body>
+    <script type="application/json" data-kroger-page-state="search-results">
+      {
+        "results": [
+          {
+            "product": {
+              "description": {
+                "displayName": "QFC Olive Oil"
+              },
+              "slug": "qfc-olive-oil",
+              "productId": "5511",
+              "images": [
+                {
+                  "url": "https://www.qfc.com/images/qfc-olive-oil.jpg"
+                }
+              ]
+            },
+            "pricing": {
+              "currentPrice": {
+                "amount": 8.79,
+                "displayText": "$8.79"
+              }
+            }
+          },
+          {
+            "product": {
+              "name": "QFC Marinara Sauce",
+              "slug": "qfc-marinara-sauce",
+              "productID": "5512",
+              "media": {
+                "primary": {
+                  "url": "https://www.qfc.com/images/qfc-marinara-sauce.jpg"
+                }
+              }
+            },
+            "pricing": {
+              "currentPrice": {
+                "amount": 4.29,
+                "displayText": "$4.29"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+    <main data-page-kind="search">
+      <section class="payload-shell">
+        Product slugs and product identifiers should still be enough to keep
+        Kroger family search payloads page-owned and actionable.
+      </section>
+    </main>
+  </body>
+</html>

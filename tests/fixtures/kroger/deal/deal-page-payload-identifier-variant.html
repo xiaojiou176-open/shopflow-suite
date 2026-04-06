@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kroger Deal Payload Identifier Variant</title>
+  </head>
+  <body>
+    <script type="application/json" data-kroger-page-state="deal-results">
+      {
+        "offers": [
+          {
+            "coupon": {
+              "title": "QFC Olive Tapenade",
+              "label": "Clip coupon",
+              "couponId": "9911"
+            },
+            "pricing": {
+              "currentPrice": {
+                "amount": 4.19,
+                "displayText": "$4.19"
+              }
+            }
+          },
+          {
+            "offer": {
+              "name": "QFC Pasta Sauce",
+              "badge": {
+                "text": "Digital coupon"
+              },
+              "offerID": "9912"
+            },
+            "offers": [
+              {
+                "currentPrice": {
+                  "amount": 3.09,
+                  "displayText": "$3.09"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <main data-page-kind="deal">
+      <section class="payload-shell">
+        Coupon identifiers should still let Kroger family deal payloads stay
+        actionable when explicit owned URLs are omitted.
+      </section>
+    </main>
+  </body>
+</html>

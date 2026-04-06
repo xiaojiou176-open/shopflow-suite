@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Temu JSON-LD Filter Candidates Fixture</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Product",
+              "name": "Temu Foldable Shoe Box",
+              "url": "https://www.temu.com/goods.html?goods_id=9401",
+              "image": "https://www.temu.com/images/shoe-box-9401.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "19.99"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Product",
+              "name": "Temu Drawer Organizer",
+              "url": "https://www.temu.com/goods.html?goods_id=9402",
+              "image": "https://www.temu.com/images/drawer-organizer-9402.jpg",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "11.49"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main data-page-kind="search">
+      <section
+        data-shopflow-filter-item
+        data-item-ref="temu-jsonld-1"
+        data-warehouse="non-local"
+      >
+        <p>Temu Foldable Shoe Box</p>
+      </section>
+      <section
+        data-shopflow-filter-item
+        data-item-ref="temu-jsonld-2"
+        data-warehouse="non-local"
+      >
+        <p>Temu Drawer Organizer</p>
+      </section>
+    </main>
+  </body>
+</html>

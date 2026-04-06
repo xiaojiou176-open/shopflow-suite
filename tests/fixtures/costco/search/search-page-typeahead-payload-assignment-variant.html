@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Costco Search Typeahead Payload Assignment Variant</title>
+    <script>
+      window.__COSTCO_TYPEAHEAD_RESULTS__ = {
+        "docs": [
+          {
+            "title": "Kirkland Cold Brew Cans",
+            "url": "/kirkland-cold-brew-cans.product.401200.html",
+            "imageUrl": "/images/cold-brew-cans-401200.jpg",
+            "price": "18.49"
+          },
+          {
+            "doc": {
+              "name": "Organic Matcha Latte Mix",
+              "href": "https://www.costco.com/organic-matcha-latte-mix.product.401201.html",
+              "thumbnailUrl": "https://www.costco.com/images/matcha-latte-401201.jpg",
+              "salePrice": 21.99
+            }
+          }
+        ]
+      };
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Embedded Costco typeahead payload shell</h1>
+      <p>
+        Cached search payload should stay consumable even before typeahead fetch
+        wiring becomes the only available path.
+      </p>
+    </main>
+  </body>
+</html>
