@@ -812,19 +812,17 @@ function resolveOwnedTemuUrl(
   }
 
   const trimmed = rawValue.trim();
-  if (
-    trimmed.startsWith('#') ||
-    trimmed.toLowerCase().startsWith('javascript:')
-  ) {
+  if (trimmed.startsWith('#')) {
     return undefined;
   }
 
   try {
     const resolved = new URL(trimmed, resolveDocumentUrl(root));
-    if (
-      resolved.hostname !== 'www.temu.com' ||
-      (resolved.protocol !== 'https:' && resolved.protocol !== 'http:')
-    ) {
+    if (!hasSupportedWebProtocol(resolved)) {
+      return undefined;
+    }
+
+    if (resolved.hostname !== 'www.temu.com') {
       return undefined;
     }
 
@@ -855,6 +853,10 @@ function resolveDocumentUrl(root: ParentNode): string {
 
 function normalizeText(value: string | undefined) {
   return value?.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function hasSupportedWebProtocol(url: URL) {
+  return url.protocol === 'https:' || url.protocol === 'http:';
 }
 
 function hasAnySelector(
@@ -998,19 +1000,17 @@ function resolveOwnedUrl(root: ParentNode, selector: string): string | undefined
   }
 
   const trimmed = rawValue.trim();
-  if (
-    trimmed.startsWith('#') ||
-    trimmed.toLowerCase().startsWith('javascript:')
-  ) {
+  if (trimmed.startsWith('#')) {
     return undefined;
   }
 
   try {
     const resolved = new URL(trimmed, resolveDocumentUrl(root));
-    if (
-      resolved.hostname !== 'www.temu.com' ||
-      (resolved.protocol !== 'https:' && resolved.protocol !== 'http:')
-    ) {
+    if (!hasSupportedWebProtocol(resolved)) {
+      return undefined;
+    }
+
+    if (resolved.hostname !== 'www.temu.com') {
       return undefined;
     }
 

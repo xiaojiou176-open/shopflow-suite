@@ -3,6 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   createSimpleStorefrontContractHarness,
+  createHtmlFixture,
   createPageKindFixture,
 } from '@shopflow/testkit';
 import { walmartAdapter } from '@shopflow/store-walmart';
@@ -31,10 +32,11 @@ describe('store-walmart contract', () => {
   it('declares product extraction honestly on product pages', () => {
     const inspection = walmart.inspectDetection(
       'https://www.walmart.com/ip/shopflow-fixture',
-      createPageKindFixture(
-        'product',
-        '<h1 itemprop="name">Walmart Family Coffee Pack</h1>'
-      )
+      createHtmlFixture(`
+        <main data-page-kind="product">
+          <h1 itemprop="name">Walmart Family Coffee Pack</h1>
+        </main>
+      `)
     );
 
     expect(inspection).toMatchObject({
@@ -77,14 +79,13 @@ describe('store-walmart contract', () => {
   it('marks Walmart search extraction parse-failed when a recognized result row is missing a required URL', () => {
     const inspection = walmart.inspectDetection(
       'https://www.walmart.com/search?q=coffee',
-      createPageKindFixture(
-        'search',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="search">
           <article data-item-id="wm-missing-url">
             <span data-automation-id="product-title">Walmart Missing URL Coffee</span>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(
@@ -174,9 +175,8 @@ describe('store-walmart contract', () => {
   });
 
   it('accepts product JSON-LD as a more stable truth source on product pages', async () => {
-    const fixture = createPageKindFixture(
-      'product',
-      `
+    const fixture = createHtmlFixture(`
+      <main data-page-kind="product">
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -192,8 +192,8 @@ describe('store-walmart contract', () => {
             }
           }
         </script>
-      `
-    );
+      </main>
+    `);
 
     const inspection = walmart.inspectDetection(
       'https://www.walmart.com/ip/wm-json-coffee-pack/55',

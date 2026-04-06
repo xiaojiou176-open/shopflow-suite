@@ -10,6 +10,7 @@ export type GitHubPlatformCapabilityName =
 export type GitHubPlatformCapabilityStatus =
   | 'enabled'
   | 'disabled'
+  | 'platform-pending'
   | 'alerts-open'
   | 'unexpected-error';
 
@@ -40,9 +41,24 @@ export type GitHubPlatformSecurityOps = {
 
 export const defaultOps: GitHubPlatformSecurityOps = {
   runGh: (args) => {
+    const tokenResult = spawnSync('gh', ['auth', 'token'], {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+    });
+    const ghToken =
+      process.env.GH_TOKEN ||
+      process.env.GITHUB_TOKEN ||
+      (tokenResult.status === 0 ? tokenResult.stdout.trim() : '');
     const result = spawnSync('gh', args, {
       cwd: process.cwd(),
       encoding: 'utf8',
+      env: ghToken
+        ? {
+            ...process.env,
+            GH_TOKEN: ghToken,
+            GITHUB_TOKEN: ghToken,
+          }
+        : process.env,
     });
 
     return {
@@ -92,6 +108,10 @@ const capabilityDefinitions: Array<{
 
 function normalizeMessage(result: CommandResult) {
   return `${result.stderr}\n${result.stdout}`.trim();
+}
+
+function isIntegrationBlocked(message: string) {
+  return /resource not accessible by integration/i.test(message);
 }
 
 export function inferRepoSlugFromRemote(remoteUrl: string) {
@@ -173,6 +193,8 @@ export function classifyCapabilityResult(
   capability: GitHubPlatformCapabilityName,
   result: CommandResult
 ): GitHubPlatformCapabilityResult {
+  const message = normalizeMessage(result);
+
   if (result.status === 0) {
     if (capability === 'vulnerability-alerts') {
       return {
@@ -202,10 +224,19 @@ export function classifyCapabilityResult(
     return disabled;
   }
 
+  if (isIntegrationBlocked(message)) {
+    return {
+      capability,
+      status: 'platform-pending',
+      message,
+      openAlertCount: null,
+    };
+  }
+
   return {
     capability,
     status: 'unexpected-error',
-    message: normalizeMessage(result),
+    message,
     openAlertCount: null,
   };
 }

@@ -3,6 +3,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   createSimpleStorefrontContractHarness,
+  createHtmlFixture,
   createPageKindFixture,
 } from '@shopflow/testkit';
 import { costcoAdapter } from '@shopflow/store-costco';
@@ -33,10 +34,11 @@ describe('store-costco contract', () => {
   it('declares product extraction honestly on product pages', () => {
     const inspection = costco.inspectDetection(
       'https://www.costco.com/CProductDisplay',
-      createPageKindFixture(
-        'product',
-        '<h1 data-testid="pdp-product-name">Kirkland Cold Brew</h1>'
-      )
+      createHtmlFixture(`
+        <main data-page-kind="product">
+          <h1 data-testid="pdp-product-name">Kirkland Cold Brew</h1>
+        </main>
+      `)
     );
 
     expect(inspection).toMatchObject({
@@ -79,14 +81,13 @@ describe('store-costco contract', () => {
   it('marks Costco search extraction parse-failed when a recognized result row is missing a required URL', () => {
     const inspection = costco.inspectDetection(
       'https://www.costco.com/CatalogSearch?keyword=cold+brew',
-      createPageKindFixture(
-        'search',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="search">
           <article data-shopflow-search-item>
             <span data-shopflow-search-title>Kirkland Missing URL Cold Brew</span>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(
@@ -365,9 +366,8 @@ describe('store-costco contract', () => {
   });
 
   it('accepts product JSON-LD as a more stable truth source on product pages', async () => {
-    const fixture = createPageKindFixture(
-      'product',
-      `
+    const fixture = createHtmlFixture(`
+      <main data-page-kind="product">
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -383,8 +383,8 @@ describe('store-costco contract', () => {
             }
           }
         </script>
-      `
-    );
+      </main>
+    `);
 
     const inspection = costco.inspectDetection(
       'https://www.costco.com/kirkland-cold-brew.product.400077.html',

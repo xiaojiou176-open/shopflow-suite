@@ -16,9 +16,22 @@ export function createPageKindFixture(
   pageKind: DetectionResult['pageKind'],
   body = ''
 ) {
-  return createHtmlFixture(
-    `<main data-page-kind="${pageKind}">${body}</main>`
-  );
+  const fixture = createHtmlFixture('<main></main>');
+  const main = fixture.body.querySelector('main');
+
+  if (!main) {
+    throw new Error('Failed to create storefront shell fixture root.');
+  }
+
+  main.setAttribute('data-page-kind', pageKind);
+
+  if (body) {
+    const range = fixture.createRange();
+    range.selectNodeContents(main);
+    main.replaceChildren(range.createContextualFragment(body));
+  }
+
+  return fixture;
 }
 
 export function getCapabilityState(

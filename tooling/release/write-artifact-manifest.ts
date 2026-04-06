@@ -28,6 +28,10 @@ type ReleaseArtifactOutputIssue = {
   missingBundleFiles: string[];
 };
 
+function sleep(milliseconds: number) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+}
+
 function collectZipArtifacts(outputDirectory: string) {
   if (!exists(outputDirectory)) {
     return [];
@@ -128,10 +132,31 @@ export function collectArtifactOutputIssues(
   });
 }
 
+function waitForArtifactOutputs() {
+  const deadline = Date.now() + 20_000;
+  let manifest = buildManifest();
+  let missingOutputs = collectArtifactOutputIssues(manifest);
+
+  while (missingOutputs.length > 0 && Date.now() < deadline) {
+    sleep(200);
+    manifest = buildManifest();
+    missingOutputs = collectArtifactOutputIssues(manifest);
+  }
+
+  return {
+    manifest,
+    missingOutputs,
+  };
+}
+
 function main() {
   const requireOutputs = process.argv.includes('--require-outputs');
-  const manifest = buildManifest();
-  const missingOutputs = collectArtifactOutputIssues(manifest);
+  const { manifest, missingOutputs } = requireOutputs
+    ? waitForArtifactOutputs()
+    : {
+        manifest: buildManifest(),
+        missingOutputs: collectArtifactOutputIssues(),
+      };
 
   if (requireOutputs && missingOutputs.length > 0) {
     for (const entry of missingOutputs) {

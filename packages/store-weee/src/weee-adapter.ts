@@ -464,6 +464,10 @@ function hasOwnedUrl(root: ParentNode, selector: string) {
   return Boolean(resolveOwnedUrl(root, selector));
 }
 
+function hasSupportedWebProtocol(url: URL) {
+  return url.protocol === 'https:' || url.protocol === 'http:';
+}
+
 function resolveOwnedUrl(root: ParentNode, selector: string): string | undefined {
   const rawValue = readAttribute(root, selector, 'href');
   if (!rawValue) {
@@ -471,19 +475,17 @@ function resolveOwnedUrl(root: ParentNode, selector: string): string | undefined
   }
 
   const trimmed = rawValue.trim();
-  if (
-    trimmed.startsWith('#') ||
-    trimmed.toLowerCase().startsWith('javascript:')
-  ) {
+  if (trimmed.startsWith('#')) {
     return undefined;
   }
 
   try {
     const resolved = new URL(trimmed, resolveDocumentUrl(root));
-    if (
-      resolved.hostname !== 'www.sayweee.com' ||
-      (resolved.protocol !== 'https:' && resolved.protocol !== 'http:')
-    ) {
+    if (!hasSupportedWebProtocol(resolved)) {
+      return undefined;
+    }
+
+    if (resolved.hostname !== 'www.sayweee.com') {
       return undefined;
     }
 

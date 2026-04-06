@@ -15,9 +15,9 @@ jobs:
   zizmor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Install zizmor
         run: cargo install --locked --git https://github.com/zizmorcore/zizmor --tag v1.23.1 zizmor
       - name: Run zizmor

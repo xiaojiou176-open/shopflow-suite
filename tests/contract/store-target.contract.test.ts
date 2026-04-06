@@ -28,10 +28,11 @@ describe('store-target contract', () => {
   it('declares product extraction honestly on product pages', () => {
     const inspection = target.inspectDetection(
       'https://www.target.com/p/example',
-      createPageKindFixture(
-        'product',
-        '<h1 data-shopflow-product-title>Target Pantry Pasta</h1>'
-      )
+      createHtmlFixture(`
+        <main data-page-kind="product">
+          <h1 data-shopflow-product-title>Target Pantry Pasta</h1>
+        </main>
+      `)
     );
 
     expect(inspection).toMatchObject({
@@ -73,16 +74,15 @@ describe('store-target contract', () => {
   it('declares search extraction honestly on search pages', () => {
     const inspection = target.inspectDetection(
       'https://www.target.com/c/grocery',
-      createPageKindFixture(
-        'search',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="search">
           <article data-shopflow-search-item>
             <a data-shopflow-search-url href="https://www.target.com/p/pantry-pasta">
               <span data-shopflow-search-title>Target Pantry Pasta</span>
             </a>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(inspection.detection.pageKind).toBe('search');
@@ -115,15 +115,14 @@ describe('store-target contract', () => {
   it('marks Target deal extraction parse-failed when a recognized deal row is missing a required URL', () => {
     const inspection = target.inspectDetection(
       'https://www.target.com/pl/deals',
-      createPageKindFixture(
-        'deal',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="deal">
           <article data-test="deal-card">
             <span data-test="deal-title">Target Missing URL Deal</span>
             <span data-test="deal-badge">Buy 2 save $3</span>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(
@@ -181,9 +180,8 @@ describe('store-target contract', () => {
   });
 
   it('accepts product JSON-LD as a more stable truth source on product pages', async () => {
-    const fixture = createPageKindFixture(
-      'product',
-      `
+    const fixture = createHtmlFixture(`
+      <main data-page-kind="product">
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -199,8 +197,8 @@ describe('store-target contract', () => {
             }
           }
         </script>
-      `
-    );
+      </main>
+    `);
 
     const inspection = target.inspectDetection(
       'https://www.target.com/p/target-json-pasta/-/A-88',
@@ -246,9 +244,8 @@ describe('store-target contract', () => {
   it('uses Target page-owned search API context before falling back to DOM cards', async () => {
     const targetFixtureApiKeyField = 'apiKeyProduction';
     const targetFixtureApiKey = '0000000000000000000000000000000000000000';
-    const fixture = createPageKindFixture(
-      'search',
-      `
+    const fixture = createHtmlFixture(`
+      <main data-page-kind="search">
         <script>
           window.__CONFIG__ = ${JSON.stringify({
             services: {
@@ -293,8 +290,8 @@ describe('store-target contract', () => {
           };
         </script>
         <div data-shopflow-search-term="granola"></div>
-      `
-    );
+      </main>
+    `);
     Object.defineProperty(fixture, 'URL', {
       value: 'https://www.target.com/s?searchTerm=granola',
       configurable: true,

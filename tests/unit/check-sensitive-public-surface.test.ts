@@ -1,38 +1,19 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   collectPublicSurfaceFindings,
-  defaultOps,
+  createPublicSurfaceOps,
   scanGitHubTextSurface,
   type PublicSurfaceOps,
 } from '../../tooling/verification/check-sensitive-public-surface';
-import { spawnSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
-
-vi.mock('node:child_process', async () => {
-  const actual =
-    await vi.importActual<typeof import('node:child_process')>('node:child_process');
-  return {
-    ...actual,
-    spawnSync: vi.fn(),
-  };
-});
-
-vi.mock('node:fs', async () => {
-  const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
-  return {
-    ...actual,
-    mkdtempSync: vi.fn(),
-  };
-});
 
 function createOps(
   overrides: Partial<PublicSurfaceOps> = {}
 ): PublicSurfaceOps {
   const repoViews = {
-    'xiaojiou176/shopflow-suite': {
-      isPrivate: true,
-      visibility: 'PRIVATE',
-      url: 'https://github.com/xiaojiou176/shopflow-suite',
+    'xiaojiou176-open/shopflow-suite': {
+      isPrivate: false,
+      visibility: 'PUBLIC',
+      url: 'https://github.com/xiaojiou176-open/shopflow-suite',
     },
     'xiaojiou176/shopflow-public-packets': {
       isPrivate: false,
@@ -60,20 +41,15 @@ function createOps(
 }
 
 describe('sensitive public-surface gate', () => {
-  beforeEach(() => {
-    vi.mocked(spawnSync).mockReset();
-    vi.mocked(mkdtempSync).mockReset();
-  });
-
   it('flags when the private main repo unexpectedly becomes public', () => {
     const findings = collectPublicSurfaceFindings(
       createOps({
         viewRepo: (repo) =>
-          repo === 'xiaojiou176/shopflow-suite'
+          repo === 'xiaojiou176-open/shopflow-suite'
             ? {
-                isPrivate: false,
-                visibility: 'PUBLIC',
-                url: 'https://github.com/xiaojiou176/shopflow-suite',
+                isPrivate: true,
+                visibility: 'PRIVATE',
+                url: 'https://github.com/xiaojiou176-open/shopflow-suite',
               }
             : createOps().viewRepo(repo),
       })
@@ -82,7 +58,7 @@ describe('sensitive public-surface gate', () => {
     expect(findings).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          ruleId: 'unexpected-public-repo',
+          ruleId: 'public-surface-unavailable',
         }),
       ])
     );
@@ -140,47 +116,58 @@ describe('sensitive public-surface gate', () => {
     );
   });
 
-  it('runs default gh-backed repo view calls through spawnSync', () => {
-    vi.mocked(spawnSync).mockReturnValue({
-      status: 0,
-      stdout: JSON.stringify({
-        isPrivate: true,
-        visibility: 'PRIVATE',
-        url: 'https://github.com/xiaojiou176/shopflow-suite',
-      }),
-      stderr: '',
-    } as ReturnType<typeof spawnSync>);
+  it('builds REST-backed public-surface ops without GraphQL-only assumptions', () => {
+    const calls: string[][] = [];
+    const ops = createPublicSurfaceOps(
+      <T>(args: string[]) => {
+        calls.push(args);
 
-    expect(defaultOps.viewRepo('xiaojiou176/shopflow-suite')).toEqual({
+        if (args[1]?.includes('/issues?')) {
+          return [
+            { number: 1, title: 'issue-1' },
+            { number: 2, title: 'pull-shadow', pull_request: { url: 'x' } },
+          ] as T;
+        }
+
+        if (args[1]?.includes('/pulls?')) {
+          return [{ number: 3, title: 'pull-1' }] as T;
+        }
+
+        if (args[1]?.includes('/releases?')) {
+          return [{ tag_name: 'v1.0.0', name: 'release-1' }] as T;
+        }
+
+        return {
+          private: true,
+          visibility: 'private',
+          html_url: 'https://github.com/xiaojiou176/shopflow-suite',
+        } as T;
+      },
+      (repo) => `/tmp/${repo.replace('/', '-')}`
+    );
+
+    expect(ops.viewRepo('xiaojiou176-open/shopflow-suite')).toEqual({
       isPrivate: true,
-      visibility: 'PRIVATE',
+      visibility: 'private',
       url: 'https://github.com/xiaojiou176/shopflow-suite',
     });
-  });
-
-  it('runs default GitHub list calls through spawnSync', () => {
-    vi.mocked(spawnSync).mockReturnValue({
-      status: 0,
-      stdout: JSON.stringify([]),
-      stderr: '',
-    } as ReturnType<typeof spawnSync>);
-
-    expect(defaultOps.listIssues('xiaojiou176/shopflow-public-packets')).toEqual([]);
-    expect(defaultOps.listPulls('xiaojiou176/shopflow-public-packets')).toEqual([]);
-    expect(defaultOps.listReleases('xiaojiou176/shopflow-public-packets')).toEqual([]);
-  });
-
-  it('creates the default public clone through git clone', () => {
-    vi.mocked(mkdtempSync).mockReturnValue('/tmp/shopflow-public-clone');
-    vi.mocked(spawnSync).mockReturnValue({
-      status: 0,
-      stdout: '',
-      stderr: '',
-    } as ReturnType<typeof spawnSync>);
-
-    const cloneRoot = defaultOps.cloneRepo('xiaojiou176/shopflow-public-packets');
-
-    expect(cloneRoot).toContain('shopflow-public-scan-');
-    rmSync(cloneRoot, { recursive: true, force: true });
+    expect(ops.listIssues('xiaojiou176/shopflow-public-packets')).toEqual([
+      { number: 1, title: 'issue-1' },
+    ]);
+    expect(ops.listPulls('xiaojiou176/shopflow-public-packets')).toEqual([
+      { number: 3, title: 'pull-1' },
+    ]);
+    expect(ops.listReleases('xiaojiou176/shopflow-public-packets')).toEqual([
+      { tag_name: 'v1.0.0', name: 'release-1' },
+    ]);
+    expect(ops.cloneRepo('xiaojiou176/shopflow-public-packets')).toBe(
+      '/tmp/xiaojiou176-shopflow-public-packets'
+    );
+    expect(calls.map((args) => args[1])).toEqual([
+      'repos/xiaojiou176-open/shopflow-suite',
+      'repos/xiaojiou176/shopflow-public-packets/issues?state=all&per_page=100',
+      'repos/xiaojiou176/shopflow-public-packets/pulls?state=all&per_page=100',
+      'repos/xiaojiou176/shopflow-public-packets/releases?per_page=100',
+    ]);
   });
 });

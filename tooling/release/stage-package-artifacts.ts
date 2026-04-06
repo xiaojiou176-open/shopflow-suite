@@ -11,6 +11,36 @@ function sleep(milliseconds: number) {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
 }
 
+function removeDirectoryWithRetries(targetPath: string) {
+  const deadline = Date.now() + 10_000;
+
+  while (true) {
+    try {
+      rmSync(targetPath, {
+        recursive: true,
+        force: true,
+      });
+      return;
+    } catch (error) {
+      if (
+        !(
+          error instanceof Error &&
+          'code' in error &&
+          ['EBUSY', 'ENOTEMPTY', 'EPERM'].includes(String(error.code))
+        )
+      ) {
+        throw error;
+      }
+
+      if (Date.now() >= deadline) {
+        throw error;
+      }
+
+      sleep(200);
+    }
+  }
+}
+
 function collectZipEntries(outputRoot: string) {
   if (!existsSync(outputRoot)) {
     return [];
@@ -35,6 +65,31 @@ function waitForZipEntries(outputRoot: string) {
   return zipEntries;
 }
 
+function requiredBundleFilesFor(appId: string) {
+  const baseFiles = ['manifest.json', 'background.js', 'sidepanel.html'];
+
+  return appId === 'ext-shopping-suite'
+    ? baseFiles
+    : [...baseFiles, 'popup.html'];
+}
+
+function waitForBundleFiles(buildRoot: string, appId: string) {
+  const deadline = Date.now() + 20_000;
+  const requiredFiles = requiredBundleFilesFor(appId);
+
+  while (Date.now() < deadline) {
+    const allPresent = requiredFiles.every((fileName) =>
+      existsSync(resolve(buildRoot, fileName))
+    );
+
+    if (allPresent) {
+      return;
+    }
+
+    sleep(200);
+  }
+}
+
 const appDirs = process.argv.slice(2);
 
 if (appDirs.length === 0) {
@@ -52,15 +107,15 @@ for (const appDir of appDirs) {
   const bundleStageRoot = resolve(appStageRoot, 'bundle');
   const zipStageRoot = resolve(appStageRoot, 'zip');
 
-  rmSync(appStageRoot, {
-    recursive: true,
-    force: true,
-  });
+  removeDirectoryWithRetries(appStageRoot);
   mkdirSync(appStageRoot, {
     recursive: true,
   });
 
+  const zipEntries = waitForZipEntries(outputRoot);
+
   if (existsSync(buildRoot)) {
+    waitForBundleFiles(buildRoot, appId);
     cpSync(buildRoot, bundleStageRoot, {
       recursive: true,
     });
@@ -70,7 +125,7 @@ for (const appDir of appDirs) {
     recursive: true,
   });
 
-  for (const entry of waitForZipEntries(outputRoot)) {
+  for (const entry of zipEntries) {
       cpSync(resolve(outputRoot, entry), resolve(zipStageRoot, entry));
   }
 }

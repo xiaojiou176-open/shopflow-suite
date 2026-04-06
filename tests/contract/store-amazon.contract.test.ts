@@ -14,16 +14,15 @@ describe('store-amazon contract', () => {
   it('matches amazon search pages and keeps the shell honest', () => {
     const inspection = amazon.inspectDetection(
       'https://www.amazon.com/s?k=coffee',
-      createPageKindFixture(
-        'search',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="search">
           <article data-component-type="s-search-result">
             <a href="https://www.amazon.com/dp/shopflow-search-1">
               <h2><span>Amazon Search Coffee</span></h2>
             </a>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(inspection).toMatchObject({
@@ -67,14 +66,13 @@ describe('store-amazon contract', () => {
   it('marks Amazon search extraction parse-failed when a recognized result row is missing a required URL', () => {
     const inspection = amazon.inspectDetection(
       'https://www.amazon.com/s?k=beans',
-      createPageKindFixture(
-        'search',
-        `
+      createHtmlFixture(`
+        <main data-page-kind="search">
           <article data-component-type="s-search-result">
             <h2><span>Amazon Missing URL Beans</span></h2>
           </article>
-        `
-      )
+        </main>
+      `)
     );
 
     expect(
@@ -214,9 +212,8 @@ describe('store-amazon contract', () => {
   });
 
   it('accepts product JSON-LD as a more stable truth source on product pages', async () => {
-    const fixture = createPageKindFixture(
-      'product',
-      `
+    const fixture = createHtmlFixture(`
+      <main data-page-kind="product">
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -232,8 +229,8 @@ describe('store-amazon contract', () => {
             }
           }
         </script>
-      `
-    );
+      </main>
+    `);
 
     const inspection = amazon.inspectDetection(
       'https://www.amazon.com/dp/amz-json-grinder',
