@@ -6,12 +6,13 @@ import {
   rmSync,
 } from 'node:fs';
 import { basename, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-function sleep(milliseconds: number) {
+export function sleep(milliseconds: number) {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
 }
 
-function removeDirectoryWithRetries(targetPath: string) {
+export function removeDirectoryWithRetries(targetPath: string) {
   const deadline = Date.now() + 10_000;
 
   while (true) {
@@ -41,7 +42,7 @@ function removeDirectoryWithRetries(targetPath: string) {
   }
 }
 
-function collectZipEntries(outputRoot: string) {
+export function collectZipEntries(outputRoot: string) {
   if (!existsSync(outputRoot)) {
     return [];
   }
@@ -49,7 +50,7 @@ function collectZipEntries(outputRoot: string) {
   return readdirSync(outputRoot).filter((entry) => entry.endsWith('.zip'));
 }
 
-function waitForZipEntries(outputRoot: string) {
+export function waitForZipEntries(outputRoot: string) {
   // `wxt zip` can return before the final archive is visible on disk on some
   // runs, especially when several apps are packaged back-to-back. Give the
   // staging lane a wider window so the release-readiness gate does not fail on
@@ -65,7 +66,7 @@ function waitForZipEntries(outputRoot: string) {
   return zipEntries;
 }
 
-function requiredBundleFilesFor(appId: string) {
+export function requiredBundleFilesFor(appId: string) {
   const baseFiles = ['manifest.json', 'background.js', 'sidepanel.html'];
 
   return appId === 'ext-shopping-suite'
@@ -73,7 +74,7 @@ function requiredBundleFilesFor(appId: string) {
     : [...baseFiles, 'popup.html'];
 }
 
-function waitForBundleFiles(buildRoot: string, appId: string) {
+export function waitForBundleFiles(buildRoot: string, appId: string) {
   const deadline = Date.now() + 20_000;
   const requiredFiles = requiredBundleFilesFor(appId);
 
@@ -90,48 +91,62 @@ function waitForBundleFiles(buildRoot: string, appId: string) {
   }
 }
 
-const appDirs = process.argv.slice(2);
+export function stagePackageArtifacts(
+  appDirs: string[],
+  repoRoot = process.cwd()
+) {
+  if (appDirs.length === 0) {
+    throw new Error('Expected at least one app directory argument.');
+  }
 
-if (appDirs.length === 0) {
-  throw new Error('Expected at least one app directory argument.');
-}
+  const stagingRoot = resolve(repoRoot, '.runtime-cache/release-artifacts/apps');
 
-const repoRoot = process.cwd();
-const stagingRoot = resolve(repoRoot, '.runtime-cache/release-artifacts/apps');
+  for (const appDir of appDirs) {
+    const appId = basename(appDir);
+    const outputRoot = resolve(repoRoot, appDir, '.output');
+    const buildRoot = resolve(outputRoot, 'chrome-mv3');
+    const appStageRoot = resolve(stagingRoot, appId);
+    const bundleStageRoot = resolve(appStageRoot, 'bundle');
+    const zipStageRoot = resolve(appStageRoot, 'zip');
 
-for (const appDir of appDirs) {
-  const appId = basename(appDir);
-  const outputRoot = resolve(repoRoot, appDir, '.output');
-  const buildRoot = resolve(outputRoot, 'chrome-mv3');
-  const appStageRoot = resolve(stagingRoot, appId);
-  const bundleStageRoot = resolve(appStageRoot, 'bundle');
-  const zipStageRoot = resolve(appStageRoot, 'zip');
-
-  removeDirectoryWithRetries(appStageRoot);
-  mkdirSync(appStageRoot, {
-    recursive: true,
-  });
-
-  const zipEntries = waitForZipEntries(outputRoot);
-
-  if (existsSync(buildRoot)) {
-    waitForBundleFiles(buildRoot, appId);
-    cpSync(buildRoot, bundleStageRoot, {
+    removeDirectoryWithRetries(appStageRoot);
+    mkdirSync(appStageRoot, {
       recursive: true,
     });
-  }
 
-  mkdirSync(zipStageRoot, {
-    recursive: true,
-  });
+    const zipEntries = waitForZipEntries(outputRoot);
 
-  for (const entry of zipEntries) {
+    if (existsSync(buildRoot)) {
+      waitForBundleFiles(buildRoot, appId);
+      cpSync(buildRoot, bundleStageRoot, {
+        recursive: true,
+      });
+    }
+
+    mkdirSync(zipStageRoot, {
+      recursive: true,
+    });
+
+    for (const entry of zipEntries) {
       cpSync(resolve(outputRoot, entry), resolve(zipStageRoot, entry));
+    }
   }
+
+  process.stdout.write(
+    `Staged package artifacts for ${appDirs.length} app director${
+      appDirs.length === 1 ? 'y' : 'ies'
+    } under ${stagingRoot}.\n`
+  );
 }
 
-process.stdout.write(
-  `Staged package artifacts for ${appDirs.length} app director${
-    appDirs.length === 1 ? 'y' : 'ies'
-  } under ${stagingRoot}.\n`
-);
+function main() {
+  stagePackageArtifacts(process.argv.slice(2));
+}
+
+const isDirectExecution =
+  Boolean(process.argv[1]) &&
+  import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (isDirectExecution) {
+  main();
+}
