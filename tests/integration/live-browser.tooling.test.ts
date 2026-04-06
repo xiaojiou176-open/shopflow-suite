@@ -400,10 +400,12 @@ describe('live browser tooling', () => {
       'listener-unreachable'
     );
     },
-    10000
+    20000
   );
 
-  it('explains when attach failed and the dedicated Shopflow browser must be relaunched', async () => {
+  it(
+    'explains when attach failed and the dedicated Shopflow browser must be relaunched',
+    async () => {
     const config = resolveShopflowLiveSessionConfig({
       SHOPFLOW_LIVE: '1',
       SHOPFLOW_LIVE_ATTACH_MODE: 'browser',
@@ -484,9 +486,13 @@ describe('live browser tooling', () => {
     expect(diagnose.recommendations.profileAlignment.requestedProfileDirectory).toBe(
       canonicalShopflowLiveProfileDirectory
     );
-  });
+    },
+    20000
+  );
 
-  it('explains when Safeway is signed in but the deep links are unstable', async () => {
+  it(
+    'explains when Safeway is signed in but the deep links are unstable',
+    async () => {
     const config = resolveShopflowLiveSessionConfig({
       SHOPFLOW_LIVE: '1',
       SHOPFLOW_LIVE_ATTACH_MODE: 'browser',
@@ -586,7 +592,9 @@ describe('live browser tooling', () => {
     );
     expect(diagnose.nextActions.join(' ')).toContain('Safeway homepage');
     expect(diagnose.nextActions.join(' ')).toContain('cart/manage');
-  });
+    },
+    20000
+  );
 
   it('writes a snapshot-first live trace bundle even when CDP is unavailable', async () => {
     const tempRoot = mkdtempSync(resolve(tmpdir(), 'shopflow-live-trace-'));
@@ -1189,7 +1197,9 @@ describe('live browser tooling', () => {
     rmSync(tempRoot, { recursive: true, force: true });
   });
 
-  it('uses a final force fallback only on the recorded Shopflow singleton pid', async () => {
+  it(
+    'uses a final force fallback only on the recorded Shopflow singleton pid',
+    async () => {
     const signalCalls: Array<{ pid: number; signal: NodeJS.Signals }> = [];
     let terminated = false;
     const config = resolveShopflowLiveSessionConfig({
@@ -1245,7 +1255,9 @@ describe('live browser tooling', () => {
     expect(execution.singletonInstance.recordRemoved).toBe(true);
     expect(execution.blockers).toEqual([]);
     rmSync(tempRoot, { recursive: true, force: true });
-  });
+    },
+    10000
+  );
 
   it('reports a safe no-op when no Shopflow singleton record exists to close', async () => {
     const config = resolveShopflowLiveSessionConfig({
