@@ -182,7 +182,7 @@ Shopflow may use the following truthful binding matrix:
 | `Claude Code` | front-door primary example | strong builder fit for the same builder-facing reasons | official integration, official plugin, shipped skills pack |
 | `OpenCode` | ecosystem secondary | useful comparison or later-facing integration path when CLI/skills packaging becomes explicit | main hero binding, official package |
 | `OpenHands` | ecosystem secondary | useful comparison for agentic coding and automation | main hero binding, official package |
-| `OpenClaw` | comparison-only | comparison context only, not a main front-door fit | first-class front-door placement, official integration |
+| `OpenClaw` | public-ready secondary | public-ready install, discovery, and proof route with official-listing claims still gated by the real external surface | official listing, official integration |
 
 `MCP` is not treated as a brand binding in this matrix.
 It remains a future read-only surface category that may later grow from the

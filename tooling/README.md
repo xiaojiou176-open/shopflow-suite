@@ -25,7 +25,7 @@ Current builder helper:
 - `tooling/builder/write-builder-example-rack.ts`
   - refreshes the checked-in example rack under `docs/ecosystem/examples/`
   - reuses repo-owned generated runtime payloads and writes matching multi-app outcome-bundle examples for `ext-albertsons`, `ext-amazon`, `ext-kroger`, and `ext-temu`
-  - now also writes common checked-in agent/distribution examples such as `agent-integration-bundle.json`, `public-mcp-capability-map.json`, `public-skills-catalog.json`, and plugin metadata skeletons
+  - now also writes common checked-in agent/distribution examples such as `agent-integration-bundle.json`, `public-mcp-capability-map.json`, `public-skills-catalog.json`, and plugin metadata packets
   - keeps checked-in examples refreshable instead of treating them as hand-maintained sample JSON
 - `tooling/builder/write-builder-outcome-bundle.ts`
   - writes `.runtime-cache/builder/builder-outcome-bundle.json`
@@ -54,7 +54,7 @@ Current CLI helper:
     checked-in example rack instead of silently regenerating
     `.runtime-cache/builder/*`
   - now also exposes one machine-readable onboarding packet for Codex / Claude
-    Code quickstarts plus OpenClaw comparison-only metadata
+    Code quickstarts plus an OpenClaw public-ready packet
   - now also exposes one smaller target-specific handoff packet when a caller
     only needs the Codex, Claude Code, or OpenClaw slice
   - stays repo-local and does not claim a public CLI commitment

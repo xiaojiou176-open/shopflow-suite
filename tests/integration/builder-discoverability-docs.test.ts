@@ -84,6 +84,71 @@ describe('builder discoverability docs coherence', () => {
     );
   });
 
+  it('keeps Codex and Claude quickstarts honest about official listing status', () => {
+    const codexQuickstart = readRepoFile('docs/ecosystem/codex-quickstart.md');
+    const claudeQuickstart = readRepoFile(
+      'docs/ecosystem/claude-code-quickstart.md'
+    );
+
+    expect(codexQuickstart).toContain('official listing still unconfirmed');
+    expect(codexQuickstart).not.toContain('official listing already confirmed');
+    expect(claudeQuickstart).toContain('official listing still unconfirmed');
+    expect(claudeQuickstart).not.toContain(
+      'official listing already confirmed'
+    );
+  });
+
+  it('keeps the root README builder lane clearly secondary to the default product story', () => {
+    const readme = readRepoFile('README.md');
+
+    expect(readme).toContain(
+      'This is a **secondary** reading path, not the default repo identity.'
+    );
+    expect(readme).toContain('the latest release is a **review shelf**');
+    expect(readme).toContain('not a signed/store-ready shelf');
+    expect(readme).toContain(
+      'If you are here specifically for builder-facing packets, keep the root README'
+    );
+    expect(readme).toContain('./docs/ecosystem/builder-start-here.md');
+    expect(readme).toContain('./docs/ecosystem/integration-recipes.md');
+    expect(readme).toContain('./docs/ecosystem/agent-quickstarts.md');
+    expect(readme).toContain(
+      'Target-specific quickstarts, example JSON, and ecosystem-specific packets stay'
+    );
+    expect(readme).not.toContain('| Target | Start page | Fastest command |');
+    expect(readme).not.toContain('./docs/ecosystem/codex-quickstart.md');
+    expect(readme).not.toContain('./docs/ecosystem/claude-code-quickstart.md');
+    expect(readme).not.toContain('./docs/ecosystem/openclaw-comparison.md');
+  });
+
+  it('keeps the live Pages entry as a real front door instead of a thin link shelf', () => {
+    const pagesIndex = readRepoFile('docs/index.md');
+
+    expect(pagesIndex).toContain('Chrome-first shopping extension family.');
+    expect(pagesIndex).toContain('many storefront doors, one kitchen.');
+    expect(pagesIndex).toContain('## Shopflow In 30 Seconds');
+    expect(pagesIndex).toContain('## What This Repo Is');
+    expect(pagesIndex).toContain('## What Is Public Today');
+    expect(pagesIndex).toContain('## Best First Route');
+    expect(pagesIndex).toContain('## Builder Lane Is Real, But Secondary');
+    expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite');
+    expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite/releases/latest');
+  });
+
+  it('keeps the release shelf explicit about review-only truth', () => {
+    const rootReadme = readRepoFile('README.md');
+    const pagesIndex = readRepoFile('docs/index.md');
+
+    expect(rootReadme).toContain('Shopflow CI now publishes a **review shelf**');
+    expect(rootReadme).toContain(
+      'downloadable reviewer packets, not signed store-ready releases.'
+    );
+    expect(pagesIndex).toContain(
+      'attached release shelf now works as a public review shelf'
+    );
+    expect(pagesIndex).toContain('not a signed store-ready shelf');
+  });
+
   it('keeps the live-budget blocker route explicit in the front door docs', () => {
     const rootReadme = readRepoFile('README.md');
     const docsReadme = readRepoFile('docs/README.md');
@@ -141,6 +206,22 @@ describe('builder discoverability docs coherence', () => {
     );
     expect(toolingReadme).toContain('runtime-seam');
     expect(toolingReadme).toContain('agent-target-packet');
+  });
+
+  it('keeps packages/ui consuming the core package entrypoint instead of core source files directly', () => {
+    const uiFiles = [
+      'packages/ui/src/ui-copy.ts',
+      'packages/ui/src/popup-launcher.tsx',
+      'packages/ui/src/recent-activity-copy.ts',
+      'packages/ui/src/side-panel-home-page.tsx',
+      'packages/ui/src/runtime-surface.tsx',
+    ];
+
+    for (const relativePath of uiFiles) {
+      const contents = readRepoFile(relativePath);
+      expect(contents).toContain('@shopflow/core');
+      expect(contents).not.toContain('../../core/src/');
+    }
   });
 
   it('keeps builder docs explicit about the supported multi-app current-scope payload path', () => {
@@ -341,13 +422,13 @@ describe('builder discoverability docs coherence', () => {
     );
 
     expect(readme).toContain('docs/ecosystem/agent-quickstarts.md');
-    expect(readme).toContain('docs/ecosystem/codex-quickstart.md');
-    expect(readme).toContain('docs/ecosystem/claude-code-quickstart.md');
-    expect(readme).toContain('agent-target-packet.opencode.json');
-    expect(readme).toContain('agent-target-packet.openhands.json');
-    expect(readme).toContain('docs/ecosystem/openclaw-comparison.md');
-    expect(readme).toContain('pnpm cli:read-only --help');
-    expect(readme).toContain('agent-target-packet.openclaw.json');
+    expect(readme).not.toContain('docs/ecosystem/codex-quickstart.md');
+    expect(readme).not.toContain('docs/ecosystem/claude-code-quickstart.md');
+    expect(readme).not.toContain('docs/ecosystem/openclaw-comparison.md');
+    expect(readme).not.toContain('docs/ecosystem/examples/README.md');
+    expect(readme).not.toContain('agent-target-packet.codex.json');
+    expect(readme).not.toContain('agent-target-packet.claude-code.json');
+    expect(readme).not.toContain('agent-target-packet.openclaw.json');
     expect(docsReadme).toContain('./ecosystem/agent-quickstarts.md');
     expect(docsReadme).toContain(
       './ecosystem/examples/agent-integration-bundle.json'

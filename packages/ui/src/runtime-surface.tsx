@@ -1,25 +1,22 @@
 import {
   createHomeViewModel,
-  type SidePanelHomeViewModel,
-} from '../../core/src/side-panel-home-view-model';
-import {
-  getDynamicCopy,
-  resolveUiLocale,
-  uiLocaleValues,
-  toLocaleTimeString,
-  type UiLocale,
-} from '../../core/src/ui-locale';
-import {
   createLocaleRouteHref,
+  getDynamicCopy,
   getShopflowLocaleCatalog,
   resolveShopflowLocaleFromUrl,
-} from '../../core/src/locale';
+  resolveUiLocale,
+  toLocaleTimeString,
+  uiLocaleValues,
+  type SidePanelHomeViewModel,
+  type UiLocale,
+} from '@shopflow/core';
 import {
   EvidenceCaptureRepository,
   type EvidenceCaptureQueueSummary,
   type EvidenceCaptureRecord,
   ActivityRepository,
   activityStorageKey,
+  BrowserLocalStorage,
   type ActivityItem,
   DetectionRepository,
   type DetectionRecord,
@@ -69,17 +66,6 @@ type LocaleOption = {
   href: string;
   active: boolean;
 };
-
-class BrowserLocalStorage {
-  async get<T>(key: string): Promise<T | undefined> {
-    const value = await browser.storage.local.get(key);
-    return value[key] as T | undefined;
-  }
-
-  async set<T>(key: string, value: T): Promise<void> {
-    await browser.storage.local.set({ [key]: value });
-  }
-}
 
 const detectionRepository = new DetectionRepository(new BrowserLocalStorage());
 const evidenceRepository = new EvidenceCaptureRepository(

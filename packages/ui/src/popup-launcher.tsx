@@ -1,4 +1,4 @@
-import type { UiLocale } from '../../core/src/ui-locale';
+import type { UiLocale } from '@shopflow/core';
 import { Button, Card } from './primitives';
 import { surfaceTokens } from './tokens';
 import { getUiShellCopy } from './ui-copy';

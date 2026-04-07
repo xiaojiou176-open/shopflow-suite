@@ -37,7 +37,7 @@ It still must **not** claim:
 | sample config              | checked-in Claude Code packet + skills catalog + listing payload examples | `docs/ecosystem/examples/agent-target-packet.claude-code.json`                                       | published Claude Code plugin                         |
 | install docs               | Claude Code install path and operator-facing guide                        | `docs/ecosystem/claude-code-quickstart.md`                                                           | official Claude Code integration                     |
 | proof loop                 | target packet + skills catalog export + listing payload export            | `pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-skills-catalog.json` | that auth or marketplace submission already happened |
-| metadata / listing payload | checked-in listing payload example + CLI export                           | `docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json`                               | official listing already confirmed                   |
+| metadata / listing payload | checked-in listing payload example + CLI export                           | `docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json`                               | official listing still unconfirmed                   |
 
 In plain language:
 

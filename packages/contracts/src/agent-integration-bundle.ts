@@ -312,8 +312,8 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       summary:
         'OpenClaw is now carried as a public-ready but not-yet-published packet: install path, discovery path, and proof loop are explicit, while the final external publish step stays truthfully outside the repo boundary.',
       mustNotClaim: [
-        'Official OpenClaw listing already live',
-        'Official OpenClaw integration already approved',
+        'Official OpenClaw listing',
+        'Official OpenClaw integration',
       ],
       nextHumanStep:
         'Create or authorize the public GitHub plugin repo, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first.',
@@ -614,8 +614,8 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           ],
         },
         mustNotClaim: [
-          'Official OpenClaw listing already live',
-          'Official OpenClaw integration already approved',
+          'Official OpenClaw listing',
+          'Official OpenClaw integration',
         ],
       },
     ],

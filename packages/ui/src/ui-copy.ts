@@ -1,5 +1,4 @@
-import { getShopflowLocaleCatalog } from '../../core/src/locale';
-import type { UiLocale } from '../../core/src/ui-locale';
+import { getShopflowLocaleCatalog, type UiLocale } from '@shopflow/core';
 
 export function getUiShellCopy(locale: UiLocale = 'en') {
   const catalog = getShopflowLocaleCatalog(locale);

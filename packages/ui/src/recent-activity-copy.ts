@@ -4,7 +4,7 @@ import {
   formatRecentActivitySummary,
   formatRecentActivityTimestamp,
   type UiLocale,
-} from '../../core/src/ui-locale';
+} from '@shopflow/core';
 
 export function localizeRecentActivities(
   items: ActivityItem[],

@@ -7,6 +7,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@shopflow/contracts": "workspace:*"
+    "@shopflow/contracts": "workspace:*",
+    "@shopflow/runtime": "workspace:*"
   }
 }

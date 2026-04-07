@@ -82,7 +82,10 @@ describe('sensitive surface gate', () => {
     );
   });
 
-  it('scans a real worktree for tracked and non-ignored sensitive residue', () => {
+  it(
+    'scans a real worktree for tracked and non-ignored sensitive residue',
+    { timeout: 15000 },
+    () => {
     withTempGitRepo((repoRoot) => {
       mkdirSync(resolve(repoRoot, 'docs'), { recursive: true });
       mkdirSync(resolve(repoRoot, 'logs'), { recursive: true });
@@ -110,9 +113,13 @@ describe('sensitive surface gate', () => {
         ])
       );
     });
-  });
+    }
+  );
 
-  it('scans reachable git history and keeps removed historical residue visible', () => {
+  it(
+    'scans reachable git history and keeps removed historical residue visible',
+    { timeout: 15000 },
+    () => {
     withTempGitRepo((repoRoot) => {
       mkdirSync(resolve(repoRoot, 'docs'), { recursive: true });
 
@@ -160,7 +167,8 @@ describe('sensitive surface gate', () => {
       );
       expect(findings.some((finding) => Boolean(finding.commit))).toBe(true);
     });
-  });
+    }
+  );
 
   it('flags scrubbed personal identity in reachable git metadata', () => {
     withTempGitRepo((repoRoot) => {

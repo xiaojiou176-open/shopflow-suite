@@ -1,6 +1,9 @@
-import { createOperatorDecisionBrief } from '../../core/src/operator-decision-brief';
-import type { SidePanelHomeViewModel } from '../../core/src/side-panel-home-view-model';
-import { getDynamicCopy, type UiLocale } from '../../core/src/ui-locale';
+import {
+  createOperatorDecisionBrief,
+  getDynamicCopy,
+  type SidePanelHomeViewModel,
+  type UiLocale,
+} from '@shopflow/core';
 import { formatLiveReceiptStatusLabel } from '@shopflow/contracts';
 import { Compass, PackageSearch, ReceiptText, Sparkles } from 'lucide-react';
 import { Card } from './primitives';

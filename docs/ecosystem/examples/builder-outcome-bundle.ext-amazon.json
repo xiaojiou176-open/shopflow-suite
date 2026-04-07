@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-06T11:16:38.231Z",
+  "generatedAt": "2026-04-07T03:17:57.622Z",
   "appId": "ext-amazon",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -472,8 +472,8 @@
         "placement": "public-ready-secondary",
         "truthfulWordingNow": "Public-ready secondary route with explicit install, discovery, and proof paths, while official-listing claims remain conditional on real external surfaces.",
         "mustNotClaimNow": [
-          "Official OpenClaw listing already live",
-          "Official OpenClaw integration already approved"
+          "Official OpenClaw listing",
+          "Official OpenClaw integration"
         ]
       }
     ],
@@ -580,7 +580,7 @@
           "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
           "appId": "ext-amazon",
           "label": "www.amazon.com · search",
-          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
+          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review.",
           "timestampLabel": "2:10 AM",
           "href": "https://www.amazon.com/s?k=coffee+storage"
         }
@@ -589,7 +589,7 @@
         "origin": "merchant-source",
         "label": "Inspect latest source page",
         "href": "https://www.amazon.com/s?k=coffee+storage",
-        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
+        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -615,22 +615,21 @@
       "readOnly": true,
       "appTitle": "Shopflow for Amazon",
       "stage": "ready-now",
-      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+      "summary": "Ready for repo-local review.",
       "whyNow": [
         "www.amazon.com · search",
         "Extract Amazon search results is runnable right now.",
         "Keep public wording inside the current repo-verified scope."
       ],
-      "nextStep": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.",
+      "nextStep": "Inspect the current review route before changing any public wording.",
       "primaryRouteLabel": "Open current review start page",
       "primaryRouteHref": "https://www.amazon.com/s?k=coffee+storage",
-      "primaryRouteOrigin": "merchant-source",
-      "claimBoundary": "Keep public wording inside the current repo-verified scope."
+      "primaryRouteOrigin": "merchant-source"
     },
     "workflowCopilotBrief": {
       "tone": "ready-now",
       "title": "Workflow copilot",
-      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+      "summary": "Ready for repo-local review.",
       "bullets": [
         {
           "label": "Current surface",
@@ -647,7 +646,7 @@
       ],
       "nextAction": {
         "label": "Open current review start page",
-        "reason": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised."
+        "reason": "Inspect the current review route before expanding public wording."
       }
     }
   },
@@ -673,13 +672,13 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 9 app entries. ext-amazon is storefront-shell-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-amazon/bundle and 1 packaged zip artifact."
+      "summary": "Release manifest now proves 3 app entries. ext-amazon is store-review with bundle directory apps/ext-amazon/.output/chrome-mv3 and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-amazon as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-amazon/bundle/shopflow-review-artifact.json. Manual review starts at https://www.amazon.com. Review bundle is complete, but public wording must stay inside the current repo-verified scope."
+      "summary": "Submission readiness marks ext-amazon as review-bundle-ready-awaiting-signing. Review bundle ready: yes. Ready for repo-local review."
     }
   ],
   "readyToSyncArtifacts": [

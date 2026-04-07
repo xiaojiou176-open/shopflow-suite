@@ -5,6 +5,8 @@ export * from './context/site-context-coordinator';
 export * from './messaging/message-bus';
 export * from './side-panel/side-panel-controller';
 export * from './storage/activity-repository';
+export * from './storage/browser-local-storage';
 export * from './storage/detection-repository';
 export * from './storage/evidence-capture-repository';
 export * from './storage/latest-output-repository';
+export * from './storage/suite-control-plane-runtime';
