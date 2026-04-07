@@ -203,8 +203,9 @@ export async function waitForDetectionDataset(
         // coverage, which can delay extension boot and content-script dataset
         // hydration well beyond the isolated-smoke budget. Use a wider budget
         // here so full-lane verification measures repo behavior instead of
-        // timing out during repeated cold-start extension boot.
-        timeout: 60_000,
+        // timing out during repeated cold-start extension boot across later
+        // wave smoke cases.
+        timeout: 120_000,
       }
     )
     .toBe(expectedValue);
