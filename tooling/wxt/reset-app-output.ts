@@ -8,16 +8,14 @@ if (appDirs.length === 0) {
 }
 
 for (const appDir of appDirs) {
-  for (const cachePath of ['.output', '.wxt']) {
-    rmSync(resolve(process.cwd(), appDir, cachePath), {
-      recursive: true,
-      force: true,
-    });
-  }
+  rmSync(resolve(process.cwd(), appDir, '.output'), {
+    recursive: true,
+    force: true,
+  });
 }
 
 process.stdout.write(
-  `Reset build outputs and WXT caches for ${appDirs.length} app director${
+  `Reset build outputs for ${appDirs.length} app director${
     appDirs.length === 1 ? 'y' : 'ies'
   }.\n`
 );
