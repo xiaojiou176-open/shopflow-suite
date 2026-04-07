@@ -130,15 +130,21 @@ In plain language:
 
 The current CI review flow is:
 
-1. `verify` job runs `pnpm verify:release-readiness`
-2. that serial lane covers lint, typecheck, verification gates, sensitive-surface checks for both the current worktree and reachable history, full repo test, review-bundle packaging, and submission-readiness reporting
+1. `shopflow-ci` `verify` job runs `pnpm verify:release-readiness`
+2. that serial lane now covers the strongest repo-owned path:
+   - local hygiene
+   - sensitive history
+   - coverage + unit / contract / integration confidence
+   - E2E
+   - review-bundle packaging
+   - submission-readiness reporting
 3. CI uploads the release manifest and `submission-readiness.json`
 4. `package-review-artifacts` builds each app independently
 5. CI sanity-checks key bundle files such as `manifest.json`
 6. CI runs `pnpm release:write-review-artifact-manifest`
 7. CI uploads the built bundle plus the generated review manifest as an artifact
-8. a parallel `sensitive-public-surface` job checks the GitHub-hosted public fallback repos plus their issue / PR / release text surfaces
-9. that same job now also runs the GitHub platform security capability check so disabled native features are logged as platform gaps instead of being mislabeled as code failures
+8. a separate `external-governance` workflow runs `pnpm verify:external-governance` on a scheduled/manual lane
+9. that external lane checks the GitHub-hosted public fallback repos plus GitHub platform security capability status without blocking every PR/push
 
 Local packaging checks should also fail readably when an output is incomplete.
 
@@ -174,6 +180,12 @@ pnpm verify:release-readiness
 
 Do not run `pnpm test` and `pnpm package:artifacts` in parallel against the
 same workspace.
+
+Do not treat `verify:sensitive-public-surface` or
+`verify:github-platform-security` as the default author-time lane.
+Those belong to the GitHub-hosted external-governance rail, because they audit
+public text surfaces and platform capability state rather than pure local repo
+determinism.
 
 Why:
 

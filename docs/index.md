@@ -14,11 +14,12 @@ Chrome-first shopping extension family.
 
 - **Category:** a Chrome-first shopping extension family with `8` storefront
   apps plus `1` Suite shell
-- **Heat hook:** storefront-specific entry points stay narrow and searchable,
-  while shared logic stays in one engineering source of truth
-- **Current result:** the public repo, docs shelf, and release tag are live
-  today, but Shopflow is still **not** public-claim-ready for broader support
-  wording
+- **Heat hook:** one repo already packages `8` storefront review bundles plus
+  `1` Suite internal-alpha bundle without splitting storefront truth across `9`
+  code paths
+- **Current result:** the public repo, Pages front door, and review shelf are
+  live today, but Shopflow is still **not** public-claim-ready for broader
+  support wording
 
 In plain language:
 

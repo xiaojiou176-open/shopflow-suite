@@ -15,9 +15,9 @@ repos:
         pass_filenames: true
         always_run: true
         stages: [commit-msg]
-      - id: shopflow-verify-release-readiness
-        name: shopflow verify release readiness
-        entry: pnpm verify:release-readiness
+      - id: shopflow-verify-pre-push
+        name: shopflow verify pre push
+        entry: pnpm verify:pre-push
         language: system
         pass_filenames: false
         always_run: true

@@ -113,6 +113,51 @@ describe('release review artifact manifest tooling', () => {
     });
   });
 
+  it('also accepts staged release-artifact bundle directories', () => {
+    const root = mkdtempSync(join(os.tmpdir(), 'shopflow-release-artifact-staged-'));
+    tempDirs.push(root);
+    const bundleDir = join(
+      root,
+      '.runtime-cache',
+      'release-artifacts',
+      'apps',
+      'ext-temu',
+      'bundle'
+    );
+    mkdirSync(bundleDir, { recursive: true });
+    writeFileSync(
+      join(bundleDir, 'manifest.json'),
+      JSON.stringify(
+        {
+          name: 'Shopflow for Temu',
+          version: '0.1.0',
+        },
+        null,
+        2
+      )
+    );
+    writeFileSync(join(bundleDir, 'background.js'), 'console.log("bg");\n');
+    writeFileSync(join(bundleDir, 'sidepanel.html'), '<html></html>\n');
+    writeFileSync(join(bundleDir, 'popup.html'), '<html></html>\n');
+    mkdirSync(join(bundleDir, '..', 'zip'), { recursive: true });
+    writeFileSync(join(bundleDir, '..', 'zip', 'shopflow-ext-temu.zip'), 'zip');
+
+    const outputPath = writeReviewArtifactManifest({
+      appId: 'ext-temu',
+      packageName: '@shopflow/ext-temu',
+      reviewChannel: 'store-review',
+      surface: 'storefront-shell',
+      bundleDir,
+      generatedAt: '2026-03-30T14:05:00.000Z',
+    });
+
+    expect(outputPath).toBe(join(bundleDir, 'shopflow-review-artifact.json'));
+    expect(JSON.parse(readFileSync(outputPath, 'utf8'))).toMatchObject({
+      appId: 'ext-temu',
+      extensionName: 'Shopflow for Temu',
+    });
+  });
+
   it('fails loudly when review metadata drifts away from the verification catalog', () => {
     const bundleDir = createBundleDir();
 
@@ -169,6 +214,7 @@ describe('release review artifact manifest tooling', () => {
           'sidepanel.html',
           'popup.html',
         ]),
+        reviewArtifactManifestMissing: true,
       }),
     ]);
   });

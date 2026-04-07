@@ -26,6 +26,7 @@ type ReleaseArtifactOutputIssue = {
   buildDirectoryMissing: boolean;
   zipArtifactsMissing: boolean;
   missingBundleFiles: string[];
+  reviewArtifactManifestMissing: boolean;
 };
 
 function sleep(milliseconds: number) {
@@ -114,6 +115,9 @@ export function collectArtifactOutputIssues(
   manifest = buildManifest()
 ): ReleaseArtifactOutputIssue[] {
   return manifest.flatMap((entry) => {
+    const reviewArtifactManifestMissing = !fileExists(
+      join(entry.buildDirectory, 'shopflow-review-artifact.json')
+    );
     const missingBundleFiles = requiredBundleFilesFor(entry.appId).filter(
       (fileName) => !fileExists(join(entry.buildDirectory, fileName))
     );
@@ -122,11 +126,13 @@ export function collectArtifactOutputIssues(
       buildDirectoryMissing: !exists(entry.buildDirectory),
       zipArtifactsMissing: entry.zipArtifacts.length === 0,
       missingBundleFiles,
+      reviewArtifactManifestMissing,
     };
 
     return issue.buildDirectoryMissing ||
       issue.zipArtifactsMissing ||
-      issue.missingBundleFiles.length > 0
+      issue.missingBundleFiles.length > 0 ||
+      issue.reviewArtifactManifestMissing
       ? [issue]
       : [];
   });
@@ -161,7 +167,7 @@ function main() {
   if (requireOutputs && missingOutputs.length > 0) {
     for (const entry of missingOutputs) {
       console.error(
-        `- Missing packaged outputs for ${entry.appId}: buildDirMissing=${entry.buildDirectoryMissing}, zipArtifactsMissing=${entry.zipArtifactsMissing}, missingBundleFiles=${entry.missingBundleFiles.join(', ') || 'none'}`
+        `- Missing packaged outputs for ${entry.appId}: buildDirMissing=${entry.buildDirectoryMissing}, zipArtifactsMissing=${entry.zipArtifactsMissing}, missingBundleFiles=${entry.missingBundleFiles.join(', ') || 'none'}, reviewArtifactManifestMissing=${entry.reviewArtifactManifestMissing}`
       );
     }
     process.exitCode = 1;

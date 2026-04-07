@@ -46,6 +46,7 @@ export type SubmissionReadinessEntry = {
     buildDirectoryMissing: boolean;
     zipArtifactsMissing: boolean;
     missingBundleFiles: string[];
+    reviewArtifactManifestMissing: boolean;
   };
   reviewerStartPath: {
     reviewChannel: string;
@@ -188,6 +189,10 @@ function createBundleAuditDriftSignals(
     driftSignals.push('missing-bundle-files');
   }
 
+  if (bundleAudit.reviewArtifactManifestMissing) {
+    driftSignals.push('review-artifact-manifest-missing');
+  }
+
   return driftSignals;
 }
 
@@ -256,7 +261,7 @@ function createReviewerChecklist(
       status: 'ready',
       headline: 'Review bundle packaging is complete.',
       detail:
-        'The repo-owned review bundle has the expected build directory, zip artifacts, and key bundle files for reviewer handoff.',
+        'The repo-owned review bundle has the expected build directory, per-app review manifest, zip artifacts, and key bundle files for reviewer handoff.',
     });
   } else {
     checklist.push({
@@ -264,7 +269,7 @@ function createReviewerChecklist(
       status: 'blocked',
       headline: 'Review bundle packaging drift blocks reviewer handoff.',
       detail:
-        'Fix the missing build output, zip artifact, or key bundle file before treating this as a reviewer-ready bundle.',
+        'Fix the missing build output, review manifest, zip artifact, or key bundle file before treating this as a reviewer-ready bundle.',
       driftSignals: createBundleAuditDriftSignals(bundleAudit),
     });
   }
@@ -475,6 +480,7 @@ function createBundleAudit(
     buildDirectoryMissing: issue?.buildDirectoryMissing ?? false,
     zipArtifactsMissing: issue?.zipArtifactsMissing ?? false,
     missingBundleFiles: issue?.missingBundleFiles ?? [],
+    reviewArtifactManifestMissing: issue?.reviewArtifactManifestMissing ?? false,
   };
 }
 

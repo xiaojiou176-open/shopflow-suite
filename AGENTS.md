@@ -51,6 +51,7 @@ What exists today:
 - repo-owned sensitive-surface guards that now fail verification when the worktree or reachable Git history still carries secrets, personal email addresses, user-specific absolute paths, or committed log/db/key residue
 - CI now publishes the repo-owned submission-readiness report as a review artifact, not just the raw release manifest
 - CI now uses the same serial `verify:release-readiness` lane as local verification instead of maintaining a parallel release-readiness command chain
+- Shopflow now separates commit-time hygiene, push-time fast verification, hosted release-readiness, nightly external-governance checks, and manual live/signing lanes instead of forcing every layer through the same gate
 - Shopflow now carries a thin provider-runtime consumer snapshot plus an internal-alpha Suite handoff surface that can turn a real Switchyard base URL into explicit acquisition routes without pretending Shopflow already owns that runtime
 - representative store capability maturity improvements for Albertsons / Temu plus stricter adapter causality on Kroger / Weee
 - deeper Wave 3 DOM-variant coverage for Kroger family product/deal cards and Weee product pages

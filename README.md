@@ -15,8 +15,27 @@ In plain language:
 ## Front Door in 30 Seconds
 
 - **Category:** a Chrome-first shopping extension family with `8` storefront apps plus `1` suite shell
-- **Heat hook:** storefront-specific entry points stay narrow and searchable, while shared logic stays in one engineering source of truth
-- **Current result:** the repo has materialized `8+1` app shells, shared contracts, and repo-owned verification/review packaging; the latest release is a **review shelf**, not a signed/store-ready shelf, and Shopflow is **not** yet public-claim-ready
+- **Heat hook:** one repo already packages `8` storefront review bundles plus `1` Suite internal-alpha bundle without splitting storefront truth across `9` codebases
+- **Current result:** the public repo and Pages front door are live today, and the latest release is a **review shelf**, not a signed/store-ready shelf; public support claims still stop at reviewed live evidence and signed/store-ready artifacts
+
+## What You Can Inspect Today
+
+- public canonical repo:
+  `https://github.com/xiaojiou176-open/shopflow-suite`
+- public Pages front door:
+  `https://xiaojiou176-open.github.io/shopflow-suite/`
+- latest release tag:
+  [`v0.1.0`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+- current review shelf already includes:
+  - `8` store review bundles
+  - `1` Suite internal-alpha review bundle
+  - a review manifest
+  - a submission-readiness report
+
+In plain language:
+
+> there is already a real review shelf you can inspect today.
+> it is a reviewer shelf, not a signed release shelf.
 
 ## What Shopflow Is and Is Not
 
@@ -75,52 +94,16 @@ in the docs shelf, not the root README. These surfaces are real today, but
 they are **not** proof that Shopflow already ships a public API, public MCP,
 official marketplace listing, or SDK.
 
-## Vision Upgrade Matrix
+## Current Scope Buckets
 
-The stronger product vision for Shopflow is now split into five honest buckets.
+The full contract lives in
+[`ADR-003: Builder Integration Surface and Product Language Boundary`](./docs/adr/ADR-003-builder-integration-surface-and-product-language-boundary.md).
+The short version is:
 
-### Today
-
-- a Chrome-first shopping extension family with `8+1` app shells
-- typed contracts, runtime truth, and builder-facing read models
-- English-first public wording
-- AI in the real operator flow through workflow decision briefs and workflow-copilot briefs
-
-### Current-scope now
-
-- API substrate first through stable schemas, read models, examples, and builder docs
-- product UI stays English-default with `zh-CN` support through shared locale catalogs
-- systematic i18n: new user-visible strings must route through locale catalogs instead of scattered bilingual literals
-- public distribution execution for builder-facing ecosystems through starter bundles, sample config, install docs, proof loops, and truthful metadata packets
-- builder-facing copy can point to strong-fit ecosystems, but official-listing language stays conditional on real external surfaces
-- front-door, plug-and-play, review UX, discoverability, and SEO hardening for those public-distribution paths
-
-### Deferred by owner
-
-- public read-only MCP transport
-- public read-only API transport
-- generated client or thin SDK
-- hosted runtime product
-- homepage migration
-- custom domain / trademark / `.ai` landing
-- release publish and social preview work
-
-### No-go
-
-- write-capable MCP
-- hosted shopping SaaS control plane
-- generic autonomous shopping assistant
-- public wording that outruns reviewed live evidence
-
-### Surface-dependent publication boundary
-
-- use the official public surface when the target ecosystem actually has one
-- otherwise use the strongest truthful public distribution surface that exists today
-- do not turn a package, listing draft, skills catalog, or metadata payload into an official-listing claim by wording alone
-
-See [`docs/ecosystem/agent-and-mcp-positioning.md`](./docs/ecosystem/agent-and-mcp-positioning.md)
-and [`docs/ecosystem/integration-surface-roadmap.md`](./docs/ecosystem/integration-surface-roadmap.md)
-for the detailed matrix.
+- **Today:** `8+1` app shells, shared contracts, repo-owned review packaging, and truthful builder-facing read models already exist
+- **Current-scope now:** public front door, builder packet quality, review UX, English-first copy, and discoverability can keep getting stronger without overclaiming public API/MCP/SDK reality
+- **Deferred by owner:** hosted runtime, homepage migration, custom domain, and official ecosystem publication routes that depend on external surfaces
+- **No-go:** write-capable MCP, hosted shopping SaaS control plane, and any public wording that outruns reviewed live evidence
 
 ## Current Status
 
@@ -263,14 +246,26 @@ Why this matters:
 
 ## Repo Hygiene Gates
 
-Shopflow now wires three local mechanical gates at the repo root:
+Shopflow now uses a **five-layer verification contract** so local authoring,
+hosted CI, external/public-surface drift checks, and manual live proof do not
+all pile into the same gate.
+
+| Layer | Primary lane | What it is for | What it must not pretend to prove |
+| :--- | :--- | :--- | :--- |
+| `pre-commit` | `pnpm verify:local-hygiene` | fast local hygiene: lint, typecheck, catalog parity, sensitive worktree scan | full history safety, browser realism, release packaging, or public-surface drift |
+| `pre-push` | `pnpm verify:pre-push` | stronger local gate: pre-commit checks plus coverage, sensitive history, and repo-local unit/contract/integration confidence | E2E/browser realism, release packaging, or external/public-surface drift |
+| `hosted` | `shopflow-ci` -> `pnpm verify:release-readiness` | strongest repo-owned serial lane: hygiene, history, unit/contract/integration/E2E, and review-bundle packaging | reviewed live evidence, signing, store submission, or GitHub platform capability presence |
+| `nightly` | `external-governance` -> `pnpm verify:external-governance` | GitHub-hosted public-surface drift and platform-security capability checks | local authoring correctness or claim-ready support proof |
+| `manual` | live/browser/signing/submission commands | real browser/session review, explicit review input, signing, and store-console work | deterministic CI or repo-only automation |
+
+Shopflow now wires these local mechanical gates at the repo root:
 
 - `pre-commit`
   - runs `pnpm verify:local-hygiene`
-  - also blocks secrets, personal email addresses, user-specific absolute paths, and committed log/db/key artifacts before they can land
+  - blocks obvious local hygiene drift before a commit lands
 - `pre-push`
   - runs `pnpm hooks:pre-push`
-  - currently points at `pnpm verify:release-readiness`, so push-time verification uses the same strongest serial lane as release-readiness closeout
+  - now points at `pnpm verify:pre-push`, so push-time verification stays meaningful without forcing E2E + packaging on every local push
 - `commitlint`
   - enforces `feat / fix / refactor / docs / test / chore`
 - `verify:sensitive-surfaces`
@@ -286,8 +281,11 @@ Shopflow now wires three local mechanical gates at the repo root:
 - `verify:coverage`
   - blocks coverage regressions below the current repo baseline while the team works toward a higher global bar
 - `verify:release-readiness`
-  - runs local hygiene, sensitive-history, full repo test, and review-bundle packaging in one serial lane
+  - runs the strongest repo-owned serial lane: pre-push checks, E2E, and review-bundle packaging
   - use this when you need one honest answer for `can this repo currently verify and package cleanly?`
+- `verify:external-governance`
+  - runs `verify:sensitive-public-surface` plus `verify:github-platform-security`
+  - use this on GitHub-hosted schedule/manual lanes to watch public-surface drift and platform capability gaps without blocking every local push
 
 Additional GitHub workflows now cover:
 
@@ -298,6 +296,15 @@ Additional GitHub workflows now cover:
 - `trivy`
 - `dependency-review`
 - `codeql`
+
+Current GitHub workflow split:
+
+- `shopflow-ci`
+  - push / PR hosted serial verification and review-bundle packaging
+- `external-governance`
+  - scheduled + manual GitHub-hosted checks for public-surface drift and platform security capability status
+- auxiliary scanner workflows
+  - `actionlint`, `zizmor`, `gitleaks`, `trufflehog`, `trivy`, `dependency-review`, `codeql`
 
 Important boundary:
 

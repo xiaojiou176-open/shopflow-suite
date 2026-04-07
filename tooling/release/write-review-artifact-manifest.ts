@@ -44,6 +44,17 @@ function expectedPackageNameForApp(appId: string) {
   return `@shopflow/${appId}`;
 }
 
+function expectedBundleSuffixesForEntry(
+  entry: (typeof allVerificationCatalogEntries)[number]
+) {
+  return [
+    normalize(join(entry.appDir, '.output', 'chrome-mv3')),
+    normalize(
+      join('.runtime-cache', 'release-artifacts', 'apps', entry.appId, 'bundle')
+    ),
+  ];
+}
+
 function expectedSurfaceForEntry(entry: (typeof allVerificationCatalogEntries)[number]) {
   if (entry.appId === 'ext-shopping-suite') {
     return 'internal-alpha';
@@ -118,10 +129,16 @@ function validateReviewArtifactInput(input: ReviewArtifactInput) {
   }
 
   const normalizedBundleDir = normalize(input.bundleDir);
-  const expectedBundleSuffix = normalize(join(entry.appDir, '.output', 'chrome-mv3'));
-  if (!normalizedBundleDir.endsWith(expectedBundleSuffix)) {
+  const expectedBundleSuffixes = expectedBundleSuffixesForEntry(entry);
+  if (
+    !expectedBundleSuffixes.some((expectedSuffix) =>
+      normalizedBundleDir.endsWith(expectedSuffix)
+    )
+  ) {
     issues.push(
-      `bundleDir drift for ${entry.appId}: expected path suffix "${expectedBundleSuffix}" but received "${normalizedBundleDir}".`
+      `bundleDir drift for ${entry.appId}: expected one of "${expectedBundleSuffixes.join(
+        '" or "'
+      )}" but received "${normalizedBundleDir}".`
     );
   }
 
