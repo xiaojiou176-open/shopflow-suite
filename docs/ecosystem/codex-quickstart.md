@@ -34,7 +34,7 @@ It still must **not** claim:
 | sample config              | checked-in Codex packet + listing payload examples    | `docs/ecosystem/examples/agent-target-packet.codex.json`                                                                              | published Codex plugin                               |
 | install docs               | Codex install path and front-door guide               | `docs/ecosystem/codex-quickstart.md`                                                                                                  | official Codex integration                           |
 | proof loop                 | target packet + listing payload export + bundle check | `pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runtime-cache/cli/plugin-marketplace-metadata.codex.json` | that auth or marketplace submission already happened |
-| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official listing already confirmed                   |
+| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official listing still unconfirmed                   |
 
 In plain language:
 

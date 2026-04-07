@@ -1,7 +1,7 @@
 {
   "tone": "claim-gated",
   "title": "Workflow copilot",
-  "summary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+  "summary": "Reviewed live evidence still gates public wording.",
   "bullets": [
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open current evidence route",
-    "reason": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move."
+    "reason": "Inspect the current review route before expanding public wording."
   }
 }

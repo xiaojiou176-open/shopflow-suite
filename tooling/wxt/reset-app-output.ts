@@ -15,5 +15,7 @@ for (const appDir of appDirs) {
 }
 
 process.stdout.write(
-  `Reset build outputs for ${appDirs.length} app director${appDirs.length === 1 ? 'y' : 'ies'}.\n`
+  `Reset build outputs for ${appDirs.length} app director${
+    appDirs.length === 1 ? 'y' : 'ies'
+  }.\n`
 );

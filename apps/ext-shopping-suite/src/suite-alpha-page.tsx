@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import {
+  compareSuiteDetailPriority,
+  getSuiteCockpitAction,
   getShopflowLocaleCatalog,
   type ProviderRuntimeConsumerSnapshot,
   type ShopflowLocale,
@@ -17,10 +19,6 @@ import {
   suiteVerifiedScopeNavigator,
 } from './app-definition';
 import { useSuiteControlPlane } from './suite-control-plane';
-import {
-  compareSuiteDetailPriority,
-  getSuiteCockpitAction,
-} from './suite-control-plane-model';
 
 type LocaleOption = {
   label: string;

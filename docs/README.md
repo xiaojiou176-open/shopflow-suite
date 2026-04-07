@@ -9,6 +9,31 @@ Shopflow is, what exists today, and what still should not be overclaimed.
 - **Heat hook:** multiple storefront entry points can stay discoverable without splitting the engineering source of truth
 - **Current result:** repo-owned contracts, runtime surfaces, and review packaging exist today, but public-ready support claims still require stronger evidence
 
+## Verification Layers
+
+Use the verification stack like five different desks in the same office:
+
+- `pre-commit`
+  - `pnpm verify:local-hygiene`
+  - fast local hygiene only
+- `pre-push`
+  - `pnpm verify:pre-push`
+  - stronger local confidence without forcing E2E + packaging on every push
+- `hosted`
+  - `shopflow-ci` runs `pnpm verify:release-readiness`
+  - strongest repo-owned serial release-readiness answer
+- `nightly`
+  - `external-governance` runs `pnpm verify:external-governance`
+  - public-surface drift and GitHub platform capability checks
+- `manual`
+  - live/browser/review/signing/submission lanes
+  - use these only when real browser state, real review input, or external systems are involved
+
+Important boundary:
+
+> `verify:release-readiness` is the strongest repo-owned lane.
+> It is still not the same thing as reviewed live evidence, signing, or real store submission.
+
 ## Search-Intent Redirects
 
 If you arrived here from a search box instead of repo history, use this like a

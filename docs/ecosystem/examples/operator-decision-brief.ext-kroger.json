@@ -4,13 +4,13 @@
   "readOnly": true,
   "appTitle": "Shopflow for Kroger Family",
   "stage": "claim-gated",
-  "summary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+  "summary": "Reviewed live evidence still gates public wording.",
   "whyNow": [
     "www.fredmeyer.com · deal",
     "Extract family deal cards is runnable right now.",
     "2 live evidence packets still gate public wording."
   ],
-  "nextStep": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.",
+  "nextStep": "Inspect the current review route before changing any public wording.",
   "primaryRouteLabel": "Open current evidence route",
   "primaryRouteHref": "https://www.fredmeyer.com/savings/coupons",
   "primaryRouteOrigin": "evidence-source",

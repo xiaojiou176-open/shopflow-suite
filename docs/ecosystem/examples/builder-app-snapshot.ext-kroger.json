@@ -56,7 +56,7 @@
       "id": "ext-kroger:https://www.fredmeyer.com/savings/coupons",
       "appId": "ext-kroger",
       "label": "www.fredmeyer.com · deal",
-      "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as capability-heavy-candidate.",
+      "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as store-review.",
       "timestampLabel": "2:20 AM",
       "href": "https://www.fredmeyer.com/savings/coupons"
     }
@@ -73,12 +73,12 @@
     "reviewedCount": 0,
     "rejectedCount": 0,
     "expiredCount": 0,
-    "blockerSummary": "Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.",
+    "blockerSummary": "Reviewed live evidence still gates public wording.",
     "nextCaptureId": "fred-meyer-verified-scope-live-receipt",
     "nextStatus": "missing-live-receipt",
     "nextOperatorPath": "capture",
     "nextRequirementTitle": "Fred meyer verified scope live receipt",
-    "nextStep": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.",
+    "nextStep": "Keep public wording claim-gated until reviewed live evidence exists.",
     "nextSourcePageUrl": "https://www.fredmeyer.com/savings/coupons",
     "nextSourcePageLabel": "Open current evidence route",
     "nextSourceRouteLabel": "Open current evidence route"
@@ -87,7 +87,7 @@
     "origin": "evidence-source",
     "label": "Open current evidence route",
     "href": "https://www.fredmeyer.com/savings/coupons",
-    "summary": "Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move."
+    "summary": "Keep public wording claim-gated until reviewed live evidence exists."
   },
   "builderSurfaceBoundary": {
     "today": [

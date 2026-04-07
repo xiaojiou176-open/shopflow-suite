@@ -6,9 +6,7 @@
     "paths": {
       "@shopflow/contracts": ["../../packages/contracts/src/index.ts"],
       "@shopflow/contracts/*": ["../../packages/contracts/src/*"],
-      "@shopflow/core": [
-        "../../packages/core/src/side-panel-home-view-model.ts"
-      ],
+      "@shopflow/core": ["../../packages/core/src/index.ts"],
       "@shopflow/core/*": ["../../packages/core/src/*"],
       "@shopflow/ui": ["../../packages/ui/src/index.ts"],
       "@shopflow/ui/*": ["../../packages/ui/src/*"],

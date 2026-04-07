@@ -45,7 +45,7 @@
     ]
   },
   "mustNotClaim": [
-    "Official OpenClaw listing already live",
-    "Official OpenClaw integration already approved"
+    "Official OpenClaw listing",
+    "Official OpenClaw integration"
   ]
 }

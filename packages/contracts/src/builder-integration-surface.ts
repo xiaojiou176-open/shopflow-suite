@@ -553,8 +553,8 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
       truthfulWordingNow:
         'Public-ready secondary route with explicit install, discovery, and proof paths, while official-listing claims remain conditional on real external surfaces.',
       mustNotClaimNow: [
-        'Official OpenClaw listing already live',
-        'Official OpenClaw integration already approved',
+        'Official OpenClaw listing',
+        'Official OpenClaw integration',
       ],
     },
   ],

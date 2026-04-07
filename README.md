@@ -15,8 +15,27 @@ In plain language:
 ## Front Door in 30 Seconds
 
 - **Category:** a Chrome-first shopping extension family with `8` storefront apps plus `1` suite shell
-- **Heat hook:** storefront-specific entry points stay narrow and searchable, while shared logic stays in one engineering source of truth
-- **Current result:** the repo has materialized `8+1` app shells, shared contracts, and repo-owned verification/review packaging, but it is **not** yet public-claim-ready
+- **Heat hook:** one repo already packages `8` storefront review bundles plus `1` Suite internal-alpha bundle without splitting storefront truth across `9` codebases
+- **Current result:** the public repo and Pages front door are live today, and the latest release is a **review shelf**, not a signed/store-ready shelf; public support claims still stop at reviewed live evidence and signed/store-ready artifacts
+
+## What You Can Inspect Today
+
+- public canonical repo:
+  `https://github.com/xiaojiou176-open/shopflow-suite`
+- public Pages front door:
+  `https://xiaojiou176-open.github.io/shopflow-suite/`
+- latest release tag:
+  [`v0.1.0`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+- current review shelf already includes:
+  - `8` store review bundles
+  - `1` Suite internal-alpha review bundle
+  - a review manifest
+  - a submission-readiness report
+
+In plain language:
+
+> there is already a real review shelf you can inspect today.
+> it is a reviewer shelf, not a signed release shelf.
 
 ## What Shopflow Is and Is Not
 
@@ -48,7 +67,7 @@ In plain language:
 > this repo's main story is still "shopping extension family under evidence
 > gates," not "public plugin marketplace."
 
-## Why Agent Builders May Still Care
+## Builder Lane Is Secondary
 
 This is a **secondary** reading path, not the default repo identity.
 
@@ -56,111 +75,35 @@ If you are evaluating Shopflow as an open-source product repo rather than as an
 agent-consumption packet source, read the product and verification docs above
 first.
 
-Shopflow is not a generic AI assistant, but it already exposes several
-builder-friendly surfaces that agent tooling can consume today:
+If you are here specifically for builder-facing packets, keep the root README
+short and open the docs shelf instead:
 
-- typed store-adapter contracts and explicit readiness states
-- read-only builder snapshots assembled from the same runtime truth
-- shared runtime records for latest output, recent activity, and evidence queue state
-- workflow decision briefs and workflow-copilot briefs assembled from the same runtime truth
-- Suite routing and claim-gate surfaces that explain what is blocked, why, and where the next real page lives
-- review artifacts and submission-readiness reporting that separate repo-owned progress from external release conditions
-- a repo-local read-only CLI prototype that wraps the same builder-facing read models without turning that convenience wrapper into a public CLI commitment
-- a thin repo-local runtime consumer that can turn the Switchyard seam into concrete acquisition routes when a real base URL is available, without pretending Shopflow already ships that runtime
-- a repo-owned public distribution bundle that now acts as the active execution packet for package, plugin, skills, catalog, and marketplace work, while still separating official listing claims from ecosystems that do not actually offer an official public surface
-- checked-in agent distribution artifacts that now cover Codex, Claude Code, and OpenClaw distribution packets, metadata payloads, and reusable examples instead of leaving that work trapped inside one larger packet
+1. [`docs/ecosystem/builder-start-here.md`](./docs/ecosystem/builder-start-here.md)
+2. [`docs/ecosystem/integration-recipes.md`](./docs/ecosystem/integration-recipes.md)
+3. [`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md)
 
-These are builder-facing and truthful today. They are **not** evidence that
-Shopflow already ships a public API, public MCP, CLI surface, or SDK.
+Shopflow is not a generic AI assistant, but it does expose truthful
+builder-facing surfaces today:
 
-If you want the shortest builder entrypoint, start with
-[`docs/ecosystem/builder-start-here.md`](./docs/ecosystem/builder-start-here.md)
-and [`docs/ecosystem/integration-recipes.md`](./docs/ecosystem/integration-recipes.md).
-If you are starting specifically from Codex or Claude Code, jump straight to
-[`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md).
-If you already have a real Switchyard base URL, the thinnest consumer proof is
-`pnpm cli:read-only -- runtime-consumer --base-url http://127.0.0.1:4317`.
+- typed contracts plus explicit readiness / claim-boundary truth
+- read-only builder snapshots, workflow briefs, and reviewer artifacts
+- a repo-local read-only CLI plus builder docs and example packets in the docs shelf
 
-## Agent Entry by Ecosystem
+Target-specific quickstarts, example JSON, and ecosystem-specific packets stay
+in the docs shelf, not the root README. These surfaces are real today, but
+they are **not** proof that Shopflow already ships a public API, public MCP,
+official marketplace listing, or SDK.
 
-This section is a targeted side entrance for builders who already know they are
-looking for Codex / Claude Code / OpenClaw packet surfaces.
+## Current Scope Buckets
 
-It should not be read as:
+The full contract lives in
+[`ADR-003: Builder Integration Surface and Product Language Boundary`](./docs/adr/ADR-003-builder-integration-surface-and-product-language-boundary.md).
+The short version is:
 
-- official listing proof
-- the primary public identity of the repository
-- evidence that Shopflow is now mainly a plugin distribution product
-
-If you want the shortest truthful agent-facing route, use this table:
-
-| Target | Start page | Fastest command | No-runtime example |
-| :--- | :--- | :--- | :--- |
-| `Codex` | [`docs/ecosystem/codex-quickstart.md`](./docs/ecosystem/codex-quickstart.md) | `pnpm cli:read-only -- agent-target-packet --target codex` | [`agent-target-packet.codex.json`](./docs/ecosystem/examples/agent-target-packet.codex.json) |
-| `Claude Code` | [`docs/ecosystem/claude-code-quickstart.md`](./docs/ecosystem/claude-code-quickstart.md) | `pnpm cli:read-only -- agent-target-packet --target claude-code` | [`agent-target-packet.claude-code.json`](./docs/ecosystem/examples/agent-target-packet.claude-code.json) |
-| `OpenCode` | [`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target opencode` | [`agent-target-packet.opencode.json`](./docs/ecosystem/examples/agent-target-packet.opencode.json) |
-| `OpenHands` | [`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target openhands` | [`agent-target-packet.openhands.json`](./docs/ecosystem/examples/agent-target-packet.openhands.json) |
-| `OpenClaw` | [`docs/ecosystem/openclaw-comparison.md`](./docs/ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | [`agent-target-packet.openclaw.json`](./docs/ecosystem/examples/agent-target-packet.openclaw.json) |
-
-Current 4/6 contract:
-
-- `Codex` and `Claude Code` are current-scope public-distribution targets with plugin-level bundle work in flight
-- `OpenClaw` is no longer comparison-only; it is now a public-ready target for install, discovery, and proof work
-- none of the three should be described as officially listed unless the target ecosystem actually exposes and confirms an official public surface
-
-If you want the CLI to remind you of the supported commands and targets first,
-run:
-
-```bash
-pnpm cli:read-only --help
-```
-
-## Vision Upgrade Matrix
-
-The stronger product vision for Shopflow is now split into five honest buckets.
-
-### Today
-
-- a Chrome-first shopping extension family with `8+1` app shells
-- typed contracts, runtime truth, and builder-facing read models
-- English-first public wording
-- AI in the real operator flow through workflow decision briefs and workflow-copilot briefs
-
-### Current-scope now
-
-- API substrate first through stable schemas, read models, examples, and builder docs
-- product UI stays English-default with `zh-CN` support through shared locale catalogs
-- systematic i18n: new user-visible strings must route through locale catalogs instead of scattered bilingual literals
-- public distribution execution for Codex, Claude Code, and OpenClaw through starter bundles, sample config, install docs, proof loops, and package/listing/catalog metadata
-- builder-facing copy may reference Codex and Claude Code as strong-fit ecosystems and OpenClaw as a public-ready route, but only claim official listing where an official public surface truly exists
-- front-door, plug-and-play, review UX, discoverability, and SEO hardening for those public-distribution paths
-
-### Deferred by owner
-
-- public read-only MCP transport
-- public read-only API transport
-- generated client or thin SDK
-- hosted runtime product
-- homepage migration
-- custom domain / trademark / `.ai` landing
-- release publish and social preview work
-
-### No-go
-
-- write-capable MCP
-- hosted shopping SaaS control plane
-- generic autonomous shopping assistant
-- public wording that outruns reviewed live evidence
-
-### Surface-dependent publication boundary
-
-- use the official public surface when the target ecosystem actually has one
-- otherwise use the strongest truthful public distribution surface that exists today
-- do not turn a package, listing draft, skills catalog, or metadata payload into an official-listing claim by wording alone
-
-See [`docs/ecosystem/agent-and-mcp-positioning.md`](./docs/ecosystem/agent-and-mcp-positioning.md)
-and [`docs/ecosystem/integration-surface-roadmap.md`](./docs/ecosystem/integration-surface-roadmap.md)
-for the detailed matrix.
+- **Today:** `8+1` app shells, shared contracts, repo-owned review packaging, and truthful builder-facing read models already exist
+- **Current-scope now:** public front door, builder packet quality, review UX, English-first copy, and discoverability can keep getting stronger without overclaiming public API/MCP/SDK reality
+- **Deferred by owner:** hosted runtime, homepage migration, custom domain, and official ecosystem publication routes that depend on external surfaces
+- **No-go:** write-capable MCP, hosted shopping SaaS control plane, and any public wording that outruns reviewed live evidence
 
 ## Current Status
 
@@ -303,14 +246,26 @@ Why this matters:
 
 ## Repo Hygiene Gates
 
-Shopflow now wires three local mechanical gates at the repo root:
+Shopflow now uses a **five-layer verification contract** so local authoring,
+hosted CI, external/public-surface drift checks, and manual live proof do not
+all pile into the same gate.
+
+| Layer | Primary lane | What it is for | What it must not pretend to prove |
+| :--- | :--- | :--- | :--- |
+| `pre-commit` | `pnpm verify:local-hygiene` | fast local hygiene: lint, typecheck, catalog parity, sensitive worktree scan | full history safety, browser realism, release packaging, or public-surface drift |
+| `pre-push` | `pnpm verify:pre-push` | stronger local gate: pre-commit checks plus coverage, sensitive history, and repo-local unit/contract/integration confidence | E2E/browser realism, release packaging, or external/public-surface drift |
+| `hosted` | `shopflow-ci` -> `pnpm verify:release-readiness` | strongest repo-owned serial lane: hygiene, history, unit/contract/integration/E2E, and review-bundle packaging | reviewed live evidence, signing, store submission, or GitHub platform capability presence |
+| `nightly` | `external-governance` -> `pnpm verify:external-governance` | GitHub-hosted public-surface drift and platform-security capability checks | local authoring correctness or claim-ready support proof |
+| `manual` | live/browser/signing/submission commands | real browser/session review, explicit review input, signing, and store-console work | deterministic CI or repo-only automation |
+
+Shopflow now wires these local mechanical gates at the repo root:
 
 - `pre-commit`
   - runs `pnpm verify:local-hygiene`
-  - also blocks secrets, personal email addresses, user-specific absolute paths, and committed log/db/key artifacts before they can land
+  - blocks obvious local hygiene drift before a commit lands
 - `pre-push`
   - runs `pnpm hooks:pre-push`
-  - currently points at `pnpm verify:release-readiness`, so push-time verification uses the same strongest serial lane as release-readiness closeout
+  - now points at `pnpm verify:pre-push`, so push-time verification stays meaningful without forcing E2E + packaging on every local push
 - `commitlint`
   - enforces `feat / fix / refactor / docs / test / chore`
 - `verify:sensitive-surfaces`
@@ -326,8 +281,11 @@ Shopflow now wires three local mechanical gates at the repo root:
 - `verify:coverage`
   - blocks coverage regressions below the current repo baseline while the team works toward a higher global bar
 - `verify:release-readiness`
-  - runs local hygiene, sensitive-history, full repo test, and review-bundle packaging in one serial lane
+  - runs the strongest repo-owned serial lane: pre-push checks, E2E, and review-bundle packaging
   - use this when you need one honest answer for `can this repo currently verify and package cleanly?`
+- `verify:external-governance`
+  - runs `verify:sensitive-public-surface` plus `verify:github-platform-security`
+  - use this on GitHub-hosted schedule/manual lanes to watch public-surface drift and platform capability gaps without blocking every local push
 
 Additional GitHub workflows now cover:
 
@@ -338,6 +296,15 @@ Additional GitHub workflows now cover:
 - `trivy`
 - `dependency-review`
 - `codeql`
+
+Current GitHub workflow split:
+
+- `shopflow-ci`
+  - push / PR hosted serial verification and review-bundle packaging
+- `external-governance`
+  - scheduled + manual GitHub-hosted checks for public-surface drift and platform security capability status
+- auxiliary scanner workflows
+  - `actionlint`, `zizmor`, `gitleaks`, `trufflehog`, `trivy`, `dependency-review`, `codeql`
 
 Important boundary:
 
@@ -578,7 +545,11 @@ Release sequence is staged, but final scope is still `8+1`.
 
 ## Review Artifacts
 
-Shopflow CI now publishes **review bundles** for each app shell.
+Shopflow CI now publishes a **review shelf** for each app shell.
+
+In plain language:
+
+> downloadable reviewer packets, not signed store-ready releases.
 
 These bundles are for:
 

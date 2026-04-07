@@ -6,7 +6,7 @@ import {
   suiteStatusBoard,
   suiteVerifiedScopeNavigator,
 } from '../../apps/ext-shopping-suite/src/app-definition';
-import { createSuiteDetailModel } from '../../apps/ext-shopping-suite/src/suite-control-plane-model';
+import { createSuiteDetailModel } from '../../packages/core/src/suite-detail-model';
 import {
   getLiveReceiptBlockerSummaries,
   publicClaimBoundaries,

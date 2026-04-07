@@ -7,6 +7,8 @@ import {
 } from 'node:fs';
 import { basename, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { allVerificationCatalogEntries } from '@shopflow/contracts';
+import { writeReviewArtifactManifest } from './write-review-artifact-manifest';
 
 export function sleep(milliseconds: number) {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
@@ -91,6 +93,18 @@ export function waitForBundleFiles(buildRoot: string, appId: string) {
   }
 }
 
+function verificationEntryFor(appId: string) {
+  const entry = allVerificationCatalogEntries.find(
+    (candidate) => candidate.appId === appId
+  );
+
+  if (!entry) {
+    throw new Error(`Unknown appId "${appId}" while staging review artifacts.`);
+  }
+
+  return entry;
+}
+
 export function stagePackageArtifacts(
   appDirs: string[],
   repoRoot = process.cwd()
@@ -129,6 +143,25 @@ export function stagePackageArtifacts(
 
     for (const entry of zipEntries) {
       cpSync(resolve(outputRoot, entry), resolve(zipStageRoot, entry));
+    }
+
+    if (existsSync(bundleStageRoot)) {
+      const entry = verificationEntryFor(appId);
+      writeReviewArtifactManifest({
+        appId,
+        packageName: `@shopflow/${appId}`,
+        reviewChannel:
+          entry.releaseChannel === 'internal-alpha'
+            ? 'internal-alpha-review'
+            : 'store-review',
+        surface:
+          appId === 'ext-shopping-suite'
+            ? 'internal-alpha'
+            : entry.tier === 'capability-heavy-product'
+              ? 'capability-heavy-product'
+              : 'storefront-shell',
+        bundleDir: bundleStageRoot,
+      });
     }
   }
 

@@ -1,4 +1,5 @@
 import {
+  existsSync,
   mkdtempSync,
   mkdirSync,
   rmSync,
@@ -108,6 +109,9 @@ describe('stage package artifacts tooling', () => {
     expect(
       collectZipEntries(join(staleStageRoot, 'zip'))
     ).toEqual(['shopflow-ext-amazon.zip']);
+    expect(
+      existsSync(join(staleStageRoot, 'bundle', 'shopflow-review-artifact.json'))
+    ).toBe(true);
   });
 
   it('fails loudly when no app directories are provided', () => {

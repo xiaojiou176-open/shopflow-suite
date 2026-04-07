@@ -113,6 +113,7 @@ describe('submission readiness report tooling', () => {
       ready: true,
       zipArtifactsMissing: false,
       missingBundleFiles: [],
+      reviewArtifactManifestMissing: false,
     });
     expect(report.entries[0]?.reviewerChecklist).toEqual(
       expect.arrayContaining([
@@ -229,6 +230,7 @@ describe('submission readiness report tooling', () => {
         buildDirectoryMissing: true,
         zipArtifactsMissing: true,
         missingBundleFiles: ['manifest.json', 'popup.html'],
+        reviewArtifactManifestMissing: true,
       },
     ]);
 
@@ -246,6 +248,7 @@ describe('submission readiness report tooling', () => {
         buildDirectoryMissing: true,
         zipArtifactsMissing: true,
         missingBundleFiles: ['manifest.json', 'popup.html'],
+        reviewArtifactManifestMissing: true,
       },
     });
     expect(report.entries[0]?.reviewerChecklist).toEqual(
@@ -257,6 +260,7 @@ describe('submission readiness report tooling', () => {
             'build-directory-missing',
             'zip-artifacts-missing',
             'missing-bundle-files',
+            'review-artifact-manifest-missing',
           ]),
         }),
       ])

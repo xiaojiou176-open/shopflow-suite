@@ -36,3 +36,14 @@ export {
   uiLocaleValues,
 } from './ui-locale';
 export type { LocaleSwitchOption, UiLocale } from './ui-locale';
+export {
+  compareSuiteDetailPriority,
+  createSuiteDetailModel,
+  getSuiteCockpitAction,
+  loadSuiteDetailMap,
+} from './suite-detail-model';
+export type {
+  SuiteCatalogItem,
+  SuiteDetailModel,
+  SuiteDetailSource,
+} from './suite-detail-model';

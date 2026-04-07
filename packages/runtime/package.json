@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./suite-control-plane-runtime": "./src/storage/suite-control-plane-runtime.ts"
   },
   "dependencies": {
     "@shopflow/contracts": "workspace:*",
