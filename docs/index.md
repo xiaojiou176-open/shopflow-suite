@@ -81,7 +81,7 @@ Use the public repo surface like one front entrance and two marked side doors:
 | :--- | :--- | :--- | :--- |
 | `xiaojiou176-open/shopflow-suite` | only canonical repo | you want the main product, docs, Pages, release, and review shelf | a mirror or target-specific fallback |
 | `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | you only need a smaller packet-only rack | a second canonical Shopflow repo |
-| `xiaojiou176/shopflow-openclaw-plugin` | OpenClaw-specific fallback install shell | you specifically need the OpenClaw `customPlugins` install route | the main product repo or an official OpenClaw listing |
+| `xiaojiou176/shopflow-openclaw-plugin` | archived legacy OpenClaw fallback shell | you only need compatibility for an older pinned route; new installs should use `shopflow-suite?dir=distribution/openclaw-plugin` | the current install path, the main product repo, or an official OpenClaw listing |
 
 If you only want one link, use:
 

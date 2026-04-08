@@ -11,8 +11,8 @@ What to read first:
 
 What this shell can truthfully say:
 
-- it is a public fallback shell
-- it can be installed through OpenClaw customPlugins using `github:xiaojiou176/shopflow-openclaw-plugin`
+- it is the canonical OpenClaw install shell inside `shopflow-suite`
+- it can be installed through OpenClaw customPlugins using `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 - it mirrors Shopflow's read-only packet truth
 - canonical docs and proof still live in `shopflow-suite`
 

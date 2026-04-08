@@ -27,7 +27,7 @@ Use this repo map before you sync any copy:
   `https://github.com/xiaojiou176-open/shopflow-suite`
 - secondary packet mirror and deprecated candidate:
   `https://github.com/xiaojiou176/shopflow-public-packets`
-- OpenClaw-specific fallback install shell:
+- archived legacy OpenClaw fallback shell:
   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
 
 Boundary reminder:
@@ -35,8 +35,10 @@ Boundary reminder:
 - `shopflow-suite` stays the only canonical repo
 - `shopflow-public-packets` stays a smaller fallback or mirror surface, not a
   second product repo
-- `shopflow-openclaw-plugin` stays a target-specific fallback install shell,
-  not the canonical repo and not an official listing
+- new OpenClaw installs should use
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+- `shopflow-openclaw-plugin` is now an archived legacy compatibility shell, not
+  the canonical repo and not an official listing
 
 Use the machine-readable bundle when you want the same answer as JSON:
 

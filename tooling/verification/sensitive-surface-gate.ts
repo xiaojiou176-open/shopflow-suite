@@ -96,6 +96,28 @@ const historyIdentityRules: HistoryIdentityRule[] = [
   },
 ];
 
+function isAllowedGithubNoreplyIdentity(
+  authorName: string,
+  authorEmail: string,
+  committerName: string,
+  committerEmail: string
+) {
+  const publicAuthorName = /\bYifeng(?:\[Terry\])?\s+Yu\b/i;
+  const publicAuthorEmail = /\b(?:125581657\+)?xiaojiou176@users\.noreply\.github\.com\b/i;
+  const githubCommitter = /\bGitHub\b/i;
+  const githubCommitterEmail = /\bnoreply@github\.com\b/i;
+
+  const authorLooksPublic =
+    publicAuthorName.test(authorName) && publicAuthorEmail.test(authorEmail);
+  const committerLooksPublic =
+    (publicAuthorName.test(committerName) &&
+      publicAuthorEmail.test(committerEmail)) ||
+    (githubCommitter.test(committerName) &&
+      githubCommitterEmail.test(committerEmail));
+
+  return authorLooksPublic && committerLooksPublic;
+}
+
 function runGit(args: string[]) {
   const result = spawnSync('git', args, {
     cwd: process.cwd(),
@@ -458,6 +480,17 @@ function scanHistoryIdentityMetadata() {
     const [commit, authorName, authorEmail, committerName, committerEmail] =
       line.split('\t');
     if (!commit || !authorName || !authorEmail || !committerName || !committerEmail) {
+      continue;
+    }
+
+    if (
+      isAllowedGithubNoreplyIdentity(
+        authorName,
+        authorEmail,
+        committerName,
+        committerEmail
+      )
+    ) {
       continue;
     }
 

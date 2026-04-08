@@ -5,24 +5,26 @@ public-distribution uplift.
 
 In plain language:
 
-> OpenClaw is no longer waiting for a box.
-> the fallback install shell already exists publicly, while the official-listing
-> layer still stays outside the repo.
+> OpenClaw no longer needs a separate main install box.
+> the canonical install path now lives inside the main Shopflow repo, while the
+> old standalone repo is only a legacy fallback.
 
 Canonical boundary:
 
 - `xiaojiou176-open/shopflow-suite` stays the canonical Shopflow repo
-- `xiaojiou176/shopflow-openclaw-plugin` is the target-specific fallback
-  install shell for OpenClaw `customPlugins`
+- canonical OpenClaw installs now point to
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+- `xiaojiou176/shopflow-openclaw-plugin` is now an archived legacy fallback for
+  previously pinned installs
 
 ## Current Honest Placement
 
-OpenClaw now has a **live public fallback shell** in this repo family.
+OpenClaw now has a **canonical install path inside the canonical repo**.
 
 That means Shopflow can truthfully show:
 
 - a public install route through
-  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
   and the upstream `nix-openclaw` community-plugin flow
 - a public discovery route through public docs plus a ready-to-publish metadata
   packet
@@ -42,15 +44,18 @@ The strongest truthful public distribution surface today is:
 
 1. the canonical Shopflow docs/proof front door
    `https://github.com/xiaojiou176-open/shopflow-suite`
-2. the live **public GitHub fallback shell**
-   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
-3. installed through OpenClaw's documented `customPlugins` path
+2. the canonical install path through OpenClaw's documented `customPlugins`
+   flow:
+   `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+3. the archived legacy fallback shell
+   `https://github.com/xiaojiou176/shopflow-openclaw-plugin` only for older
+   pinned installs
 4. discovered through this packet, the ready metadata, and the upstream
    `openclaw/nix-openclaw` public repo
 
 Think of it like packing a product for a public shelf:
 
-- the install box is already on the public table
+- the install path now comes from the main storefront itself
 - the remaining outside step is any stronger official listing or official-org
   placement beyond that fallback route
 
@@ -68,7 +73,7 @@ Use this exact install shape today:
 programs.openclaw.instances.default = {
   enable = true;
   plugins = [
-    { source = "github:xiaojiou176/shopflow-openclaw-plugin"; }
+    { source = "github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin"; }
   ];
 };
 ```
@@ -101,12 +106,11 @@ Use this loop:
 
 1. start from the canonical repo for docs and proof boundaries
    `https://github.com/xiaojiou176-open/shopflow-suite`
-2. open the live public fallback shell repo
-   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
-3. add the public GitHub source to `customPlugins`
-4. run `home-manager switch`
-5. capture one install receipt and one runtime receipt
-6. attach the evidence to the proof packet
+2. add the canonical subdir source to `customPlugins`
+3. run `home-manager switch`
+4. capture one install receipt and one runtime receipt
+5. attach the evidence to the proof packet
+6. keep the archived legacy repo only for older pinned compatibility if needed
 
 Minimum proof bundle:
 
@@ -115,7 +119,7 @@ Minimum proof bundle:
 - `home-manager switch` success output
 - one runtime proof that Shopflow's read-only packet is reachable after install
 
-## Best Commands Around The Fallback Route
+## Best Commands Around The Canonical Install Route
 
 ```bash
 pnpm cli:read-only -- agent-target-packet --target openclaw
@@ -135,7 +139,7 @@ Then read:
 - canonical Shopflow repo status
 - official OpenClaw listing already live
 - official OpenClaw org approval already granted
-- public proof already captured if the fallback install route has not been run
+- public proof already captured if the canonical install route has not been run
 
 ## Why This Still Matters
 

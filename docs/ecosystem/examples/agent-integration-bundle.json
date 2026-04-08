@@ -137,12 +137,12 @@
       ],
       "skillsState": "ready-to-sync-packet",
       "pluginPackagingState": "ready-to-publish-packet",
-      "summary": "OpenClaw now uses a live public fallback shell plus a public-ready packet: install path and discovery path are explicit, while official listing still stays outside the repo boundary.",
+      "summary": "OpenClaw now uses a canonical main-repo install path plus a public-ready packet: install and discovery are explicit, while official listing still stays outside the repo boundary.",
       "mustNotClaim": [
         "Official OpenClaw listing",
         "Official OpenClaw integration"
       ],
-      "nextHumanStep": "Use the live fallback shell github:xiaojiou176/shopflow-openclaw-plugin, install it through nix-openclaw customPlugins, and capture the proof-loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
+      "nextHumanStep": "Use the canonical install path github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin, install it through nix-openclaw customPlugins, and capture the proof-loop receipts. Keep the archived legacy repo only for older pinned compatibility. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
     }
   ],
   "publicMcpCapabilityMap": {
@@ -414,7 +414,7 @@
         "suggestedSlug": "shopflow-openclaw-read-only-packet",
         "title": "Shopflow OpenClaw Read-only Packet",
         "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
-        "boundaryNote": "Ready-to-publish packet only. The current public fallback shell is live at xiaojiou176/shopflow-openclaw-plugin, but do not claim an official OpenClaw listing or official-org integration until a real official surface is live.",
+        "boundaryNote": "Ready-to-publish packet only. The canonical install path now uses xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin, while xiaojiou176/shopflow-openclaw-plugin remains an archived legacy fallback. Do not claim an official OpenClaw listing or official-org integration until a real official surface is live.",
         "screenshotSources": [
           "docs/ecosystem/openclaw-comparison.md",
           "docs/ecosystem/openclaw-public-ready-matrix.md",

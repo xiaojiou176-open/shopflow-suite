@@ -14,6 +14,10 @@ The format is based on Keep a Changelog.
   deprecated candidate, and rewrites the OpenClaw lane around the already-live
   `xiaojiou176/shopflow-openclaw-plugin` fallback shell instead of leaving
   future-scaffold wording alive.
+- OpenClaw install guidance now moves the canonical `customPlugins` route into
+  `xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`, while the
+  standalone `xiaojiou176/shopflow-openclaw-plugin` repo is treated as an
+  archived legacy fallback for older pins only.
 - GitHub Actions no longer mislabel disabled GitHub-native security features as
   code failures; the platform security check now records capability gaps
   truthfully while still failing when enabled features carry real open alerts.
