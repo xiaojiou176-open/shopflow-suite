@@ -109,13 +109,23 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
     },
     {
       id: 'public-mcp',
-      label: 'Public read-only MCP packet',
+      label: 'Read-only MCP surface',
       repoOwnedStatus: 'ready-to-sync-packet',
       publicReleaseState: 'not-yet-published',
       summary:
-        'Turns the MCP story into a concrete capability packet without pretending the server is already published or write-capable.',
-      primaryCommand: 'pnpm cli:read-only -- public-mcp-capability-map',
+        'Ships a live repo-local read-only stdio MCP for the core four repo-truth surfaces while keeping public transport and registry publication explicitly later.',
+      primaryCommand: 'pnpm mcp:stdio',
       artifacts: [
+        {
+          kind: 'doc',
+          label: 'MCP quickstart',
+          value: 'docs/ecosystem/mcp-quickstart.md',
+        },
+        {
+          kind: 'json',
+          label: 'Sample stdio config',
+          value: 'docs/ecosystem/examples/mcp-config.stdio.json',
+        },
         {
           kind: 'doc',
           label: 'Agent and MCP positioning',
@@ -143,11 +153,11 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         },
       ],
       mustNotClaim: [
-        'Public MCP already published',
+        'Public HTTP MCP already published',
         'Write-capable MCP exists',
       ],
       nextHumanStep:
-        'Choose a real MCP publication target only after the external hosting and registry path is intentionally opened.',
+        'Use the repo-local stdio MCP today, and only choose public transport, Docker, or registry publication after those external surfaces are intentionally opened.',
     },
     {
       id: 'public-skills',

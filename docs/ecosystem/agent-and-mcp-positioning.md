@@ -32,6 +32,7 @@ That means Shopflow can truthfully present itself as:
 - a contract-first runtime for store-specific workflows
 - an agent-ready repo where builders can inspect typed workflow truth instead of scraping prose
 - a repo with a today-ready read-model surface even before public API or MCP exist
+- a repo with a live read-only stdio MCP for the core repo-truth surfaces
 - a repo where AI already shows up inside the operator flow instead of as a generic chat add-on
 
 ## What Shopflow Should Not Claim Today
@@ -50,10 +51,10 @@ Shopflow should not claim that it already is:
 | :--- | :--- | :--- | :--- |
 | `Codex` | front-door primary + public-distribution current-scope | strong builder fit because Shopflow already exposes typed contracts, workflow briefs, review tooling, read-only builder snapshots, and a plugin-level distribution bundle story | official integration or official listing where no official Codex public surface exists |
 | `Claude Code` | front-door primary + public-distribution current-scope | strong builder fit for the same builder-facing reasons, now with a stronger skills-facing and plugin-level distribution path | official integration or official listing where no official Claude Code public surface exists |
-| `MCP` | read-only distribution packet now; public transport later | today's runtime truth already supports a truthful capability packet and directory/listing prep, even though a public MCP server is still not shipped | current public MCP product or write-capable MCP |
+| `MCP` | repo-local read-only stdio now; public transport later | today's runtime truth already supports a truthful capability packet, and the core four surfaces are now attachable through stdio, even though a public MCP server is still not shipped | current public HTTP MCP product or write-capable MCP |
 | `OpenCode` | ecosystem secondary | useful comparison or later-facing integration path when CLI or skills packaging becomes explicit | main hero placement, official package |
 | `OpenHands` | ecosystem secondary | useful comparison for agentic coding and workflow automation | main hero placement, official package |
-| `OpenClaw` | public-ready secondary target via canonical repo subdir | public installation, discovery, and proof work are now in current scope, with canonical docs/proof/install staying in `shopflow-suite`, while the standalone repo is only an archived legacy fallback | fake official listing, second-canonical-repo drift, or overclaiming first-party integration without the real external surface |
+| `OpenClaw` | public-ready secondary target via canonical repo subdir | public installation, discovery, and proof work are now in current scope, with canonical docs/proof/install staying in `shopflow-suite` | fake official listing, second-canonical-repo drift, or overclaiming first-party integration without the real external surface |
 
 ## Today, Current-Scope Now, Later, No-Go, and Owner-Decision
 
@@ -84,7 +85,6 @@ Shopflow should not claim that it already is:
 
 ### Later
 
-- read-only MCP transport
 - read-only API transport
 - generated client or thin SDK
 - hosted runtime product
@@ -114,7 +114,7 @@ If you are evaluating Shopflow as a builder:
    detection, latest output, recent activity, and evidence queue state
 5. Use workflow decision briefs and workflow-copilot briefs when you need
    builder-readable next-step and claim-gate context
-6. Do not assume a public API, public MCP, or public CLI already exists
+6. Do not assume a public API, public HTTP MCP, or public CLI already exists
 7. Expect future API / MCP / CLI work to stay read-only first
 8. Use [Integration Recipes](./integration-recipes.md) when you want commands
    or import paths instead of only positioning language

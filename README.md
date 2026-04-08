@@ -2,6 +2,8 @@
 
 Shopflow is a **Chrome-first shopping extension product family** built as a dedicated new repository.
 
+![Shopflow front door](./docs/assets/shopflow-front-door.svg)
+
 It is designed to ship:
 
 - `8` Store apps
@@ -16,7 +18,7 @@ In plain language:
 
 - **Category:** a Chrome-first shopping extension family with `8` storefront apps plus `1` suite shell
 - **Heat hook:** one repo already packages `8` storefront review bundles plus `1` Suite internal-alpha bundle without splitting storefront truth across `9` codebases
-- **Current result:** the public repo and Pages front door are live today, and the latest release is a **review shelf**, not a signed/store-ready shelf; public support claims still stop at reviewed live evidence and signed/store-ready artifacts
+- **Current result:** the public repo, Pages front door, **read-only stdio MCP**, and latest release review shelf are live today; public support claims still stop at reviewed live evidence and signed/store-ready artifacts
 
 ## What You Can Inspect Today
 
@@ -24,6 +26,8 @@ In plain language:
   `https://github.com/xiaojiou176-open/shopflow-suite`
 - public Pages front door:
   `https://xiaojiou176-open.github.io/shopflow-suite/`
+- read-only stdio MCP:
+  `pnpm mcp:stdio`
 - latest release tag:
   [`v0.1.0`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 - current review shelf already includes:
@@ -35,27 +39,21 @@ In plain language:
 In plain language:
 
 > there is already a real review shelf you can inspect today.
-> it is a reviewer shelf, not a signed release shelf.
+> it is a reviewer shelf, not a signed/store-ready shelf.
 
 ## Public Repo Topology
 
-Shopflow's public GitHub surface now follows **one main front door plus two
-clearly secondary side shelves**.
+Shopflow's public GitHub surface now uses **one main front door**.
 
 If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
 
 | Repo | Role now | Use it for | Must not be mistaken for |
 | :--- | :--- | :--- | :--- |
-| `xiaojiou176-open/shopflow-suite` | only canonical repo | the default product, docs, Pages, release, and review-shelf front door | a mirror or packet-only side shelf |
-| `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | a smaller packet-only rack when a lighter builder-facing shelf is still useful | a second canonical Shopflow repo or main product home |
-| `xiaojiou176/shopflow-openclaw-plugin` | archived legacy OpenClaw fallback shell | previously pinned compatibility only; new installs should use `shopflow-suite?dir=distribution/openclaw-plugin` | the current install path, the main product repo, the canonical docs/proof repo, or an official OpenClaw listing |
+| `xiaojiou176-open/shopflow-suite` | only canonical repo | the default product, docs, Pages, release, review shelf, and read-only MCP entry | a packet-only side shelf, a second repo, or a public HTTP API/MCP service |
 
 In plain language:
 
-> `shopflow-suite` is the main store.
-> `shopflow-public-packets` is the side shelf.
-> `shopflow-openclaw-plugin` is now an old side door kept only for legacy
-> compatibility.
+> `shopflow-suite` is the main store and the only live front door.
 
 ## What Shopflow Is and Is Not
 
@@ -68,6 +66,10 @@ When this repo says:
 - `control-plane`, it means the Suite internal-alpha routing and visibility surface inside the extension product family, not a remote control tower service
 
 This wording matters because repo-verified extension surfaces are real progress, but they are still different from public-ready support claims, signed release artifacts, or live action proof.
+
+Shopflow now also exposes a **read-only stdio MCP surface** for AI tools that
+need repo-truth, runtime seam, submission readiness, and distribution packet
+access.
 
 ## Public Readers Start Here
 
@@ -95,12 +97,13 @@ If you are evaluating Shopflow as an open-source product repo rather than as an
 agent-consumption packet source, read the product and verification docs above
 first.
 
-If you are here specifically for builder-facing packets, keep the root README
-short and open the docs shelf instead:
+If you are here specifically for builder-facing packets or the new read-only
+MCP entry, keep the root README short and open the docs shelf instead:
 
 1. [`docs/ecosystem/builder-start-here.md`](./docs/ecosystem/builder-start-here.md)
 2. [`docs/ecosystem/integration-recipes.md`](./docs/ecosystem/integration-recipes.md)
 3. [`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md)
+4. [`docs/ecosystem/mcp-quickstart.md`](./docs/ecosystem/mcp-quickstart.md)
 
 Shopflow is not a generic AI assistant, but it does expose truthful
 builder-facing surfaces today:
@@ -108,21 +111,16 @@ builder-facing surfaces today:
 - typed contracts plus explicit readiness / claim-boundary truth
 - read-only builder snapshots, workflow briefs, and reviewer artifacts
 - a repo-local read-only CLI plus builder docs and example packets in the docs shelf
+- a repo-local read-only stdio MCP for the same core repo-truth surfaces
 
 Target-specific quickstarts, example JSON, and ecosystem-specific packets stay
 in the docs shelf, not the root README. These surfaces are real today, but
-they are **not** proof that Shopflow already ships a public API, public MCP,
-official marketplace listing, or SDK.
+they are **not** proof that Shopflow already ships a public API, public HTTP
+MCP endpoint, official marketplace listing, or SDK.
 
-If you do need the secondary public repo surfaces:
+The canonical OpenClaw install path is now:
 
-- `shopflow-public-packets` is the smaller fallback mirror for Codex / Claude
-  packet copies and a legacy OpenClaw packet mirror
-- new OpenClaw installs should use
-  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- `shopflow-openclaw-plugin` is now an archived legacy fallback shell for
-  previously pinned installs
-- both still point back to `shopflow-suite` as the canonical source
+- `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 
 ## Current Scope Buckets
 
@@ -131,7 +129,7 @@ The full contract lives in
 The short version is:
 
 - **Today:** `8+1` app shells, shared contracts, repo-owned review packaging, and truthful builder-facing read models already exist
-- **Current-scope now:** public front door, builder packet quality, review UX, English-first copy, and discoverability can keep getting stronger without overclaiming public API/MCP/SDK reality
+- **Current-scope now:** public front door, read-only stdio MCP, builder packet quality, review UX, English-first copy, and discoverability can keep getting stronger without overclaiming public API/HTTP MCP/SDK reality
 - **Deferred by owner:** hosted runtime, homepage migration, custom domain, and official ecosystem publication routes that depend on external surfaces
 - **No-go:** write-capable MCP, hosted shopping SaaS control plane, and any public wording that outruns reviewed live evidence
 

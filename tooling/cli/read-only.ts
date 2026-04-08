@@ -12,16 +12,10 @@ import {
   publicMcpCapabilityMapSchema,
   publicSkillsCatalog,
   publicSkillsCatalogSchema,
-  builderIntegrationSurface,
-  builderIntegrationSurfaceSchema,
-  publicDistributionBundle,
-  publicDistributionBundleSchema,
-  providerRuntimeSeam,
-  providerRuntimeSeamSchema,
 } from '@shopflow/contracts';
+import { buildShopflowMcpPayload } from '@shopflow/mcp-server';
 import { createProviderRuntimeConsumer } from '@shopflow/core';
 import { buildBuilderOutcomeBundle } from '../builder/write-builder-outcome-bundle';
-import { createSubmissionReadinessReport } from '../release/write-submission-readiness-report';
 import { writeFileAtomically } from '../shared/write-file-atomically';
 
 export const readOnlyCliCommandValues = [
@@ -234,15 +228,15 @@ export function buildReadOnlyCliPayload(options: ReadOnlyCliOptions) {
         pluginMarketplaceMetadataPacket
       );
     case 'integration-surface':
-      return builderIntegrationSurfaceSchema.parse(builderIntegrationSurface);
+      return buildShopflowMcpPayload('get_integration_surface');
     case 'runtime-seam':
-      return providerRuntimeSeamSchema.parse(providerRuntimeSeam);
+      return buildShopflowMcpPayload('get_runtime_seam');
     case 'runtime-consumer':
       return createProviderRuntimeConsumer({
         baseUrl: options.baseUrl ?? process.env.SHOPFLOW_SWITCHYARD_BASE_URL,
       });
     case 'public-distribution-bundle':
-      return publicDistributionBundleSchema.parse(publicDistributionBundle);
+      return buildShopflowMcpPayload('get_public_distribution_bundle');
     case 'outcome-bundle':
       return buildBuilderOutcomeBundle({
         appId: options.appId,
@@ -251,7 +245,7 @@ export function buildReadOnlyCliPayload(options: ReadOnlyCliOptions) {
         allowRuntimePayloadWrites: false,
       });
     case 'submission-readiness':
-      return createSubmissionReadinessReport();
+      return buildShopflowMcpPayload('get_submission_readiness');
   }
 }
 

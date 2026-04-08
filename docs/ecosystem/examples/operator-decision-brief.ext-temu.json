@@ -4,7 +4,7 @@
   "readOnly": true,
   "appTitle": "Shopflow for Temu",
   "stage": "claim-gated",
-  "summary": "Reviewed live evidence still gates public wording.",
+  "summary": "Review bundle is ready for repo-local inspection.",
   "whyNow": [
     "www.temu.com · search",
     "Temu search extraction and the warehouse filter workflow are runnable right now.",

@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { z } from 'zod';
 import {
   findStoreCatalogEntryByAppId,
   getLiveReceiptAppRequirements,
@@ -83,6 +84,82 @@ export type SubmissionReadinessChecklistItem = {
   detail: string;
   driftSignals?: string[];
 };
+
+export const submissionReadinessChecklistItemSchema = z.object({
+  category: z.enum([
+    'artifact-integrity',
+    'review-start-path',
+    'claim-boundary',
+    'live-evidence',
+    'verification-parity',
+    'submission-boundary',
+  ]),
+  status: z.enum([
+    'ready',
+    'attention',
+    'blocked',
+    'external',
+    'internal-only',
+  ]),
+  headline: z.string().min(1),
+  detail: z.string().min(1),
+  driftSignals: z.array(z.string().min(1)).optional(),
+});
+
+export const submissionReadinessEntrySchema = z.object({
+  appId: z.string().min(1),
+  publicName: z.string().min(1),
+  releaseChannel: z.string().min(1),
+  wave: z.string().min(1),
+  tier: z.string().min(1),
+  claimState: z.string().min(1),
+  reviewBundleReady: z.boolean(),
+  readinessSummary: z.string().min(1),
+  repoOwnedStatus: z.enum([
+    'internal-alpha-review-only',
+    'review-bundle-ready-claim-gated',
+    'review-bundle-ready-awaiting-signing',
+    'review-bundle-incomplete',
+  ]),
+  bundleAudit: z.object({
+    ready: z.boolean(),
+    buildDirectory: z.string().min(1),
+    reviewArtifactManifestPath: z.string().min(1),
+    buildDirectoryMissing: z.boolean(),
+    zipArtifactsMissing: z.boolean(),
+    missingBundleFiles: z.array(z.string().min(1)),
+    reviewArtifactManifestMissing: z.boolean(),
+  }),
+  reviewerStartPath: z.object({
+    reviewChannel: z.string().min(1),
+    surface: z.string().min(1),
+    reviewArtifactManifestPath: z.string().min(1),
+    manualReviewStartUrl: z.string().min(1).optional(),
+    firstCheck: z.string().min(1),
+  }),
+  manualReviewStartUrl: z.string().min(1).optional(),
+  verifiedScopeCopy: z.string().min(1).optional(),
+  requiredEvidenceCaptureIds: z.array(z.string().min(1)),
+  verificationParity: z.object({
+    ready: z.boolean(),
+    issues: z.array(z.string().min(1)),
+    driftSignals: z.array(z.string().min(1)),
+  }),
+  reviewerChecklist: z.array(submissionReadinessChecklistItemSchema),
+  submissionChecklist: z.array(z.string().min(1)),
+  submissionBoundaryNote: z.string().min(1),
+  repoOwnedNextMove: z.string().min(1),
+  externalBlockers: z.array(z.string().min(1)),
+});
+
+export const submissionReadinessReportSchema = z.object({
+  generatedAt: z.string().datetime(),
+  entries: z.array(submissionReadinessEntrySchema),
+});
+
+export type SubmissionReadinessReport = z.infer<
+  typeof submissionReadinessReportSchema
+>;
 
 type SubmissionReadinessReportOptions = {
   storeCatalogMap?: typeof storeCatalog;
@@ -653,10 +730,10 @@ export function createSubmissionReadinessReport(
     };
   });
 
-  return {
+  return submissionReadinessReportSchema.parse({
     generatedAt: new Date().toISOString(),
     entries,
-  };
+  });
 }
 
 function main() {

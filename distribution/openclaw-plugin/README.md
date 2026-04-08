@@ -59,7 +59,6 @@ The truthful boundary is simple:
 
 - this subdir is the canonical OpenClaw install route inside `shopflow-suite`
 - this shell can be consumed through `customPlugins`
-- the old standalone repo is only an archived legacy fallback now
 - official OpenClaw-owned placement is still **external and approval-gated**
 
 > Publicly installable fallback != official listing.
@@ -103,14 +102,5 @@ go build ./...
 go run .
 ```
 
-`go run .` prints the canonical install path, points readers at the packet
-files, and treats the old standalone repo as a legacy compatibility route.
-
-## Legacy Fallback Note
-
-The archived standalone repo remains:
-
-- `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
-
-Treat it as compatibility for older pins only.
-New docs and new installs should point at the canonical repo subdir above.
+`go run .` prints the canonical install path and points readers at the packet
+files inside the canonical repo.

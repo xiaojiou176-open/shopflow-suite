@@ -59,9 +59,6 @@ For OpenClaw specifically, the strongest truthful public route is now:
   `https://github.com/xiaojiou176-open/shopflow-suite`
 - the canonical install path through OpenClaw `customPlugins`:
   `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- the archived legacy fallback shell at
-  `https://github.com/xiaojiou176/shopflow-openclaw-plugin` only for older
-  pinned installs
 - paired with a ready-to-publish metadata draft
 - optionally followed by official OpenClaw-owned placement if maintainers
   explicitly approve it

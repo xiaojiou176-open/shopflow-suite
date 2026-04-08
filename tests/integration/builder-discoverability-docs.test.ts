@@ -104,14 +104,13 @@ describe('builder discoverability docs coherence', () => {
     expect(readme).toContain(
       'This is a **secondary** reading path, not the default repo identity.'
     );
-    expect(readme).toContain('the latest release is a **review shelf**');
+    expect(readme).toContain('latest release review shelf are live today');
     expect(readme).toContain('not a signed/store-ready shelf');
-    expect(readme).toContain(
-      'If you are here specifically for builder-facing packets, keep the root README'
-    );
+    expect(readme).toContain('builder-facing packets or the new read-only');
     expect(readme).toContain('./docs/ecosystem/builder-start-here.md');
     expect(readme).toContain('./docs/ecosystem/integration-recipes.md');
     expect(readme).toContain('./docs/ecosystem/agent-quickstarts.md');
+    expect(readme).toContain('./docs/ecosystem/mcp-quickstart.md');
     expect(readme).toContain(
       'Target-specific quickstarts, example JSON, and ecosystem-specific packets stay'
     );
@@ -621,7 +620,7 @@ describe('builder discoverability docs coherence', () => {
     expect(publicMcp).toContain('Handoff Packet');
     expect(publicMcp).toContain('Best JSON example');
     expect(publicMcp).toContain(
-      'Shopflow is preparing a read-only MCP capability packet'
+      'Shopflow now ships a repo-local read-only stdio MCP today'
     );
     expect(publicSkills).toContain('Handoff Packet');
     expect(publicSkills).toContain('Best JSON example');

@@ -2,6 +2,8 @@
 
 Chrome-first shopping extension family.
 
+![Shopflow front door](./assets/shopflow-front-door.svg)
+
 > many storefront doors, one kitchen.
 
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
@@ -17,9 +19,9 @@ Chrome-first shopping extension family.
 - **Heat hook:** one repo already packages `8` storefront review bundles plus
   `1` Suite internal-alpha bundle without splitting storefront truth across `9`
   code paths
-- **Current result:** the public repo, Pages front door, and review shelf are
-  live today, but Shopflow is still **not** public-claim-ready for broader
-  support wording
+- **Current result:** the public repo, Pages front door, review shelf, and
+  read-only stdio MCP are live today, but Shopflow is still **not**
+  public-claim-ready for broader support wording
 
 In plain language:
 
@@ -72,16 +74,16 @@ It is not:
   - `Codex`
   - `Claude Code`
   - `OpenClaw`
+- a repo-local read-only stdio MCP entry:
+  - `pnpm mcp:stdio`
 
 ## Public Repo Topology
 
-Use the public repo surface like one front entrance and two marked side doors:
+Use the public repo surface like one front entrance:
 
 | Repo | Role now | Open this when | Must not be mistaken for |
 | :--- | :--- | :--- | :--- |
-| `xiaojiou176-open/shopflow-suite` | only canonical repo | you want the main product, docs, Pages, release, and review shelf | a mirror or target-specific fallback |
-| `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | you only need a smaller packet-only rack | a second canonical Shopflow repo |
-| `xiaojiou176/shopflow-openclaw-plugin` | archived legacy OpenClaw fallback shell | you only need compatibility for an older pinned route; new installs should use `shopflow-suite?dir=distribution/openclaw-plugin` | the current install path, the main product repo, or an official OpenClaw listing |
+| `xiaojiou176-open/shopflow-suite` | only canonical repo | you want the main product, docs, Pages, release, review shelf, and read-only stdio MCP | a mirror, packet-only side shelf, or public HTTP MCP service |
 
 If you only want one link, use:
 
@@ -111,6 +113,7 @@ start with:
 - [Builder Start Here](./ecosystem/builder-start-here.md)
 - [Integration Recipes](./ecosystem/integration-recipes.md)
 - [Agent Quickstarts](./ecosystem/agent-quickstarts.md)
+- [MCP Quickstart](./ecosystem/mcp-quickstart.md)
 
 That lane is truthful today.
 It is still **secondary** to the default product story:

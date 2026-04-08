@@ -12,6 +12,7 @@ Shopflow already exposes a truthful, read-only builder layer:
 
 - typed contracts
 - read-only provider-runtime seam contract
+- a read-only stdio MCP surface for four core repo-truth tools
 - builder app snapshots
 - workflow decision briefs
 - workflow-copilot briefs
@@ -35,6 +36,7 @@ What it still does **not** expose today:
 | one thin consumer snapshot wired to a real Switchyard base URL                            | `pnpm cli:read-only -- runtime-consumer --base-url http://127.0.0.1:4317` and [Integration Recipes](./integration-recipes.md) | this consumes the seam through a real repo-local route map without turning Shopflow into a provider runtime product                                                                                     |
 | repo-local generated payload files before you emit the joined bundle                     | `pnpm builder:write-runtime-payloads -- --app ext-amazon` and [Integration Recipes](./integration-recipes.md)   | this writes builder snapshot / decision brief / workflow brief JSON under `.runtime-cache/builder` for supported current-scope apps such as `ext-albertsons`, `ext-amazon`, `ext-kroger`, and `ext-temu` |
 | one joined read-only bundle for a coding tool or agent                                   | `pnpm builder:write-outcome-bundle -- --stdout`                                                                 | this emits one repo-local JSON bundle instead of making you stitch examples and artifact pointers by hand                                                                                                |
+| one real MCP server that an AI tool can attach to today                                   | `pnpm mcp:stdio` and [MCP Quickstart](./mcp-quickstart.md)                                                       | this is the live repo-local stdio transport for the core read-only surfaces, not just a packet describing future MCP work                                                                                |
 | one repo-local CLI-shaped entry for the same read-only surfaces                          | `pnpm cli:read-only -- integration-surface` or `pnpm cli:read-only -- runtime-seam`                           | this is a local convenience wrapper around existing read-only surfaces, not a public CLI commitment                                                                                                     |
 | the shortest agent-specific start for Codex, Claude Code, or OpenClaw                  | [Agent Quickstarts](./agent-quickstarts.md) and `pnpm cli:read-only -- agent-target-packet --target <target>` | this keeps agent onboarding concrete while separating real public-distribution work from ecosystems that do or do not have an official public surface                                                    |
 | checked-in example payloads without running any command                                  | [Examples Index](./examples/README.md)                                                                          | this is the fastest no-runtime path when you need the multi-app current-scope example rack for `ext-albertsons`, `ext-amazon`, `ext-kroger`, and `ext-temu`                                              |
@@ -52,11 +54,12 @@ What it still does **not** expose today:
 4. Run `pnpm builder:write-runtime-payloads -- --app ext-amazon` if you want repo-local generated payload files first.
 5. Run `pnpm builder:refresh-example-rack` if you need the checked-in multi-app rack refreshed before review or docs sync.
 6. Run `pnpm builder:write-outcome-bundle -- --stdout` if you need one joined read-only bundle immediately.
-7. Run `pnpm cli:read-only -- integration-surface` or `pnpm cli:read-only -- runtime-seam` if you want one repo-local CLI-shaped entry without turning that into a public CLI promise.
-8. Open [Integration Recipes](./integration-recipes.md) if you are wiring a builder, agent, or coding tool to the current repo-owned surfaces.
-9. Open [Agent Quickstarts](./agent-quickstarts.md) or run `pnpm cli:read-only -- agent-target-packet --target codex` when you need a Codex / Claude Code / OpenClaw-specific entry without inventing an official listing where none exists.
-10. Run `pnpm cli:read-only -- public-distribution-bundle` when you need the repo-owned package / plugin / skills / plugin-marketplace packet without overclaiming publication.
-11. Open [Ready-to-Sync Public Copy Packet](./public-copy.ready.md) only when you need external-facing copy that stays inside current claim boundaries.
+7. Run `pnpm mcp:stdio` when you need a real repo-local MCP transport instead of only packet JSON.
+8. Run `pnpm cli:read-only -- integration-surface` or `pnpm cli:read-only -- runtime-seam` if you want one repo-local CLI-shaped entry without turning that into a public CLI promise.
+9. Open [Integration Recipes](./integration-recipes.md) if you are wiring a builder, agent, or coding tool to the current repo-owned surfaces.
+10. Open [Agent Quickstarts](./agent-quickstarts.md) or run `pnpm cli:read-only -- agent-target-packet --target codex` when you need a Codex / Claude Code / OpenClaw-specific entry without inventing an official listing where none exists.
+11. Run `pnpm cli:read-only -- public-distribution-bundle` when you need the repo-owned package / plugin / skills / plugin-marketplace packet without overclaiming publication.
+12. Open [Ready-to-Sync Public Copy Packet](./public-copy.ready.md) only when you need external-facing copy that stays inside current claim boundaries.
 
 ## Do Not Assume These Yet
 

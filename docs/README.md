@@ -1,5 +1,7 @@
 # Shopflow Docs Front Door
 
+![Shopflow front door](./assets/shopflow-front-door.svg)
+
 This page is the quickest honest map for readers who need to understand what
 Shopflow is, what exists today, and what still should not be overclaimed.
 
@@ -39,14 +41,13 @@ Important boundary:
 Keep the public-repo map simple:
 
 - `shopflow-suite` = the only canonical Shopflow repo and default front door
-- `shopflow-public-packets` = a secondary fallback mirror and deprecated
-  candidate for smaller packet-only handoff
-- `shopflow-openclaw-plugin` = an archived legacy fallback shell for older
-  pinned installs
+- OpenClaw installs now use
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+- the repo now also ships a read-only stdio MCP entry for AI tools
 
 In plain language:
 
-> one main building, one side shelf, one target-specific install counter.
+> one main building, one canonical install counter, and one repo-local MCP desk.
 
 ## Search-Intent Redirects
 
@@ -73,8 +74,8 @@ In plain language:
 | `Shopflow Claude Code skills` | [Claude Code Quickstart](./ecosystem/claude-code-quickstart.md) | `pnpm cli:read-only -- agent-target-packet --target claude-code` | Shopflow now ships a Claude Code-specific public-distribution bundle and skills-facing packet; only call it an official Claude Code listing where an official surface actually exists. |
 | `Shopflow OpenCode packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target opencode` | OpenCode stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenCode package. |
 | `Shopflow OpenHands packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target openhands` | OpenHands stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenHands integration. |
-| `Shopflow MCP` | [Public MCP Capability Map](./ecosystem/public-mcp-capability-map.ready.md) | `pnpm cli:read-only -- public-mcp-capability-map` | Shopflow is preparing a read-only MCP packet, not claiming a published MCP server today. |
-| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | Canonical docs and install now live in `shopflow-suite` through `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`; `shopflow-openclaw-plugin` is only an archived legacy fallback, and neither route is an official OpenClaw listing. |
+| `Shopflow MCP` | [MCP Quickstart](./ecosystem/mcp-quickstart.md) | `pnpm mcp:stdio` | Shopflow now ships a repo-local read-only stdio MCP surface today; public transport and registry publication are later-stage work. |
+| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | Canonical docs and install now live in `shopflow-suite` through `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`; this route is not an official OpenClaw listing. |
 
 ## What These Terms Mean
 
@@ -128,6 +129,12 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - [Builder Start Here](./ecosystem/builder-start-here.md)
 - [Integration Recipes](./ecosystem/integration-recipes.md)
 - [Builder Examples Index](./ecosystem/examples/README.md)
+
+### "I want AI to attach to a real Shopflow MCP today."
+
+- [MCP Quickstart](./ecosystem/mcp-quickstart.md)
+- run `pnpm mcp:stdio`
+- use [mcp-config.stdio.json](./ecosystem/examples/mcp-config.stdio.json)
 
 ### "What product is this repo trying to build?"
 
