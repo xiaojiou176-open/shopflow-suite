@@ -57,7 +57,9 @@ For OpenClaw specifically, the strongest truthful public route is:
 
 - the canonical Shopflow repo for docs and proof:
   `https://github.com/xiaojiou176-open/shopflow-suite`
-- a public GitHub plugin repo consumed through OpenClaw `customPlugins`
+- the public GitHub fallback install shell
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`, consumed through
+  OpenClaw `customPlugins`
 - paired with a ready-to-publish metadata draft
 - optionally followed by official OpenClaw-owned placement if maintainers
   explicitly approve it
