@@ -174,11 +174,7 @@ describe('sensitive surface gate', () => {
     withTempGitRepo((repoRoot) => {
       mkdirSync(resolve(repoRoot, 'docs'), { recursive: true });
       const legacyName = ['Yi', 'feng', '[Ter', 'ry]', ' Yu'].join('');
-      const legacyHandle = ['xiao', 'jiou', '176'].join('');
-      const legacyEmail = [
-        `125581657+${legacyHandle}`,
-        ['users', 'noreply', 'github', 'com'].join('.'),
-      ].join('@');
+      const legacyEmail = ['terry', 'private-mail.example'].join('@');
 
       writeFileSync(resolve(repoRoot, 'docs/identity.md'), 'identity history\n');
       execFileSync('git', ['config', 'user.name', legacyName], {
@@ -213,6 +209,40 @@ describe('sensitive surface gate', () => {
       expect(findings.some((finding) => finding.excerpt.includes(legacyName))).toBe(
         true
       );
+    });
+  });
+
+  it('allows the current public github noreply commit identity', () => {
+    withTempGitRepo((repoRoot) => {
+      mkdirSync(resolve(repoRoot, 'docs'), { recursive: true });
+      const publicName = ['Yi', 'feng', '[Ter', 'ry]', ' Yu'].join('');
+      const publicHandle = ['xiao', 'jiou', '176'].join('');
+      const publicEmail = [
+        `125581657+${publicHandle}`,
+        ['users', 'noreply', 'github', 'com'].join('.'),
+      ].join('@');
+      const githubCommitterEmail = ['noreply', 'github.com'].join('@');
+
+      writeFileSync(resolve(repoRoot, 'docs/identity.md'), 'public identity history\n');
+      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
+      execFileSync('git', ['commit', '-m', 'public identity ok'], {
+        cwd: repoRoot,
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          GIT_AUTHOR_NAME: publicName,
+          GIT_AUTHOR_EMAIL: publicEmail,
+          GIT_COMMITTER_NAME: 'GitHub',
+          GIT_COMMITTER_EMAIL: githubCommitterEmail,
+        },
+      });
+
+      process.chdir(repoRoot);
+      const findings = scanGitHistory();
+
+      expect(
+        findings.some((finding) => finding.ruleId === 'personal-history-identity')
+      ).toBe(false);
     });
   });
 });
