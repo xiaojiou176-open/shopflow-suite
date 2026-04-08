@@ -28,6 +28,11 @@ In plain language:
 - **What still is not claimed:** reviewed live evidence and signed/store-ready
   artifacts still gate the public support line.
 
+In plain language:
+
+> the public repo, Pages front door, and latest release review shelf are live today.
+> this is still not a signed/store-ready shelf.
+
 ## What You Can See Right Away
 
 | Surface | What it proves today | What it must not be mistaken for |
