@@ -3,11 +3,13 @@
 Chrome-first shopping extension family.
 
 ![Shopflow front door](./assets/shopflow-front-door.svg)
+![Shopflow storefront atlas](./assets/shopflow-storefront-atlas.svg)
 
 > many storefront doors, one kitchen.
 
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
 [Read the Docs Front Door](./README.md) ·
+[Read the distribution truth](../DISTRIBUTION.md) ·
 [Open the latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
 [Builder Start Here](./ecosystem/builder-start-here.md) ·
 [Evidence and submission readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
@@ -28,6 +30,12 @@ In plain language:
 > this repo already has real doors, real contracts, and real review packaging.
 > it still does not have reviewed live receipt evidence bundles or signed
 > store-ready artifacts.
+
+## Public Surfaces
+
+![Shopflow public Pages snapshot card](./assets/shopflow-pages-front-door-card.svg)
+
+![Shopflow review shelf snapshot card](./assets/shopflow-review-shelf-card.svg)
 
 ## What This Repo Is
 

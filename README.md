@@ -1,24 +1,41 @@
 # Shopflow
 
-Shopflow is a **Chrome-first shopping extension product family** built as a dedicated new repository.
+[Docs front door](./docs/README.md) ·
+[Distribution truth](./DISTRIBUTION.md) ·
+[Builder start here](./docs/ecosystem/builder-start-here.md) ·
+[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+
+Shopflow is a **Chrome-first shopping extension product family** built as one
+canonical public repo.
 
 ![Shopflow front door](./docs/assets/shopflow-front-door.svg)
 
-It is designed to ship:
-
-- `8` Store apps
-- `1` Suite app
-- one shared engineering source of truth
-
 In plain language:
 
-> many storefront doors, one kitchen.
+> many storefront doors, one kitchen, one truthful review shelf.
 
-## Front Door in 30 Seconds
+![Shopflow public Pages snapshot card](./docs/assets/shopflow-pages-front-door-card.svg)
 
-- **Category:** a Chrome-first shopping extension family with `8` storefront apps plus `1` suite shell
-- **Heat hook:** one repo already packages `8` storefront review bundles plus `1` Suite internal-alpha bundle without splitting storefront truth across `9` codebases
-- **Current result:** the public repo, Pages front door, **read-only stdio MCP**, and latest release review shelf are live today; public support claims still stop at reviewed live evidence and signed/store-ready artifacts
+![Shopflow review shelf snapshot card](./docs/assets/shopflow-review-shelf-card.svg)
+
+## Front Door in 20 Seconds
+
+- **What it is:** one Chrome-first shopping extension family with `8`
+  storefront apps plus `1` Suite shell.
+- **Why it is worth opening:** one repo already ships the public front door,
+  the latest review shelf, and a truthful read-only stdio MCP without
+  splitting storefront truth across `9` codebases.
+- **What still is not claimed:** reviewed live evidence and signed/store-ready
+  artifacts still gate the public support line.
+
+## What You Can See Right Away
+
+| Surface | What it proves today | What it must not be mistaken for |
+| :--- | :--- | :--- |
+| public repo | the canonical product and docs front door | a packet-only side shelf |
+| Pages front door | the current public product story | Chrome Web Store readiness |
+| latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
+| read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
 
 ## What You Can Inspect Today
 
@@ -40,6 +57,17 @@ In plain language:
 
 > there is already a real review shelf you can inspect today.
 > it is a reviewer shelf, not a signed/store-ready shelf.
+
+## Storefront Family
+
+![Shopflow storefront atlas](./docs/assets/shopflow-storefront-atlas.svg)
+
+This is the product shape at a glance:
+
+- `8` storefront apps
+- `1` Suite shell
+- one shared engineering source of truth
+- one canonical repo and one read-only MCP desk
 
 ## Public Repo Topology
 

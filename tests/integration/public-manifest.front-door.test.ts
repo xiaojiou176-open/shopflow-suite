@@ -50,11 +50,19 @@ describe('public manifest and front door', () => {
     const readme = readText('README.md');
     const docsReadme = readText('docs/README.md');
     const docsIndex = readText('docs/index.md');
+    const distribution = readText('DISTRIBUTION.md');
     const mcpQuickstart = readText('docs/ecosystem/mcp-quickstart.md');
 
     expect(readme).toContain('./docs/assets/shopflow-front-door.svg');
+    expect(readme).toContain('./DISTRIBUTION.md');
     expect(docsReadme).toContain('./assets/shopflow-front-door.svg');
+    expect(docsReadme).toContain('../DISTRIBUTION.md');
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
+    expect(docsIndex).toContain('../DISTRIBUTION.md');
+    expect(distribution).toContain('## Live now');
+    expect(distribution).toContain('## Ready but not live yet');
+    expect(distribution).toContain('## Not published yet');
+    expect(distribution).toContain('## Manual later');
     expect(readme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsIndex).toContain('./ecosystem/mcp-quickstart.md');
