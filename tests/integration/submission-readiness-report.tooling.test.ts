@@ -150,6 +150,63 @@ describe('submission readiness report tooling', () => {
     ]);
   });
 
+  it('stops reporting external live-evidence blockers once all required captures are already reviewed', () => {
+    const manifest: ReleaseArtifactManifestEntry[] = [
+      {
+        appId: 'ext-kroger',
+        publicName: 'Shopflow for Kroger Family',
+        releaseChannel: 'capability-heavy-candidate',
+        claimState: 'repo-verified',
+        wave: 'Wave 3',
+        tier: 'capability-heavy-product',
+        buildDirectory: 'apps/ext-kroger/.output/chrome-mv3',
+        zipArtifacts: [
+          'apps/ext-kroger/.output/shopflowext-kroger-0.1.0-chrome.zip',
+        ],
+      },
+    ];
+    const report = createSubmissionReadinessReport(manifest, [], {
+      reviewedRecordsPacket: {
+        reviewedRecords: [
+          { captureId: 'fred-meyer-verified-scope-live-receipt' },
+          { captureId: 'qfc-verified-scope-live-receipt' },
+        ],
+        rejectedRecords: [],
+      },
+    });
+
+    expect(report.entries[0]).toMatchObject({
+      appId: 'ext-kroger',
+      reviewBundleReady: true,
+      repoOwnedStatus: 'review-bundle-ready-claim-gated',
+      readinessSummary: expect.stringMatching(
+        /reviewed live evidence is already attached/i
+      ),
+      reviewerStartPath: {
+        reviewChannel: 'store-review',
+        surface: 'capability-heavy-product',
+      },
+    });
+    expect(report.entries[0]?.reviewerChecklist).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          category: 'claim-boundary',
+          status: 'blocked',
+          detail: expect.stringMatching(/already attached/i),
+        }),
+        expect.objectContaining({
+          category: 'live-evidence',
+          status: 'ready',
+          detail: expect.stringMatching(/attached to the release decision trail/i),
+        }),
+      ])
+    );
+    expect(report.entries[0]?.repoOwnedNextMove).toMatch(
+      /explicitly raises the public-claim boundary/i
+    );
+    expect(report.entries[0]?.externalBlockers).toEqual([]);
+  });
+
   it('turns missing default review hosts into readable reviewer-start-path blockers instead of fake URLs', () => {
     const manifest: ReleaseArtifactManifestEntry[] = [
       {
