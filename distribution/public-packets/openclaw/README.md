@@ -10,7 +10,9 @@ In plain language:
 ## Truthful Position
 
 - OpenClaw has an official or upstream public route outside this packet rack.
-- The live Shopflow fallback install shell now lives at
+- The canonical Shopflow install path now lives at
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`.
+- The archived legacy fallback repo remains at
   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`.
 - This folder can still matter as a legacy packet mirror, but it is no longer
   the main OpenClaw route.

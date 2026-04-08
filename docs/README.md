@@ -41,8 +41,8 @@ Keep the public-repo map simple:
 - `shopflow-suite` = the only canonical Shopflow repo and default front door
 - `shopflow-public-packets` = a secondary fallback mirror and deprecated
   candidate for smaller packet-only handoff
-- `shopflow-openclaw-plugin` = the OpenClaw-specific fallback install shell for
-  the public `customPlugins` route
+- `shopflow-openclaw-plugin` = an archived legacy fallback shell for older
+  pinned installs
 
 In plain language:
 
@@ -74,7 +74,7 @@ In plain language:
 | `Shopflow OpenCode packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target opencode` | OpenCode stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenCode package. |
 | `Shopflow OpenHands packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target openhands` | OpenHands stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenHands integration. |
 | `Shopflow MCP` | [Public MCP Capability Map](./ecosystem/public-mcp-capability-map.ready.md) | `pnpm cli:read-only -- public-mcp-capability-map` | Shopflow is preparing a read-only MCP packet, not claiming a published MCP server today. |
-| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | OpenClaw keeps a dedicated public fallback shell at `xiaojiou176/shopflow-openclaw-plugin`; it is installable through `customPlugins`, but it is still not the canonical repo or an official OpenClaw listing. |
+| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | Canonical docs and install now live in `shopflow-suite` through `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`; `shopflow-openclaw-plugin` is only an archived legacy fallback, and neither route is an official OpenClaw listing. |
 
 ## What These Terms Mean
 

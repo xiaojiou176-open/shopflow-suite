@@ -48,14 +48,14 @@ If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
 | :--- | :--- | :--- | :--- |
 | `xiaojiou176-open/shopflow-suite` | only canonical repo | the default product, docs, Pages, release, and review-shelf front door | a mirror or packet-only side shelf |
 | `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | a smaller packet-only rack when a lighter builder-facing shelf is still useful | a second canonical Shopflow repo or main product home |
-| `xiaojiou176/shopflow-openclaw-plugin` | OpenClaw-specific fallback install shell | the target-specific `customPlugins` install route for OpenClaw | the main product repo, the canonical docs/proof repo, or an official OpenClaw listing |
+| `xiaojiou176/shopflow-openclaw-plugin` | archived legacy OpenClaw fallback shell | previously pinned compatibility only; new installs should use `shopflow-suite?dir=distribution/openclaw-plugin` | the current install path, the main product repo, the canonical docs/proof repo, or an official OpenClaw listing |
 
 In plain language:
 
 > `shopflow-suite` is the main store.
 > `shopflow-public-packets` is the side shelf.
-> `shopflow-openclaw-plugin` is the side door for one target-specific install
-> route.
+> `shopflow-openclaw-plugin` is now an old side door kept only for legacy
+> compatibility.
 
 ## What Shopflow Is and Is Not
 
@@ -118,8 +118,10 @@ If you do need the secondary public repo surfaces:
 
 - `shopflow-public-packets` is the smaller fallback mirror for Codex / Claude
   packet copies and a legacy OpenClaw packet mirror
-- `shopflow-openclaw-plugin` is the dedicated public fallback shell for the
-  current OpenClaw `customPlugins` route
+- new OpenClaw installs should use
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+- `shopflow-openclaw-plugin` is now an archived legacy fallback shell for
+  previously pinned installs
 - both still point back to `shopflow-suite` as the canonical source
 
 ## Current Scope Buckets

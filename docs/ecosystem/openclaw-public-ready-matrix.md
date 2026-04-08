@@ -13,10 +13,10 @@ In plain language:
 
 | Surface | Repo-owned now | Strongest truthful public path | Proof to capture | External-only blocker |
 | :--- | :--- | :--- | :--- | :--- |
-| install path | exact install snippet, metadata packet, and live fallback repo already exist | use `github:xiaojiou176/shopflow-openclaw-plugin`, add it to OpenClaw `customPlugins`, and run `home-manager switch` | flake snippet plus successful `home-manager switch` output | fresh install receipt still needs a human/operator run |
-| discovery path | docs, ready metadata, checked-in example JSON, and the live fallback repo already exist | point readers to this matrix, the canonical repo `shopflow-suite`, the live fallback shell, and the upstream `openclaw/nix-openclaw` repo | public repo URL or official listing URL | official OpenClaw listing placement is still unknown |
-| proof loop | receipt checklist is prepared | capture install receipt plus one runtime receipt against the live fallback shell | install log, runtime log, screenshot or transcript | someone must perform the real install/runtime proof run |
-| metadata/listing copy | ready-to-publish draft exists | paste the metadata into the current fallback repo README or a future official listing form | final pasted copy or listing draft URL | maintainer auth if using official OpenClaw-owned surfaces |
+| install path | exact install snippet, metadata packet, and canonical subdir route already exist | use `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`, add it to OpenClaw `customPlugins`, and run `home-manager switch` | flake snippet plus successful `home-manager switch` output | fresh install receipt still needs a human/operator run |
+| discovery path | docs, ready metadata, checked-in example JSON, and the canonical subdir route already exist | point readers to this matrix, the canonical repo `shopflow-suite`, the canonical subdir install path, and the upstream `openclaw/nix-openclaw` repo | public repo URL or official listing URL | official OpenClaw listing placement is still unknown |
+| proof loop | receipt checklist is prepared | capture install receipt plus one runtime receipt against the canonical subdir route | install log, runtime log, screenshot or transcript | someone must perform the real install/runtime proof run |
+| metadata/listing copy | ready-to-publish draft exists | paste the metadata into the canonical repo docs or a future official listing form | final pasted copy or listing draft URL | maintainer auth if using official OpenClaw-owned surfaces |
 | official org linkage | packet is prepared | ask OpenClaw maintainers whether this should stay community-plugin-only or be linked from an official surface | Discord thread URL or maintainer reply | Discord/maintainer auth boundary |
 
 ## Strongest Public Route Today
@@ -25,11 +25,12 @@ The best truthful route today is **not** "claim an official marketplace."
 
 It is:
 
-1. use the already-live public GitHub fallback shell
-   `github:xiaojiou176/shopflow-openclaw-plugin`
-2. expose the OpenClaw plugin contract there
-3. install it through OpenClaw's documented `customPlugins` flow
-4. capture the proof loop
+1. use the canonical repo subdir route
+   `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+2. install it through OpenClaw's documented `customPlugins` flow
+3. capture the proof loop
+4. keep `shopflow-openclaw-plugin` only as an archived legacy compatibility
+   route if an older pin still exists
 
 That is like using a real front desk that already exists, instead of pretending
 we own the whole mall.
@@ -40,7 +41,7 @@ we own the whole mall.
 programs.openclaw.instances.default = {
   enable = true;
   plugins = [
-    { source = "github:xiaojiou176/shopflow-openclaw-plugin"; }
+    { source = "github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin"; }
   ];
 };
 ```
@@ -62,8 +63,8 @@ Hand these together:
 ## Boundary Reminder
 
 - `shopflow-suite` remains the canonical Shopflow repo
-- `shopflow-openclaw-plugin` is a target-specific fallback shell, not the main
-  product repo
+- `shopflow-openclaw-plugin` is now an archived legacy fallback shell, not the
+  main product repo and not the recommended install path
 - public-ready does **not** mean officially listed
 - ready-to-publish does **not** mean already published
 - official OpenClaw org placement still needs real maintainer approval if that

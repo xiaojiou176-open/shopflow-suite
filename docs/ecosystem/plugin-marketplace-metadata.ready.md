@@ -40,7 +40,7 @@ import { pluginMarketplaceMetadataPacket } from '@shopflow/contracts';
   - front-door-primary
   - plugin-level-public-distribution-bundle
 - `openclaw`
-  - public-ready-secondary fallback install shell
+  - public-ready-secondary via canonical repo subdir
   - ready-to-publish-packet
 
 Those Codex / Claude Code entries are the strongest truthful public
@@ -53,13 +53,15 @@ They include:
 - proof loop
 - metadata / listing payload
 
-For OpenClaw specifically, the strongest truthful public route is:
+For OpenClaw specifically, the strongest truthful public route is now:
 
 - the canonical Shopflow repo for docs and proof:
   `https://github.com/xiaojiou176-open/shopflow-suite`
-- the public GitHub fallback install shell
-  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`, consumed through
-  OpenClaw `customPlugins`
+- the canonical install path through OpenClaw `customPlugins`:
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
+- the archived legacy fallback shell at
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin` only for older
+  pinned installs
 - paired with a ready-to-publish metadata draft
 - optionally followed by official OpenClaw-owned placement if maintainers
   explicitly approve it

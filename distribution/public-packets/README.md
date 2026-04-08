@@ -35,7 +35,7 @@ The canonical source remains:
 | :--- | :--- | :--- | :--- |
 | `codex` | `./codex/` | no confirmed separate official listing surface; use this repo only as the fallback mirror while `shopflow-suite` stays canonical | `docs/ecosystem/codex-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.codex.json` |
 | `claude-code` | `./claude-code/` | no confirmed separate official listing surface; use this repo only as the fallback mirror while `shopflow-suite` stays canonical | `docs/ecosystem/claude-code-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.claude-code.json` |
-| `openclaw` | `./openclaw/` | keep only as a legacy packet mirror; the live fallback install shell is `xiaojiou176/shopflow-openclaw-plugin` | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
+| `openclaw` | `./openclaw/` | keep only as a legacy packet mirror; the canonical install path now uses `shopflow-suite?dir=distribution/openclaw-plugin` | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
 
 ## Shared Supporting Packets
 
