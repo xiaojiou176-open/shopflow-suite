@@ -745,8 +745,7 @@ export function createSubmissionReadinessReport(
     options.getLiveReceiptRequirements ?? getLiveReceiptAppRequirements;
   const verificationParityIssues =
     options.verificationParityIssues ?? collectStructuredVerificationParityIssues();
-  const reviewedRecordsPacket =
-    options.reviewedRecordsPacket ?? readLatestReviewedRecordsPacket();
+  const reviewedRecordsPacket = options.reviewedRecordsPacket;
   const parityIssuesByAppId = verificationParityIssues.reduce<
     Map<string, VerificationParityIssue[]>
   >((map, issue) => {
@@ -849,7 +848,9 @@ export function createSubmissionReadinessReport(
 }
 
 function main() {
-  const report = createSubmissionReadinessReport();
+  const report = createSubmissionReadinessReport(undefined, undefined, {
+    reviewedRecordsPacket: readLatestReviewedRecordsPacket(),
+  });
 
   writeFileAtomically(reportOutputPath, `${JSON.stringify(report, null, 2)}\n`);
   process.stdout.write(
