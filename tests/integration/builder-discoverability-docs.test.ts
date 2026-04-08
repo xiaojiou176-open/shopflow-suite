@@ -104,7 +104,7 @@ describe('builder discoverability docs coherence', () => {
     expect(readme).toContain(
       'This is a **secondary** reading path, not the default repo identity.'
     );
-    expect(readme).toContain('latest release review shelf are live today');
+    expect(readme).toContain('the latest review shelf');
     expect(readme).toContain('not a signed/store-ready shelf');
     expect(readme).toContain('builder-facing packets or the new read-only');
     expect(readme).toContain('./docs/ecosystem/builder-start-here.md');
@@ -138,10 +138,8 @@ describe('builder discoverability docs coherence', () => {
     const rootReadme = readRepoFile('README.md');
     const pagesIndex = readRepoFile('docs/index.md');
 
-    expect(rootReadme).toContain('Shopflow CI now publishes a **review shelf**');
-    expect(rootReadme).toContain(
-      'downloadable reviewer packets, not signed store-ready releases.'
-    );
+    expect(rootReadme).toContain('there is already a real review shelf you can inspect today.');
+    expect(rootReadme).toContain('it is a reviewer shelf, not a signed/store-ready shelf.');
     expect(pagesIndex).toContain(
       'attached release shelf now works as a public review shelf'
     );
