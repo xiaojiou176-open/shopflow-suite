@@ -32,7 +32,7 @@ without pretending every ecosystem already has an official listing surface.
 
 ### What this still does not claim
 
-- no public MCP server
+- no public HTTP MCP server
 - no public HTTP API
 - no public SDK package
 - no official listing where the target ecosystem does not actually provide one

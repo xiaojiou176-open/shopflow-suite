@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { basename, extname } from 'node:path';
+import { basename, extname, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 export type SensitiveFinding = {
@@ -118,9 +118,9 @@ function isAllowedGithubNoreplyIdentity(
   return authorLooksPublic && committerLooksPublic;
 }
 
-function runGit(args: string[]) {
+function runGit(args: string[], repoRoot = process.cwd()) {
   const result = spawnSync('git', args, {
-    cwd: process.cwd(),
+    cwd: repoRoot,
     encoding: 'utf8',
   });
 
@@ -137,6 +137,10 @@ function isPlaceholderValue(value: string) {
     /^x+$/i.test(value) ||
     /(example|fixture|dummy|placeholder|sample|test)/i.test(value)
   );
+}
+
+function isMissingFileError(error: unknown): error is NodeJS.ErrnoException {
+  return error instanceof Error && 'code' in error && error.code === 'ENOENT';
 }
 
 function normalizeExcerpt(line: string) {
@@ -343,8 +347,11 @@ function dedupeFindings(findings: SensitiveFinding[]) {
   });
 }
 
-export function listCurrentSurfaceFiles() {
-  const result = runGit(['ls-files', '--cached', '--others', '--exclude-standard', '-z']);
+export function listCurrentSurfaceFiles(repoRoot = process.cwd()) {
+  const result = runGit(
+    ['ls-files', '--cached', '--others', '--exclude-standard', '-z'],
+    repoRoot
+  );
   if (result.status !== 0) {
     throw new Error(result.stderr || 'Failed to list repo files.');
   }
@@ -355,13 +362,21 @@ export function listCurrentSurfaceFiles() {
     .filter(Boolean);
 }
 
-export function scanCurrentSurface(): SensitiveFinding[] {
+export function scanCurrentSurface(repoRoot = process.cwd()): SensitiveFinding[] {
   const findings: SensitiveFinding[] = [];
 
-  for (const file of listCurrentSurfaceFiles()) {
+  for (const file of listCurrentSurfaceFiles(repoRoot)) {
     findings.push(...scanPathOnly(file));
 
-    const buffer = readFileSync(file);
+    let buffer: Buffer;
+    try {
+      buffer = readFileSync(resolve(repoRoot, file));
+    } catch (error) {
+      if (isMissingFileError(error)) {
+        continue;
+      }
+      throw error;
+    }
     if (isBinary(buffer)) {
       continue;
     }
@@ -372,8 +387,8 @@ export function scanCurrentSurface(): SensitiveFinding[] {
   return dedupeFindings(findings);
 }
 
-function listHistoryTrackedPaths() {
-  const result = runGit(['log', '--all', '--name-only', '--pretty=format:']);
+function listHistoryTrackedPaths(repoRoot = process.cwd()) {
+  const result = runGit(['log', '--all', '--name-only', '--pretty=format:'], repoRoot);
   if (result.status !== 0) {
     throw new Error(result.stderr || 'Failed to list history paths.');
   }
@@ -399,9 +414,10 @@ function batch<T>(items: T[], size: number) {
 function runHistoryContentScan(
   pattern: string,
   ruleId: string,
-  options: { ignoreCase?: boolean } = {}
+  options: { ignoreCase?: boolean } = {},
+  repoRoot = process.cwd()
 ) {
-  const commitsResult = runGit(['rev-list', '--all']);
+  const commitsResult = runGit(['rev-list', '--all'], repoRoot);
   if (commitsResult.status !== 0) {
     throw new Error(commitsResult.stderr || 'Failed to list git history.');
   }
@@ -420,7 +436,7 @@ function runHistoryContentScan(
     }
     grepArgs.push('-e', pattern, ...chunk, '--');
 
-    const grepResult = runGit(grepArgs);
+    const grepResult = runGit(grepArgs, repoRoot);
     if (grepResult.status !== 0 && grepResult.status !== 1) {
       throw new Error(grepResult.stderr || `Failed history grep for ${ruleId}.`);
     }
@@ -460,12 +476,12 @@ function runHistoryContentScan(
   return findings;
 }
 
-function scanHistoryIdentityMetadata() {
+function scanHistoryIdentityMetadata(repoRoot = process.cwd()) {
   const result = runGit([
     'log',
     '--all',
     '--format=%H%x09%an%x09%ae%x09%cn%x09%ce',
-  ]);
+  ], repoRoot);
   if (result.status !== 0) {
     throw new Error(result.stderr || 'Failed to scan git identity metadata.');
   }
@@ -515,28 +531,32 @@ function scanHistoryIdentityMetadata() {
   return findings;
 }
 
-export function scanGitHistory(): SensitiveFinding[] {
+export function scanGitHistory(repoRoot = process.cwd()): SensitiveFinding[] {
   const findings: SensitiveFinding[] = [];
 
-  for (const file of listHistoryTrackedPaths()) {
+  for (const file of listHistoryTrackedPaths(repoRoot)) {
     findings.push(...scanPathOnly(file));
   }
 
   for (const rule of textRules) {
-    findings.push(...runHistoryContentScan(rule.regex.source, rule.ruleId));
+    findings.push(...runHistoryContentScan(rule.regex.source, rule.ruleId, {}, repoRoot));
   }
 
   findings.push(
     ...runHistoryContentScan(
       String.raw`(\/Users\/[^/\s]+|\/home\/[^/\s]+|[A-Za-z]:\\Users\\[^\\\s]+)`,
-      'absolute-user-path'
+      'absolute-user-path',
+      {},
+      repoRoot
     ).filter((finding) => !finding.excerpt.includes('<name>'))
   );
 
   findings.push(
     ...runHistoryContentScan(
       emailPattern.source,
-      'email-address'
+      'email-address',
+      {},
+      repoRoot
     ).filter((finding) => {
       const assetLikeTlds = new Set([
         'jpg',
@@ -566,7 +586,8 @@ export function scanGitHistory(): SensitiveFinding[] {
       'high-entropy-sensitive-field',
       {
         ignoreCase: sensitiveFieldPattern.flags.includes('i'),
-      }
+      },
+      repoRoot
     ).filter((finding) => {
       const valueMatch = finding.excerpt.match(
         /["']([A-Za-z0-9_-]{24,}|[a-f0-9]{32,})["']/i
@@ -576,7 +597,7 @@ export function scanGitHistory(): SensitiveFinding[] {
     })
   );
 
-  findings.push(...scanHistoryIdentityMetadata());
+  findings.push(...scanHistoryIdentityMetadata(repoRoot));
 
   return dedupeFindings(findings);
 }

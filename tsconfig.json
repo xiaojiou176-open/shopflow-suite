@@ -16,6 +16,7 @@
     "paths": {
       "@shopflow/contracts": ["packages/contracts/src/index.ts"],
       "@shopflow/core": ["packages/core/src/index.ts"],
+      "@shopflow/mcp-server": ["packages/mcp-server/src/index.ts"],
       "@shopflow/runtime": ["packages/runtime/src/index.ts"],
       "@shopflow/ui": ["packages/ui/src/index.ts"],
       "@shopflow/testkit": ["packages/testkit/src/index.ts"],

@@ -29,8 +29,6 @@ It is:
    `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 2. install it through OpenClaw's documented `customPlugins` flow
 3. capture the proof loop
-4. keep `shopflow-openclaw-plugin` only as an archived legacy compatibility
-   route if an older pin still exists
 
 That is like using a real front desk that already exists, instead of pretending
 we own the whole mall.
@@ -63,8 +61,6 @@ Hand these together:
 ## Boundary Reminder
 
 - `shopflow-suite` remains the canonical Shopflow repo
-- `shopflow-openclaw-plugin` is now an archived legacy fallback shell, not the
-  main product repo and not the recommended install path
 - public-ready does **not** mean officially listed
 - ready-to-publish does **not** mean already published
 - official OpenClaw org placement still needs real maintainer approval if that

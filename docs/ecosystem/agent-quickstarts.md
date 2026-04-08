@@ -10,6 +10,12 @@ In plain language:
 > OpenClaw a real public-ready lane instead of leaving it parked on the
 > comparison shelf.
 
+If you want the **actual MCP transport** first instead of target-specific
+packets, start here:
+
+- [MCP Quickstart](./mcp-quickstart.md)
+- `pnpm mcp:stdio`
+
 ## Fastest Honest Entry by Target
 
 | Target        | Current placement   | Start here                                             | Fastest command                                                  | No-runtime artifact                                                                       |
@@ -43,6 +49,12 @@ That packet now includes:
 - a repo-owned MCP capability map
 - a repo-owned skills catalog packet
 - plugin / marketplace listing payloads plus starter-bundle companion fields
+
+If you need a live repo-local MCP transport instead of JSON packet exports, run:
+
+```bash
+pnpm mcp:stdio
+```
 
 If you want the CLI to show the exact supported commands, targets, and `--output`
 shape first, run:
@@ -84,8 +96,9 @@ Use this when you want the shortest copy-paste path instead of the full matrix:
 ## Boundary Reminder
 
 - these are **repo-local** and **read-only** onboarding surfaces
-- they are not proof that Shopflow already ships a public CLI, public MCP, or
-  published plugin/skills pack
+- they are not proof that Shopflow already ships a public HTTP MCP, public API,
+  or published plugin/skills pack
+- a repo-local read-only stdio MCP does exist today
 - Codex and Claude Code are strong-fit examples today
 - OpenClaw is now a public-ready target, but official-listing claims still
   depend on whether the external ecosystem actually exposes a real official

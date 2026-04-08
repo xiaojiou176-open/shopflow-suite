@@ -4,7 +4,7 @@
   "readOnly": true,
   "appTitle": "Shopflow for Kroger Family",
   "stage": "claim-gated",
-  "summary": "Reviewed live evidence still gates public wording.",
+  "summary": "Review bundle is ready for repo-local inspection.",
   "whyNow": [
     "www.fredmeyer.com · deal",
     "Extract family deal cards is runnable right now.",

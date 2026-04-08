@@ -86,21 +86,16 @@ Current public repo roles are:
 
 - canonical repo and default front door:
   `xiaojiou176-open/shopflow-suite`
-- secondary fallback mirror and deprecated candidate:
-  `xiaojiou176/shopflow-public-packets`
-- archived legacy OpenClaw fallback shell:
-  `xiaojiou176/shopflow-openclaw-plugin`
+- canonical OpenClaw install subdir:
+  `xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 
 Boundary rules:
 
 - `shopflow-suite` is the only canonical Shopflow repo
-- `shopflow-public-packets` must stay visibly secondary and must not read like a
-  second main product repo
 - canonical OpenClaw installs should use
   `xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- `shopflow-openclaw-plugin` is an archived legacy compatibility route only; it
-  must not read like the current install path, the main product repo, or an
-  official OpenClaw listing
+- no deleted side repo should remain in live-facing docs, examples, or packet
+  boundary notes as an active route
 
 ## 2. Truth Order
 

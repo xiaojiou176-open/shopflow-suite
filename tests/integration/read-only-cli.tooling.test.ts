@@ -111,7 +111,9 @@ describe('read-only cli tooling', () => {
     expect(codexPacket.surfaceId).toBe('agent-target-packet');
     expect(codexPacket.target).toBe('codex');
     expect(
-      codexPacket.capabilities.some((entry) => entry.id === 'runtime-consumer')
+      codexPacket.capabilities.some(
+        (entry) => entry.id === 'public-distribution-bundle'
+      )
     ).toBe(true);
     expect(
       codexPacket.skills.some(

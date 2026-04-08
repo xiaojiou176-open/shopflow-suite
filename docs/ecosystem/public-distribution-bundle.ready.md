@@ -25,20 +25,13 @@ Use this repo map before you sync any copy:
 
 - canonical repo and public front door:
   `https://github.com/xiaojiou176-open/shopflow-suite`
-- secondary packet mirror and deprecated candidate:
-  `https://github.com/xiaojiou176/shopflow-public-packets`
-- archived legacy OpenClaw fallback shell:
-  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+- canonical OpenClaw install path:
+  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 
 Boundary reminder:
 
 - `shopflow-suite` stays the only canonical repo
-- `shopflow-public-packets` stays a smaller fallback or mirror surface, not a
-  second product repo
-- new OpenClaw installs should use
-  `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- `shopflow-openclaw-plugin` is now an archived legacy compatibility shell, not
-  the canonical repo and not an official listing
+- new OpenClaw installs should use the canonical subdir route above
 
 Use the machine-readable bundle when you want the same answer as JSON:
 
@@ -61,7 +54,7 @@ pnpm cli:read-only -- public-distribution-bundle --output .runtime-cache/cli/pub
 | public read-only API | ready-to-sync packet                    | docs, boundary notes, publication checklist                                                                                                       | a live public API transport                        |
 | public read-only MCP | ready-to-sync packet                    | agent-specific onboarding bundle, capability map, boundary notes                                                                                  | a published MCP server                             |
 | public skills        | plugin-level public distribution bundle | local skill scaffolds, Claude Code starter bundle, sample config, proof loop                                                                      | an already distributed skills pack                 |
-| plugin / marketplace | plugin-level public distribution bundle | Codex / Claude Code starter bundles, sample configs, install docs, proof loops, listing payloads, plus the separately tracked OpenClaw fallback shell and legacy packet mirror | an already published plugin or marketplace listing |
+| plugin / marketplace | plugin-level public distribution bundle | Codex / Claude Code starter bundles, sample configs, install docs, proof loops, listing payloads, plus the canonical OpenClaw subdir install route and ready metadata | an already published plugin or marketplace listing |
 
 ## Codex / Claude Code Public Distribution Matrix
 

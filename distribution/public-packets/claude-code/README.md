@@ -7,13 +7,9 @@ In plain language:
 > this is the Claude Code box plus the operator notes binder, placed on a
 > public shelf because no confirmed separate official listing shelf is known.
 
-The canonical Shopflow repo still remains:
+The canonical Shopflow repo remains:
 
 - `https://github.com/xiaojiou176-open/shopflow-suite`
-
-This folder belongs to the secondary mirror repo:
-
-- `https://github.com/xiaojiou176/shopflow-public-packets`
 
 ## Truthful Position
 

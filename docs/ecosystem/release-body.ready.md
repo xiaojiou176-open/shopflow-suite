@@ -20,7 +20,7 @@ current-scope distribution packets for Codex, Claude Code, and OpenClaw.
 
 ## What It Is Not Yet
 
-- not a public MCP product
+- not a public HTTP MCP product
 - not a public API platform
 - not a public CLI commitment
 - not a public SDK package

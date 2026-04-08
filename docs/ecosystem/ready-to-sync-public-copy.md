@@ -31,7 +31,7 @@ Important boundary:
 - reviewed live evidence bundles
 - signed store-ready artifacts
 - public-ready support claims beyond verified scope
-- public MCP / public API transport / SDK
+- public HTTP MCP / public API transport / SDK
 - official listing language where the target ecosystem does not actually expose an official public surface
 
 ## Builder-facing truth

@@ -1,0 +1,66 @@
+{
+  "name": "shopflow-suite",
+  "description": "Canonical Shopflow repo: Chrome-first shopping extension product family with a read-only stdio MCP surface.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "canonicalRepoUrl": "https://github.com/xiaojiou176-open/shopflow-suite",
+  "homepageUrl": "https://xiaojiou176-open.github.io/shopflow-suite/",
+  "productShape": "public canonical monorepo with read-only stdio MCP surface",
+  "mcp": {
+    "status": "live-repo-local-stdio",
+    "transport": "stdio",
+    "auth": "none",
+    "tools": [
+      {
+        "name": "get_integration_surface",
+        "description": "Return the current builder integration surface JSON."
+      },
+      {
+        "name": "get_runtime_seam",
+        "description": "Return the current provider runtime seam JSON."
+      },
+      {
+        "name": "get_submission_readiness",
+        "description": "Return the current submission-readiness report JSON."
+      },
+      {
+        "name": "get_public_distribution_bundle",
+        "description": "Return the current public distribution bundle JSON."
+      }
+    ],
+    "package": {
+      "name": "@shopflow/mcp-server",
+      "version": "0.1.0",
+      "bin": "shopflow-mcp"
+    },
+    "quickstart": "docs/ecosystem/mcp-quickstart.md"
+  },
+  "installSurfaces": [
+    {
+      "id": "canonical-repo",
+      "label": "Canonical public repo",
+      "value": "https://github.com/xiaojiou176-open/shopflow-suite"
+    },
+    {
+      "id": "pages-front-door",
+      "label": "Public Pages front door",
+      "value": "https://xiaojiou176-open.github.io/shopflow-suite/"
+    },
+    {
+      "id": "mcp-stdio",
+      "label": "Read-only stdio MCP",
+      "value": "pnpm mcp:stdio"
+    },
+    {
+      "id": "openclaw-custom-plugins",
+      "label": "Canonical OpenClaw install route",
+      "value": "github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin"
+    }
+  ],
+  "mustNotClaim": [
+    "Public HTTP MCP already shipped",
+    "Public API transport already shipped",
+    "Public SDK already shipped",
+    "Official registry or marketplace listing already exists"
+  ]
+}

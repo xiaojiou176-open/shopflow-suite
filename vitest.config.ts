@@ -9,6 +9,10 @@ export default defineConfig({
         'packages/contracts/src/index.ts'
       ),
       '@shopflow/core': resolve(__dirname, 'packages/core/src/index.ts'),
+      '@shopflow/mcp-server': resolve(
+        __dirname,
+        'packages/mcp-server/src/index.ts'
+      ),
       '@shopflow/runtime': resolve(__dirname, 'packages/runtime/src/index.ts'),
       '@shopflow/ui': resolve(__dirname, 'packages/ui/src/index.ts'),
       '@shopflow/testkit': resolve(__dirname, 'packages/testkit/src/index.ts'),
