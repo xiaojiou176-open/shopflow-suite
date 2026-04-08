@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">Shopflow storefront atlas</title>
+  <desc id="desc">A storefront atlas showing eight storefront apps, one Suite shell, and one shared engineering kitchen feeding the family.</desc>
+  <rect width="1280" height="760" rx="30" fill="#eef7f4" />
+  <text x="84" y="110" fill="#13334c" font-size="50" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Shopflow storefront atlas</text>
+  <text x="84" y="154" fill="#496677" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Eight storefront doors, one Suite shell, one shared engineering kitchen.</text>
+
+  <rect x="84" y="228" width="1112" height="428" rx="28" fill="#fffdf9" stroke="#dce8e3" stroke-width="2" />
+
+  <rect x="118" y="272" width="210" height="118" rx="20" fill="#ffe1b0" />
+  <rect x="350" y="272" width="210" height="118" rx="20" fill="#ffd7cf" />
+  <rect x="582" y="272" width="210" height="118" rx="20" fill="#d7f4ec" />
+  <rect x="814" y="272" width="210" height="118" rx="20" fill="#dce9ff" />
+  <rect x="1046" y="272" width="116" height="118" rx="20" fill="#f8efcf" />
+
+  <rect x="118" y="424" width="210" height="118" rx="20" fill="#dce9ff" />
+  <rect x="350" y="424" width="210" height="118" rx="20" fill="#d7f4ec" />
+  <rect x="582" y="424" width="210" height="118" rx="20" fill="#ffd7cf" />
+  <rect x="814" y="424" width="210" height="118" rx="20" fill="#ffe1b0" />
+  <rect x="1046" y="424" width="116" height="118" rx="20" fill="#d9ecf8" />
+
+  <text x="152" y="336" fill="#6d4012" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Albertsons</text>
+  <text x="384" y="336" fill="#7d3244" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Amazon</text>
+  <text x="616" y="336" fill="#21534a" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Costco</text>
+  <text x="848" y="336" fill="#23456b" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Kroger</text>
+  <text x="1074" y="336" fill="#6c5a22" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Suite</text>
+
+  <text x="152" y="488" fill="#23456b" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Target</text>
+  <text x="384" y="488" fill="#21534a" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Temu</text>
+  <text x="616" y="488" fill="#7d3244" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Walmart</text>
+  <text x="848" y="488" fill="#6d4012" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Weee</text>
+  <text x="1068" y="488" fill="#2d556e" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">MCP</text>
+
+  <rect x="420" y="572" width="440" height="50" rx="18" fill="#12324c" />
+  <text x="462" y="606" fill="#f8fbff" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Shared engineering kitchen: contracts • runtime • UI • testkit</text>
+</svg>

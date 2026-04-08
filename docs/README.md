@@ -2,8 +2,14 @@
 
 ![Shopflow front door](./assets/shopflow-front-door.svg)
 
+![Shopflow storefront atlas](./assets/shopflow-storefront-atlas.svg)
+
 This page is the quickest honest map for readers who need to understand what
 Shopflow is, what exists today, and what still should not be overclaimed.
+
+[Public repo README](../README.md) ·
+[Distribution truth](../DISTRIBUTION.md) ·
+[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 
 ## Shopflow in Three Lines
 
@@ -48,6 +54,12 @@ Keep the public-repo map simple:
 In plain language:
 
 > one main building, one canonical install counter, and one repo-local MCP desk.
+
+## Public Surfaces In One Glance
+
+![Shopflow public Pages snapshot card](./assets/shopflow-pages-front-door-card.svg)
+
+![Shopflow review shelf snapshot card](./assets/shopflow-review-shelf-card.svg)
 
 ## Search-Intent Redirects
 

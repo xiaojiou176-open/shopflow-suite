@@ -1,48 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="880" viewBox="0 0 1440 880" role="img" aria-labelledby="title desc">
   <title id="title">Shopflow front door</title>
-  <desc id="desc">A visual summary of Shopflow as an 8 plus 1 extension family with a read-only stdio MCP surface, review shelf, and one canonical repo.</desc>
+  <desc id="desc">A storefront-style hero showing Shopflow as one canonical shopping extension family with eight storefront apps, one Suite shell, a review shelf, and a read-only stdio MCP desk.</desc>
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fff7ed" />
-      <stop offset="55%" stop-color="#f8fafc" />
-      <stop offset="100%" stop-color="#ecfeff" />
+      <stop offset="0%" stop-color="#f8efe4" />
+      <stop offset="45%" stop-color="#fff8ef" />
+      <stop offset="100%" stop-color="#eef7f6" />
     </linearGradient>
-    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
+    <linearGradient id="navyCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17324d" />
+      <stop offset="100%" stop-color="#0b1828" />
+    </linearGradient>
+    <linearGradient id="mintCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d9f6ef" />
+      <stop offset="100%" stop-color="#bfe9dd" />
+    </linearGradient>
+    <linearGradient id="amberCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe1b0" />
+      <stop offset="100%" stop-color="#ffc975" />
     </linearGradient>
   </defs>
-  <rect width="1280" height="720" fill="url(#bg)" rx="24" />
-  <rect x="64" y="64" width="1152" height="592" rx="32" fill="#ffffff" opacity="0.92" />
-  <text x="104" y="146" fill="#0f172a" font-size="54" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Shopflow</text>
-  <text x="104" y="190" fill="#334155" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Chrome-first shopping extension family with a live read-only stdio MCP surface</text>
 
-  <rect x="104" y="244" width="248" height="172" rx="24" fill="url(#panel)" />
-  <text x="132" y="296" fill="#f8fafc" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">8 storefront apps</text>
-  <text x="132" y="334" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Albertsons, Amazon, Costco,</text>
-  <text x="132" y="362" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Kroger, Target, Temu,</text>
-  <text x="132" y="390" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Walmart, Weee</text>
+  <rect width="1440" height="880" rx="36" fill="url(#bg)" />
+  <rect x="48" y="48" width="1344" height="784" rx="34" fill="#fffdf9" stroke="#eddcc7" stroke-width="2" />
 
-  <rect x="380" y="244" width="248" height="172" rx="24" fill="#082f49" />
-  <text x="408" y="296" fill="#ecfeff" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">1 suite shell</text>
-  <text x="408" y="334" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Internal-alpha lobby</text>
-  <text x="408" y="362" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">for routing, readiness,</text>
-  <text x="408" y="390" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">and evidence visibility</text>
+  <text x="112" y="142" fill="#14304c" font-size="68" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Shopflow</text>
+  <text x="112" y="194" fill="#38566b" font-size="28" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Chrome-first shopping extension family with one canonical repo, one review shelf, and one truthful MCP desk.</text>
 
-  <rect x="656" y="244" width="248" height="172" rx="24" fill="#14532d" />
-  <text x="684" y="296" fill="#f0fdf4" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Read-only stdio MCP</text>
-  <text x="684" y="334" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">4 repo-truth tools:</text>
-  <text x="684" y="362" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">integration, seam,</text>
-  <text x="684" y="390" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">submission, distribution</text>
+  <rect x="112" y="236" width="610" height="246" rx="30" fill="url(#navyCard)" />
+  <text x="156" y="304" fill="#f9fbfb" font-size="36" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">What a visitor sees first</text>
+  <text x="156" y="358" fill="#d6e5ef" font-size="25" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">8 storefront apps + 1 Suite shell</text>
+  <text x="156" y="398" fill="#d6e5ef" font-size="25" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">real review bundles and submission-readiness materials</text>
+  <text x="156" y="438" fill="#d6e5ef" font-size="25" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">repo-local read-only stdio MCP, not a fake hosted API</text>
 
-  <rect x="932" y="244" width="248" height="172" rx="24" fill="#7c2d12" />
-  <text x="960" y="296" fill="#fff7ed" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Review shelf</text>
-  <text x="960" y="334" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Submission-readiness</text>
-  <text x="960" y="362" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">and review bundles</text>
-  <text x="960" y="390" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">without overclaiming release</text>
+  <rect x="760" y="236" width="568" height="246" rx="30" fill="#fffaf2" stroke="#ecd6a9" stroke-width="2" />
+  <text x="804" y="304" fill="#7a4513" font-size="34" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Current claim boundary</text>
+  <text x="804" y="358" fill="#6b4e2f" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Pages, release, and reviewer shelf are live.</text>
+  <text x="804" y="394" fill="#6b4e2f" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Signed/store-ready artifacts still are not.</text>
+  <text x="804" y="430" fill="#6b4e2f" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Chrome Web Store claims stay gated until that changes.</text>
 
-  <rect x="104" y="462" width="1076" height="134" rx="28" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
-  <text x="140" y="512" fill="#0f172a" font-size="28" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Canonical repo only</text>
-  <text x="140" y="548" fill="#334155" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">xiaojiou176-open/shopflow-suite is the single active front door.</text>
-  <text x="140" y="580" fill="#334155" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">AI tools attach through stdio; external registry, Docker, and public transport come later.</text>
+  <rect x="112" y="534" width="250" height="188" rx="28" fill="url(#mintCard)" />
+  <text x="144" y="590" fill="#153c3a" font-size="32" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">8 storefronts</text>
+  <text x="144" y="632" fill="#285957" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Albertsons</text>
+  <text x="144" y="662" fill="#285957" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Amazon • Costco • Kroger</text>
+  <text x="144" y="692" fill="#285957" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Target • Temu • Walmart • Weee</text>
+
+  <rect x="396" y="534" width="250" height="188" rx="28" fill="#e2eefb" />
+  <text x="428" y="590" fill="#1b416f" font-size="32" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">1 Suite shell</text>
+  <text x="428" y="632" fill="#30557e" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">internal-alpha lobby</text>
+  <text x="428" y="662" fill="#30557e" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">readiness + routing</text>
+  <text x="428" y="692" fill="#30557e" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">evidence visibility</text>
+
+  <rect x="680" y="534" width="292" height="188" rx="28" fill="#ebf6e6" />
+  <text x="712" y="590" fill="#24522f" font-size="32" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Read-only MCP</text>
+  <text x="712" y="632" fill="#3d6a49" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">integration surface</text>
+  <text x="712" y="662" fill="#3d6a49" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">runtime seam</text>
+  <text x="712" y="692" fill="#3d6a49" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">submission + distribution truth</text>
+
+  <rect x="1006" y="534" width="322" height="188" rx="28" fill="url(#amberCard)" />
+  <text x="1038" y="590" fill="#6f3a10" font-size="32" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">One canonical front door</text>
+  <text x="1038" y="632" fill="#7a4c1a" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">xiaojiou176-open/shopflow-suite</text>
+  <text x="1038" y="662" fill="#7a4c1a" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Pages + release + docs + MCP</text>
+  <text x="1038" y="692" fill="#7a4c1a" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">no fake second storefront</text>
+
+  <text x="112" y="784" fill="#536772" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Builder-facing packets are real, but secondary. Product story stays storefront-first.</text>
 </svg>
