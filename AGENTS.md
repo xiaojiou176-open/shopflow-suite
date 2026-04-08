@@ -80,6 +80,26 @@ This means:
 
 Blueprints and ADRs remain contract truth. Existing scaffolds, routed-fixture smoke, repo verification, and the Suite internal alpha shell are not proof that a capability is publicly claim-ready.
 
+### Public Repo Topology
+
+Current public repo roles are:
+
+- canonical repo and default front door:
+  `xiaojiou176-open/shopflow-suite`
+- secondary fallback mirror and deprecated candidate:
+  `xiaojiou176/shopflow-public-packets`
+- OpenClaw-specific fallback install shell:
+  `xiaojiou176/shopflow-openclaw-plugin`
+
+Boundary rules:
+
+- `shopflow-suite` is the only canonical Shopflow repo
+- `shopflow-public-packets` must stay visibly secondary and must not read like a
+  second main product repo
+- `shopflow-openclaw-plugin` may stay public as a target-specific install
+  fallback, but it must say `not canonical`, `not the main product repo`, and
+  `not an official OpenClaw listing`
+
 ## 2. Truth Order
 
 When files disagree, use this authority order:

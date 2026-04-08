@@ -5,44 +5,54 @@ public-distribution uplift.
 
 In plain language:
 
-> OpenClaw is no longer just the comparison shelf.
-> It is now the boxed-up public-ready lane: the install recipe, discovery copy,
-> and proof loop are prepared, while the last outside-the-repo publish step is
-> still called out honestly.
+> OpenClaw is no longer waiting for a box.
+> the fallback install shell already exists publicly, while the official-listing
+> layer still stays outside the repo.
+
+Canonical boundary:
+
+- `xiaojiou176-open/shopflow-suite` stays the canonical Shopflow repo
+- `xiaojiou176/shopflow-openclaw-plugin` is the target-specific fallback
+  install shell for OpenClaw `customPlugins`
 
 ## Current Honest Placement
 
-OpenClaw is now **public-ready but not yet externally published** in this repo.
+OpenClaw now has a **live public fallback shell** in this repo family.
 
 That means Shopflow can truthfully show:
 
-- a public install route shape through the upstream `nix-openclaw`
-  community-plugin flow
+- a public install route through
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+  and the upstream `nix-openclaw` community-plugin flow
 - a public discovery route through public docs plus a ready-to-publish metadata
   packet
 - a public proof loop that shows exactly what evidence to capture once the
-  final external repo or listing step lands
+  fallback install route is exercised live
 
 It must still **not** be described today as:
 
+- the canonical Shopflow repo
 - an official OpenClaw listing that is already live
 - an official OpenClaw org integration
-- proof that the last external publish/auth step already happened
+- proof that official OpenClaw publication/auth is already complete
 
 ## Strongest Truthful Public Route
 
 The strongest truthful public distribution surface today is:
 
-1. a **public GitHub plugin repository** that exports the `openclawPlugin`
-   contract
-2. installed through OpenClaw's documented `customPlugins` path
-3. discovered through this packet, the ready metadata, and the upstream
+1. the canonical Shopflow docs/proof front door
+   `https://github.com/xiaojiou176-open/shopflow-suite`
+2. the live **public GitHub fallback shell**
+   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+3. installed through OpenClaw's documented `customPlugins` path
+4. discovered through this packet, the ready metadata, and the upstream
    `openclaw/nix-openclaw` public repo
 
 Think of it like packing a product for a public shelf:
 
-- this repo now prepares the box label, install card, and proof checklist
-- the remaining outside step is physically putting that box onto the shelf
+- the install box is already on the public table
+- the remaining outside step is any stronger official listing or official-org
+  placement beyond that fallback route
 
 ## Public Install Path
 
@@ -52,13 +62,13 @@ OpenClaw's upstream public docs already verify the install shape:
 - the repo reference lives in the user's flake config
 - install happens through `home-manager switch`
 
-Use this exact public-ready install shape once the public plugin repo exists:
+Use this exact install shape today:
 
 ```nix
 programs.openclaw.instances.default = {
   enable = true;
   plugins = [
-    { source = "github:<authorized-namespace>/shopflow-openclaw-plugin"; }
+    { source = "github:xiaojiou176/shopflow-openclaw-plugin"; }
   ];
 };
 ```
@@ -89,11 +99,14 @@ Proof here means "a stranger can follow the route and we can show receipts."
 
 Use this loop:
 
-1. publish the public plugin repo or approved listing surface
-2. add the public GitHub source to `customPlugins`
-3. run `home-manager switch`
-4. capture one install receipt and one runtime receipt
-5. attach the evidence to the publish packet
+1. start from the canonical repo for docs and proof boundaries
+   `https://github.com/xiaojiou176-open/shopflow-suite`
+2. open the live public fallback shell repo
+   `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+3. add the public GitHub source to `customPlugins`
+4. run `home-manager switch`
+5. capture one install receipt and one runtime receipt
+6. attach the evidence to the proof packet
 
 Minimum proof bundle:
 
@@ -102,7 +115,7 @@ Minimum proof bundle:
 - `home-manager switch` success output
 - one runtime proof that Shopflow's read-only packet is reachable after install
 
-## Best Commands Before the External Step
+## Best Commands Around The Fallback Route
 
 ```bash
 pnpm cli:read-only -- agent-target-packet --target openclaw
@@ -119,9 +132,10 @@ Then read:
 
 ## Must Not Claim
 
+- canonical Shopflow repo status
 - official OpenClaw listing already live
 - official OpenClaw org approval already granted
-- public proof already captured if the public repo or listing is still missing
+- public proof already captured if the fallback install route has not been run
 
 ## Why This Still Matters
 
@@ -130,7 +144,7 @@ integration."
 
 The real upgrade is:
 
-- install path is explicit
+- install path is explicit and already publicly hosted
 - discovery path is explicit
 - proof path is explicit
 - external-only blockers are packed into one exact packet instead of hiding

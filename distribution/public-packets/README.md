@@ -1,32 +1,41 @@
-# Shopflow Public Packet Rack
+# Shopflow Public Packet Mirror
 
-This directory is a public packet rack scaffold for a separate public GitHub
-repository.
+This directory is the source scaffold for the live secondary public GitHub repo
+`xiaojiou176/shopflow-public-packets`.
 
 In plain language:
 
-> treat this as the public-facing filing cabinet, not the official marketplace
-> itself.
+> treat this as the side shelf, not the storefront.
 
-It is meant to give L1 one clean folder that can be copied into a public repo
-and used as the strongest truthful fallback surface for agent targets that do
-not currently have a confirmed official listing path.
+It gives L1 one smaller packet-only mirror that can stay public without
+pretending it is the main Shopflow repo.
 
 ## What This Rack Is
 
-- A checked-in, traceable packet rack under `distribution/public-packets/**`
-- A public fallback repo scaffold for `codex`, `claude-code`, and `openclaw`
+- A checked-in, traceable packet mirror under `distribution/public-packets/**`
+- The source for the live secondary repo
+  `https://github.com/xiaojiou176/shopflow-public-packets`
 - A packaging surface built from canonical Shopflow docs and example JSON
-- A place to host public-ready packets without pretending the main private repo
-  is itself public
+- A fallback or mirror surface for smaller packet-only handoff
+
+## What This Rack Is Not
+
+- not the canonical Shopflow repo
+- not the default public front door
+- not a second main product repo
+- not the primary OpenClaw install route
+
+The canonical source remains:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
 
 ## Which Targets Live Here
 
 | Target | Folder | Truthful public position | Main canonical source |
 | :--- | :--- | :--- | :--- |
-| `codex` | `./codex/` | no confirmed separate official listing surface; use this public repo as the fallback shelf | `docs/ecosystem/codex-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.codex.json` |
-| `claude-code` | `./claude-code/` | no confirmed separate official listing surface; use this public repo as the fallback shelf | `docs/ecosystem/claude-code-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.claude-code.json` |
-| `openclaw` | `./openclaw/` | official/upstream public route exists elsewhere; this rack still hosts a public-ready packet and fallback mirror | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
+| `codex` | `./codex/` | no confirmed separate official listing surface; use this repo only as the fallback mirror while `shopflow-suite` stays canonical | `docs/ecosystem/codex-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.codex.json` |
+| `claude-code` | `./claude-code/` | no confirmed separate official listing surface; use this repo only as the fallback mirror while `shopflow-suite` stays canonical | `docs/ecosystem/claude-code-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.claude-code.json` |
+| `openclaw` | `./openclaw/` | keep only as a legacy packet mirror; the live fallback install shell is `xiaojiou176/shopflow-openclaw-plugin` | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
 
 ## Shared Supporting Packets
 
@@ -40,18 +49,24 @@ Think of these as the common inserts that multiple boxes reuse.
 
 ## How To Use The Packet Files
 
-1. Copy this whole directory into a separate public GitHub repository.
+1. Sync this directory into
+   `https://github.com/xiaojiou176/shopflow-public-packets` when the mirror
+   needs a refresh.
 2. Keep each target folder together with `shared/` so the packet remains
    traceable.
-3. Link readers to the target folder README first, then to the JSON packet
+3. Link readers to the canonical repo first when you need the main product
+   story, then to the target folder README for packet-only fallback.
+4. Link readers to the target folder README first, then to the JSON packet
    files.
-4. Treat the JSON files as checked-in packet payloads and example metadata, not
+5. Treat the JSON files as checked-in packet payloads and example metadata, not
    as proof that a marketplace submission already happened.
-5. If a real official listing surface later becomes available, keep this public
-   repo as the fallback or mirror unless the official channel fully replaces it.
+6. If a real official listing surface later becomes available, keep this repo as
+   a fallback or mirror only when it still serves a real deep-link or packet
+   need; otherwise it is a retirement candidate.
 
 ## What This Rack Must Not Claim
 
+- It is not the canonical Shopflow repo.
 - It is not an official Codex listing.
 - It is not an official Claude Code listing.
 - It is not proof that a Codex or Claude Code plugin is published.

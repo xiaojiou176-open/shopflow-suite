@@ -1,29 +1,31 @@
 # OpenClaw Publish Unblock Packet
 
-This page is the exact outside-the-repo packet for the last publish step.
+This page is the exact outside-the-repo packet for the remaining
+official-listing, namespace-change, or stronger-publication steps.
 
 In plain language:
 
-> The repo has already packed the product card.
-> This file is the note you hand to the human at the front desk when the last
-> door still needs a key.
+> the fallback shell is already public.
+> this file is now the note for anything stronger than that fallback route.
 
 ## Exact External-Only Packet
 
-Use this packet when repo-owned work is done but the final public publish step
-still needs namespace, auth, or maintainer help.
+Use this packet when the canonical repo and fallback shell are already live, but
+the next move still needs official-listing auth, namespace change, or
+maintainer help.
 
 ### Channel
 
-- primary route: public GitHub plugin repo consumed through OpenClaw
-  `customPlugins`
+- current live route: public GitHub plugin repo
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin` consumed through
+  OpenClaw `customPlugins`
 - optional stronger route: official OpenClaw-owned mention or listing, only if
   a maintainer explicitly approves it
 
-### Suggested public repo
+### Current public repo
 
 - repo name: `shopflow-openclaw-plugin`
-- namespace: `<authorized-namespace>`
+- namespace: `xiaojiou176`
 - slug: `shopflow-openclaw-read-only-packet`
 
 ### Suggested short description
@@ -36,7 +38,7 @@ still needs namespace, auth, or maintainer help.
 programs.openclaw.instances.default = {
   enable = true;
   plugins = [
-    { source = "github:<authorized-namespace>/shopflow-openclaw-plugin"; }
+    { source = "github:xiaojiou176/shopflow-openclaw-plugin"; }
   ];
 };
 ```
@@ -88,12 +90,13 @@ so this message should go there first if official-org placement is requested.
 
 | Potential blocker | Exact ask | Owner of next move |
 | :--- | :--- | :--- |
-| namespace missing | choose the public GitHub namespace that may host `shopflow-openclaw-plugin` | Shopflow owner |
+| stronger namespace desired | decide whether the current `xiaojiou176/shopflow-openclaw-plugin` repo is good enough or should move later | Shopflow owner |
 | official org auth missing | ask whether OpenClaw wants community-plugin-only or official-org linkage | OpenClaw maintainer |
-| captcha / login challenge | capture screenshot and exact URL if GitHub or Discord blocks the action | human operator doing the external publish |
+| captcha / login challenge | capture screenshot and exact URL if GitHub or Discord blocks the action | human operator doing the external publish or official-listing step |
 
 ## What This Packet Does Not Claim
 
+- canonical Shopflow repo status for `shopflow-openclaw-plugin`
 - official OpenClaw listing already live
 - official OpenClaw maintainer approval already granted
 - runtime proof already captured before the external install run happens

@@ -1,5 +1,5 @@
 {
-  description = "Shopflow OpenClaw public fallback scaffold";
+  description = "Shopflow OpenClaw fallback shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

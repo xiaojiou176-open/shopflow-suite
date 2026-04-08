@@ -1,23 +1,30 @@
-# Shopflow OpenClaw Public Fallback Scaffold
+# Shopflow OpenClaw Fallback Shell
 
-This directory is a **publicly installable fallback scaffold** for OpenClaw.
+This directory is the source scaffold for the live
+`xiaojiou176/shopflow-openclaw-plugin` repository.
 
 In plain language:
 
-> Think of this folder as a boxed sample for a public shelf.
-> It is ready to be copied into its own public GitHub repo, but it is **not**
-> a claim that Shopflow already has an official OpenClaw listing or official
-> OpenClaw org placement.
+> Think of this as one real install box on a side counter.
+> It already exists publicly, but it is still not the main Shopflow storefront
+> and still not an official OpenClaw listing.
 
 ## What This Is
 
 - a minimal OpenClaw plugin-shaped scaffold that follows the official
   hello-world layout closely
+- the source for the live public fallback repo
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
 - a read-only Shopflow packet surface for install, discovery, and handoff
-- a directory that L1 can later publish as a separate public GitHub repo
+
+The canonical Shopflow repo remains:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
 
 ## What This Is Not
 
+- not the canonical Shopflow repo
+- not the main product repo
 - not an official OpenClaw listing
 - not an official OpenClaw org integration
 - not a second Shopflow runtime or product fork
@@ -25,16 +32,16 @@ In plain language:
 
 ## Public Install Path
 
-This scaffold is meant to be installed through OpenClaw's **`customPlugins`**
-path after it lives in a public GitHub repo.
+This fallback shell is meant to be installed through OpenClaw's
+**`customPlugins`** path.
 
-Use the public repo source shape below:
+Use the current live repo source shape below:
 
 ```nix
 programs.openclaw.instances.default = {
   enable = true;
   plugins = [
-    { source = "github:<authorized-namespace>/shopflow-openclaw-plugin"; }
+    { source = "github:xiaojiou176/shopflow-openclaw-plugin"; }
   ];
 };
 ```
@@ -51,8 +58,9 @@ The same snippet is checked in as [`install.snippet.nix`](./install.snippet.nix)
 
 The truthful boundary is simple:
 
-- this repo shape can become a **public fallback route**
-- this scaffold can be consumed through `customPlugins`
+- this repo is a **public OpenClaw-specific fallback route**
+- this shell can be consumed through `customPlugins`
+- this repo still points back to `shopflow-suite` as the canonical source
 - official OpenClaw-owned placement is still **external and approval-gated**
 
 > Publicly installable fallback != official listing.
@@ -62,15 +70,15 @@ The truthful boundary is simple:
 ## Packet Bundle
 
 The files under [`packets/`](./packets/) are **copied reference payloads**
-derived from the canonical Shopflow packet examples in the private source repo:
+derived from the canonical Shopflow packet examples in the source repo:
 
 - `docs/ecosystem/examples/agent-target-packet.openclaw.json`
 - `docs/ecosystem/examples/plugin-marketplace-metadata.openclaw.json`
 
 These copies keep the Shopflow read-only packet truth, including the original
 packet wording. Some fields still point back to canonical Shopflow paths and
-commands on purpose, because they are packet references rather than live
-runtime owned by this fallback scaffold.
+commands on purpose, because the canonical repo is still `shopflow-suite` and
+this fallback shell only owns the target-specific install surface.
 
 ## Plugin Shell Layout
 
@@ -96,14 +104,15 @@ go build ./...
 go run .
 ```
 
-`go run .` prints the fallback boundary and points readers at the packet files.
+`go run .` prints the fallback boundary, says this repo is not canonical, and
+points readers back to `shopflow-suite` plus the packet files.
 
-## Publish Handoff Notes
+## Namespace Migration Notes
 
-Before external publication:
+If this repo ever moves to another namespace:
 
-1. create the public repo, for example `shopflow-openclaw-plugin`
-2. push this directory as the repo root
-3. replace `<authorized-namespace>` in `install.snippet.nix` and this README
-4. only describe it as an official listing if a real OpenClaw-owned surface is
+1. keep `shopflow-suite` as the canonical repo
+2. update `install.snippet.nix` and this README together
+3. announce the new repo URL from `shopflow-suite`
+4. keep the wording as a fallback shell unless a real OpenClaw-owned surface is
    approved later

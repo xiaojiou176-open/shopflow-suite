@@ -53,7 +53,7 @@ Shopflow should not claim that it already is:
 | `MCP` | read-only distribution packet now; public transport later | today's runtime truth already supports a truthful capability packet and directory/listing prep, even though a public MCP server is still not shipped | current public MCP product or write-capable MCP |
 | `OpenCode` | ecosystem secondary | useful comparison or later-facing integration path when CLI or skills packaging becomes explicit | main hero placement, official package |
 | `OpenHands` | ecosystem secondary | useful comparison for agentic coding and workflow automation | main hero placement, official package |
-| `OpenClaw` | public-ready target | public installation, discovery, and proof work are now in current scope, but official-listing claims still depend on whether an official OpenClaw public surface really exists | fake official listing or overclaiming first-party integration without the real external surface |
+| `OpenClaw` | public-ready secondary target + fallback install shell | public installation, discovery, and proof work are now in current scope, but canonical docs/proof stay in `shopflow-suite` and official-listing claims still depend on whether an official OpenClaw public surface really exists | fake official listing, second-canonical-repo drift, or overclaiming first-party integration without the real external surface |
 
 ## Today, Current-Scope Now, Later, No-Go, and Owner-Decision
 

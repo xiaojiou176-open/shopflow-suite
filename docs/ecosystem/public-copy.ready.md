@@ -13,13 +13,11 @@ In plain language:
 
 ## Repo Description
 
-Shopflow is a Chrome-first shopping extension family and contract-first
-operator runtime. It already gives builders typed workflow truth, builder
-snapshots, workflow briefs, repo-local read-only outcome tooling, and
-repo-owned review artifacts. It now also carries current-scope package,
-plugin, skills, catalog, and marketplace distribution packets for Codex,
-Claude Code, and OpenClaw without pretending every ecosystem already has an
-official listing surface.
+Canonical Shopflow repo for a Chrome-first shopping extension family with `8`
+storefront apps and `1` Suite shell. It already gives builders typed workflow
+truth, builder snapshots, workflow briefs, repo-local read-only outcome
+tooling, repo-owned review artifacts, and current-scope distribution packets
+without pretending every ecosystem already has an official listing surface.
 
 ## Release Body
 

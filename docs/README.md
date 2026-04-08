@@ -34,6 +34,20 @@ Important boundary:
 > `verify:release-readiness` is the strongest repo-owned lane.
 > It is still not the same thing as reviewed live evidence, signing, or real store submission.
 
+## Public Repo Topology
+
+Keep the public-repo map simple:
+
+- `shopflow-suite` = the only canonical Shopflow repo and default front door
+- `shopflow-public-packets` = a secondary fallback mirror and deprecated
+  candidate for smaller packet-only handoff
+- `shopflow-openclaw-plugin` = the OpenClaw-specific fallback install shell for
+  the public `customPlugins` route
+
+In plain language:
+
+> one main building, one side shelf, one target-specific install counter.
+
 ## Search-Intent Redirects
 
 If you arrived here from a search box instead of repo history, use this like a
@@ -60,7 +74,7 @@ In plain language:
 | `Shopflow OpenCode packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target opencode` | OpenCode stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenCode package. |
 | `Shopflow OpenHands packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target openhands` | OpenHands stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenHands integration. |
 | `Shopflow MCP` | [Public MCP Capability Map](./ecosystem/public-mcp-capability-map.ready.md) | `pnpm cli:read-only -- public-mcp-capability-map` | Shopflow is preparing a read-only MCP packet, not claiming a published MCP server today. |
-| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | OpenClaw is now a public-ready distribution target here; use the packet for install, discovery, and proof, and only claim official listing where an official OpenClaw surface really exists. |
+| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | OpenClaw keeps a dedicated public fallback shell at `xiaojiou176/shopflow-openclaw-plugin`; it is installable through `customPlugins`, but it is still not the canonical repo or an official OpenClaw listing. |
 
 ## What These Terms Mean
 

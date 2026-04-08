@@ -40,7 +40,7 @@ import { pluginMarketplaceMetadataPacket } from '@shopflow/contracts';
   - front-door-primary
   - plugin-level-public-distribution-bundle
 - `openclaw`
-  - public-ready-secondary
+  - public-ready-secondary fallback install shell
   - ready-to-publish-packet
 
 Those Codex / Claude Code entries are the strongest truthful public
@@ -55,6 +55,8 @@ They include:
 
 For OpenClaw specifically, the strongest truthful public route is:
 
+- the canonical Shopflow repo for docs and proof:
+  `https://github.com/xiaojiou176-open/shopflow-suite`
 - a public GitHub plugin repo consumed through OpenClaw `customPlugins`
 - paired with a ready-to-publish metadata draft
 - optionally followed by official OpenClaw-owned placement if maintainers
@@ -64,7 +66,8 @@ They are **not** proof that:
 
 - any plugin or listing is already published
 - any official listing surface has been confirmed
-- OpenClaw became a first-class front door
+- OpenClaw became a first-class front door or second canonical Shopflow repo
+- the fallback shell became a second canonical Shopflow repo
 - official marketplace integration already exists
 
 ## Codex / Claude Code Bundle Rows
