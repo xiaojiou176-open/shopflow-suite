@@ -8,6 +8,12 @@ The format is based on Keep a Changelog.
 
 ### Fixed
 
+- public repo topology wording now treats
+  `xiaojiou176-open/shopflow-suite` as the only canonical repo, demotes
+  `xiaojiou176/shopflow-public-packets` to a secondary fallback mirror and
+  deprecated candidate, and rewrites the OpenClaw lane around the already-live
+  `xiaojiou176/shopflow-openclaw-plugin` fallback shell instead of leaving
+  future-scaffold wording alive.
 - GitHub Actions no longer mislabel disabled GitHub-native security features as
   code failures; the platform security check now records capability gaps
   truthfully while still failing when enabled features carry real open alerts.

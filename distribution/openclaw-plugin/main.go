@@ -11,9 +11,10 @@ func main() {
 		packetRoot = "./packets"
 	}
 
-	fmt.Println("Shopflow OpenClaw public fallback scaffold")
-	fmt.Println("This is a publicly installable fallback, not an official OpenClaw listing.")
-	fmt.Println("Install through OpenClaw customPlugins using a public GitHub repo source.")
+	fmt.Println("Shopflow OpenClaw fallback shell")
+	fmt.Println("This is the OpenClaw-specific fallback install shell, not the canonical Shopflow repo.")
+	fmt.Println("Canonical repo: https://github.com/xiaojiou176-open/shopflow-suite")
+	fmt.Println("Install through OpenClaw customPlugins using github:xiaojiou176/shopflow-openclaw-plugin.")
 	fmt.Printf("Reference packet directory: %s\n", packetRoot)
 	fmt.Println("Key files:")
 	fmt.Printf("- %s/agent-target-packet.openclaw.json\n", packetRoot)

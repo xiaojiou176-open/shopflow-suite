@@ -37,6 +37,10 @@ Ready-to-sync does **not** mean:
 
 ## Suggested Sync Order
 
+Before you sync any copy, anchor it to the canonical repo first:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
+
 If you need to hand off or sync these later, start in this order:
 
 1. repo description
@@ -50,12 +54,18 @@ Why this order works:
 - the smallest claim surface gets reviewed first
 - larger wording blocks inherit the same truth boundary
 - it reduces the chance that one public surface outruns another
+- it keeps side repos clearly secondary instead of letting them read like peer
+  main repos
 
 ## Guardrails
 
 Every ready-to-sync artifact must keep these boundaries visible:
 
 - Shopflow is still a Chrome-first shopping extension family
+- `shopflow-suite` is the only canonical repo and main front door
+- any side-repo copy must point back to `shopflow-suite` and label itself as a
+  fallback, mirror, or target-specific install shell rather than a second main
+  repo
 - builder-facing surfaces are still repo-local and read-only first
 - current wording must not imply a public API, public MCP, public CLI, or SDK
 - current wording must not imply public-ready support beyond reviewed evidence

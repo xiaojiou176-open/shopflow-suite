@@ -7,6 +7,14 @@ In plain language:
 > this is the Claude Code box plus the operator notes binder, placed on a
 > public shelf because no confirmed separate official listing shelf is known.
 
+The canonical Shopflow repo still remains:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
+
+This folder belongs to the secondary mirror repo:
+
+- `https://github.com/xiaojiou176/shopflow-public-packets`
+
 ## Truthful Position
 
 - Claude Code does not currently have a confirmed separate official listing
@@ -15,6 +23,8 @@ In plain language:
   marketplace claim.
 - The packet is stronger than Codex's by also pointing to the shared
   skills-facing companion packet.
+- It is still not the main Shopflow repo and stays a deprecated-candidate
+  mirror if the canonical repo fully covers the packet need.
 
 ## Files In This Folder
 
@@ -47,6 +57,7 @@ Supporting copy source:
 
 ## Must Not Claim
 
+- canonical Shopflow repo status
 - official Claude Code integration
 - official Claude Code listing
 - published Claude Code plugin

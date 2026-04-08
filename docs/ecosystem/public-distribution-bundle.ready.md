@@ -19,6 +19,25 @@ Use this packet when you need one honest place to answer:
 - what a public skills packet should contain
 - what plugin / marketplace distribution packets should contain
 
+## Current Public Repo Topology
+
+Use this repo map before you sync any copy:
+
+- canonical repo and public front door:
+  `https://github.com/xiaojiou176-open/shopflow-suite`
+- secondary packet mirror and deprecated candidate:
+  `https://github.com/xiaojiou176/shopflow-public-packets`
+- OpenClaw-specific fallback install shell:
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`
+
+Boundary reminder:
+
+- `shopflow-suite` stays the only canonical repo
+- `shopflow-public-packets` stays a smaller fallback or mirror surface, not a
+  second product repo
+- `shopflow-openclaw-plugin` stays a target-specific fallback install shell,
+  not the canonical repo and not an official listing
+
 Use the machine-readable bundle when you want the same answer as JSON:
 
 ```bash
@@ -40,7 +59,7 @@ pnpm cli:read-only -- public-distribution-bundle --output .runtime-cache/cli/pub
 | public read-only API | ready-to-sync packet                    | docs, boundary notes, publication checklist                                                                                                       | a live public API transport                        |
 | public read-only MCP | ready-to-sync packet                    | agent-specific onboarding bundle, capability map, boundary notes                                                                                  | a published MCP server                             |
 | public skills        | plugin-level public distribution bundle | local skill scaffolds, Claude Code starter bundle, sample config, proof loop                                                                      | an already distributed skills pack                 |
-| plugin / marketplace | plugin-level public distribution bundle | Codex / Claude Code starter bundles, sample configs, install docs, proof loops, listing payloads, plus the OpenClaw lane where separately tracked | an already published plugin or marketplace listing |
+| plugin / marketplace | plugin-level public distribution bundle | Codex / Claude Code starter bundles, sample configs, install docs, proof loops, listing payloads, plus the separately tracked OpenClaw fallback shell and legacy packet mirror | an already published plugin or marketplace listing |
 
 ## Codex / Claude Code Public Distribution Matrix
 
@@ -68,17 +87,18 @@ pnpm cli:read-only -- public-distribution-bundle --output .runtime-cache/cli/pub
 When the next operator asks “what exactly should we publish?”, hand them:
 
 1. this page
-2. `pnpm cli:read-only -- public-distribution-bundle`
-3. `pnpm cli:read-only -- agent-target-packet --target codex`
-4. `pnpm cli:read-only -- agent-target-packet --target claude-code`
-5. `pnpm cli:read-only -- agent-target-packet --target openclaw`
-6. `pnpm cli:read-only -- agent-integration-bundle`
-7. [Public MCP Capability Map](./public-mcp-capability-map.ready.md)
-8. [Public Skills Catalog](./public-skills-catalog.ready.md)
-9. [Plugin Marketplace Metadata](./plugin-marketplace-metadata.ready.md)
-10. [Agent Quickstarts](./agent-quickstarts.md)
-11. [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
-12. [Ready-to-Sync Artifacts](./ready-to-sync-artifacts.md)
-13. [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
+2. `https://github.com/xiaojiou176-open/shopflow-suite`
+3. `pnpm cli:read-only -- public-distribution-bundle`
+4. `pnpm cli:read-only -- agent-target-packet --target codex`
+5. `pnpm cli:read-only -- agent-target-packet --target claude-code`
+6. `pnpm cli:read-only -- agent-target-packet --target openclaw`
+7. `pnpm cli:read-only -- agent-integration-bundle`
+8. [Public MCP Capability Map](./public-mcp-capability-map.ready.md)
+9. [Public Skills Catalog](./public-skills-catalog.ready.md)
+10. [Plugin Marketplace Metadata](./plugin-marketplace-metadata.ready.md)
+11. [Agent Quickstarts](./agent-quickstarts.md)
+12. [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
+13. [Ready-to-Sync Artifacts](./ready-to-sync-artifacts.md)
+14. [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
 
 That keeps the answer specific without pretending publication already happened.

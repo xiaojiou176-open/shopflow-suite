@@ -1,19 +1,21 @@
-# OpenClaw Packet
+# OpenClaw Packet Mirror
 
-This folder is the OpenClaw-facing public-ready packet.
+This folder is the OpenClaw-facing legacy packet mirror.
 
 In plain language:
 
-> OpenClaw already has an upstream public route elsewhere, but this folder is
-> still the packaged box we can hand out or mirror publicly.
+> the live install box is now its own repo.
+> this folder is only the extra copy on the side shelf.
 
 ## Truthful Position
 
 - OpenClaw has an official or upstream public route outside this packet rack.
-- This folder still matters because it keeps Shopflow's public-ready packet in
-  one clean place for a public repo or mirror.
-- The folder is public-ready, but it is not proof that the final external
-  publish step is already complete.
+- The live Shopflow fallback install shell now lives at
+  `https://github.com/xiaojiou176/shopflow-openclaw-plugin`.
+- This folder can still matter as a legacy packet mirror, but it is no longer
+  the main OpenClaw route.
+- The canonical Shopflow repo still remains
+  `https://github.com/xiaojiou176-open/shopflow-suite`.
 
 ## Files In This Folder
 
@@ -43,6 +45,8 @@ Supporting source:
 
 ## Must Not Claim
 
+- canonical Shopflow repo status
+- primary OpenClaw fallback route status
 - official OpenClaw listing already live
 - official OpenClaw integration already approved
 - external publication already completed

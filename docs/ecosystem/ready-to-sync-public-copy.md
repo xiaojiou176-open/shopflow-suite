@@ -11,7 +11,7 @@ Important boundary:
 
 ## GitHub Repo Description
 
-> Chrome-first shopping extension family and contract-first operator runtime with typed workflow truth, read-only builder surfaces, repo-owned review artifacts, and current-scope package/plugin/skills/catalog distribution packets.
+> Canonical Shopflow repo for a Chrome-first shopping extension family with 8 storefront apps and 1 Suite shell.
 
 ## Short About Copy
 

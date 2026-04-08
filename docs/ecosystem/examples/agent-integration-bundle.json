@@ -137,12 +137,12 @@
       ],
       "skillsState": "ready-to-sync-packet",
       "pluginPackagingState": "ready-to-publish-packet",
-      "summary": "OpenClaw is now carried as a public-ready but not-yet-published packet: install path, discovery path, and proof loop are explicit, while the final external publish step stays truthfully outside the repo boundary.",
+      "summary": "OpenClaw now uses a live public fallback shell plus a public-ready packet: install path and discovery path are explicit, while official listing still stays outside the repo boundary.",
       "mustNotClaim": [
         "Official OpenClaw listing",
         "Official OpenClaw integration"
       ],
-      "nextHumanStep": "Create or authorize the public GitHub plugin repo, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
+      "nextHumanStep": "Use the live fallback shell github:xiaojiou176/shopflow-openclaw-plugin, install it through nix-openclaw customPlugins, and capture the proof-loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
     }
   ],
   "publicMcpCapabilityMap": {
@@ -414,7 +414,7 @@
         "suggestedSlug": "shopflow-openclaw-read-only-packet",
         "title": "Shopflow OpenClaw Read-only Packet",
         "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
-        "boundaryNote": "Ready-to-publish packet only. Do not claim an official OpenClaw listing or official-org integration until a real public repo or approved listing surface is live.",
+        "boundaryNote": "Ready-to-publish packet only. The current public fallback shell is live at xiaojiou176/shopflow-openclaw-plugin, but do not claim an official OpenClaw listing or official-org integration until a real official surface is live.",
         "screenshotSources": [
           "docs/ecosystem/openclaw-comparison.md",
           "docs/ecosystem/openclaw-public-ready-matrix.md",

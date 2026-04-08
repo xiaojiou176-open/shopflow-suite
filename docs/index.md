@@ -73,6 +73,20 @@ It is not:
   - `Claude Code`
   - `OpenClaw`
 
+## Public Repo Topology
+
+Use the public repo surface like one front entrance and two marked side doors:
+
+| Repo | Role now | Open this when | Must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `xiaojiou176-open/shopflow-suite` | only canonical repo | you want the main product, docs, Pages, release, and review shelf | a mirror or target-specific fallback |
+| `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | you only need a smaller packet-only rack | a second canonical Shopflow repo |
+| `xiaojiou176/shopflow-openclaw-plugin` | OpenClaw-specific fallback install shell | you specifically need the OpenClaw `customPlugins` install route | the main product repo or an official OpenClaw listing |
+
+If you only want one link, use:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
+
 What this does **not** mean:
 
 - not official Codex listing proof
@@ -80,6 +94,7 @@ What this does **not** mean:
 - not reviewed live evidence for claim-gated store support
 - not a signed store-ready shelf
 - not signed store-ready artifact proof
+- not three equal canonical Shopflow repos
 
 ## Best First Route
 

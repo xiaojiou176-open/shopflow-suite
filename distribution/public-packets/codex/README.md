@@ -7,13 +7,23 @@ In plain language:
 > this is the Codex box on the shelf when no confirmed official Codex shelf has
 > been found.
 
+The canonical Shopflow repo still remains:
+
+- `https://github.com/xiaojiou176-open/shopflow-suite`
+
+This folder belongs to the secondary mirror repo:
+
+- `https://github.com/xiaojiou176/shopflow-public-packets`
+
 ## Truthful Position
 
 - Codex does not currently have a confirmed separate official listing surface
   in this task context.
 - This folder is therefore meant for a public fallback repo, not an official
   marketplace claim.
-- The packet is still useful because the main Shopflow repo remote is private.
+- The packet is still useful as a smaller mirror, but it is not the main
+  product front door and it is a deprecated-candidate surface if the canonical
+  repo fully covers the need.
 
 ## Files In This Folder
 
@@ -43,6 +53,7 @@ Supporting copy source:
 
 ## Must Not Claim
 
+- canonical Shopflow repo status
 - official Codex integration
 - official Codex listing
 - published Codex plugin

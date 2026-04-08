@@ -37,6 +37,26 @@ In plain language:
 > there is already a real review shelf you can inspect today.
 > it is a reviewer shelf, not a signed release shelf.
 
+## Public Repo Topology
+
+Shopflow's public GitHub surface now follows **one main front door plus two
+clearly secondary side shelves**.
+
+If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
+
+| Repo | Role now | Use it for | Must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `xiaojiou176-open/shopflow-suite` | only canonical repo | the default product, docs, Pages, release, and review-shelf front door | a mirror or packet-only side shelf |
+| `xiaojiou176/shopflow-public-packets` | secondary fallback mirror / deprecated candidate | a smaller packet-only rack when a lighter builder-facing shelf is still useful | a second canonical Shopflow repo or main product home |
+| `xiaojiou176/shopflow-openclaw-plugin` | OpenClaw-specific fallback install shell | the target-specific `customPlugins` install route for OpenClaw | the main product repo, the canonical docs/proof repo, or an official OpenClaw listing |
+
+In plain language:
+
+> `shopflow-suite` is the main store.
+> `shopflow-public-packets` is the side shelf.
+> `shopflow-openclaw-plugin` is the side door for one target-specific install
+> route.
+
 ## What Shopflow Is and Is Not
 
 Shopflow is a **browser extension product repo**. It is not a hosted shopping SaaS, not a write-capable MCP hub, and not an autonomous agent platform.
@@ -93,6 +113,14 @@ Target-specific quickstarts, example JSON, and ecosystem-specific packets stay
 in the docs shelf, not the root README. These surfaces are real today, but
 they are **not** proof that Shopflow already ships a public API, public MCP,
 official marketplace listing, or SDK.
+
+If you do need the secondary public repo surfaces:
+
+- `shopflow-public-packets` is the smaller fallback mirror for Codex / Claude
+  packet copies and a legacy OpenClaw packet mirror
+- `shopflow-openclaw-plugin` is the dedicated public fallback shell for the
+  current OpenClaw `customPlugins` route
+- both still point back to `shopflow-suite` as the canonical source
 
 ## Current Scope Buckets
 
