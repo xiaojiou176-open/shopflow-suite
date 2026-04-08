@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { z } from 'zod';
@@ -166,7 +167,70 @@ type SubmissionReadinessReportOptions = {
   publicClaimBoundaryMap?: typeof publicClaimBoundaries;
   getLiveReceiptRequirements?: typeof getLiveReceiptAppRequirements;
   verificationParityIssues?: readonly VerificationParityIssue[];
+  reviewedRecordsPacket?: ReviewedRecordsPacket;
 };
+
+type ReviewedRecordsPacket = {
+  reviewedRecords: Array<{
+    captureId: string;
+  }>;
+  rejectedRecords: Array<{
+    captureId: string;
+  }>;
+};
+
+type LiveEvidenceResolution = {
+  reviewedCaptureIds: string[];
+  unresolvedCaptureIds: string[];
+  rejectedCaptureIds: string[];
+  allRequiredCapturesReviewed: boolean;
+};
+
+const reviewedRecordsLatestPath = resolve(
+  repoRoot,
+  '.runtime-cache/live-browser/reviewed-records-latest.json'
+);
+
+function readJsonFile<T>(path: string) {
+  return JSON.parse(readFileSync(path, 'utf8')) as T;
+}
+
+function readLatestReviewedRecordsPacket() {
+  if (!existsSync(reviewedRecordsLatestPath)) {
+    return undefined;
+  }
+
+  return readJsonFile<ReviewedRecordsPacket>(reviewedRecordsLatestPath);
+}
+
+function resolveLiveEvidenceResolution(
+  requiredEvidenceCaptureIds: readonly string[],
+  reviewedRecordsPacket?: ReviewedRecordsPacket
+): LiveEvidenceResolution {
+  const reviewedCaptureIdsSet = new Set(
+    reviewedRecordsPacket?.reviewedRecords.map((record) => record.captureId) ?? []
+  );
+  const rejectedCaptureIdsSet = new Set(
+    reviewedRecordsPacket?.rejectedRecords.map((record) => record.captureId) ?? []
+  );
+  const reviewedCaptureIds = requiredEvidenceCaptureIds.filter((captureId) =>
+    reviewedCaptureIdsSet.has(captureId)
+  );
+  const unresolvedCaptureIds = requiredEvidenceCaptureIds.filter(
+    (captureId) => !reviewedCaptureIdsSet.has(captureId)
+  );
+  const rejectedCaptureIds = unresolvedCaptureIds.filter((captureId) =>
+    rejectedCaptureIdsSet.has(captureId)
+  );
+
+  return {
+    reviewedCaptureIds,
+    unresolvedCaptureIds,
+    rejectedCaptureIds,
+    allRequiredCapturesReviewed:
+      requiredEvidenceCaptureIds.length > 0 && unresolvedCaptureIds.length === 0,
+  };
+}
 
 function resolveRepoOwnedStatus(
   entry: ReleaseArtifactManifestEntry,
@@ -205,7 +269,7 @@ function resolveSurface(entry: ReleaseArtifactManifestEntry) {
 
 function resolveRepoOwnedNextMove(
   status: SubmissionReadinessEntry['repoOwnedStatus'],
-  requiredEvidenceCaptureIds: string[],
+  liveEvidence: LiveEvidenceResolution,
   reviewerStartPathReady: boolean,
   verificationParity: SubmissionReadinessEntry['verificationParity']
 ) {
@@ -227,7 +291,9 @@ function resolveRepoOwnedNextMove(
     case 'internal-alpha-review-only':
       return 'Keep Suite internal-only and continue internal control-plane strengthening instead of preparing store submission wording.';
     case 'review-bundle-ready-claim-gated':
-      return requiredEvidenceCaptureIds.length > 0
+      return liveEvidence.allRequiredCapturesReviewed
+        ? 'Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary.'
+        : liveEvidence.unresolvedCaptureIds.length > 0
         ? 'Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.'
         : 'Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.';
     case 'review-bundle-ready-awaiting-signing':
@@ -237,13 +303,13 @@ function resolveRepoOwnedNextMove(
 
 function liveEvidenceStillRequiresExternalPacket(
   repoOwnedStatus: SubmissionReadinessEntry['repoOwnedStatus'],
-  requiredEvidenceCaptureIds: readonly string[],
+  liveEvidence: LiveEvidenceResolution,
   reviewerStartPathReady: boolean,
   verificationParityReady: boolean
 ) {
   return (
     repoOwnedStatus === 'review-bundle-ready-claim-gated' &&
-    requiredEvidenceCaptureIds.length > 0 &&
+    liveEvidence.unresolvedCaptureIds.length > 0 &&
     reviewerStartPathReady &&
     verificationParityReady
   );
@@ -301,7 +367,7 @@ function createReviewerChecklist(
   entry: ReleaseArtifactManifestEntry,
   repoOwnedStatus: SubmissionReadinessEntry['repoOwnedStatus'],
   bundleAudit: SubmissionReadinessEntry['bundleAudit'],
-  requiredEvidenceCaptureIds: string[],
+  liveEvidence: LiveEvidenceResolution,
   manualReviewStartUrl: string | undefined,
   verificationParity: SubmissionReadinessEntry['verificationParity']
 ) {
@@ -310,7 +376,7 @@ function createReviewerChecklist(
     entry.appId === 'ext-shopping-suite' || Boolean(manualReviewStartUrl);
   const liveEvidenceIsExternalOnly = liveEvidenceStillRequiresExternalPacket(
     repoOwnedStatus,
-    requiredEvidenceCaptureIds,
+    liveEvidence,
     reviewerStartPathReady,
     verificationParity.ready
   );
@@ -412,12 +478,16 @@ function createReviewerChecklist(
       category: 'claim-boundary',
       status: 'blocked',
       headline:
-        requiredEvidenceCaptureIds.length > 0
+        liveEvidence.reviewedCaptureIds.length > 0 ||
+        liveEvidence.unresolvedCaptureIds.length > 0
           ? 'Public claim boundary is still gated by live evidence.'
           : 'Public claim boundary is still limited to repo-verified wording.',
       detail:
-        requiredEvidenceCaptureIds.length > 0
-          ? `Keep wording claim-gated until reviewed live evidence exists for ${requiredEvidenceCaptureIds.join(', ')}.`
+        liveEvidence.reviewedCaptureIds.length > 0 ||
+        liveEvidence.unresolvedCaptureIds.length > 0
+          ? liveEvidence.unresolvedCaptureIds.length > 0
+            ? `Keep wording claim-gated until reviewed live evidence exists for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`
+            : 'Reviewed live evidence is already attached, but public wording must stay claim-gated until the repo explicitly raises the claim boundary.'
           : 'Keep public wording inside the current repo-verified scope until the claim boundary is explicitly raised.',
     });
   } else {
@@ -430,27 +500,36 @@ function createReviewerChecklist(
     });
   }
 
-  if (requiredEvidenceCaptureIds.length > 0) {
+  if (
+    liveEvidence.reviewedCaptureIds.length > 0 ||
+    liveEvidence.unresolvedCaptureIds.length > 0
+  ) {
     checklist.push({
       category: 'live-evidence',
       status:
         entry.claimState === 'public-claim-ready'
           ? 'ready'
+          : liveEvidence.allRequiredCapturesReviewed
+            ? 'ready'
           : liveEvidenceIsExternalOnly
             ? 'external'
             : 'blocked',
       headline:
         entry.claimState === 'public-claim-ready'
           ? 'Live-evidence requirements remain attached to the submission record.'
+          : liveEvidence.allRequiredCapturesReviewed
+            ? 'Reviewed live evidence is already attached to the submission path.'
           : liveEvidenceIsExternalOnly
             ? 'Reviewed live evidence still requires an external capture/review packet.'
             : 'Reviewed live evidence is still missing from the submission path.',
       detail:
         entry.claimState === 'public-claim-ready'
-          ? `Keep the reviewed evidence packet for ${requiredEvidenceCaptureIds.join(', ')} attached to the release decision trail.`
+          ? `Keep the reviewed evidence packet for ${liveEvidence.reviewedCaptureIds.join(', ')} attached to the release decision trail.`
+          : liveEvidence.allRequiredCapturesReviewed
+            ? `Keep the reviewed evidence packet for ${liveEvidence.reviewedCaptureIds.join(', ')} attached to the release decision trail while the repo decides whether to raise the public-claim boundary.`
           : liveEvidenceIsExternalOnly
-            ? `The repo-owned review bundle, reviewer start path, and parity checks are already clear. The remaining gate is an external reviewed live-evidence packet for ${requiredEvidenceCaptureIds.join(', ')}.`
-            : `Do not move toward public support wording until reviewers can inspect live evidence for ${requiredEvidenceCaptureIds.join(', ')}.`,
+            ? `The repo-owned review bundle, reviewer start path, and parity checks are already clear. The remaining gate is an external reviewed live-evidence packet for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`
+            : `Do not move toward public support wording until reviewers can inspect live evidence for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`,
     });
   } else {
     checklist.push({
@@ -495,7 +574,7 @@ function createSubmissionChecklist(
 
 function createReadinessSummary(
   status: SubmissionReadinessEntry['repoOwnedStatus'],
-  requiredEvidenceCaptureIds: string[],
+  liveEvidence: LiveEvidenceResolution,
   reviewerStartPathReady: boolean,
   verificationParityReady: boolean
 ) {
@@ -517,7 +596,9 @@ function createReadinessSummary(
     case 'internal-alpha-review-only':
       return 'Internal alpha review bundle is complete, but the Suite must stay outside store-submission talk.';
     case 'review-bundle-ready-claim-gated':
-      return requiredEvidenceCaptureIds.length > 0
+      return liveEvidence.allRequiredCapturesReviewed
+        ? 'Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.'
+        : liveEvidence.unresolvedCaptureIds.length > 0
         ? reviewerStartPathReady && verificationParityReady
           ? 'Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.'
           : 'Review bundle is complete, but release wording is still blocked on reviewed live evidence.'
@@ -563,7 +644,7 @@ function createBundleAudit(
 
 function createReviewerStartPath(
   entry: ReleaseArtifactManifestEntry,
-  requiredEvidenceCaptureIds: string[],
+  liveEvidence: LiveEvidenceResolution,
   manualReviewStartUrl: string | undefined
 ): SubmissionReadinessEntry['reviewerStartPath'] {
   if (entry.appId === 'ext-shopping-suite') {
@@ -583,8 +664,11 @@ function createReviewerStartPath(
     manualReviewStartUrl,
     firstCheck: !manualReviewStartUrl
       ? 'Repair default review host drift in the store catalog before reviewer handoff so the start path is explicit.'
-      : requiredEvidenceCaptureIds.length > 0
-        ? 'Start from the reviewer URL, confirm the store-review bundle stays claim-gated, and record that reviewed live evidence still remains an external gate before any submission talk.'
+      : liveEvidence.reviewedCaptureIds.length > 0 ||
+          liveEvidence.unresolvedCaptureIds.length > 0
+        ? liveEvidence.allRequiredCapturesReviewed
+          ? 'Start from the reviewer URL, confirm the reviewed live evidence packet stays attached, and keep wording claim-gated until the repo explicitly raises the public boundary.'
+          : 'Start from the reviewer URL, confirm the store-review bundle stays claim-gated, and record that reviewed live evidence still remains an external gate before any submission talk.'
         : 'Start from the reviewer URL and confirm the store-review bundle matches repo-verified storefront behavior without implying signed or public-ready status.',
   };
 }
@@ -592,7 +676,7 @@ function createReviewerStartPath(
 function resolveExternalBlockers(
   entry: ReleaseArtifactManifestEntry,
   repoOwnedStatus: SubmissionReadinessEntry['repoOwnedStatus'],
-  requiredEvidenceCaptureIds: readonly string[],
+  liveEvidence: LiveEvidenceResolution,
   reviewerStartPathReady: boolean,
   verificationParityReady: boolean
 ) {
@@ -603,13 +687,13 @@ function resolveExternalBlockers(
   if (
     liveEvidenceStillRequiresExternalPacket(
       repoOwnedStatus,
-      requiredEvidenceCaptureIds,
+      liveEvidence,
       reviewerStartPathReady,
       verificationParityReady
     )
   ) {
     return [
-      `Reviewed live evidence still requires an external capture/review packet for ${requiredEvidenceCaptureIds.join(', ')}.`,
+      `Reviewed live evidence still requires an external capture/review packet for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`,
     ];
   }
 
@@ -639,6 +723,8 @@ export function createSubmissionReadinessReport(
     options.getLiveReceiptRequirements ?? getLiveReceiptAppRequirements;
   const verificationParityIssues =
     options.verificationParityIssues ?? collectStructuredVerificationParityIssues();
+  const reviewedRecordsPacket =
+    options.reviewedRecordsPacket ?? readLatestReviewedRecordsPacket();
   const parityIssuesByAppId = verificationParityIssues.reduce<
     Map<string, VerificationParityIssue[]>
   >((map, issue) => {
@@ -664,6 +750,10 @@ export function createSubmissionReadinessReport(
           (requirement) => requirement.captureId
         )
       : [];
+    const liveEvidence = resolveLiveEvidenceResolution(
+      requiredEvidenceCaptureIds,
+      reviewedRecordsPacket
+    );
     const repoOwnedStatus = resolveRepoOwnedStatus(entry, reviewBundleReady);
     const manualReviewStartUrl = storeEntry
       ? getStoreReviewStartUrl(storeEntry.storeId, storeCatalogMap)
@@ -676,7 +766,7 @@ export function createSubmissionReadinessReport(
       entry,
       repoOwnedStatus,
       bundleAudit,
-      requiredEvidenceCaptureIds,
+      liveEvidence,
       manualReviewStartUrl,
       verificationParity
     );
@@ -693,7 +783,7 @@ export function createSubmissionReadinessReport(
       reviewBundleReady,
       readinessSummary: createReadinessSummary(
         repoOwnedStatus,
-        requiredEvidenceCaptureIds,
+        liveEvidence,
         reviewerStartPathReady,
         verificationParity.ready
       ),
@@ -701,7 +791,7 @@ export function createSubmissionReadinessReport(
       bundleAudit,
       reviewerStartPath: createReviewerStartPath(
         entry,
-        requiredEvidenceCaptureIds,
+        liveEvidence,
         manualReviewStartUrl
       ),
       manualReviewStartUrl,
@@ -716,14 +806,14 @@ export function createSubmissionReadinessReport(
       ),
       repoOwnedNextMove: resolveRepoOwnedNextMove(
         repoOwnedStatus,
-        requiredEvidenceCaptureIds,
+        liveEvidence,
         reviewerStartPathReady,
         verificationParity
       ),
       externalBlockers: resolveExternalBlockers(
         entry,
         repoOwnedStatus,
-        requiredEvidenceCaptureIds,
+        liveEvidence,
         reviewerStartPathReady,
         verificationParity.ready
       ),

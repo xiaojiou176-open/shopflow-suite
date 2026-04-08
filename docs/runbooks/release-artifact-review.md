@@ -77,6 +77,10 @@ gates under `externalBlockers`, such as:
 - signed artifacts that still need the real signing environment
 - actual store submission / review that still happens outside the repo
 
+If the latest repo-local reviewed-records ledger already covers a required
+capture id, keep that reviewed packet attached to the submission report instead
+of continuing to list the same capture id under `externalBlockers`.
+
 The report should read like a reviewer handoff card, not a slogan. In practice
 that means each entry should surface:
 
