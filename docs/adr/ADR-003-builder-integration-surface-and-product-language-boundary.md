@@ -93,7 +93,7 @@ For Shopflow, `API substrate first` means:
 It does **not** mean:
 
 - a public HTTP API already exists today
-- a public MCP already exists today
+- a public HTTP MCP already exists today
 - a generated SDK already exists today
 
 The substrate sequence is therefore:

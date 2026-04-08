@@ -5,7 +5,7 @@
   "suggestedSlug": "shopflow-openclaw-read-only-packet",
   "title": "Shopflow OpenClaw Read-only Packet",
   "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
-  "boundaryNote": "Ready-to-publish packet only. The canonical install path now uses xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin, while xiaojiou176/shopflow-openclaw-plugin remains an archived legacy fallback. Do not claim an official OpenClaw listing or official-org integration until a real official surface is live.",
+  "boundaryNote": "Ready-to-publish packet only. Do not claim an official OpenClaw listing or official-org integration until a real public repo or approved listing surface is live.",
   "screenshotSources": [
     "docs/ecosystem/openclaw-comparison.md",
     "docs/ecosystem/openclaw-public-ready-matrix.md",
@@ -45,7 +45,7 @@
     ]
   },
   "mustNotClaim": [
-    "Official OpenClaw listing already live",
-    "Official OpenClaw integration already approved"
+    "Official OpenClaw listing",
+    "Official OpenClaw integration"
   ]
 }

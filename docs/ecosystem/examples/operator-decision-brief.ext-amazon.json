@@ -4,7 +4,7 @@
   "readOnly": true,
   "appTitle": "Shopflow for Amazon",
   "stage": "ready-now",
-  "summary": "Ready for repo-local review.",
+  "summary": "Review bundle is ready for repo-local inspection.",
   "whyNow": [
     "www.amazon.com · search",
     "Extract Amazon search results is runnable right now.",

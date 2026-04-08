@@ -37,7 +37,6 @@ This page is the shortest honest matrix for readers who want to know:
 
 ## Later
 
-- read-only MCP transport
 - read-only public API transport
 - generated client or thin SDK
 - hosted runtime product
@@ -62,7 +61,7 @@ This page is the shortest honest matrix for readers who want to know:
 | :--- | :--- | :--- | :--- |
 | `Codex` | front-door primary + public-distribution current-scope | strong builder fit through typed contracts, workflow briefs, read-only builder snapshots, and a plugin-level distribution bundle story | official integration or official listing where no official Codex public surface exists |
 | `Claude Code` | front-door primary + public-distribution current-scope | strong builder fit for the same builder-facing reasons, now with stronger skills-facing and plugin-level distribution routing | official integration or official listing where no official Claude Code public surface exists |
-| `MCP` | read-only distribution packet now; public transport later | a truthful capability packet and directory/listing prep already exist, even though a public MCP server does not | current public MCP product or write-capable MCP |
+| `MCP` | repo-local read-only stdio now; public transport later | a truthful capability packet exists and the core four repo-truth surfaces are now attachable through stdio, even though public transport still does not | current public HTTP MCP product or write-capable MCP |
 | `OpenCode` | ecosystem secondary | comparison or later-facing integration candidate | main hero placement or official package |
 | `OpenHands` | ecosystem secondary | comparison context for agentic coding and automation | main hero placement or official package |
 | `OpenClaw` | public-ready target | current-scope install, discovery, and proof work are now in play | fake official listing or overclaiming first-party integration without the real external surface |

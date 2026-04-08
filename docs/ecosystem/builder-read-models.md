@@ -6,7 +6,7 @@ Shopflow exposes today.
 In plain language:
 
 > builders can already read Shopflow's typed workflow truth.
-> they still cannot call a public API or public MCP endpoint.
+> they still cannot call a public API or public HTTP MCP endpoint.
 
 If you are entering this area for the first time, start with
 [Builder Start Here](./builder-start-here.md) before diving into schemas or

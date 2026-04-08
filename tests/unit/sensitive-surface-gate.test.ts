@@ -10,23 +10,33 @@ import {
   scanTextContent,
 } from '../../tooling/verification/sensitive-surface-gate';
 
+function createIsolatedGitEnv(extra: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
+  const envEntries = Object.entries(process.env).filter(([key]) => !key.startsWith('GIT_'));
+  return Object.fromEntries([...envEntries, ...Object.entries(extra)]);
+}
+
+function runTempRepoGit(
+  repoRoot: string,
+  args: string[],
+  extraEnv: NodeJS.ProcessEnv = {}
+) {
+  return execFileSync('git', args, {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    env: createIsolatedGitEnv(extraEnv),
+  });
+}
+
 function withTempGitRepo(run: (repoRoot: string) => void) {
   const repoRoot = mkdtempSync(resolve(tmpdir(), 'shopflow-sensitive-gate-'));
   const originalCwd = process.cwd();
 
   try {
-    execFileSync('git', ['init'], {
-      cwd: repoRoot,
-      encoding: 'utf8',
-    });
-    execFileSync('git', ['config', 'user.name', 'Shopflow Test'], {
-      cwd: repoRoot,
-      encoding: 'utf8',
-    });
-    execFileSync('git', ['config', 'user.email', ['shopflow', 'example.com'].join('@')], {
-      cwd: repoRoot,
-      encoding: 'utf8',
-    });
+    mkdirSync(resolve(repoRoot, '.git-hooks'), { recursive: true });
+    runTempRepoGit(repoRoot, ['init']);
+    runTempRepoGit(repoRoot, ['config', 'user.name', 'Shopflow Test']);
+    runTempRepoGit(repoRoot, ['config', 'user.email', ['shopflow', 'example.com'].join('@')]);
+    runTempRepoGit(repoRoot, ['config', 'core.hooksPath', '.git-hooks']);
     run(repoRoot);
   } finally {
     process.chdir(originalCwd);
@@ -101,8 +111,7 @@ describe('sensitive surface gate', () => {
       writeFileSync(resolve(repoRoot, 'logs/live-session.log'), 'trace\n');
       writeFileSync(resolve(repoRoot, 'docs/binary.bin'), Buffer.from([0, 1, 2, 3]));
 
-      process.chdir(repoRoot);
-      const findings = scanCurrentSurface();
+      const findings = scanCurrentSurface(repoRoot);
 
       expect(findings).toEqual(
         expect.arrayContaining([
@@ -124,11 +133,8 @@ describe('sensitive surface gate', () => {
       mkdirSync(resolve(repoRoot, 'docs'), { recursive: true });
 
       writeFileSync(resolve(repoRoot, 'docs/clean.md'), 'clean\n');
-      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
-      execFileSync('git', ['commit', '-m', 'clean'], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
+      runTempRepoGit(repoRoot, ['add', '.']);
+      runTempRepoGit(repoRoot, ['commit', '-m', 'clean']);
 
       const leakedPath = ['/Users', 'history-user', 'private', 'file.txt'].join('/');
       const leakedEmail = ['history-owner', 'real-domain.com'].join('@');
@@ -142,21 +148,14 @@ describe('sensitive surface gate', () => {
         resolve(repoRoot, 'docs/history.md'),
         `path=${leakedPath}\ncontact=${leakedEmail}\napiKeyProduction="${apiKey}"\n`
       );
-      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
-      execFileSync('git', ['commit', '-m', 'introduce leak'], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
+      runTempRepoGit(repoRoot, ['add', '.']);
+      runTempRepoGit(repoRoot, ['commit', '-m', 'introduce leak']);
 
       writeFileSync(resolve(repoRoot, 'docs/history.md'), 'clean again\n');
-      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
-      execFileSync('git', ['commit', '-m', 'clean leak'], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
+      runTempRepoGit(repoRoot, ['add', '.']);
+      runTempRepoGit(repoRoot, ['commit', '-m', 'clean leak']);
 
-      process.chdir(repoRoot);
-      const findings = scanGitHistory();
+      const findings = scanGitHistory(repoRoot);
 
       expect(findings).toEqual(
         expect.arrayContaining([
@@ -177,29 +176,17 @@ describe('sensitive surface gate', () => {
       const legacyEmail = ['terry', 'private-mail.example'].join('@');
 
       writeFileSync(resolve(repoRoot, 'docs/identity.md'), 'identity history\n');
-      execFileSync('git', ['config', 'user.name', legacyName], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
-      execFileSync('git', ['config', 'user.email', legacyEmail], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-      });
-      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
-      execFileSync('git', ['commit', '-m', 'identity residue'], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-        env: {
-          ...process.env,
-          GIT_AUTHOR_NAME: legacyName,
-          GIT_AUTHOR_EMAIL: legacyEmail,
-          GIT_COMMITTER_NAME: legacyName,
-          GIT_COMMITTER_EMAIL: legacyEmail,
-        },
+      runTempRepoGit(repoRoot, ['config', 'user.name', legacyName]);
+      runTempRepoGit(repoRoot, ['config', 'user.email', legacyEmail]);
+      runTempRepoGit(repoRoot, ['add', '.']);
+      runTempRepoGit(repoRoot, ['commit', '-m', 'identity residue'], {
+        GIT_AUTHOR_NAME: legacyName,
+        GIT_AUTHOR_EMAIL: legacyEmail,
+        GIT_COMMITTER_NAME: legacyName,
+        GIT_COMMITTER_EMAIL: legacyEmail,
       });
 
-      process.chdir(repoRoot);
-      const findings = scanGitHistory();
+      const findings = scanGitHistory(repoRoot);
 
       expect(findings).toEqual(
         expect.arrayContaining([
@@ -224,21 +211,15 @@ describe('sensitive surface gate', () => {
       const githubCommitterEmail = ['noreply', 'github.com'].join('@');
 
       writeFileSync(resolve(repoRoot, 'docs/identity.md'), 'public identity history\n');
-      execFileSync('git', ['add', '.'], { cwd: repoRoot, encoding: 'utf8' });
-      execFileSync('git', ['commit', '-m', 'public identity ok'], {
-        cwd: repoRoot,
-        encoding: 'utf8',
-        env: {
-          ...process.env,
-          GIT_AUTHOR_NAME: publicName,
-          GIT_AUTHOR_EMAIL: publicEmail,
-          GIT_COMMITTER_NAME: 'GitHub',
-          GIT_COMMITTER_EMAIL: githubCommitterEmail,
-        },
+      runTempRepoGit(repoRoot, ['add', '.']);
+      runTempRepoGit(repoRoot, ['commit', '-m', 'public identity ok'], {
+        GIT_AUTHOR_NAME: publicName,
+        GIT_AUTHOR_EMAIL: publicEmail,
+        GIT_COMMITTER_NAME: 'GitHub',
+        GIT_COMMITTER_EMAIL: githubCommitterEmail,
       });
 
-      process.chdir(repoRoot);
-      const findings = scanGitHistory();
+      const findings = scanGitHistory(repoRoot);
 
       expect(
         findings.some((finding) => finding.ruleId === 'personal-history-identity')

@@ -14,8 +14,6 @@ Canonical boundary:
 - `xiaojiou176-open/shopflow-suite` stays the canonical Shopflow repo
 - canonical OpenClaw installs now point to
   `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- `xiaojiou176/shopflow-openclaw-plugin` is now an archived legacy fallback for
-  previously pinned installs
 
 ## Current Honest Placement
 
@@ -47,10 +45,7 @@ The strongest truthful public distribution surface today is:
 2. the canonical install path through OpenClaw's documented `customPlugins`
    flow:
    `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-3. the archived legacy fallback shell
-   `https://github.com/xiaojiou176/shopflow-openclaw-plugin` only for older
-   pinned installs
-4. discovered through this packet, the ready metadata, and the upstream
+3. discovered through this packet, the ready metadata, and the upstream
    `openclaw/nix-openclaw` public repo
 
 Think of it like packing a product for a public shelf:
@@ -110,7 +105,6 @@ Use this loop:
 3. run `home-manager switch`
 4. capture one install receipt and one runtime receipt
 5. attach the evidence to the proof packet
-6. keep the archived legacy repo only for older pinned compatibility if needed
 
 Minimum proof bundle:
 

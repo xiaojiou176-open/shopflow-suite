@@ -30,7 +30,7 @@ Ready-to-sync does **not** mean:
 | short release body | [release-body.ready.md](./release-body.ready.md) | you need a compact release note body | proof that a release is already published |
 | fuller public copy block | [public-copy.ready.md](./public-copy.ready.md) | you need a slightly richer description block | a public support claim |
 | public distribution packet | [public-distribution-bundle.ready.md](./public-distribution-bundle.ready.md) | you need the repo-owned API / MCP / skills / plugin-marketplace handoff packet | proof that any public distribution already happened |
-| MCP packet only | [public-mcp-capability-map.ready.md](./public-mcp-capability-map.ready.md) | you need the read-only MCP capability packet alone | proof that a public MCP server already exists |
+| MCP packet only | [public-mcp-capability-map.ready.md](./public-mcp-capability-map.ready.md) | you need the read-only MCP capability packet alone | proof that a public HTTP MCP server already exists |
 | skills packet only | [public-skills-catalog.ready.md](./public-skills-catalog.ready.md) | you need the skills distribution packet alone | proof that a public skills pack already exists |
 | plugin metadata packet only | [plugin-marketplace-metadata.ready.md](./plugin-marketplace-metadata.ready.md) | you need the plugin/listing metadata packet alone | proof that a marketplace listing already exists |
 | reusable snippets | [ready-to-sync-public-copy.md](./ready-to-sync-public-copy.md) | you need modular copy blocks for GitHub, release notes, or page text | proof that external sync already happened |
@@ -54,8 +54,7 @@ Why this order works:
 - the smallest claim surface gets reviewed first
 - larger wording blocks inherit the same truth boundary
 - it reduces the chance that one public surface outruns another
-- it keeps side repos clearly secondary instead of letting them read like peer
-  main repos
+- it keeps the canonical repo as the only public front door
 
 ## Guardrails
 
@@ -63,9 +62,6 @@ Every ready-to-sync artifact must keep these boundaries visible:
 
 - Shopflow is still a Chrome-first shopping extension family
 - `shopflow-suite` is the only canonical repo and main front door
-- any side-repo copy must point back to `shopflow-suite` and label itself as a
-  fallback, mirror, or target-specific install shell rather than a second main
-  repo
 - builder-facing surfaces are still repo-local and read-only first
 - current wording must not imply a public API, public MCP, public CLI, or SDK
 - current wording must not imply public-ready support beyond reviewed evidence

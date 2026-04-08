@@ -22,8 +22,9 @@
       "id": "integration-surface",
       "label": "Builder integration surface",
       "state": "repo-local-read-only",
-      "sourceCommand": "pnpm cli:read-only -- integration-surface",
+      "sourceCommand": "pnpm mcp:stdio -> get_integration_surface",
       "sourceDocs": [
+        "docs/ecosystem/mcp-quickstart.md",
         "docs/ecosystem/builder-start-here.md",
         "docs/ecosystem/integration-recipes.md"
       ],
@@ -40,8 +41,9 @@
       "id": "runtime-seam",
       "label": "Provider runtime seam",
       "state": "repo-local-read-only",
-      "sourceCommand": "pnpm cli:read-only -- runtime-seam",
+      "sourceCommand": "pnpm mcp:stdio -> get_runtime_seam",
       "sourceDocs": [
+        "docs/ecosystem/mcp-quickstart.md",
         "docs/adr/ADR-004-switchyard-provider-runtime-seam.md",
         "docs/ecosystem/integration-recipes.md"
       ],
@@ -58,8 +60,9 @@
       "id": "submission-readiness",
       "label": "Submission readiness report",
       "state": "repo-local-read-only",
-      "sourceCommand": "pnpm cli:read-only -- submission-readiness",
+      "sourceCommand": "pnpm mcp:stdio -> get_submission_readiness",
       "sourceDocs": [
+        "docs/ecosystem/mcp-quickstart.md",
         "docs/ecosystem/claude-code-quickstart.md",
         "docs/ecosystem/public-distribution-bundle.ready.md"
       ],
@@ -71,6 +74,24 @@
         "openclaw"
       ],
       "summary": "Surfaces what still blocks release or submission without pretending those external steps are already done."
+    },
+    {
+      "id": "public-distribution-bundle",
+      "label": "Public distribution bundle",
+      "state": "repo-local-read-only",
+      "sourceCommand": "pnpm mcp:stdio -> get_public_distribution_bundle",
+      "sourceDocs": [
+        "docs/ecosystem/mcp-quickstart.md",
+        "docs/ecosystem/public-distribution-bundle.ready.md"
+      ],
+      "targetFit": [
+        "codex",
+        "claude-code",
+        "opencode",
+        "openhands",
+        "openclaw"
+      ],
+      "summary": "Surfaces the current read-only distribution bundle without pretending that public transport or external listing already happened."
     }
   ],
   "skills": [
@@ -97,7 +118,7 @@
     "suggestedSlug": "shopflow-openclaw-read-only-packet",
     "title": "Shopflow OpenClaw Read-only Packet",
     "summary": "Ready-to-publish metadata draft for a public OpenClaw plugin-style route that keeps Shopflow read-only and below official-live claims.",
-    "boundaryNote": "Ready-to-publish packet only. The canonical install path now uses xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin, while xiaojiou176/shopflow-openclaw-plugin remains an archived legacy fallback. Do not claim an official OpenClaw listing or official-org integration until a real official surface is live.",
+    "boundaryNote": "Ready-to-publish packet only. Do not claim an official OpenClaw listing or official-org integration until a real public repo or approved listing surface is live.",
     "screenshotSources": [
       "docs/ecosystem/openclaw-comparison.md",
       "docs/ecosystem/openclaw-public-ready-matrix.md",
@@ -137,15 +158,15 @@
       ]
     },
     "mustNotClaim": [
-      "Official OpenClaw listing already live",
-      "Official OpenClaw integration already approved"
+      "Official OpenClaw listing",
+      "Official OpenClaw integration"
     ]
   },
-  "summary": "OpenClaw now uses a canonical main-repo install path plus a public-ready packet: install and discovery are explicit, while official listing still stays outside the repo boundary.",
+  "summary": "OpenClaw is now carried as a public-ready but not-yet-published packet: install path, discovery path, and proof loop are explicit, while the final external publish step stays truthfully outside the repo boundary.",
   "boundaryNote": "This bundle turns agent-specific onboarding, MCP capability prep, skills scaffolds, starter bundles, sample configs, proof loops, and plugin metadata into one repo-owned packet. It does not prove any official integration, official listing, published plugin, or distributed skills pack already exists.",
   "mustNotClaim": [
-    "Official OpenClaw listing already live",
-    "Official OpenClaw integration already approved"
+    "Official OpenClaw listing",
+    "Official OpenClaw integration"
   ],
-  "nextHumanStep": "Use the canonical install path github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin, install it through nix-openclaw customPlugins, and capture the proof-loop receipts. Keep the archived legacy repo only for older pinned compatibility. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
+  "nextHumanStep": "Use the canonical install path inside shopflow-suite, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first."
 }

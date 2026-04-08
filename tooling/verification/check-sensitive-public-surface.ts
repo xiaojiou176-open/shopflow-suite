@@ -12,11 +12,7 @@ import {
 } from './sensitive-surface-gate';
 
 const privateRepos = [] as const;
-const publicRepos = [
-  'xiaojiou176-open/shopflow-suite',
-  'xiaojiou176/shopflow-public-packets',
-  'xiaojiou176/shopflow-openclaw-plugin',
-] as const;
+const publicRepos = ['xiaojiou176-open/shopflow-suite'] as const;
 
 type RepoView = {
   isPrivate: boolean;

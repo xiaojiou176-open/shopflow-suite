@@ -54,7 +54,7 @@
       "id": "ext-temu:https://www.temu.com/search_result.html?search_key=warehouse",
       "appId": "ext-temu",
       "label": "www.temu.com · search",
-      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as store-review.",
+      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. Review bundle metadata will appear once repo-owned release artifacts exist.",
       "timestampLabel": "2:30 AM",
       "href": "https://www.temu.com/search_result.html?search_key=warehouse"
     }
@@ -71,7 +71,7 @@
     "reviewedCount": 0,
     "rejectedCount": 0,
     "expiredCount": 0,
-    "blockerSummary": "Reviewed live evidence still gates public wording.",
+    "blockerSummary": "Reviewed live evidence is still required before public wording can move forward.",
     "nextCaptureId": "temu-filter-live-receipt",
     "nextStatus": "missing-live-receipt",
     "nextOperatorPath": "capture",

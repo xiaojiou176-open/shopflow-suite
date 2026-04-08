@@ -1,7 +1,7 @@
 {
   "tone": "claim-gated",
   "title": "Workflow copilot",
-  "summary": "Reviewed live evidence still gates public wording.",
+  "summary": "Repo-local review bundle is ready for inspection.",
   "bullets": [
     {
       "label": "Current surface",

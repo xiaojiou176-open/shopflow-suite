@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-07T03:17:57.624Z",
+  "generatedAt": "2026-04-08T04:12:11.074Z",
   "appId": "ext-kroger",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -13,6 +13,7 @@
         "Typed store-adapter contracts and verified-scope boundaries",
         "Agent-specific onboarding bundle that gives Codex / Claude Code a truthful quickstart path and gives OpenClaw a public-ready route without pretending official listing is already done",
         "Read-only provider-runtime seam contract that keeps external runtime acquisition boundaries explicit without turning Shopflow into a provider runtime",
+        "A repo-local read-only stdio MCP for integration surface, runtime seam, submission readiness, and public distribution bundle access",
         "Read-only runtime truth for detection, latest output, recent activity, and evidence queue state",
         "Workflow decision briefs and workflow-copilot briefs",
         "Review-bundle and submission-readiness artifacts",
@@ -24,10 +25,10 @@
         "Keep AI inside the operator workflow instead of in a generic chat surface",
         "Keep public copy English-first while product UI stays English-default with zh-CN support through shared locale catalogs",
         "Keep new user-visible strings out of scattered bilingual literals",
+        "Keep the read-only stdio MCP aligned with the same repo-owned payloads as the packet and CLI surfaces",
         "Keep repo-local outcome tooling read-only and truthful instead of presenting it as a public CLI commitment"
       ],
       "later": [
-        "Read-only MCP surface backed by the same runtime truth",
         "Read-only public API transport",
         "Generated client or thin SDK",
         "CLI wrapper or skills pack built on the same read models"
@@ -425,6 +426,15 @@
         "command": "pnpm cli:read-only -- integration-surface",
         "outputPath": ".runtime-cache/cli/",
         "summary": "Provides one repo-local read-only CLI wrapper for agent-integration-bundle, agent-target-packet, integration-surface, runtime-seam, runtime-consumer, public-distribution-bundle, outcome-bundle, and submission-readiness without turning that convenience wrapper into a public CLI commitment."
+      },
+      {
+        "id": "read-only-mcp-stdio",
+        "label": "Repo-local read-only stdio MCP",
+        "availability": "current-scope-now",
+        "readOnly": true,
+        "command": "pnpm mcp:stdio",
+        "outputPath": "stdio transport",
+        "summary": "Provides one repo-local read-only stdio MCP for integration-surface, runtime-seam, submission-readiness, and public-distribution-bundle without turning that transport into a public HTTP MCP commitment."
       }
     ],
     "ecosystemFit": [
@@ -582,7 +592,7 @@
           "id": "ext-kroger:https://www.fredmeyer.com/savings/coupons",
           "appId": "ext-kroger",
           "label": "www.fredmeyer.com · deal",
-          "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as store-review.",
+          "summary": "Extract family deal cards is runnable right now. Review bundle metadata will appear once repo-owned release artifacts exist.",
           "timestampLabel": "2:20 AM",
           "href": "https://www.fredmeyer.com/savings/coupons"
         }
@@ -599,7 +609,7 @@
         "reviewedCount": 0,
         "rejectedCount": 0,
         "expiredCount": 0,
-        "blockerSummary": "Reviewed live evidence still gates public wording.",
+        "blockerSummary": "Reviewed live evidence is still required before public wording can move forward.",
         "nextCaptureId": "fred-meyer-verified-scope-live-receipt",
         "nextStatus": "missing-live-receipt",
         "nextOperatorPath": "capture",
@@ -639,7 +649,7 @@
       "readOnly": true,
       "appTitle": "Shopflow for Kroger Family",
       "stage": "claim-gated",
-      "summary": "Reviewed live evidence still gates public wording.",
+      "summary": "Review bundle is ready for repo-local inspection.",
       "whyNow": [
         "www.fredmeyer.com · deal",
         "Extract family deal cards is runnable right now.",
@@ -654,7 +664,7 @@
     "workflowCopilotBrief": {
       "tone": "claim-gated",
       "title": "Workflow copilot",
-      "summary": "Reviewed live evidence still gates public wording.",
+      "summary": "Repo-local review bundle is ready for inspection.",
       "bullets": [
         {
           "label": "Current surface",
@@ -697,13 +707,13 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 3 app entries. ext-kroger is store-review with bundle directory apps/ext-kroger/.output/chrome-mv3 and 1 packaged zip artifact."
+      "summary": "Repo-owned review artifact manifest for all 8+1 apps after packaging completes."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-kroger as review-bundle-ready-claim-gated. Review bundle ready: yes. Reviewed live evidence still gates public wording."
+      "summary": "Repo-owned submission-readiness checklist that keeps claim-gated and internal-alpha boundaries explicit."
     }
   ],
   "readyToSyncArtifacts": [

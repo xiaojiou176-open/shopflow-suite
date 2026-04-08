@@ -108,6 +108,7 @@ export const builderRepoLocalToolSchema = z.object({
     'write-builder-example-rack',
     'write-builder-outcome-bundle',
     'read-only-cli-prototype',
+    'read-only-mcp-stdio',
   ]),
   label: z.string().min(1),
   availability: z.enum(builderIntegrationPhaseValues),
@@ -150,6 +151,7 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
       'Typed store-adapter contracts and verified-scope boundaries',
       'Agent-specific onboarding bundle that gives Codex / Claude Code a truthful quickstart path and gives OpenClaw a public-ready route without pretending official listing is already done',
       'Read-only provider-runtime seam contract that keeps external runtime acquisition boundaries explicit without turning Shopflow into a provider runtime',
+      'A repo-local read-only stdio MCP for integration surface, runtime seam, submission readiness, and public distribution bundle access',
       'Read-only runtime truth for detection, latest output, recent activity, and evidence queue state',
       'Workflow decision briefs and workflow-copilot briefs',
       'Review-bundle and submission-readiness artifacts',
@@ -161,10 +163,10 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
       'Keep AI inside the operator workflow instead of in a generic chat surface',
       'Keep public copy English-first while product UI stays English-default with zh-CN support through shared locale catalogs',
       'Keep new user-visible strings out of scattered bilingual literals',
+      'Keep the read-only stdio MCP aligned with the same repo-owned payloads as the packet and CLI surfaces',
       'Keep repo-local outcome tooling read-only and truthful instead of presenting it as a public CLI commitment',
     ],
     later: [
-      'Read-only MCP surface backed by the same runtime truth',
       'Read-only public API transport',
       'Generated client or thin SDK',
       'CLI wrapper or skills pack built on the same read models',
@@ -507,6 +509,16 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
       outputPath: '.runtime-cache/cli/',
       summary:
         'Provides one repo-local read-only CLI wrapper for agent-integration-bundle, agent-target-packet, integration-surface, runtime-seam, runtime-consumer, public-distribution-bundle, outcome-bundle, and submission-readiness without turning that convenience wrapper into a public CLI commitment.',
+    },
+    {
+      id: 'read-only-mcp-stdio',
+      label: 'Repo-local read-only stdio MCP',
+      availability: 'current-scope-now',
+      readOnly: true,
+      command: 'pnpm mcp:stdio',
+      outputPath: 'stdio transport',
+      summary:
+        'Provides one repo-local read-only stdio MCP for integration-surface, runtime-seam, submission-readiness, and public-distribution-bundle without turning that transport into a public HTTP MCP commitment.',
     },
   ],
   ecosystemFit: [

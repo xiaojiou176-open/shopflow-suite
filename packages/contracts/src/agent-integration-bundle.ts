@@ -316,7 +316,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         'Official OpenClaw integration',
       ],
       nextHumanStep:
-        'Create or authorize the public GitHub plugin repo, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first.',
+        'Use the canonical install path inside shopflow-suite, install it through nix-openclaw customPlugins, and capture the proof loop receipts. If official OpenClaw-owned placement is desired, ask maintainers through the documented Discord channel first.',
     },
   ],
   publicMcpCapabilityMap: {
@@ -327,8 +327,9 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         id: 'integration-surface',
         label: 'Builder integration surface',
         state: 'repo-local-read-only',
-        sourceCommand: 'pnpm cli:read-only -- integration-surface',
+        sourceCommand: 'pnpm mcp:stdio -> get_integration_surface',
         sourceDocs: [
+          'docs/ecosystem/mcp-quickstart.md',
           'docs/ecosystem/builder-start-here.md',
           'docs/ecosystem/integration-recipes.md',
         ],
@@ -346,8 +347,9 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         id: 'runtime-seam',
         label: 'Provider runtime seam',
         state: 'repo-local-read-only',
-        sourceCommand: 'pnpm cli:read-only -- runtime-seam',
+        sourceCommand: 'pnpm mcp:stdio -> get_runtime_seam',
         sourceDocs: [
+          'docs/ecosystem/mcp-quickstart.md',
           'docs/adr/ADR-004-switchyard-provider-runtime-seam.md',
           'docs/ecosystem/integration-recipes.md',
         ],
@@ -362,39 +364,12 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           'Makes the Shopflow-vs-runtime boundary explicit without turning the repo into a public runtime product.',
       },
       {
-        id: 'runtime-consumer',
-        label: 'Thin runtime consumer snapshot',
-        state: 'current-scope-now',
-        sourceCommand:
-          'pnpm cli:read-only -- runtime-consumer --base-url http://127.0.0.1:4317',
-        sourceDocs: [
-          'docs/ecosystem/builder-start-here.md',
-          'docs/ecosystem/claude-code-quickstart.md',
-          'docs/ecosystem/codex-quickstart.md',
-        ],
-        targetFit: ['codex', 'claude-code', 'opencode', 'openhands'],
-        summary:
-          'Turns the read-only Switchyard seam into concrete acquisition routes when a real base URL exists.',
-      },
-      {
-        id: 'outcome-bundle',
-        label: 'Joined outcome bundle',
-        state: 'repo-local-read-only',
-        sourceCommand: 'pnpm cli:read-only -- outcome-bundle --app ext-kroger',
-        sourceDocs: [
-          'docs/ecosystem/integration-recipes.md',
-          'docs/ecosystem/codex-quickstart.md',
-        ],
-        targetFit: ['codex', 'claude-code', 'opencode', 'openhands'],
-        summary:
-          'Gives one joined read-only JSON bundle without hidden runtime-payload writes.',
-      },
-      {
         id: 'submission-readiness',
         label: 'Submission readiness report',
         state: 'repo-local-read-only',
-        sourceCommand: 'pnpm cli:read-only -- submission-readiness',
+        sourceCommand: 'pnpm mcp:stdio -> get_submission_readiness',
         sourceDocs: [
+          'docs/ecosystem/mcp-quickstart.md',
           'docs/ecosystem/claude-code-quickstart.md',
           'docs/ecosystem/public-distribution-bundle.ready.md',
         ],
@@ -407,6 +382,25 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         ],
         summary:
           'Surfaces what still blocks release or submission without pretending those external steps are already done.',
+      },
+      {
+        id: 'public-distribution-bundle',
+        label: 'Public distribution bundle',
+        state: 'repo-local-read-only',
+        sourceCommand: 'pnpm mcp:stdio -> get_public_distribution_bundle',
+        sourceDocs: [
+          'docs/ecosystem/mcp-quickstart.md',
+          'docs/ecosystem/public-distribution-bundle.ready.md',
+        ],
+        targetFit: [
+          'codex',
+          'claude-code',
+          'opencode',
+          'openhands',
+          'openclaw',
+        ],
+        summary:
+          'Surfaces the current read-only distribution bundle without pretending that public transport or external listing already happened.',
       },
     ],
   },

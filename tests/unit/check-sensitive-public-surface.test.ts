@@ -15,16 +15,6 @@ function createOps(
       visibility: 'PUBLIC',
       url: 'https://github.com/xiaojiou176-open/shopflow-suite',
     },
-    'xiaojiou176/shopflow-public-packets': {
-      isPrivate: false,
-      visibility: 'PUBLIC',
-      url: 'https://github.com/xiaojiou176/shopflow-public-packets',
-    },
-    'xiaojiou176/shopflow-openclaw-plugin': {
-      isPrivate: false,
-      visibility: 'PUBLIC',
-      url: 'https://github.com/xiaojiou176/shopflow-openclaw-plugin',
-    },
   } as const;
 
   return {
@@ -69,13 +59,13 @@ describe('sensitive public-surface gate', () => {
     const findings = collectPublicSurfaceFindings(
       createOps({
         listIssues: (repo) =>
-          repo === 'xiaojiou176/shopflow-public-packets'
+          repo === 'xiaojiou176-open/shopflow-suite'
             ? [
                 {
                   number: 12,
                   title: 'Leak report',
                   body: `owner path ${leakedPath}`,
-                  url: 'https://github.com/xiaojiou176/shopflow-public-packets/issues/12',
+                  url: 'https://github.com/xiaojiou176-open/shopflow-suite/issues/12',
                 },
               ]
             : [],
@@ -87,7 +77,7 @@ describe('sensitive public-surface gate', () => {
         expect.objectContaining({
           ruleId: 'absolute-user-path',
           file: expect.stringContaining(
-            'xiaojiou176/shopflow-public-packets:issue-12'
+            'xiaojiou176-open/shopflow-suite:issue-12'
           ),
         }),
       ])
@@ -151,23 +141,23 @@ describe('sensitive public-surface gate', () => {
       visibility: 'private',
       url: 'https://github.com/xiaojiou176/shopflow-suite',
     });
-    expect(ops.listIssues('xiaojiou176/shopflow-public-packets')).toEqual([
+    expect(ops.listIssues('xiaojiou176-open/shopflow-suite')).toEqual([
       { number: 1, title: 'issue-1' },
     ]);
-    expect(ops.listPulls('xiaojiou176/shopflow-public-packets')).toEqual([
+    expect(ops.listPulls('xiaojiou176-open/shopflow-suite')).toEqual([
       { number: 3, title: 'pull-1' },
     ]);
-    expect(ops.listReleases('xiaojiou176/shopflow-public-packets')).toEqual([
+    expect(ops.listReleases('xiaojiou176-open/shopflow-suite')).toEqual([
       { tag_name: 'v1.0.0', name: 'release-1' },
     ]);
-    expect(ops.cloneRepo('xiaojiou176/shopflow-public-packets')).toBe(
-      '/tmp/xiaojiou176-shopflow-public-packets'
+    expect(ops.cloneRepo('xiaojiou176-open/shopflow-suite')).toBe(
+      '/tmp/xiaojiou176-open-shopflow-suite'
     );
     expect(calls.map((args) => args[1])).toEqual([
       'repos/xiaojiou176-open/shopflow-suite',
-      'repos/xiaojiou176/shopflow-public-packets/issues?state=all&per_page=100',
-      'repos/xiaojiou176/shopflow-public-packets/pulls?state=all&per_page=100',
-      'repos/xiaojiou176/shopflow-public-packets/releases?per_page=100',
+      'repos/xiaojiou176-open/shopflow-suite/issues?state=all&per_page=100',
+      'repos/xiaojiou176-open/shopflow-suite/pulls?state=all&per_page=100',
+      'repos/xiaojiou176-open/shopflow-suite/releases?per_page=100',
     ]);
   });
 });

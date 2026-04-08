@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Shopflow front door</title>
+  <desc id="desc">A visual summary of Shopflow as an 8 plus 1 extension family with a read-only stdio MCP surface, review shelf, and one canonical repo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed" />
+      <stop offset="55%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#ecfeff" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)" rx="24" />
+  <rect x="64" y="64" width="1152" height="592" rx="32" fill="#ffffff" opacity="0.92" />
+  <text x="104" y="146" fill="#0f172a" font-size="54" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Shopflow</text>
+  <text x="104" y="190" fill="#334155" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Chrome-first shopping extension family with a live read-only stdio MCP surface</text>
+
+  <rect x="104" y="244" width="248" height="172" rx="24" fill="url(#panel)" />
+  <text x="132" y="296" fill="#f8fafc" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">8 storefront apps</text>
+  <text x="132" y="334" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Albertsons, Amazon, Costco,</text>
+  <text x="132" y="362" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Kroger, Target, Temu,</text>
+  <text x="132" y="390" fill="#cbd5e1" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Walmart, Weee</text>
+
+  <rect x="380" y="244" width="248" height="172" rx="24" fill="#082f49" />
+  <text x="408" y="296" fill="#ecfeff" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">1 suite shell</text>
+  <text x="408" y="334" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Internal-alpha lobby</text>
+  <text x="408" y="362" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">for routing, readiness,</text>
+  <text x="408" y="390" fill="#bae6fd" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">and evidence visibility</text>
+
+  <rect x="656" y="244" width="248" height="172" rx="24" fill="#14532d" />
+  <text x="684" y="296" fill="#f0fdf4" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Read-only stdio MCP</text>
+  <text x="684" y="334" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">4 repo-truth tools:</text>
+  <text x="684" y="362" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">integration, seam,</text>
+  <text x="684" y="390" fill="#bbf7d0" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">submission, distribution</text>
+
+  <rect x="932" y="244" width="248" height="172" rx="24" fill="#7c2d12" />
+  <text x="960" y="296" fill="#fff7ed" font-size="26" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Review shelf</text>
+  <text x="960" y="334" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Submission-readiness</text>
+  <text x="960" y="362" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">and review bundles</text>
+  <text x="960" y="390" fill="#fed7aa" font-size="20" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">without overclaiming release</text>
+
+  <rect x="104" y="462" width="1076" height="134" rx="28" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" />
+  <text x="140" y="512" fill="#0f172a" font-size="28" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Canonical repo only</text>
+  <text x="140" y="548" fill="#334155" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">xiaojiou176-open/shopflow-suite is the single active front door.</text>
+  <text x="140" y="580" fill="#334155" font-size="22" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">AI tools attach through stdio; external registry, Docker, and public transport come later.</text>
+</svg>

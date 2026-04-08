@@ -1,0 +1,21 @@
+{
+  "name": "@shopflow/mcp-server",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "shopflow-mcp": "./bin/shopflow-mcp.mjs"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "scripts": {
+    "mcp:stdio": "node --import tsx ./bin/shopflow-mcp.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@shopflow/contracts": "workspace:*",
+    "zod": "^4.3.6"
+  }
+}

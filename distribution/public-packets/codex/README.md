@@ -7,13 +7,9 @@ In plain language:
 > this is the Codex box on the shelf when no confirmed official Codex shelf has
 > been found.
 
-The canonical Shopflow repo still remains:
+The canonical Shopflow repo remains:
 
 - `https://github.com/xiaojiou176-open/shopflow-suite`
-
-This folder belongs to the secondary mirror repo:
-
-- `https://github.com/xiaojiou176/shopflow-public-packets`
 
 ## Truthful Position
 
