@@ -78,8 +78,9 @@ gates under `externalBlockers`, such as:
 - actual store submission / review that still happens outside the repo
 
 If the latest repo-local reviewed-records ledger already covers a required
-capture id, keep that reviewed packet attached to the submission report instead
-of continuing to list the same capture id under `externalBlockers`.
+capture id, whether as reviewed or rejected, keep that finalized packet in the
+submission report instead of continuing to list the same capture id under
+`externalBlockers`.
 
 The report should read like a reviewer handoff card, not a slogan. In practice
 that means each entry should surface:

@@ -207,6 +207,58 @@ describe('submission readiness report tooling', () => {
     expect(report.entries[0]?.externalBlockers).toEqual([]);
   });
 
+  it('treats rejected live-evidence records as repo-side triage instead of external blockers', () => {
+    const manifest: ReleaseArtifactManifestEntry[] = [
+      {
+        appId: 'ext-kroger',
+        publicName: 'Shopflow for Kroger Family',
+        releaseChannel: 'capability-heavy-candidate',
+        claimState: 'repo-verified',
+        wave: 'Wave 3',
+        tier: 'capability-heavy-product',
+        buildDirectory: 'apps/ext-kroger/.output/chrome-mv3',
+        zipArtifacts: [
+          'apps/ext-kroger/.output/shopflowext-kroger-0.1.0-chrome.zip',
+        ],
+      },
+    ];
+    const report = createSubmissionReadinessReport(manifest, [], {
+      reviewedRecordsPacket: {
+        reviewedRecords: [
+          { captureId: 'qfc-verified-scope-live-receipt' },
+        ],
+        rejectedRecords: [
+          { captureId: 'fred-meyer-verified-scope-live-receipt' },
+        ],
+      },
+    });
+
+    expect(report.entries[0]).toMatchObject({
+      appId: 'ext-kroger',
+      reviewBundleReady: true,
+      repoOwnedStatus: 'review-bundle-ready-claim-gated',
+      readinessSummary: expect.stringMatching(/rejected captures/i),
+    });
+    expect(report.entries[0]?.reviewerChecklist).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          category: 'claim-boundary',
+          status: 'blocked',
+          detail: expect.stringMatching(/rejected captures/i),
+        }),
+        expect.objectContaining({
+          category: 'live-evidence',
+          status: 'blocked',
+          detail: expect.stringMatching(/Do not treat these captures as missing external packets/i),
+        }),
+      ])
+    );
+    expect(report.entries[0]?.repoOwnedNextMove).toMatch(
+      /repo-side recapture or evidence triage/i
+    );
+    expect(report.entries[0]?.externalBlockers).toEqual([]);
+  });
+
   it('turns missing default review hosts into readable reviewer-start-path blockers instead of fake URLs', () => {
     const manifest: ReleaseArtifactManifestEntry[] = [
       {
