@@ -118,10 +118,21 @@ function isAllowedGithubNoreplyIdentity(
   return authorLooksPublic && committerLooksPublic;
 }
 
+function createGitEnv(repoRoot: string): NodeJS.ProcessEnv {
+  if (repoRoot === process.cwd()) {
+    return process.env;
+  }
+
+  return Object.fromEntries(
+    Object.entries(process.env).filter(([key]) => !key.startsWith('GIT_'))
+  );
+}
+
 function runGit(args: string[], repoRoot = process.cwd()) {
   const result = spawnSync('git', args, {
     cwd: repoRoot,
     encoding: 'utf8',
+    env: createGitEnv(repoRoot),
   });
 
   return result;
