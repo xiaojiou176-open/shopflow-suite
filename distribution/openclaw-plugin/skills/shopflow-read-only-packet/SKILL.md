@@ -1,23 +1,36 @@
 # Shopflow Read-only Packet
 
-Use this tiny skill when someone only needs the OpenClaw-facing Shopflow packet.
+Teach the agent how to install, connect, and use Shopflow as a read-only packet
+surface.
 
-What to read first:
+## Use this skill when
 
-1. `README.md`
-2. `packets/README.md`
-3. `packets/agent-target-packet.openclaw.json`
-4. `packets/plugin-marketplace-metadata.openclaw.json`
+- the user wants integration or submission-readiness truth without live store
+  claims
+- the host can run Shopflow's local `stdio` MCP server
+- the operator wants a packet that explains install, capabilities, and proof in
+  one folder
 
-What this shell can truthfully say:
+## What this packet teaches
 
-- it is the canonical OpenClaw install shell inside `shopflow-suite`
-- it can be installed through OpenClaw customPlugins using `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
-- it mirrors Shopflow's read-only packet truth
-- canonical docs and proof still live in `shopflow-suite`
+- how to attach the current Shopflow MCP server
+- which packet-oriented capabilities are safe first
+- how to read submission readiness without flattening it into fake live claims
+- how to keep the OpenClaw-facing install shell truthful
 
-What this shell must not say:
+## Start here
 
-- canonical Shopflow repo status
+1. Read [references/INSTALL.md](references/INSTALL.md)
+2. Load the right host config from:
+   - [references/OPENHANDS_MCP_CONFIG.json](references/OPENHANDS_MCP_CONFIG.json)
+   - [references/OPENCLAW_MCP_CONFIG.json](references/OPENCLAW_MCP_CONFIG.json)
+3. Skim the capability map in [references/CAPABILITIES.md](references/CAPABILITIES.md)
+4. Run the proof loop in [references/DEMO.md](references/DEMO.md)
+5. If the packet or attach path fails, use
+   [references/TROUBLESHOOTING.md](references/TROUBLESHOOTING.md)
+
+## Must not claim
+
+- canonical Shopflow repo status beyond the packet truth
 - official OpenClaw listing already live
 - official OpenClaw org integration already approved

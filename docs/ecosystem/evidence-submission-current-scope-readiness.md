@@ -37,7 +37,7 @@ It does **not** turn this subline into:
 | Reviewer/operator docs now give one clearer “where do I start” path | `done` | reviewers do not need to reverse-engineer which file, URL, or runbook comes first | `docs/runbooks/release-artifact-review.md`, `docs/runbooks/live-receipt-capture.md`, `docs/ecosystem/ready-to-sync-artifacts.md`, `docs/README.md` | L1 owns final wording |
 | Reviewed live receipt evidence bundles exist for required claim-gated flows | `external only` | this is the real proof gate for capability-heavy public wording, and it cannot be faked inside the repo | `docs/runbooks/live-receipt-capture.md`, `docs/contracts/testing-and-verification-bar.md`, `submission-readiness.json` `externalBlockers` | real merchant session + external review |
 | Signed store-ready artifacts and real submission environments exist | `external only` | review bundles are still reviewer packets, not signed releases | `docs/runbooks/release-artifact-review.md`, `submission-readiness.json` `externalBlockers` | signing + platform workflow outside repo |
-| Git closeout for the overall Prompt 1-10 worktree | `not done` | this subline can be compressed without pretending the whole repo is already closed clean | `git status --short --branch`, `git diff --stat` | L1 only |
+| Git closeout for the overall Prompt 1-10 worktree | `needs fresh recheck` | this subline can stay compressed while repo-wide clean closure, branch ancestry, and submit base continue moving underneath it | `git status --short --branch`, `git rev-list --left-right --count origin/main...main`, `git diff --stat` | L1 only |
 
 ## Repo-Side Still-Actionable Inside This Subline
 
@@ -65,5 +65,5 @@ subline failed**:
 - Evidence/submission line: **repo-side compressed**
 - Strongest gate: **must stay serial and trustworthy by fresh evidence**
 - Reviewer handoff: **clear enough to start from `submission-readiness.json` instead of guessing**
-- Git closeout: **ready for the current repo-owned baseline**, because the
-  current local `main` is now landed on `origin/main`
+- Git closeout: **not a current reviewer scoreboard**; rerun fresh git checks
+  before using this page for `clean-for-submit` or repo-wide closure language
