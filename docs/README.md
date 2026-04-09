@@ -55,6 +55,17 @@ In plain language:
 
 > one main building, one canonical install counter, and one repo-local MCP desk.
 
+## Primary Product vs Companion Surfaces
+
+Use this like a floor map:
+
+| Surface | Role | What it proves | What it must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | Shopflow is a browser-first extension family | a packet mirror or MCP-first product |
+| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion skill packet | host-native packet consumers can install one truthful folder | proof that Chrome Web Store or broader Shopflow browser lanes are already live |
+| `distribution/public-packets/` | companion mirror rack | target-specific fallback packets still exist in-repo | a second canonical public front door |
+| `pnpm mcp:stdio` + ecosystem docs | companion repo-truth lane | AI tools can inspect read-only runtime and submission-readiness truth | a public HTTP MCP or public SDK package |
+
 ## Public Surfaces In One Glance
 
 ![Shopflow public Pages snapshot card](./assets/shopflow-pages-front-door-card.svg)

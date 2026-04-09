@@ -42,6 +42,18 @@ In plain language:
 | latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
 | read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
 
+## Primary Product vs Companion Surfaces
+
+Think of Shopflow like a mall with one real storefront and a few information
+desks:
+
+| Surface | Role | Why it exists | What it must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | the browser-first extension family itself | a packet mirror or an MCP-first product |
+| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion public skill packet | one portable folder for host-native skill flows such as OpenClaw and OpenHands | proof that Shopflow browser/store lanes are already listed live |
+| `distribution/public-packets/` | companion packet mirror | smaller target-specific handoff packets when a side shelf helps | the canonical Shopflow front door or a second product repo |
+| `pnpm mcp:stdio` + builder docs | companion repo-truth surface | read-only repo, runtime-seam, and submission-readiness access for AI tools | a public HTTP MCP, public SDK, or Chrome Web Store state |
+
 ## What You Can Inspect Today
 
 - public canonical repo:
@@ -86,7 +98,9 @@ If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
 
 In plain language:
 
-> `shopflow-suite` is the main store and the only live front door.
+> `shopflow-suite` is the main building and the only live GitHub front door.
+> packet shelves can have their own host-side state, but they do not replace
+> the browser-first product lane.
 
 ## What Shopflow Is and Is Not
 

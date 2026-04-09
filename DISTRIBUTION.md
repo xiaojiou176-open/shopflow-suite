@@ -14,6 +14,20 @@ This page keeps the public distribution story short, truthful, and reusable.
   - review manifest
   - submission-readiness report
 
+## Primary lane vs companion lanes
+
+- **Primary lane:** the browser-first extension family under `apps/ext-*` and
+  `apps/ext-shopping-suite`
+- **Companion lane:** the read-only stdio MCP plus builder-facing packet docs
+- **Companion packet lane:** the OpenClaw/OpenHands-facing skill packet and the
+  smaller packet mirrors under `distribution/`
+
+Important boundary:
+
+> a companion skill packet can be listed or under review on its own host lane
+> without proving that Shopflow itself is already Chrome Web Store listed,
+> signed, or public-claim-ready.
+
 ## Ready but not live yet
 
 - Richer storefront visuals and builder-facing packet polish can keep improving
@@ -41,6 +55,8 @@ It is truthful to say:
 - Shopflow is public and reviewable today.
 - The Pages front door, release shelf, and read-only stdio MCP already exist.
 - The repo can package review bundles and submission-readiness materials today.
+- Some companion packet lanes can have their own host-side state without
+  changing the browser/store truth of the main product.
 
 It is not truthful to say:
 
