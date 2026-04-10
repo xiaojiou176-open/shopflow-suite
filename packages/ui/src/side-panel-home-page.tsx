@@ -259,43 +259,45 @@ export function SidePanelHomePage({
 
               {recentProof ? (
                 <div
-                  id="recent-proof-block"
+                  id="latest-output-preview"
                   className="rounded-2xl border border-stone-200 bg-white px-4 py-4 text-xs text-stone-600"
                 >
-                  <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {recentProof.heading}
-                  </p>
-                  <p className="mt-1 text-[11px] text-stone-500">
-                    {recentProof.originLabel}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-stone-900">
-                    {recentProof.title}
-                  </p>
-                  <p className="mt-2 text-xs text-stone-600">
-                    {recentProof.summary}
-                  </p>
-                  {recentProof.detailLines.length > 0 ? (
-                    <ul className="mt-2 space-y-1 text-xs text-stone-600">
-                      {recentProof.detailLines.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                  {recentProof.timestampLabel ? (
-                    <p className="mt-2 text-xs text-stone-500">
-                      {recentProof.timestampLabel}
+                  <div id="recent-proof-block">
+                    <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                      {recentProof.heading}
                     </p>
-                  ) : null}
-                  {recentProof.href ? (
-                    <a
-                      className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
-                      href={recentProof.href}
-                      target={recentProof.external ? '_blank' : undefined}
-                      rel={recentProof.external ? 'noreferrer' : undefined}
-                    >
-                      {recentProof.hrefLabel}
-                    </a>
-                  ) : null}
+                    <p className="mt-1 text-[11px] text-stone-500">
+                      {recentProof.originLabel}
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-stone-900">
+                      {recentProof.title}
+                    </p>
+                    <p className="mt-2 text-xs text-stone-600">
+                      {recentProof.summary}
+                    </p>
+                    {recentProof.detailLines.length > 0 ? (
+                      <ul className="mt-2 space-y-1 text-xs text-stone-600">
+                        {recentProof.detailLines.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    {recentProof.timestampLabel ? (
+                      <p className="mt-2 text-xs text-stone-500">
+                        {recentProof.timestampLabel}
+                      </p>
+                    ) : null}
+                    {recentProof.href ? (
+                      <a
+                        className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
+                        href={recentProof.href}
+                        target={recentProof.external ? '_blank' : undefined}
+                        rel={recentProof.external ? 'noreferrer' : undefined}
+                      >
+                        {recentProof.hrefLabel}
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -401,7 +403,7 @@ export function SidePanelHomePage({
                       }`}
                     >
                       {index === 0
-                        ? copy.sidePanel.primarySupportedMove
+                        ? copy.sidePanel.primaryRoute
                         : copy.sidePanel.supportedMove}
                     </p>
                     <p className="mt-2 text-sm font-semibold">{action.label}</p>
