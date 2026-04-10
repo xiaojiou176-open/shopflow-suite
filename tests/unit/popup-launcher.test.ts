@@ -194,4 +194,31 @@ describe('PopupLauncher', () => {
     );
     expect(html).toContain('跳回最新来源页面');
   });
+
+  it('renders label-only quick routes and detail checklist items', () => {
+    const html = renderToStaticMarkup(
+      React.createElement(PopupLauncher, {
+        title: 'Shopflow Suite',
+        summary: 'Keep popup guidance short and route-first.',
+        actionItems: [
+          'Review verified scope clauses',
+          'Open claim readiness after family selection',
+        ],
+        details: [
+          'Start from the family chooser instead of treating popup like a second console.',
+          'Check claim readiness before any public wording leaves the repo boundary.',
+        ],
+        primaryHref: 'sidepanel.html#start-here',
+      })
+    );
+
+    expect(html).toContain('Review verified scope clauses');
+    expect(html).toContain('Open claim readiness after family selection');
+    expect(html).toContain(
+      'Start from the family chooser instead of treating popup like a second console.'
+    );
+    expect(html).toContain(
+      'Check claim readiness before any public wording leaves the repo boundary.'
+    );
+  });
 });

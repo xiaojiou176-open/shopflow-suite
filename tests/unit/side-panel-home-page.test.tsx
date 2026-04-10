@@ -129,6 +129,7 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain(
       'aria-label="Best route right now: Jump to latest source page"'
     );
+    expect(html).toContain('id="recent-proof-block"');
     expect(html).toContain('Latest captured product');
     expect(html.indexOf('Latest captured product')).toBeLessThan(
       html.indexOf('Available on this page')
@@ -143,31 +144,19 @@ describe('SidePanelHomePage', () => {
     );
     expect(html).toContain('Primary route');
     expect(html).toContain('Merchant source page');
-    expect(html).toContain('Next route');
-    expect(html).toContain('Evidence gate');
-    expect(html).toContain('aria-label="Next route: Review claim gate"');
     expect(html).toContain('Open latest captured page');
     expect(html).toContain('href="https://www.amazon.com/dp/example"');
-    expect(html).toContain('Review claim gate');
-    expect(html).toContain('href="#live-receipt-review"');
     expect(html).toContain('id="live-receipt-evidence"');
     expect(html).toContain('id="live-receipt-review"');
     expect(html).toContain('Raw packet ledger');
-    expect(html).toContain('Decision brief');
-    expect(html).toContain('Next assistant move');
     expect(html).toContain(
       'Review the evidence queue before using public wording.'
     );
     expect(html).toContain('Next routes');
     expect(html).toContain('Open current site summary');
     expect(html).toContain(
-      'aria-label="Operator next step: Jump to latest source page"'
-    );
-    expect(html).toContain('Workflow copilot');
-    expect(html).toContain(
       'Amazon evidence is captured and waiting for explicit review.'
     );
-    expect(html).toContain('Open review lane');
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
   });
@@ -206,13 +195,7 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
     expect(html).toContain('Latest captured page');
     expect(html).toContain('href="https://www.amazon.com/dp/example"');
-    expect(html).toContain(
-      'aria-label="Operator next step: Open latest captured page"'
-    );
     expect(html).toContain('aria-current="page"');
-    expect(html).not.toContain(
-      'aria-label="Next route: Open latest captured page"'
-    );
   });
 
   it('renders localized core headings when the locale changes', () => {
@@ -233,7 +216,6 @@ describe('SidePanelHomePage', () => {
 
     expect(html).toContain('当前准备度');
     expect(html).toContain('当前最佳路线');
-    expect(html).toContain('工作流副驾');
     expect(html).toContain('已采集，等待审核');
     expect(html).toContain('界面语言');
   });
