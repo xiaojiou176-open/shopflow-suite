@@ -1,5 +1,4 @@
 import {
-  createOperatorDecisionBrief,
   getDynamicCopy,
   type SidePanelHomeViewModel,
   type UiLocale,
@@ -33,7 +32,23 @@ export function SidePanelHomePage({
     ['blocked', 'degraded', 'permission_needed'].includes(capability.status)
   ).length;
   const quickRoutes = deriveQuickRoutes(model, locale);
-  const decisionBrief = createOperatorDecisionBrief(model);
+  const primaryRoute = quickRoutes[0];
+  const recentProof = deriveRecentProofBlock(model, locale);
+  const followUpRoute =
+    quickRoutes[1] ??
+    (model.secondaryNavigation[0]
+      ? {
+          label:
+            model.secondaryNavigation[0].actionLabel ??
+            model.secondaryNavigation[0].label,
+          summary: model.secondaryNavigation[0].summary,
+          href: model.secondaryNavigation[0].href,
+          external: model.secondaryNavigation[0].href
+            ? /^https?:/i.test(model.secondaryNavigation[0].href)
+            : false,
+          originLabel: copy.common.routeOriginLabels.sidePanelSection,
+        }
+      : null);
 
   return (
     <main
@@ -93,199 +108,194 @@ export function SidePanelHomePage({
             <p className="mt-2 text-sm text-stone-700">
               {model.readiness.summary}
             </p>
-            <div className="mt-3 grid grid-cols-1 gap-3 text-xs text-stone-600">
-              <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                <p className="uppercase tracking-[0.18em] text-stone-500">
-                  {copy.sidePanel.bestRoute}
+            <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-3">
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 text-xs text-stone-600">
+                <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                  1. {copy.sidePanel.primaryRoute}
                 </p>
-                <div className="mt-2 space-y-2">
-                  {quickRoutes.map((route, index) => (
-                    <div
-                      key={`${route.id}-${route.href}`}
-                      className={`rounded-xl border px-3 py-3 ${
-                        index === 0
-                          ? 'border-stone-300 bg-stone-50'
-                          : 'border-stone-200 bg-white'
-                      }`}
-                    >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                        {index === 0
-                          ? copy.sidePanel.primaryRoute
-                          : copy.sidePanel.nextRoute}
-                      </p>
-                      <p className="mt-1 text-[11px] text-stone-500">
-                        {route.originLabel}
-                      </p>
-                      <a
-                        className="mt-2 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
-                        aria-label={
-                          index === 0
-                            ? copy.sidePanel.bestRouteAria(route.label)
-                            : copy.sidePanel.nextRouteAria(route.label)
-                        }
-                        href={route.href}
-                        target={route.external ? '_blank' : undefined}
-                        rel={route.external ? 'noreferrer' : undefined}
-                      >
-                        {route.label}
-                      </a>
-                      <p className="mt-2 text-xs text-stone-600">
-                        {route.summary}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                {quickRoutes.some((route) => route.id === 'latest-source') &&
-                quickRoutes.some((route) => route.id === 'latest-output') ? (
-                  <p className="mt-3 text-xs text-stone-500">
-                    {copy.sidePanel.sourceCapturedSplitSummary}
-                  </p>
-                ) : null}
-              </div>
-              {model.readiness.operatorNextStep ? (
-                <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {copy.sidePanel.operatorNextStep}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-700">
-                    {model.readiness.operatorNextStep}
-                  </p>
+                <p className="mt-2 text-sm font-medium text-stone-900">
+                  {primaryRoute?.label ?? copy.sidePanel.noRunnableCapability}
+                </p>
+                <p className="mt-2 text-xs text-stone-600">
+                  {primaryRoute?.summary ?? copy.sidePanel.noRunnableCapabilityTail}
+                </p>
+                {primaryRoute ? (
                   <a
                     className="mt-3 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
-                    aria-label={copy.sidePanel.operatorNextStepAria(
-                      quickRoutes[0].label
-                    )}
-                    href={quickRoutes[0].href}
-                    target={quickRoutes[0].external ? '_blank' : undefined}
-                    rel={quickRoutes[0].external ? 'noreferrer' : undefined}
+                    aria-label={copy.sidePanel.bestRouteAria(primaryRoute.label)}
+                    href={primaryRoute.href}
+                    target={primaryRoute.external ? '_blank' : undefined}
+                    rel={primaryRoute.external ? 'noreferrer' : undefined}
                   >
-                    {quickRoutes[0].label}
+                    {primaryRoute.originLabel}
                   </a>
-                  <p className="mt-2 text-[11px] text-stone-500">
-                    {quickRoutes[0].originLabel}
+                ) : null}
+              </div>
+
+              <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 text-xs text-stone-600">
+                <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                  2. {recentProof ? recentProof.heading : copy.sidePanel.recentActivityHeading}
+                </p>
+                <p className="mt-2 text-sm font-medium text-stone-900">
+                  {recentProof?.title ?? copy.sidePanel.noVerifiedActivity}
+                </p>
+                <p className="mt-2 text-xs text-stone-600">
+                  {recentProof?.summary ?? copy.sidePanel.noRunnableCapabilityTail}
+                </p>
+                {recentProof?.href ? (
+                  <a
+                    className="mt-3 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
+                    href={recentProof.href}
+                    target={recentProof.external ? '_blank' : undefined}
+                    rel={recentProof.external ? 'noreferrer' : undefined}
+                  >
+                    {recentProof.hrefLabel}
+                  </a>
+                ) : null}
+              </div>
+
+              <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-xs text-amber-900">
+                <p className="font-semibold uppercase tracking-[0.18em] text-amber-700">
+                  3. {copy.sidePanel.claimBoundary}
+                </p>
+                <p className="mt-2 text-sm font-medium text-stone-900">
+                  {model.readiness.claimBoundary ?? copy.sidePanel.operatorNextStep}
+                </p>
+                <p className="mt-2 text-xs text-amber-900">
+                  {model.readiness.operatorNextStep ??
+                    copy.sidePanel.noRunnableCapabilityTail}
+                </p>
+                {followUpRoute ? (
+                  <a
+                    className="mt-3 inline-flex rounded-xl border border-amber-200 bg-white px-3 py-2 text-sm font-medium text-amber-900"
+                    aria-label={copy.sidePanel.nextRouteAria(followUpRoute.label)}
+                    href={followUpRoute.href}
+                    target={followUpRoute.external ? '_blank' : undefined}
+                    rel={followUpRoute.external ? 'noreferrer' : undefined}
+                  >
+                    {followUpRoute.label}
+                  </a>
+                ) : null}
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
+              <div className="rounded-2xl border border-stone-900 bg-stone-900 px-4 py-4 text-white">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-200">
+                  {copy.sidePanel.primaryRoute}
+                </p>
+                {primaryRoute ? (
+                  <>
+                    <p className="mt-1 text-[11px] text-stone-200">
+                      {primaryRoute.originLabel}
+                    </p>
+                    <p className="mt-2 text-base font-semibold">
+                      {primaryRoute.label}
+                    </p>
+                    <p className="mt-2 text-sm text-stone-200">
+                      {primaryRoute.summary}
+                    </p>
+                    <a
+                      className="mt-4 inline-flex rounded-xl bg-white px-3 py-2 text-sm font-medium text-stone-900"
+                      aria-label={copy.sidePanel.bestRouteAria(
+                        primaryRoute.label
+                      )}
+                      href={primaryRoute.href}
+                      target={primaryRoute.external ? '_blank' : undefined}
+                      rel={primaryRoute.external ? 'noreferrer' : undefined}
+                    >
+                      {primaryRoute.label}
+                    </a>
+                  </>
+                ) : (
+                  <p className="mt-2 text-sm text-stone-200">
+                    {copy.sidePanel.noRunnableCapability}
                   </p>
+                )}
+              </div>
+
+              <div className="rounded-2xl border border-stone-200 bg-white px-4 py-4 text-xs text-stone-600">
+                <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                  {copy.sidePanel.bestRoute}
+                </p>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2">
+                    <p className="uppercase tracking-[0.18em] text-stone-500">
+                      {copy.sidePanel.runnableNowHeading}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-stone-900">
+                      {readyCapabilities}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2">
+                    <p className="uppercase tracking-[0.18em] text-stone-500">
+                      {copy.sidePanel.needsAttentionHeading}
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-stone-900">
+                      {constrainedCapabilities}
+                    </p>
+                  </div>
                 </div>
-              ) : null}
-              {model.latestOutputPreview ? (
+                {model.readiness.operatorNextStep ? (
+                  <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
+                    <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                      {copy.sidePanel.operatorNextStep}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-700">
+                      {model.readiness.operatorNextStep}
+                    </p>
+                  </div>
+                ) : null}
+                {model.readiness.claimBoundary ? (
+                  <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-3">
+                    <p className="font-semibold uppercase tracking-[0.18em] text-amber-700">
+                      {copy.sidePanel.claimBoundary}
+                    </p>
+                    <p className="mt-1 text-xs text-amber-900">
+                      {model.readiness.claimBoundary}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+
+              {recentProof ? (
                 <div
-                  id="latest-output-preview"
-                  className="rounded-xl border border-stone-200 bg-white px-3 py-3"
+                  id="recent-proof-block"
+                  className="rounded-2xl border border-stone-200 bg-white px-4 py-4 text-xs text-stone-600"
                 >
-                  <p className="uppercase tracking-[0.18em] text-stone-500">
-                    {model.latestOutputPreview.label}
+                  <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                    {recentProof.heading}
+                  </p>
+                  <p className="mt-1 text-[11px] text-stone-500">
+                    {recentProof.originLabel}
                   </p>
                   <p className="mt-2 text-sm font-medium text-stone-900">
-                    {model.latestOutputPreview.title}
+                    {recentProof.title}
                   </p>
                   <p className="mt-2 text-xs text-stone-600">
-                    {model.latestOutputPreview.summary}
+                    {recentProof.summary}
                   </p>
-                  {model.latestOutputPreview.detailLines.length > 0 ? (
+                  {recentProof.detailLines.length > 0 ? (
                     <ul className="mt-2 space-y-1 text-xs text-stone-600">
-                      {model.latestOutputPreview.detailLines.map((line) => (
+                      {recentProof.detailLines.map((line) => (
                         <li key={line}>{line}</li>
                       ))}
                     </ul>
                   ) : null}
-                  {model.latestOutputPreview.timestampLabel ? (
+                  {recentProof.timestampLabel ? (
                     <p className="mt-2 text-xs text-stone-500">
-                      {copy.popup.latestCapturedAt(
-                        model.latestOutputPreview.timestampLabel
-                      )}
+                      {recentProof.timestampLabel}
                     </p>
                   ) : null}
-                  {model.latestOutputPreview.href ? (
+                  {recentProof.href ? (
                     <a
                       className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
-                      href={model.latestOutputPreview.href}
-                      target="_blank"
-                      rel="noreferrer"
+                      href={recentProof.href}
+                      target={recentProof.external ? '_blank' : undefined}
+                      rel={recentProof.external ? 'noreferrer' : undefined}
                     >
-                      {model.latestOutputPreview.hrefLabel ??
-                        copy.common.jumpToSourcePage}
+                      {recentProof.hrefLabel}
                     </a>
                   ) : null}
-                </div>
-              ) : null}
-              <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                <p className="uppercase tracking-[0.18em] text-stone-500">
-                  {copy.sidePanel.availableOnPage}
-                </p>
-                {model.quickActions.length > 0 ? (
-                  <ul className="mt-2 space-y-2">
-                    {model.quickActions.map((action) => (
-                      <li
-                        key={action.id}
-                        className="font-medium text-stone-900"
-                      >
-                        {action.label}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="mt-2">{copy.sidePanel.noRunnableCapability}</p>
-                )}
-              </div>
-            </div>
-            <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-stone-600">
-              <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2">
-                <p className="uppercase tracking-[0.18em] text-stone-500">
-                  {copy.sidePanel.runnableNowHeading}
-                </p>
-                <p className="mt-1 text-sm font-medium text-stone-900">
-                  {readyCapabilities}
-                </p>
-              </div>
-              <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2">
-                <p className="uppercase tracking-[0.18em] text-stone-500">
-                  {copy.sidePanel.needsAttentionHeading}
-                </p>
-                <p className="mt-1 text-sm font-medium text-stone-900">
-                  {constrainedCapabilities}
-                </p>
-              </div>
-            </div>
-            {model.readiness.claimBoundary ? (
-              <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
-                  {copy.sidePanel.claimBoundary}
-                </p>
-                <p className="mt-1 text-xs text-amber-900">
-                  {model.readiness.claimBoundary}
-                </p>
-              </div>
-            ) : null}
-            <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                {copy.sidePanel.workflowCopilot}
-              </p>
-              <p className="mt-1 text-xs text-stone-700">
-                {model.workflowBrief.summary}
-              </p>
-              <div className="mt-3 space-y-2">
-                {model.workflowBrief.bullets.map((item) => (
-                  <div
-                    key={`${item.label}-${item.value}`}
-                    className="rounded-xl border border-stone-200 bg-white px-3 py-3"
-                  >
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                      {item.label}
-                    </p>
-                    <p className="mt-1 text-xs text-stone-700">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-              {model.workflowBrief.nextAction ? (
-                <div className="mt-3 rounded-xl border border-stone-200 bg-white px-3 py-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {copy.sidePanel.primaryRoute}
-                  </p>
-                  <p className="mt-1 text-xs font-medium text-stone-900">
-                    {model.workflowBrief.nextAction.label}
-                  </p>
-                  <p className="mt-2 text-xs text-stone-600">
-                    {model.workflowBrief.nextAction.reason}
-                  </p>
                 </div>
               ) : null}
             </div>
@@ -318,56 +328,6 @@ export function SidePanelHomePage({
                   {copy.sidePanel.statusLabels.live.toLowerCase()}
                 </span>
               </div>
-            </div>
-          </Card>
-        </div>
-
-        <div id="decision-brief">
-          <Card>
-            <div className="mb-3 flex items-center gap-2">
-              <PackageSearch className="h-4 w-4" />
-              <h2 className="text-sm font-semibold">
-                {copy.sidePanel.decisionBrief}
-              </h2>
-            </div>
-            <p className="text-sm text-stone-700">{decisionBrief.summary}</p>
-            <ul className="mt-3 space-y-2 text-sm text-stone-600">
-              {decisionBrief.whyNow.map((line: string) => (
-                <li
-                  key={line}
-                  className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                >
-                  {line}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-3 rounded-xl border border-stone-200 bg-white px-3 py-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                {copy.sidePanel.nextAssistantMove}
-              </p>
-              <p className="mt-2 text-xs text-stone-600">
-                {decisionBrief.nextStep}
-              </p>
-              <a
-                className="mt-3 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
-                href={quickRoutes[0]?.href ?? decisionBrief.primaryRouteHref}
-                target={
-                  quickRoutes[0]?.external
-                    ? '_blank'
-                    : decisionBrief.primaryRouteHref.startsWith('#')
-                      ? undefined
-                      : '_blank'
-                }
-                rel={
-                  quickRoutes[0]?.external
-                    ? 'noreferrer'
-                    : decisionBrief.primaryRouteHref.startsWith('#')
-                      ? undefined
-                      : 'noreferrer'
-                }
-              >
-                {quickRoutes[0]?.label ?? decisionBrief.primaryRouteLabel}
-              </a>
             </div>
           </Card>
         </div>
@@ -479,33 +439,6 @@ export function SidePanelHomePage({
                   </p>
                 </div>
               )}
-            </div>
-            <div className="mt-4 space-y-3">
-              {quickRoutes.map((route, index) => (
-                <div
-                  key={route.id}
-                  className="rounded-xl border border-stone-200 bg-white px-3 py-3"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {index === 0
-                      ? copy.sidePanel.primaryRoute
-                      : copy.sidePanel.nextRoute}
-                  </p>
-                  <a
-                    className={`mt-2 inline-flex rounded-xl px-3 py-2 text-sm font-medium ${
-                      index === 0
-                        ? 'bg-stone-900 text-white'
-                        : 'border border-stone-200 bg-stone-50 text-stone-700'
-                    }`}
-                    href={route.href}
-                    target={route.external ? '_blank' : undefined}
-                    rel={route.external ? 'noreferrer' : undefined}
-                  >
-                    {route.label}
-                  </a>
-                  <p className="mt-2 text-xs text-stone-600">{route.summary}</p>
-                </div>
-              ))}
             </div>
           </Card>
         </div>
@@ -832,6 +765,76 @@ type SidePanelRoute = {
   originLabel: string;
   external?: boolean;
 };
+
+type RecentProofBlock = {
+  heading: string;
+  originLabel: string;
+  title: string;
+  summary: string;
+  detailLines: string[];
+  timestampLabel?: string;
+  href?: string;
+  hrefLabel: string;
+  external?: boolean;
+};
+
+function deriveRecentProofBlock(
+  model: SidePanelHomeViewModel,
+  locale: UiLocale = 'en'
+): RecentProofBlock | undefined {
+  const copy = getUiShellCopy(locale);
+
+  if (model.latestOutputPreview) {
+    return {
+      heading: model.latestOutputPreview.label,
+      originLabel: copy.common.routeOriginLabels.capturedPage,
+      title: model.latestOutputPreview.title,
+      summary: model.latestOutputPreview.summary,
+      detailLines: model.latestOutputPreview.detailLines,
+      timestampLabel: model.latestOutputPreview.timestampLabel
+        ? copy.popup.latestCapturedAt(model.latestOutputPreview.timestampLabel)
+        : undefined,
+      href: model.latestOutputPreview.href,
+      hrefLabel:
+        model.latestOutputPreview.hrefLabel ??
+        copy.common.openLatestCapturedPage,
+      external: Boolean(model.latestOutputPreview.href),
+    };
+  }
+
+  const latestActivity = model.recentActivities[0];
+  if (latestActivity) {
+    return {
+      heading: copy.sidePanel.recentActivityHeading,
+      originLabel: copy.common.routeOriginLabels.merchantSource,
+      title: latestActivity.label,
+      summary: latestActivity.summary ?? copy.sidePanel.noVerifiedActivity,
+      detailLines: [],
+      timestampLabel: latestActivity.timestampLabel,
+      href: latestActivity.href,
+      hrefLabel: copy.common.jumpToSourcePage,
+      external: Boolean(latestActivity.href),
+    };
+  }
+
+  const evidenceItem = model.evidenceStatus?.items[0];
+  if (evidenceItem) {
+    return {
+      heading:
+        model.evidenceStatus?.headline ?? copy.sidePanel.evidenceOverview,
+      originLabel: copy.common.routeOriginLabels.evidenceGate,
+      title: evidenceItem.title,
+      summary: evidenceItem.summary,
+      detailLines: [],
+      timestampLabel: evidenceItem.updatedAtLabel,
+      href: evidenceItem.sourceHref,
+      hrefLabel: evidenceItem.sourceLabel ?? copy.common.openSourcePage,
+      external: Boolean(evidenceItem.sourceHref),
+    };
+  }
+
+  return undefined;
+}
 
 function deriveQuickRoutes(
   model: SidePanelHomeViewModel,
