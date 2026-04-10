@@ -40,25 +40,26 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     await expect(sidePanel.locator('body')).toContainText(
       /Temu warehouse filter live receipt remains blocked until a live receipt bundle exists for temu\./i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Captured 3 search results/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Top result: Temu Storage Basket\./i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Temu Closet Organizer/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await expect(
-      sidePanel.locator('#quick-actions').getByRole('link', {
+      sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Open current capture page',
       })
+        .first()
     ).toHaveAttribute(
       'href',
       'https://www.temu.com/search_result.html?search_key=desk%20lamp'
@@ -120,7 +121,7 @@ test('ext-temu smoke reuses search ItemList JSON-LD before storefront-only selec
     await expect(sidePanel.locator('body')).toContainText(
       /www\.temu\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Temu Foldable Storage Crate/i
     );
     await expect(
@@ -132,7 +133,7 @@ test('ext-temu smoke reuses search ItemList JSON-LD before storefront-only selec
       'https://www.temu.com/search_result.html?search_key=storage'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute(

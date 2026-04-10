@@ -22,12 +22,13 @@ test('ext-walmart smoke renders search extraction from a routed fixture', async 
       /www\.walmart\.com · search/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await expect(
-      sidePanel.locator('#quick-actions').getByRole('link', {
+      sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Jump to latest source page',
       })
+        .first()
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=granola');
   } finally {
     await cleanup();
@@ -52,7 +53,7 @@ test('ext-walmart smoke reuses Next payload search stacks before storefront DOM 
     await expect(sidePanel.locator('body')).toContainText(
       /www\.walmart\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Walmart Payload Coffee Sampler/i
     );
     await expect(
@@ -61,7 +62,7 @@ test('ext-walmart smoke reuses Next payload search stacks before storefront DOM 
       })
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');
@@ -113,7 +114,7 @@ test('ext-walmart smoke uses the latest captured page as the best route when no 
 
     const sidePanel = await openExtensionPage(context, extensionId, 'sidepanel');
     await expect(sidePanel.getByText('Shopflow for Walmart')).toBeVisible();
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Walmart Payload Coffee Sampler/i
     );
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
@@ -123,6 +124,7 @@ test('ext-walmart smoke uses the latest captured page as the best route when no 
       sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Best route right now: Open latest captured page',
       })
+      .first()
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
       /Use the latest captured page when you need a real route but no fresher source page was recorded\./i

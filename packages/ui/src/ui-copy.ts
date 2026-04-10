@@ -40,7 +40,8 @@ export function getUiShellCopy(locale: UiLocale = 'en') {
       reviewLane: catalog.sidePanel.reviewLaneHeading,
       captureLaneClearSummary: catalog.model.captureLaneClearSummary,
       captureQueueSummary: catalog.model.captureQueueSummary,
-      captureInProgressQueueSummary: catalog.model.captureInProgressQueueSummary,
+      captureInProgressQueueSummary:
+        catalog.model.captureInProgressQueueSummary,
       noReviewLaneItems: catalog.model.noReviewLaneItems,
       reviewPendingSummary: catalog.model.reviewPendingSummary,
       reviewedCountSummary: catalog.model.reviewedCountSummary,
@@ -122,6 +123,7 @@ export function getUiShellCopy(locale: UiLocale = 'en') {
       frontDoorAria: catalog.suite.frontDoorAria,
       operatorNextStepAria: catalog.suite.operatorNextStepAria,
       priorityPacketActionAria: catalog.suite.priorityPacketActionAria,
+      openSidePanelFamilyChooser: catalog.suite.openSidePanelFamilyChooserLabel,
       latestDetection: catalog.suite.latestDetectionHeading,
       latestRecentActivity: catalog.suite.latestRecentActivityHeading,
       latestCapturedOutput: catalog.suite.latestCapturedOutputHeading,
