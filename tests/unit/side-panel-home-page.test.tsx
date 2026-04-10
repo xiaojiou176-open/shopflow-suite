@@ -219,4 +219,60 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('已采集，等待审核');
     expect(html).toContain('界面语言');
   });
+
+  it('falls back to evidence-gate proof and secondary navigation when fresh page context is missing', () => {
+    const html = renderToStaticMarkup(
+      <SidePanelHomePage
+        model={{
+          ...model,
+          quickActions: [],
+          recentActivities: [],
+          latestOutputPreview: undefined,
+          secondaryNavigation: [
+            {
+              id: 'review-lane',
+              label: 'Review lane',
+              summary: 'Jump into the current support-state explanation.',
+              href: '#live-receipt-review',
+              actionLabel: 'Open review lane',
+            },
+          ],
+        }}
+      />
+    );
+
+    expect(html).toContain('Live receipt readiness');
+    expect(html).toContain('Amazon product live receipt');
+    expect(html).toContain('Open latest source page');
+    expect(html).toContain('Open review lane');
+    expect(html).toContain('href="#live-receipt-review"');
+    expect(html).toContain('No runnable capability is available on this page yet.');
+  });
+
+  it('keeps the claim-boundary follow-up route inside the side-panel when evidence review is the next honest move', () => {
+    const html = renderToStaticMarkup(
+      <SidePanelHomePage
+        model={{
+          ...model,
+          recentActivities: [],
+          latestOutputPreview: undefined,
+          quickActions: [
+            {
+              id: 'inspect-receipt',
+              label: 'Inspect receipt lane',
+              summary: 'Open the current support lane inside the side-panel.',
+              href: '#live-receipt-review',
+              variant: 'primary',
+              external: false,
+            },
+          ],
+        }}
+      />
+    );
+
+    expect(html).toContain('aria-label="Next route: Review claim gate"');
+    expect(html).toContain('href="#live-receipt-review"');
+    expect(html).toContain('Review claim gate');
+    expect(html).toContain('Currently verified on Amazon.');
+  });
 });
