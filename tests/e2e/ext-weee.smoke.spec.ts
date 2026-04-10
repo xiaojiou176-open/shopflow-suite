@@ -22,12 +22,13 @@ test('ext-weee smoke renders product extraction from a routed fixture', async ()
       /www\.sayweee\.com · product/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await expect(
-      sidePanel.locator('#quick-actions').getByRole('link', {
+      sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Jump to latest source page',
       })
+        .first()
     ).toHaveAttribute('href', 'https://www.sayweee.com/en/product/handmade-dumplings/2001');
   } finally {
     await cleanup();
@@ -52,7 +53,7 @@ test('ext-weee smoke reuses Next payload search products before DOM cards', asyn
     await expect(sidePanel.locator('body')).toContainText(
       /www\.sayweee\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Sekka Premium Japanese Medium Grain Rice 15 lb/i
     );
     await expect(
@@ -64,7 +65,7 @@ test('ext-weee smoke reuses Next payload search products before DOM cards', asyn
       'https://www.sayweee.com/en/search?keyword=rice'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.sayweee.com/en/search?keyword=rice');

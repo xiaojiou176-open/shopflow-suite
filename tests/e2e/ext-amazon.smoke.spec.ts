@@ -22,7 +22,7 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
       /www\.amazon\.com · product/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await expect(sidePanel.locator('body')).toContainText(/Recent activity/i);
     await expect(sidePanel.locator('body')).toContainText(
@@ -31,19 +31,19 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
     await expect(sidePanel.locator('body')).toContainText(
       /2 ready capabilities on the latest detected page\./i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured product/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Amazon Burr Grinder/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Captured product details with price \$49\.99\./i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Price: \$49\.99/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /SKU: B0SHOPFLOW/i
     );
     await expect(
@@ -55,7 +55,7 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
       /Use the current product page as the execution surface for product capture\./i
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.amazon.com/dp/shopflow-grinder');
@@ -130,7 +130,7 @@ test('ext-amazon smoke reuses semantic search cards before generic tracked links
     await expect(sidePanel.locator('body')).toContainText(
       /www\.amazon\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Hamilton Beach Fresh Grind Electric Coffee Grinder/i
     );
     await expect(
@@ -142,7 +142,7 @@ test('ext-amazon smoke reuses semantic search cards before generic tracked links
       'https://www.amazon.com/s?k=coffee+grinder'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.amazon.com/s?k=coffee+grinder');
@@ -183,10 +183,10 @@ test('ext-amazon smoke promotes hidden ASIN carriers into canonical product iden
     await expect(sidePanel.locator('body')).toContainText(
       /www\.amazon\.com · product/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Amazon Travel Grinder/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /SKU: B0ASINC123/i
     );
     await expect(
@@ -198,7 +198,7 @@ test('ext-amazon smoke promotes hidden ASIN carriers into canonical product iden
       'https://www.amazon.com/gp/product/B0ASINC123/ref=ox_sc_act_title_1?smid=ATVPDKIKX0DER&psc=1'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.amazon.com/dp/B0ASINC123');

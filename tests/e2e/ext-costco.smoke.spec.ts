@@ -22,16 +22,16 @@ test('ext-costco smoke renders product extraction from a routed fixture', async 
       /www\.costco\.com · product/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured product/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Kirkland Signature Cold Brew/i
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute(
@@ -62,7 +62,7 @@ test('ext-costco smoke reuses JSON-LD search item lists before fixture-only DOM 
     await expect(sidePanel.locator('body')).toContainText(
       /www\.costco\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Kirkland Colombian Cold Brew/i
     );
     await expect(
@@ -74,7 +74,7 @@ test('ext-costco smoke reuses JSON-LD search item lists before fixture-only DOM 
       'https://www.costco.com/CatalogSearch?keyword=cold+brew'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute(
@@ -122,7 +122,7 @@ test('ext-costco smoke reuses rewrite-page typeahead wiring before fixture-only 
     await expect(sidePanel.locator('body')).toContainText(
       /www\.costco\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Kirkland Espresso Beans/i
     );
     await expect(
@@ -134,7 +134,7 @@ test('ext-costco smoke reuses rewrite-page typeahead wiring before fixture-only 
       'https://www.costco.com/en-us/s/blt3d8f002292e47f8d?keyword=cold+brew'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute(
