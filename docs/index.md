@@ -8,11 +8,15 @@ Chrome-first shopping extension family.
 > many storefront doors, one kitchen.
 
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
-[Read the Docs Front Door](./README.md) ·
-[Read the distribution truth](../DISTRIBUTION.md) ·
-[Open the latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
-[Builder Start Here](./ecosystem/builder-start-here.md) ·
-[Evidence and submission readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
+[See the product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
+[See the verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
+[Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+
+Secondary doors:
+[Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
+[Evidence and submission readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html) ·
+[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
+[Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
 
 ## Shopflow In 30 Seconds
 
@@ -59,11 +63,11 @@ It is not:
 
 | If you want to know... | Open this first | Why this is the shortest honest path |
 | :--- | :--- | :--- |
-| what product this repo is actually building | [ADR-001: Repo Topology and Product Boundary](./adr/ADR-001-shopflow-repo-topology-and-product-boundary.md) | this is the contract that locks `8+1`, shopping-only scope, and the Suite boundary |
-| what the repo currently proves, and what it still does not prove | [Docs Front Door](./README.md) | this is the clearest plain-language map of current truth and claim boundaries |
-| what support claims still need stronger evidence | [Testing and Verification Bar](./contracts/testing-and-verification-bar.md) | this is where `fixture-ready`, `repo-verified`, and `public-claim-ready` are separated |
-| how review bundles and submission-readiness should be read | [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md) | this is the operator/reviewer scorecard |
-| how builders or coding agents should approach the repo | [Builder Start Here](./ecosystem/builder-start-here.md) | this is the shortest truthful side entrance for builder-facing surfaces |
+| what product this repo is actually building | [ADR-001: Repo Topology and Product Boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) | this is the contract that locks `8+1`, shopping-only scope, and the Suite boundary |
+| what the repo currently proves, and what it still does not prove | [What Is Public Today](#what-is-public-today) | this page already separates live public surfaces from claim-gated store support lines |
+| what support claims still need stronger evidence | [Testing and Verification Bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) | this is where `fixture-ready`, `repo-verified`, and `public-claim-ready` are separated |
+| how review bundles and submission-readiness should be read | [Evidence and Submission Current-Scope Readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html) | this is the operator/reviewer scorecard |
+| how builders or coding agents should approach the repo | [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) | this is the shortest truthful side entrance for builder-facing surfaces |
 
 ## What Is Public Today
 
@@ -108,20 +112,21 @@ What this does **not** mean:
 
 ## Best First Route
 
-1. Read the [Docs Front Door](./README.md).
-2. Read the [Testing and Verification Bar](./contracts/testing-and-verification-bar.md).
-3. Read [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md).
-4. Only after that, if you are here as a builder, open [Builder Start Here](./ecosystem/builder-start-here.md) or [Agent Quickstarts](./ecosystem/agent-quickstarts.md).
+1. Read the [product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html).
+2. Read the [verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html).
+3. Open the [latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
+4. If you need the operator scorecard, read [Evidence and Submission Current-Scope Readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html).
+5. Only after that, if you are here as a builder, open [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) or [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html).
 
 ## Builder Lane Is Real, But Secondary
 
 If you already know you are here for coding-agent or builder-facing surfaces,
 start with:
 
-- [Builder Start Here](./ecosystem/builder-start-here.md)
-- [Integration Recipes](./ecosystem/integration-recipes.md)
-- [Agent Quickstarts](./ecosystem/agent-quickstarts.md)
-- [MCP Quickstart](./ecosystem/mcp-quickstart.md)
+- [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
+- [Integration Recipes](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/integration-recipes.html)
+- [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html)
+- [MCP Quickstart](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html)
 
 That lane is truthful today.
 It is still **secondary** to the default product story:

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
   <title id="title">Shopflow review shelf snapshot card</title>
-  <desc id="desc">A public-safe card summarizing the live Shopflow release shelf with review bundles, the submission-readiness report, and the boundary that store-ready signing is still not complete.</desc>
+  <desc id="desc">A public-safe card summarizing the live Shopflow release shelf with review bundles, the submission-readiness report, and the boundary that signed artifacts and public store listing receipts are still not in place.</desc>
   <rect width="1280" height="760" rx="30" fill="#fbf4ea" />
   <rect x="64" y="64" width="1152" height="632" rx="28" fill="#fffdf9" stroke="#ecd8bd" stroke-width="2" />
   <text x="112" y="156" fill="#6d3712" font-size="50" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Review shelf, not store shelf</text>
@@ -19,8 +19,8 @@
   <rect x="840" y="266" width="264" height="250" rx="26" fill="#fff3dd" stroke="#efc879" stroke-width="2" />
   <text x="876" y="324" fill="#874813" font-size="30" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-weight="700">Still not claimed</text>
   <text x="876" y="374" fill="#7a5d2a" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">signed release shelf</text>
-  <text x="876" y="412" fill="#7a5d2a" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Chrome Web Store ready</text>
+  <text x="876" y="412" fill="#7a5d2a" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">public store listing receipt</text>
 
   <rect x="112" y="560" width="992" height="94" rx="24" fill="#f8fbff" stroke="#d7e6f0" stroke-width="2" />
-  <text x="148" y="618" fill="#17324b" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Truthful wording: “real reviewer shelf live today” is valid. “signed/store-ready shelf complete today” is not.</text>
+  <text x="148" y="618" fill="#17324b" font-size="24" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">Truthful wording: “real reviewer shelf live today” is valid. “signed shelf or public store listing complete today” is not.</text>
 </svg>
