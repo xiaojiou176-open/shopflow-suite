@@ -124,11 +124,14 @@ describe('builder discoverability docs coherence', () => {
     const pagesIndex = readRepoFile('docs/index.md');
 
     expect(pagesIndex).toContain('Chrome-first shopping extension family.');
-    expect(pagesIndex).toContain('many storefront doors, one kitchen.');
+    expect(pagesIndex).toContain(
+      'many storefront doors, one kitchen, one truthful review shelf.'
+    );
     expect(pagesIndex).toContain('## Shopflow In 30 Seconds');
     expect(pagesIndex).toContain('## What This Repo Is');
     expect(pagesIndex).toContain('## What Is Public Today');
     expect(pagesIndex).toContain('## Best First Route');
+    expect(pagesIndex).toContain('## Need the product feel or the support desk?');
     expect(pagesIndex).toContain('## Builder Lane Is Real, But Secondary');
     expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite');
     expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite/releases/latest');

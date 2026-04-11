@@ -2,17 +2,23 @@
 
 This page keeps the public distribution story short, truthful, and reusable.
 
-## Live now
+## Exact receipts now
 
-- Public canonical repo: `https://github.com/xiaojiou176-open/shopflow-suite`
-- Public Pages front door: `https://xiaojiou176-open.github.io/shopflow-suite/`
-- Public release channel: `https://github.com/xiaojiou176-open/shopflow-suite/releases`
-- Read-only stdio MCP: `pnpm mcp:stdio`
-- Reviewer shelf artifacts:
-  - `8` storefront review bundles
-  - `1` Suite internal-alpha review bundle
-  - review manifest
-  - submission-readiness report
+| Lane | Exact receipt today | Honest status | What this still must not be mistaken for |
+| --- | --- | --- | --- |
+| Public canonical repo | [`github.com/xiaojiou176-open/shopflow-suite`](https://github.com/xiaojiou176-open/shopflow-suite) | live | a packet-only side shelf |
+| Pages front door | [`xiaojiou176-open.github.io/shopflow-suite/`](https://xiaojiou176-open.github.io/shopflow-suite/) | live | Chrome Web Store publication |
+| Release review shelf | [`releases/latest`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) | live reviewer shelf | a signed/store-ready shelf |
+| Read-only stdio MCP lane | `pnpm mcp:stdio` | live repo-local stdio surface | a public HTTP MCP or official registry listing |
+| Companion packet lane (ClawHub) | [`clawhub.ai/xiaojiou176/shopflow-read-only-packet`](https://clawhub.ai/xiaojiou176/shopflow-read-only-packet) | listed-live for the packet lane | proof that the primary browser/store lane is already published |
+| Companion packet lane (OpenHands) | [`OpenHands/extensions#161`](https://github.com/OpenHands/extensions/pull/161) | submission_done_review_pending (`REVIEW_REQUIRED`) | accepted/live OpenHands publication |
+
+Reviewer shelf artifacts still include:
+
+- `8` storefront review bundles
+- `1` Suite internal-alpha review bundle
+- review manifest
+- submission-readiness report
 
 ## Primary lane vs companion lanes
 
@@ -38,11 +44,13 @@ Important boundary:
 ## Not published yet
 
 - Chrome Web Store submission
-- Official MCP registry listing
+- Official MCP registry listing (current search receipt is still `count: 0`)
 - Public HTTP MCP transport
 - Public SDK/package claim
 - Plugin marketplace listing
 - Docker catalog listing
+- repo-tracked PyPI package receipt
+- repo-tracked MCP.so public page receipt
 
 ## Manual later
 
@@ -52,7 +60,8 @@ Important boundary:
 
 It is truthful to say:
 
-- Shopflow is public and reviewable today.
+- Shopflow is public and reviewable today via the public repo, Pages front door,
+  and latest review shelf.
 - The Pages front door, release shelf, and read-only stdio MCP already exist.
 - The repo can package review bundles and submission-readiness materials today.
 - Some companion packet lanes can have their own host-side state without

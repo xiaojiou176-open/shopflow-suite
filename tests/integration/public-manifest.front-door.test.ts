@@ -89,14 +89,29 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('Verification bar');
     expect(docsReadme).toContain('Distribution truth on GitHub');
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
+    expect(docsIndex).toContain(
+      'many storefront doors, one kitchen, one truthful review shelf.'
+    );
     expect(docsIndex).toContain('See the product boundary');
+    expect(docsIndex).toContain('See the product feel');
     expect(docsIndex).toContain('See the verification boundary');
     expect(docsIndex).toContain('Distribution truth on GitHub');
     expect(docsIndex).toContain('Canonical README on GitHub');
-    expect(distribution).toContain('## Live now');
+    expect(docsIndex).toContain('## Need the product feel or the support desk?');
+    expect(docsIndex).toContain('Release Artifact Review Runbook');
+    expect(docsIndex).toContain('Open an issue');
+    expect(docsIndex).toContain('Contributing on GitHub');
+    expect(distribution).toContain('## Exact receipts now');
     expect(distribution).toContain('## Ready but not live yet');
     expect(distribution).toContain('## Not published yet');
     expect(distribution).toContain('## Manual later');
+    expect(distribution).toContain(
+      'https://clawhub.ai/xiaojiou176/shopflow-read-only-packet'
+    );
+    expect(distribution).toContain(
+      'https://github.com/OpenHands/extensions/pull/161'
+    );
+    expect(distribution).toContain('count: 0');
     expect(readme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('Builder side door');
@@ -121,12 +136,18 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsReadme, 'Evidence scorecard');
 
     expectPagesSafeFirstHop(docsIndex, 'See the product boundary');
+    expectPagesSafeFirstHop(docsIndex, 'See the product feel');
     expectPagesSafeFirstHop(docsIndex, 'See the verification boundary');
     expectPagesSafeFirstHop(docsIndex, 'Open the latest review shelf');
     expectPagesSafeFirstHop(docsIndex, 'Builder Start Here');
     expectPagesSafeFirstHop(docsIndex, 'Evidence and submission readiness');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
+    expectPagesSafeFirstHop(docsIndex, 'Shopflow Product Surface Spec');
+    expectPagesSafeFirstHop(docsIndex, 'Release Artifact Review Runbook');
+    expectPagesSafeFirstHop(docsIndex, 'Live Receipt Capture Runbook');
+    expectPagesSafeFirstHop(docsIndex, 'Open an issue');
+    expectPagesSafeFirstHop(docsIndex, 'Contributing on GitHub');
     expectPagesSafeFirstHop(
       docsIndex,
       'ADR-001: Repo Topology and Product Boundary'
