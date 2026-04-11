@@ -16,7 +16,8 @@ This page answers:
 - what still remains repo-side actionable inside that same line
 - which repo-global brakes still exist, but should not be confused with this
   subline's own completion state
-- whether git closeout is ready yet
+- what a fresh git read-back still needs to confirm before calling this subline
+  landed
 
 It does **not** turn current-scope builder progress into:
 
@@ -62,10 +63,24 @@ current-scope subline failed**:
 | `live receipt evidence bundles`                  | `external only` | reviewed live evidence is a public-claim gate, not a builder-facing read-only tooling prerequisite                          |
 | `store-ready signed extension release artifacts` | `external only` | signed release packaging remains beyond current repo-local builder productization                                           |
 
+## Branch-Aware Git Truth
+
+This page tracks builder-facing current-scope progress.
+It must **not** be used as proof that local `main` has landed on `origin/main`.
+
+Use a fresh git read-back before calling the builder-facing subline landed:
+
+- verify which branch currently carries the latest closeout truth
+- confirm whether local `main` and `origin/main` are actually aligned
+- treat any active closeout branch as branch-local truth until git says
+  otherwise
+
 ## Closeout Readiness Summary
 
 - Builder-facing line: **repo-side compressed**
 - Strongest gate: **must stay trustworthy by fresh evidence; if it is red, this
   subline cannot be treated as closed**
-- Git closeout: **ready for the current repo-owned baseline**, because the
-  current local `main` is now landed on `origin/main`
+- Git closeout: **branch-aware and fresh-recheck-only**. This page can confirm
+  the builder-facing repo-owned baseline, but it cannot certify that local
+  `main` has landed on `origin/main` without a fresh git read-back on the
+  active branch.

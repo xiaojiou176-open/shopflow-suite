@@ -192,6 +192,38 @@ describe('builder discoverability docs coherence', () => {
     );
   });
 
+  it('keeps the builder current-scope readiness doc branch-aware instead of claiming main already landed', () => {
+    const currentScopeReadiness = readRepoFile(
+      'docs/ecosystem/builder-current-scope-readiness.md'
+    );
+
+    expect(currentScopeReadiness).toContain('Branch-Aware Git Truth');
+    expect(currentScopeReadiness).toContain(
+      'must **not** be used as proof that local `main` has landed on `origin/main`'
+    );
+    expect(currentScopeReadiness).toContain(
+      'branch-aware and fresh-recheck-only'
+    );
+    expect(currentScopeReadiness).not.toContain(
+      'the current local `main` is now landed on `origin/main`'
+    );
+  });
+
+  it('keeps public review-shelf assets from implying Chrome Web Store readiness', () => {
+    const reviewShelfCard = readRepoFile(
+      'docs/assets/shopflow-review-shelf-card.svg'
+    );
+    const altText = readRepoFile('docs/assets/ALT_TEXT.md');
+
+    expect(reviewShelfCard).toContain('Review shelf, not store shelf');
+    expect(reviewShelfCard).not.toContain('Chrome Web Store ready');
+    expect(reviewShelfCard).toContain('signed release shelf');
+    expect(reviewShelfCard).toContain('public store listing');
+    expect(altText).toContain(
+      'signed artifacts and public store listing receipts are still not in place'
+    );
+  });
+
   it('keeps the tooling guide aligned with the builder entry pages', () => {
     const toolingReadme = readRepoFile('tooling/README.md');
 

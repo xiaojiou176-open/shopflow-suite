@@ -7,15 +7,30 @@
 This page is the quickest honest map for readers who need to understand what
 Shopflow is, what exists today, and what still should not be overclaimed.
 
-[Public repo README](../README.md) ·
-[Distribution truth](../DISTRIBUTION.md) ·
-[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+[Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
+[Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
+[Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
+[Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
+
+Secondary proof doors:
+[Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
+[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
+[Evidence scorecard](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html)
 
 ## Shopflow in Three Lines
 
 - **Category:** a Chrome-first shopping extension family with `8` store apps and `1` suite shell
 - **Heat hook:** multiple storefront entry points can stay discoverable without splitting the engineering source of truth
 - **Current result:** repo-owned contracts, runtime surfaces, and review packaging exist today, but public-ready support claims still require stronger evidence
+
+## First Product Path
+
+Use this order when you want the shortest truthful product-first read:
+
+1. [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html)
+2. [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html)
+3. [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+4. [Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) only after the first three are clear
 
 ## Verification Layers
 
