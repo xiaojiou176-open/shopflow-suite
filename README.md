@@ -1,9 +1,10 @@
 # Shopflow
 
-[Docs front door](./docs/README.md) ·
-[Distribution truth](./DISTRIBUTION.md) ·
-[Builder start here](./docs/ecosystem/builder-start-here.md) ·
-[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+[Product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md) ·
+[Verification bar](./docs/contracts/testing-and-verification-bar.md) ·
+[Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
+[Builder side door](./docs/ecosystem/builder-start-here.md) ·
+[Docs shelf](./docs/README.md)
 
 Shopflow is a **Chrome-first shopping extension product family** built as one
 canonical public repo.
@@ -32,6 +33,22 @@ In plain language:
 
 > the public repo, Pages front door, and latest release review shelf are live today.
 > this is still not a signed/store-ready shelf.
+
+## First Product Path
+
+If you only want the shortest honest route, take it in this order:
+
+1. [See the product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md).
+2. [See the verification boundary](./docs/contracts/testing-and-verification-bar.md).
+3. [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
+4. Only after that, if you came here for packets or agent setup, use the
+   [builder side door](./docs/ecosystem/builder-start-here.md).
+
+Secondary proof doors still exist, but they stay secondary:
+
+- [Docs front door](./docs/README.md)
+- [Distribution truth](./DISTRIBUTION.md)
+- [Evidence and submission current-scope readiness](./docs/ecosystem/evidence-submission-current-scope-readiness.md)
 
 ## What You Can See Right Away
 
