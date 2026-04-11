@@ -5,10 +5,11 @@ Chrome-first shopping extension family.
 ![Shopflow front door](./assets/shopflow-front-door.svg)
 ![Shopflow storefront atlas](./assets/shopflow-storefront-atlas.svg)
 
-> many storefront doors, one kitchen.
+> many storefront doors, one kitchen, one truthful review shelf.
 
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
 [See the product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
+[See the product feel](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html) ·
 [See the verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
 [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 
@@ -117,6 +118,29 @@ What this does **not** mean:
 3. Open the [latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
 4. If you need the operator scorecard, read [Evidence and Submission Current-Scope Readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html).
 5. Only after that, if you are here as a builder, open [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) or [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html).
+
+## Need the product feel or the support desk?
+
+If the first route above answered **what Shopflow is**, use this service desk to
+answer **what it should feel like** or **where to go when you need help**:
+
+- [Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
+  - use this when you want the clearest product-facing explanation of Side Panel,
+    Popup, Content UI, and Options responsibilities
+- [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+  - use this when you want the reviewer/operator desk for bundle truth, review
+    channels, and the exact meaning of the current shelf
+- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+  - use this when you need the real-browser evidence path instead of broader
+    public-support claims
+- [Docs front door on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
+  - use this when you want the fuller atlas instead of only the public Pages
+    front row
+- [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
+  - use this when you found a public-surface gap or a misleading support claim
+- [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
+  - use this when you want the repo's truth rules and local contribution
+    expectations before opening a PR
 
 ## Builder Lane Is Real, But Secondary
 
