@@ -1,9 +1,10 @@
 # Shopflow
 
-[Docs front door](./docs/README.md) ·
-[Distribution truth](./DISTRIBUTION.md) ·
-[Builder start here](./docs/ecosystem/builder-start-here.md) ·
-[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+[Product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md) ·
+[Verification bar](./docs/contracts/testing-and-verification-bar.md) ·
+[Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
+[Builder side door](./docs/ecosystem/builder-start-here.md) ·
+[Docs shelf](./docs/README.md)
 
 Shopflow is a **Chrome-first shopping extension product family** built as one
 canonical public repo.
@@ -33,6 +34,22 @@ In plain language:
 > the public repo, Pages front door, and latest release review shelf are live today.
 > this is still not a signed/store-ready shelf.
 
+## First Product Path
+
+If you only want the shortest honest route, take it in this order:
+
+1. [See the product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md).
+2. [See the verification boundary](./docs/contracts/testing-and-verification-bar.md).
+3. [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
+4. Only after that, if you came here for packets or agent setup, use the
+   [builder side door](./docs/ecosystem/builder-start-here.md).
+
+Secondary proof doors still exist, but they stay secondary:
+
+- [Docs front door](./docs/README.md)
+- [Distribution truth](./DISTRIBUTION.md)
+- [Evidence and submission current-scope readiness](./docs/ecosystem/evidence-submission-current-scope-readiness.md)
+
 ## What You Can See Right Away
 
 | Surface | What it proves today | What it must not be mistaken for |
@@ -41,6 +58,18 @@ In plain language:
 | Pages front door | the current public product story | Chrome Web Store readiness |
 | latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
 | read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
+
+## Primary Product vs Companion Surfaces
+
+Think of Shopflow like a mall with one real storefront and a few information
+desks:
+
+| Surface | Role | Why it exists | What it must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | the browser-first extension family itself | a packet mirror or an MCP-first product |
+| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion public skill packet | one portable folder for host-native skill flows such as OpenClaw and OpenHands | proof that Shopflow browser/store lanes are already listed live |
+| `distribution/public-packets/` | companion packet mirror | smaller target-specific handoff packets when a side shelf helps | the canonical Shopflow front door or a second product repo |
+| `pnpm mcp:stdio` + builder docs | companion repo-truth surface | read-only repo, runtime-seam, and submission-readiness access for AI tools | a public HTTP MCP, public SDK, or Chrome Web Store state |
 
 ## What You Can Inspect Today
 
@@ -86,7 +115,9 @@ If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
 
 In plain language:
 
-> `shopflow-suite` is the main store and the only live front door.
+> `shopflow-suite` is the main building and the only live GitHub front door.
+> packet shelves can have their own host-side state, but they do not replace
+> the browser-first product lane.
 
 ## What Shopflow Is and Is Not
 

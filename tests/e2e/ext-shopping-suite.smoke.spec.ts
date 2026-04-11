@@ -231,11 +231,8 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     await expect(popup.locator('body')).toContainText(/Priority routes/i);
     await expect(popup.locator('body')).toContainText(/Quick router/i);
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel rollout map' })
-    ).toHaveAttribute(
-      'href',
-      /sidepanel\.html(?:\?locale=en)?#current-rollout-map$/i
-    );
+      popup.getByRole('link', { name: 'Open Side Panel family chooser' })
+    ).toHaveAttribute('href', /sidepanel\.html(?:\?locale=en)?#start-here$/i);
     await expect(
       popup.getByRole('link', { name: 'Open Side Panel claim readiness board' })
     ).toHaveAttribute(
@@ -251,21 +248,21 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
 
     const [rolloutPage] = await Promise.all([
       context.waitForEvent('page'),
-      popup.getByRole('link', { name: 'Open rollout map' }).first().click(),
+      popup
+        .getByRole('link', { name: 'Open Side Panel family chooser' })
+        .click(),
     ]);
     await rolloutPage.waitForLoadState('domcontentloaded');
-    await expect
-      .poll(() => rolloutPage.url())
-      .toContain('#current-rollout-map');
-    await expect(rolloutPage.locator('#current-rollout-map')).toContainText(
-      /Current rollout map/i
+    await expect.poll(() => rolloutPage.url()).toContain('#start-here');
+    await expect(rolloutPage.locator('#start-here')).toContainText(
+      /Start here/i
     );
     await rolloutPage.close();
 
     const [claimReadinessPage] = await Promise.all([
       context.waitForEvent('page'),
       popup
-        .getByRole('link', { name: 'Open claim readiness board' })
+        .getByRole('link', { name: 'Open Side Panel claim readiness board' })
         .first()
         .click(),
     ]);

@@ -3,7 +3,7 @@
   "schemaVersion": "shopflow.agent-target-packet.v1",
   "readOnly": true,
   "target": "codex",
-  "placement": "front-door-primary",
+  "placement": "ecosystem-secondary",
   "currentEntryState": "repo-local-quickstart",
   "quickstartPath": "docs/ecosystem/codex-quickstart.md",
   "primaryCommand": "pnpm cli:read-only -- agent-target-packet --target codex",
@@ -145,7 +145,7 @@
   ],
   "pluginMetadata": {
     "target": "codex",
-    "placement": "front-door-primary",
+    "placement": "ecosystem-secondary",
     "packagingState": "plugin-level-public-distribution-bundle",
     "suggestedSlug": "shopflow-read-only-builder-packet",
     "title": "Shopflow Read-only Builder Packet",
@@ -168,7 +168,7 @@
     ],
     "distributionBundle": {
       "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
-      "officialSurfaceStatus": "official-surface-confirmed-auth-required",
+      "officialSurfaceStatus": "official-surface-unconfirmed",
       "starterBundlePaths": [
         "docs/ecosystem/codex-quickstart.md",
         "docs/ecosystem/agent-quickstarts.md",

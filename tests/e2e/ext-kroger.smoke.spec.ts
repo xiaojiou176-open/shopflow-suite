@@ -22,7 +22,7 @@ test('ext-kroger smoke renders family deals support without overclaiming beyond 
       /www\.fredmeyer\.com · deal/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await expect(
       sidePanel.locator(
@@ -30,7 +30,7 @@ test('ext-kroger smoke renders family deals support without overclaiming beyond 
       ).first()
     ).toHaveAttribute('href', 'https://www.fredmeyer.com/savings/coupons');
     await expect(
-      sidePanel.locator('#quick-actions').getByRole('link', {
+      sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Review claim gate',
       })
     ).toHaveAttribute('href', '#live-receipt-evidence');
@@ -57,7 +57,7 @@ test('ext-kroger smoke reuses product JSON-LD before family-safe PDP selectors',
     await expect(sidePanel.locator('body')).toContainText(
       /www\.fredmeyer\.com · product/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Fred Meyer Overnight Oats/i
     );
     await expect(
@@ -69,7 +69,7 @@ test('ext-kroger smoke reuses product JSON-LD before family-safe PDP selectors',
       'https://www.fredmeyer.com/p/fred-meyer-overnight-oats/4404'
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute(
@@ -100,7 +100,7 @@ test('ext-kroger smoke reuses nested family search payloads before storefront DO
     await expect(sidePanel.locator('body')).toContainText(
       /www\.qfc\.com · search/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /QFC Ginger Kombucha/i
     );
     await expect(
@@ -109,7 +109,7 @@ test('ext-kroger smoke reuses nested family search payloads before storefront DO
       })
     ).toHaveAttribute('href', 'https://www.qfc.com/search?query=kombucha');
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.qfc.com/search?query=kombucha');

@@ -15,6 +15,8 @@ Shopflow repo.
 - A checked-in, traceable packet mirror under `distribution/public-packets/**`
 - A packaging surface built from canonical Shopflow docs and example JSON
 - A fallback or mirror surface for smaller packet-only handoff
+- A companion rack that only makes sense after the browser-first product story
+  is already clear
 
 ## What This Rack Is Not
 
@@ -22,6 +24,7 @@ Shopflow repo.
 - not the default public front door
 - not a second main product repo
 - not the primary OpenClaw install route
+- not the primary browser/store lane for Shopflow
 
 The canonical source remains:
 

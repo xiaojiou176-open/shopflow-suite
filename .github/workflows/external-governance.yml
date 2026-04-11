@@ -29,4 +29,6 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile=false
+      - name: Verify public front door truth guards
+        run: pnpm exec vitest run tests/integration/public-manifest.front-door.test.ts tests/integration/builder-discoverability-docs.test.ts
       - run: pnpm verify:external-governance

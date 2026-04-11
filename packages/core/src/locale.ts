@@ -126,7 +126,10 @@ type LocaleCatalog = {
     bestRouteAria: (label: string) => string;
     nextRouteAria: (label: string) => string;
     operatorNextStepAria: (label: string) => string;
-    statusLabels: Record<'live' | 'limited' | 'idle' | 'unsupported' | 'error', string>;
+    statusLabels: Record<
+      'live' | 'limited' | 'idle' | 'unsupported' | 'error',
+      string
+    >;
     capabilityStatusLabels: Record<
       | 'ready'
       | 'unsupported_page'
@@ -141,7 +144,11 @@ type LocaleCatalog = {
   };
   model: {
     popupSummaryNoReady: (host: string, pageKind: string) => string;
-    popupSummaryReady: (host: string, pageKind: string, labels: string[]) => string;
+    popupSummaryReady: (
+      host: string,
+      pageKind: string,
+      labels: string[]
+    ) => string;
     unsupportedReason: string;
     unsupportedSiteLabel: string;
     unsupportedOperatorNextStep: string;
@@ -182,7 +189,12 @@ type LocaleCatalog = {
     latestOutputSummaryDealLead: (title: string) => string;
     latestOutputSummaryDealGeneric: (count: number) => string;
     latestOutputDetailLabels: Record<
-      'price' | 'availability' | 'sku' | 'results-count' | 'top-match' | 'lead-deal',
+      | 'price'
+      | 'availability'
+      | 'sku'
+      | 'results-count'
+      | 'top-match'
+      | 'lead-deal',
       string
     >;
     runnableNowEmpty: string;
@@ -201,20 +213,36 @@ type LocaleCatalog = {
     rejectedCountSummary: (count: number) => string;
     expiredCountSummary: (count: number) => string;
     capabilityLabels: Record<
-      'extract_product' | 'extract_search' | 'extract_deals' | 'run_action' | 'export_data',
+      | 'extract_product'
+      | 'extract_search'
+      | 'extract_deals'
+      | 'run_action'
+      | 'export_data',
       string
     >;
     capabilityActionLabels: Record<
-      'extract_product' | 'extract_search' | 'extract_deals' | 'run_action' | 'export_data',
+      | 'extract_product'
+      | 'extract_search'
+      | 'extract_deals'
+      | 'run_action'
+      | 'export_data',
       string
     >;
     capabilityDescriptions: Record<
-      'extract_product' | 'extract_search' | 'extract_deals' | 'run_action' | 'export_data',
+      | 'extract_product'
+      | 'extract_search'
+      | 'extract_deals'
+      | 'run_action'
+      | 'export_data',
       string
     >;
     pageKindLabels: Record<PageKindLabel, string>;
     capabilityExecutionSummaries: Record<
-      'extract_product' | 'extract_search' | 'extract_deals' | 'run_action' | 'export_data',
+      | 'extract_product'
+      | 'extract_search'
+      | 'extract_deals'
+      | 'run_action'
+      | 'export_data',
       string
     >;
     evidenceMissingLabel: string;
@@ -242,7 +270,10 @@ type LocaleCatalog = {
     blockerSummaryReviewPendingSummary: (queueSummary: string) => string;
     blockerSummaryReviewedSummary: (queueSummary: string) => string;
     evidenceNavigationCaptureSummary: (statusLabel: string) => string;
-    evidenceNavigationReviewSummary: (statusLabel: string, title: string) => string;
+    evidenceNavigationReviewSummary: (
+      statusLabel: string,
+      title: string
+    ) => string;
     routeBackToMerchantSummary: string;
     latestSourceRouteSummary: (label: string, summary: string) => string;
     latestCapturedRouteSummary: string;
@@ -282,6 +313,7 @@ type LocaleCatalog = {
     operatorNextStepAria: (publicName: string, label: string) => string;
     priorityPacketActionAria: (publicName: string, label: string) => string;
     decisionBriefRouteAria: (publicName: string, label: string) => string;
+    openSidePanelFamilyChooserLabel: string;
     openSidePanelRolloutMapLabel: string;
     openSidePanelClaimReadinessLabel: string;
     latestDetectionHeading: string;
@@ -312,11 +344,21 @@ type LocaleCatalog = {
     openRolloutRow: (publicName: string) => string;
     openVerifiedScopeClause: (publicName: string) => string;
     priorityLabels: Record<
-      'waiting-for-review' | 'needs-capture' | 'ready-to-inspect' | 'seed-runtime',
+      | 'waiting-for-review'
+      | 'needs-capture'
+      | 'ready-to-inspect'
+      | 'seed-runtime',
       string
     >;
     defaultRouteLabelsByStoreId: Record<
-      'albertsons' | 'kroger' | 'amazon' | 'costco' | 'walmart' | 'weee' | 'target' | 'temu',
+      | 'albertsons'
+      | 'kroger'
+      | 'amazon'
+      | 'costco'
+      | 'walmart'
+      | 'weee'
+      | 'target'
+      | 'temu',
       string
     >;
     noFreshContextSummary: (routeLabel: string, publicName: string) => string;
@@ -337,7 +379,11 @@ type LocaleCatalog = {
     >;
     statusBoard: {
       repoVerifiedClear: { label: string; summary: string; ctaLabel: string };
-      repoVerifiedClaimGated: { label: string; summary: string; ctaLabel: string };
+      repoVerifiedClaimGated: {
+        label: string;
+        summary: string;
+        ctaLabel: string;
+      };
       internalAlpha: { label: string; summary: string; ctaLabel: string };
     };
     waitingReviewRouteLabel: string;
@@ -373,7 +419,11 @@ type LocaleCatalog = {
     noRecentActivity: string;
     noCapturedOutput: string;
     noRequiredQueue: string;
-    evidenceQueueSummary: (reviewed: number, reviewPending: number, captureWork: number) => string;
+    evidenceQueueSummary: (
+      reviewed: number,
+      reviewPending: number,
+      captureWork: number
+    ) => string;
     nextStepInspectStoreApp: string;
     priorityQueueAction: {
       finishCapture: (suffix: string) => string;
@@ -382,7 +432,10 @@ type LocaleCatalog = {
       capture: (suffix: string) => string;
       open: (suffix: string) => string;
     };
-    fallbackEvidenceRouteSummary: (defaultRouteLabel: string, title: string) => string;
+    fallbackEvidenceRouteSummary: (
+      defaultRouteLabel: string,
+      title: string
+    ) => string;
   };
 };
 
@@ -422,7 +475,8 @@ const en: LocaleCatalog = {
   },
   popup: {
     defaultActionHeading: 'What this page can do now',
-    noRunnableCapability: 'No runnable capability is available on this page yet.',
+    noRunnableCapability:
+      'No runnable capability is available on this page yet.',
     openSidePanel: 'Open Side Panel',
     viewCurrentSupportState: 'View current support state',
     openSidePanelQuickActions: 'Open Side Panel quick actions',
@@ -433,7 +487,8 @@ const en: LocaleCatalog = {
     openSidePanelCurrentSiteSummary: 'Open Side Panel current site summary',
     resumeLatestCapturedPage: 'Resume latest captured page',
     openLatestSourcePage: 'Open latest source page',
-    openMainSurfaceSummary: 'Open the main Shopflow surface for the current page.',
+    openMainSurfaceSummary:
+      'Open the main Shopflow surface for the current page.',
     openSecondaryRouteSummary:
       'Jump to the next support or claim-boundary view without turning popup into a second console.',
     latestSourceLabel: 'Jump to latest source page',
@@ -474,7 +529,8 @@ const en: LocaleCatalog = {
       'These cards are real capability routes. Pick the move you want, then jump straight into the page or section that can actually run it.',
     primarySupportedMove: 'Primary supported move',
     supportedMove: 'Supported move',
-    noRunnableCapability: 'No runnable capability is available on this page yet.',
+    noRunnableCapability:
+      'No runnable capability is available on this page yet.',
     blockedPathHonesty:
       'The app stays explicit instead of pretending a blocked path can run.',
     nextStepPrefix: 'Next step:',
@@ -497,7 +553,8 @@ const en: LocaleCatalog = {
     reviewPrefix: 'Review:',
     reviewNotePrefix: 'Review note:',
     recentActivityHeading: 'Recent activity',
-    noVerifiedActivity: 'No verified activity has been recorded yet for this browser session.',
+    noVerifiedActivity:
+      'No verified activity has been recorded yet for this browser session.',
     nextRoutesHeading: 'Next routes',
     openRoute: 'Open route',
     verifiedScopePrefix: 'Verified scope:',
@@ -552,7 +609,8 @@ const en: LocaleCatalog = {
     latestRunnableOutputLabel: 'Latest runnable output',
     reviewSupportStateLabel: 'Review support state',
     openCurrentSiteSummary: 'Open current site summary',
-    supportStateUnsupportedSummary: 'This page is outside the current support boundary.',
+    supportStateUnsupportedSummary:
+      'This page is outside the current support boundary.',
     supportStateReadySummary: (count) =>
       `${count} ${count === 1 ? 'capability is' : 'capabilities are'} ready right now.`,
     supportStateAttentionSummary: (count) =>
@@ -572,7 +630,8 @@ const en: LocaleCatalog = {
     recentActivityIdleSummary:
       'Recent activity stays lightweight so this page remains a router, not a log console.',
     latestOutputSingle: (label) => `Latest runnable output: ${label}.`,
-    latestOutputMulti: (labels) => `Latest runnable outputs: ${labels.join(', ')}.`,
+    latestOutputMulti: (labels) =>
+      `Latest runnable outputs: ${labels.join(', ')}.`,
     latestOutputSummaryProductWithPrice: (price) =>
       `Captured product details with price ${price}.`,
     latestOutputSummaryProductGeneric:
@@ -628,7 +687,8 @@ const en: LocaleCatalog = {
     },
     capabilityDescriptions: {
       extract_product: 'Capture normalized product details for this page.',
-      extract_search: 'Collect structured search results from the current page.',
+      extract_search:
+        'Collect structured search results from the current page.',
       extract_deals: 'List current deal surfaces without guessing support.',
       run_action: 'Run supported multi-step workflows when the page allows it.',
       export_data: 'Export captured data in a stable machine-readable shape.',
@@ -759,9 +819,9 @@ const en: LocaleCatalog = {
       `Priority packet action for ${publicName}: ${label}`,
     decisionBriefRouteAria: (publicName, label) =>
       `Decision brief route for ${publicName}: ${label}`,
+    openSidePanelFamilyChooserLabel: 'Open Side Panel family chooser',
     openSidePanelRolloutMapLabel: 'Open Side Panel rollout map',
-    openSidePanelClaimReadinessLabel:
-      'Open Side Panel claim readiness board',
+    openSidePanelClaimReadinessLabel: 'Open Side Panel claim readiness board',
     latestDetectionHeading: 'Latest detection',
     latestRecentActivityHeading: 'Latest recent activity',
     latestCapturedOutputHeading: 'Latest captured output',
@@ -770,7 +830,8 @@ const en: LocaleCatalog = {
     priorityPacketHeading: 'Priority packet',
     operatorNextStepHeading: 'Operator next step',
     decisionBriefHeading: 'Decision brief',
-    noOutstandingPacket: 'No outstanding live receipt packet is waiting right now.',
+    noOutstandingPacket:
+      'No outstanding live receipt packet is waiting right now.',
     providerRuntimeSeamHeading: 'Provider runtime seam',
     providerRuntimeSeamSummary:
       'This internal-alpha section is the first real Shopflow runtime consumer for Switchyard-style provider routes. It stays read-only and does not replace merchant live proof.',
@@ -797,7 +858,7 @@ const en: LocaleCatalog = {
       'Some routes still need capture work. Others are already waiting for explicit review. Repo verification alone does not clear either gate.',
     verifiedScopeHeading: 'Verified scope navigator',
     verifiedScopeSummary:
-      'Use these clauses when checking whether public wording is still inside today\'s verified boundary.',
+      "Use these clauses when checking whether public wording is still inside today's verified boundary.",
     openRolloutRow: (publicName) => `Open rollout row for ${publicName}`,
     openVerifiedScopeClause: (publicName) =>
       `Open verified scope clause for ${publicName}`,
@@ -1085,8 +1146,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     },
     routeBackToMerchantSummary:
       '先回到最新记录的商家页面，再从真实页面上下文里继续这个能力。',
-    latestSourceRouteSummary: (label, summary) =>
-      `先回到 ${label}。${summary}`,
+    latestSourceRouteSummary: (label, summary) => `先回到 ${label}。${summary}`,
     latestCapturedRouteSummary:
       '当没有更新的来源页面时，优先从最新捕获页面继续，这样路线来自真实现场而不是装饰性文案。',
     evidenceSourceRouteSummary:
@@ -1094,7 +1154,8 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     currentSiteSummaryRoute:
       '先打开当前站点摘要，确认 host 和 page kind，再继续往下走。',
     reviewClaimGateLabel: '查看 claim 门禁',
-    reviewClaimGateSummary: '先检查证据状态和 verified-scope 提示，再决定公开说法。',
+    reviewClaimGateSummary:
+      '先检查证据状态和 verified-scope 提示，再决定公开说法。',
     reviewReadinessSummaryLabel: '查看准备度摘要',
     reviewReadinessSummarySummary:
       '先把“现在能跑什么”和“接下来还要补什么”分开看，再往下操作。',
@@ -1102,14 +1163,10 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       '确认最新记录的输出；如果需要返回现场，就直接用那条跳转路线。',
     checkRecentActivitySummaryIdle:
       '最近活动会保持轻量，避免把这个页面变成第二个控制台。',
-    captureQueueSummary: (count) =>
-      `${count} 个证据包仍需补采或重采。`,
-    captureInProgressQueueSummary: (count) =>
-      `${count} 个证据包仍在处理中。`,
-    reviewPendingQueueSummary: (count) =>
-      `${count} 个证据包等待明确审核。`,
-    reviewedQueueSummary: (count) =>
-      `${count} 个证据包已审核。`,
+    captureQueueSummary: (count) => `${count} 个证据包仍需补采或重采。`,
+    captureInProgressQueueSummary: (count) => `${count} 个证据包仍在处理中。`,
+    reviewPendingQueueSummary: (count) => `${count} 个证据包等待明确审核。`,
+    reviewedQueueSummary: (count) => `${count} 个证据包已审核。`,
     reviewedEvidenceForAppSummary: () =>
       '这个应用要求的 live receipt 证据都已经审核完成。',
     missingEvidenceForAppSummary: (count) =>
@@ -1138,7 +1195,8 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
   },
   suite: {
     internalAlphaOnly: '仅限内部 Alpha',
-    appSummary: '用于能力导览、rollout 可见性和证据准备度的内部 Alpha 组合壳层。',
+    appSummary:
+      '用于能力导览、rollout 可见性和证据准备度的内部 Alpha 组合壳层。',
     operatorPromise:
       '用这个内部 Alpha 面板进入正确的店铺 app、查看 claim 门禁，并确认哪条证据门仍然挡着 public wording。',
     startHereCards: [
@@ -1184,6 +1242,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       `${publicName} 的优先证据动作：${label}`,
     decisionBriefRouteAria: (publicName, label) =>
       `${publicName} 的决策简报路线：${label}`,
+    openSidePanelFamilyChooserLabel: '打开 Side Panel family chooser',
     openSidePanelRolloutMapLabel: '打开 Side Panel rollout 地图',
     openSidePanelClaimReadinessLabel: '打开 Side Panel claim 准备度面板',
     latestDetectionHeading: '最新检测结果',
@@ -1275,7 +1334,8 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     noRecentActivity: '这个 app 还没有记录到最近的操作员活动。',
     noCapturedOutput: '这个 app 还没有记录到捕获输出。',
     noRequiredQueue: '这个 app 当前没有必需的 live receipt 队列。',
-    nextStepInspectStoreApp: '打开对应的店铺 app，检查页面级准备度和最新输出细节。',
+    nextStepInspectStoreApp:
+      '打开对应的店铺 app，检查页面级准备度和最新输出细节。',
     priorityQueueAction: {
       finishCapture: (suffix) => `在${suffix}完成采集`,
       review: (suffix) => `在${suffix}上审核`,

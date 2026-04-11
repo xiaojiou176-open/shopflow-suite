@@ -22,16 +22,16 @@ test('ext-target smoke renders differentiated deals support from a routed fixtur
       /www\.target\.com · deal/i
     );
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured deals/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Lead deal: Family Cereal\./i
     );
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.target.com/pl/deals');
@@ -60,7 +60,7 @@ test('ext-target smoke reuses product JSON-LD before storefront PDP selectors', 
     await expect(sidePanel.locator('body')).toContainText(
       /www\.target\.com · product/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Target JSON-LD Pantry Pasta/i
     );
     await expect(
@@ -69,7 +69,7 @@ test('ext-target smoke reuses product JSON-LD before storefront PDP selectors', 
       })
     ).toHaveAttribute('href', 'https://www.target.com/p/target-json-pasta/-/A-88');
     await expect(
-      sidePanel.locator('#latest-output-preview').getByRole('link', {
+      sidePanel.locator('#recent-proof-block').getByRole('link', {
         name: 'Open latest captured page',
       })
     ).toHaveAttribute('href', 'https://www.target.com/p/target-json-pasta/-/A-88');

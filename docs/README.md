@@ -7,15 +7,30 @@
 This page is the quickest honest map for readers who need to understand what
 Shopflow is, what exists today, and what still should not be overclaimed.
 
-[Public repo README](../README.md) ·
-[Distribution truth](../DISTRIBUTION.md) ·
-[Latest release](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+[Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
+[Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
+[Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
+[Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
+
+Secondary proof doors:
+[Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
+[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
+[Evidence scorecard](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html)
 
 ## Shopflow in Three Lines
 
 - **Category:** a Chrome-first shopping extension family with `8` store apps and `1` suite shell
 - **Heat hook:** multiple storefront entry points can stay discoverable without splitting the engineering source of truth
 - **Current result:** repo-owned contracts, runtime surfaces, and review packaging exist today, but public-ready support claims still require stronger evidence
+
+## First Product Path
+
+Use this order when you want the shortest truthful product-first read:
+
+1. [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html)
+2. [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html)
+3. [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+4. [Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) only after the first three are clear
 
 ## Verification Layers
 
@@ -54,6 +69,17 @@ Keep the public-repo map simple:
 In plain language:
 
 > one main building, one canonical install counter, and one repo-local MCP desk.
+
+## Primary Product vs Companion Surfaces
+
+Use this like a floor map:
+
+| Surface | Role | What it proves | What it must not be mistaken for |
+| :--- | :--- | :--- | :--- |
+| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | Shopflow is a browser-first extension family | a packet mirror or MCP-first product |
+| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion skill packet | host-native packet consumers can install one truthful folder | proof that Chrome Web Store or broader Shopflow browser lanes are already live |
+| `distribution/public-packets/` | companion mirror rack | target-specific fallback packets still exist in-repo | a second canonical public front door |
+| `pnpm mcp:stdio` + ecosystem docs | companion repo-truth lane | AI tools can inspect read-only runtime and submission-readiness truth | a public HTTP MCP or public SDK package |
 
 ## Public Surfaces In One Glance
 

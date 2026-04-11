@@ -62,12 +62,12 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       })
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
     await expect(
-      sidePanel.locator('#quick-actions').getByRole('link', {
+      sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Review claim gate',
       })
     ).toHaveAttribute('href', '#live-receipt-evidence');
     await expect(
-      sidePanel.locator('#quick-actions')
+      sidePanel.locator('#readiness-summary')
     ).toContainText(/Primary route/i);
     await sidePanel.close();
 
@@ -187,10 +187,10 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     await expect(sidePanel.locator('body')).toContainText(
       /Currently verified on Safeway\./i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Captured 1 search result/i
     );
-    await expect(sidePanel.locator('#latest-output-preview')).toContainText(
+    await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Top result: Vons API Granola Clusters\./i
     );
     await expect(
