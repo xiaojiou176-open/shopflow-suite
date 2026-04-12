@@ -977,12 +977,34 @@ export function RuntimePopupLauncher({ app }: { app: RuntimeAppDefinition }) {
       );
   const routeModel = createPopupRouteModel(popupModel, locale);
   const uiCopy = getUiShellCopy(locale);
+  const popupDetails = [
+    ...(popupModel.recentActivities[0]
+      ? [
+          `${uiCopy.popup.recentActivityPrefix} ${popupModel.recentActivities[0].label} · ${uiCopy.popup.seenPrefix} ${popupModel.recentActivities[0].timestampLabel}`,
+        ]
+      : []),
+    ...(popupModel.evidenceStatus?.blockerSummary
+      ? [
+          `${uiCopy.popup.evidenceQueuePrefix} ${popupModel.evidenceStatus.blockerSummary.summary}`,
+        ]
+      : popupModel.readiness.operatorNextStep
+        ? [
+            `${uiCopy.popup.nextStepPrefix} ${popupModel.readiness.operatorNextStep}`,
+          ]
+        : []),
+    popup.summary,
+  ];
 
   return (
     <PopupLauncher
       title={app.title}
       statusLabel={popupModel.readiness.label}
       summary={popupModel.readiness.summary}
+      claimBoundaryNote={
+        popupModel.readiness.claimBoundary
+          ? `${uiCopy.popup.claimBoundaryPrefix} ${popupModel.readiness.claimBoundary}`
+          : undefined
+      }
       actionHeading={routeModel.actionHeading}
       actionItems={routeModel.actionItems}
       actionEmptySummary={routeModel.actionEmptySummary}
@@ -1016,39 +1038,9 @@ export function RuntimePopupLauncher({ app }: { app: RuntimeAppDefinition }) {
       secondaryOriginLabel={routeModel.secondaryOriginLabel}
       secondarySummary={routeModel.secondarySummary}
       details={[
-        popup.summary,
-        ...(popupModel.readiness.claimBoundary
-          ? [
-              `${uiCopy.popup.claimBoundaryPrefix} ${popupModel.readiness.claimBoundary}`,
-            ]
-          : []),
-        ...(popupModel.evidenceStatus?.blockerSummary
-          ? [
-              `${uiCopy.popup.evidenceQueuePrefix} ${popupModel.evidenceStatus.blockerSummary.summary}`,
-              ...(popupModel.evidenceStatus.blockerSummary.nextStep
-                ? [
-                    `${uiCopy.popup.evidenceNextStepPrefix} ${popupModel.evidenceStatus.blockerSummary.nextStep}`,
-                  ]
-                : []),
-              uiCopy.popup.ledgerNote,
-            ]
-          : []),
-        ...(popupModel.readiness.operatorNextStep
-          ? [
-              `${uiCopy.popup.nextStepPrefix} ${popupModel.readiness.operatorNextStep}`,
-            ]
-          : []),
-        ...(popupModel.recentActivities[0]
-          ? [
-              `${uiCopy.popup.recentActivityPrefix} ${popupModel.recentActivities[0].label}`,
-              ...(popupModel.recentActivities[0].summary
-                ? [popupModel.recentActivities[0].summary]
-                : []),
-              `${uiCopy.popup.seenPrefix} ${popupModel.recentActivities[0].timestampLabel}`,
-            ]
-          : []),
-        ...popup.details,
-        ...summarizeEvidence(app, evidenceState.summary, locale),
+        ...popupDetails,
+        ...popup.details.slice(0, 1),
+        ...summarizeEvidence(app, evidenceState.summary, locale).slice(0, 1),
       ]}
     />
   );

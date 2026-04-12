@@ -108,6 +108,12 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
         .locator('a[href="https://www.safeway.com/shop/cart"]')
         .first()
     ).toBeVisible();
+    await sidePanel.evaluate(() => {
+      window.location.hash = '#current-rollout-map';
+    });
+    await expect(
+      sidePanel.locator('#current-rollout-map details')
+    ).toHaveAttribute('open', '');
     await sidePanel
       .getByRole('button', {
         name: 'Inspect status for Shopflow for Albertsons Family',
@@ -190,6 +196,12 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
         name: 'Open alpha guardrails',
       })
     ).toHaveAttribute('href', '#alpha-guardrails');
+    await sidePanel.evaluate(() => {
+      window.location.hash = '#evidence-gates';
+    });
+    await expect(
+      sidePanel.locator('#evidence-gates details')
+    ).toHaveAttribute('open', '');
     await expect(
       sidePanel.locator('#evidence-gates').getByRole('link', {
         name: 'Open verified scope clause for Shopflow for Albertsons Family',
@@ -205,11 +217,6 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
         name: 'Review on latest source page',
       })
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
-    await expect(
-      sidePanel.locator('#verified-scope-navigator').getByRole('link', {
-        name: 'Open rollout row for Shopflow for Albertsons Family',
-      })
-    ).toHaveAttribute('href', '#rollout-ext-albertsons');
     await sidePanel
       .locator('#evidence-gates')
       .getByRole('link', {
@@ -219,6 +226,14 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     await expect
       .poll(() => sidePanel.url())
       .toContain('#verified-scope-ext-albertsons');
+    await expect(
+      sidePanel.locator('#verified-scope-navigator details')
+    ).toHaveAttribute('open', '');
+    await expect(
+      sidePanel.locator('#verified-scope-navigator').getByRole('link', {
+        name: 'Open rollout row for Shopflow for Albertsons Family',
+      })
+    ).toHaveAttribute('href', '#rollout-ext-albertsons');
     await expect(
       sidePanel.locator('#verified-scope-ext-albertsons')
     ).toContainText(/Currently verified on Safeway/i);
@@ -275,9 +290,11 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     ).toContainText(/Claim readiness board/i);
     await claimReadinessPage.close();
 
+    const refreshedPopup = await openExtensionPage(context, extensionId, 'popup');
+    await expect(refreshedPopup.getByText('Shopflow Suite')).toBeVisible();
     const [verifiedScopePage] = await Promise.all([
       context.waitForEvent('page'),
-      popup
+      refreshedPopup
         .getByRole('link', { name: 'Review verified scope clauses' })
         .click(),
     ]);
@@ -286,9 +303,13 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
       .poll(() => verifiedScopePage.url())
       .toContain('#verified-scope-navigator');
     await expect(
+      verifiedScopePage.locator('#verified-scope-navigator details')
+    ).toHaveAttribute('open', '');
+    await expect(
       verifiedScopePage.locator('#verified-scope-navigator')
     ).toContainText(/Verified scope navigator/i);
     await verifiedScopePage.close();
+    await refreshedPopup.close();
 
     const localizedPopup = await context.newPage();
     await localizedPopup.goto(

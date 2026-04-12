@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { storeTopology } from '@shopflow/contracts';
@@ -21,5 +22,24 @@ describe('tooling create app config', () => {
         resolve(baseDir, `../../${entry.storePackageEntryPath}`)
       );
     }
+  });
+
+  it('keeps the Tailwind Vite plugin wired into the shared WXT app config', () => {
+    const configSource = readFileSync(
+      resolve(process.cwd(), 'tooling/wxt/create-app-config.ts'),
+      'utf8'
+    );
+
+    expect(configSource).toContain("import tailwindcss from '@tailwindcss/vite';");
+    expect(configSource).toContain('plugins: [tailwindcss()]');
+  });
+
+  it('loads the shared UI stylesheet from the primitives entrypoint', () => {
+    const primitivesSource = readFileSync(
+      resolve(process.cwd(), 'packages/ui/src/primitives.tsx'),
+      'utf8'
+    );
+
+    expect(primitivesSource).toContain("import './styles.css';");
   });
 });

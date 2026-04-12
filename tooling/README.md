@@ -69,6 +69,26 @@ Current verification helper:
 
 - `tooling/verification/check-verification-parity.ts`
   - checks that app directories, fixtures, contract tests, E2E specs, and live-evidence wiring stay aligned with the shared verification catalog
+- `tooling/verification/capture-ui-surfaces.ts`
+  - powers `pnpm capture:ui-surfaces`
+  - launches the built extension in headless Chromium and emits PNG previews for:
+    - the selected store app popup
+    - the selected store app sidepanel
+    - the Suite sidepanel
+  - defaults to `ext-albertsons` plus `locale=en`
+  - writes timestamped screenshots under `.runtime-cache/ui-surface-captures/<run-id>/`
+  - refreshes `*.latest.png` aliases and `ui-surface-capture-manifest-latest.json`
+  - stays in repo-verification territory by using routed fixtures for store surfaces and seeded shared storage for the Suite surface
+- `tooling/verification/capture-ui-surface-matrix.ts`
+  - powers `pnpm capture:ui-matrix`
+  - runs a fixed R3 matrix across multiple apps/locales:
+    - `ext-albertsons` (`en`)
+    - `ext-kroger` (`en`)
+    - `ext-temu` (`en`)
+    - `ext-albertsons` (`zh-CN`)
+  - writes per-target capture roots under `.runtime-cache/ui-matrix/**`
+  - stages a reviewer-facing subset into `.stitch/designs/matrix/r3/`
+  - writes `ui-surface-matrix-manifest-latest.json`
 - `tooling/wxt/reset-app-output.ts`
   - clears stale `.output` folders before root wave builds and packaging
 

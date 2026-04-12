@@ -23,7 +23,7 @@ test('ext-weee smoke renders product extraction from a routed fixture', async ()
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Jump to latest source page',

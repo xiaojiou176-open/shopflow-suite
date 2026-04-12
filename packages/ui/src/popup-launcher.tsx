@@ -21,6 +21,7 @@ type LocaleOption = {
 export function PopupLauncher({
   title,
   summary,
+  claimBoundaryNote,
   details = [],
   actionHeading,
   actionItems = [],
@@ -42,6 +43,7 @@ export function PopupLauncher({
 }: {
   title: string;
   summary: string;
+  claimBoundaryNote?: string;
   details?: string[];
   actionHeading?: string;
   actionItems?: PopupActionItem[];
@@ -89,210 +91,273 @@ export function PopupLauncher({
   const labelOnlyActionItems = actionItems.filter(
     (item): item is string => typeof item === 'string'
   );
+  const featuredActionItem = structuredActionItems[0];
+  const extraStructuredActionItems = structuredActionItems.slice(1);
+  const supportingDetails = details.slice(0, 4);
+  const hiddenDetailCount = supportingDetails.length;
   const showSourceCapturedSplit =
     Boolean(latestSourceHref) &&
     Boolean(latestOutputPreview?.href) &&
     latestSourceHref !== latestOutputPreview?.href;
+  const showActionDrawer =
+    extraStructuredActionItems.length > 0 ||
+    labelOnlyActionItems.length > 0 ||
+    supportingDetails.length > 0;
 
   return (
     <main
-      className={`min-w-[320px] ${surfaceTokens.appBackground} p-4 ${surfaceTokens.headline}`}
+      className={`shopflow-surface min-w-[320px] ${surfaceTokens.appBackground} p-4 ${surfaceTokens.headline}`}
     >
-      <Card>
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
-              {copy.brand}
-            </p>
-            <h1 className="mt-2 text-lg font-semibold">{title}</h1>
-            <p className={`mt-2 text-sm ${surfaceTokens.body}`}>{summary}</p>
-          </div>
-          <div className="flex flex-col items-end gap-2">
-            {statusLabel ? (
-              <span className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">
-                {statusLabel}
-              </span>
-            ) : null}
-            {localeOptions.length > 0 ? (
-              <div className="flex flex-col items-end gap-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                  {copy.common.displayLanguageLabel}
+      <div className="space-y-3">
+        <Card className="overflow-hidden bg-[rgba(255,253,248,0.92)]">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#756d62]">
+                {copy.brand}
+              </p>
+              <h1 className="mt-2 text-[1.32rem] font-semibold leading-tight">
+                {title}
+              </h1>
+              <p className="mt-2 inline-flex rounded-full border border-[rgba(58,49,38,0.10)] bg-[#f1ebe0] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#6c665d]">
+                {copy.popup.quickRouter}
+              </p>
+              <p className={`mt-3 text-sm ${surfaceTokens.body}`}>{summary}</p>
+              <p className="mt-2 text-xs text-[#756d62]">
+                {copy.popup.quickRouterIntro}
+              </p>
+              {claimBoundaryNote ? (
+                <p className="mt-2 text-xs text-[#8a6330]">
+                  {claimBoundaryNote}
                 </p>
-                <div className="inline-flex rounded-xl border border-stone-200 bg-white p-1">
-                  {localeOptions.map((option) => (
-                    <a
-                      key={option.href}
-                      aria-current={option.active ? 'page' : undefined}
-                      className={`rounded-lg px-3 py-1 text-xs font-medium ${
-                        option.active
-                          ? 'bg-stone-900 text-white'
-                          : 'text-stone-700'
-                      }`}
-                      href={option.href}
-                    >
-                      {option.label}
-                    </a>
-                  ))}
+              ) : null}
+            </div>
+            <div className="flex shrink-0 flex-col items-end gap-2">
+              {statusLabel ? (
+                <span className="rounded-full border border-[rgba(58,49,38,0.08)] bg-[#f1ebe0] px-3 py-1 text-[11px] text-[#6c665d]">
+                  {statusLabel}
+                </span>
+              ) : null}
+              {localeOptions.length > 0 ? (
+                <div className="flex flex-col items-end gap-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                    {copy.common.displayLanguageLabel}
+                  </p>
+                  <div className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white p-1 shadow-[0_6px_18px_rgba(58,49,38,0.05)]">
+                    {localeOptions.map((option) => (
+                      <a
+                        key={option.href}
+                        aria-current={option.active ? 'page' : undefined}
+                        className={`rounded-xl px-3 py-1 text-xs font-medium ${
+                          option.active
+                            ? 'bg-[#1f1c17] text-white'
+                            : 'text-[#514a42]'
+                        }`}
+                        href={option.href}
+                      >
+                        {option.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
-        </div>
 
-        <div className="mt-4 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-            {copy.popup.quickRouter}
-          </p>
-          <p className="mt-1 text-xs text-stone-600">
-            {copy.popup.quickRouterIntro}
-          </p>
+          <div className="mt-4 space-y-3">
+            <section className="rounded-[1.75rem] bg-[#1f1c17] px-4 py-4 text-white shadow-[0_14px_32px_rgba(31,28,23,0.22)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#e9e2d8]">
+                {copy.popup.primaryRoute}
+              </p>
+              {primaryOriginLabel ? (
+                <p className="mt-1 text-[11px] text-[#d9cfbf]">
+                  {primaryOriginLabel}
+                </p>
+              ) : null}
+              <div className="mt-3">
+                {primaryHref ? (
+                  <a
+                    className="inline-flex rounded-2xl bg-[#1f6b57] px-3 py-2 text-sm font-medium text-white shadow-[0_10px_24px_rgba(31,107,87,0.24)]"
+                    href={primaryHref}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {resolvedPrimaryLabel}
+                  </a>
+                ) : (
+                  <Button tone="primary">{resolvedPrimaryLabel}</Button>
+                )}
+              </div>
+              <p className="mt-3 text-sm text-[#ede7de]">
+                {resolvedPrimarySummary}
+              </p>
+            </section>
+
+            <div className="space-y-3">
+              <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[#fff8ef] px-4 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                  {copy.popup.secondaryRoute}
+                </p>
+                {secondaryOriginLabel ? (
+                  <p className="mt-1 text-[11px] text-[#756d62]">
+                    {secondaryOriginLabel}
+                  </p>
+                ) : null}
+                <div className="mt-3">
+                  {secondaryHref ? (
+                    <a
+                      className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                      href={secondaryHref}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {resolvedSecondaryLabel}
+                    </a>
+                  ) : (
+                    <Button tone="ghost">{resolvedSecondaryLabel}</Button>
+                  )}
+                </div>
+                <p className="mt-3 text-xs text-[#6c665d]">
+                  {resolvedSecondarySummary}
+                </p>
+              </section>
+
+              {latestSourceHref ? (
+                <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                    {copy.popup.jumpBack}
+                  </p>
+                  <p className="mt-1 text-[11px] text-[#756d62]">
+                    {copy.common.routeOriginLabels.merchantSource}
+                  </p>
+                  <a
+                    className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
+                    href={latestSourceHref}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {resolvedLatestSourceLabel}
+                  </a>
+                  <p className="mt-3 text-xs text-[#6c665d]">
+                    {copy.popup.jumpBackSummary}
+                  </p>
+                </section>
+              ) : null}
+            </div>
+          </div>
+
           {showSourceCapturedSplit ? (
-            <p className="mt-2 text-xs text-stone-500">
+            <p className="mt-3 text-xs text-[#756d62]">
               {copy.popup.sourceCapturedSplitSummary}
             </p>
           ) : null}
-        </div>
-
-        <div className="mt-4 space-y-3">
-          <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-              {copy.popup.primaryRoute}
-            </p>
-            {primaryOriginLabel ? (
-              <p className="mt-1 text-[11px] text-stone-500">
-                {primaryOriginLabel}
-              </p>
-            ) : null}
-            <div className="mt-2">
-              {primaryHref ? (
-                <a
-                  className="inline-flex rounded-xl bg-stone-900 px-3 py-2 text-sm font-medium text-white"
-                  href={primaryHref}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {resolvedPrimaryLabel}
-                </a>
-              ) : (
-                <Button tone="primary">{resolvedPrimaryLabel}</Button>
-              )}
-            </div>
-            <p className="mt-2 text-xs text-stone-600">
-              {resolvedPrimarySummary}
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-              {copy.popup.secondaryRoute}
-            </p>
-            {secondaryOriginLabel ? (
-              <p className="mt-1 text-[11px] text-stone-500">
-                {secondaryOriginLabel}
-              </p>
-            ) : null}
-            <div className="mt-2">
-              {secondaryHref ? (
-                <a
-                  className="inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
-                  href={secondaryHref}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {resolvedSecondaryLabel}
-                </a>
-              ) : (
-                <Button tone="ghost">{resolvedSecondaryLabel}</Button>
-              )}
-            </div>
-            <p className="mt-2 text-xs text-stone-600">
-              {resolvedSecondarySummary}
-            </p>
-          </div>
-
-          {latestSourceHref ? (
-            <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                {copy.popup.jumpBack}
-              </p>
-              <p className="mt-1 text-[11px] text-stone-500">
-                {copy.common.routeOriginLabels.merchantSource}
-              </p>
-              <a
-                className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
-                href={latestSourceHref}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {resolvedLatestSourceLabel}
-              </a>
-              <p className="mt-2 text-xs text-stone-600">
-                {copy.popup.jumpBackSummary}
-              </p>
-            </div>
-          ) : null}
-        </div>
+        </Card>
 
         {latestOutputPreview ? (
-          <div
-            id="latest-output-preview"
-            className="mt-4 rounded-xl border border-stone-200 bg-white px-3 py-3"
+          <Card
+            className="border-[rgba(183,121,31,0.18)] bg-[#fff8ef]"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-              {latestOutputPreview.label}
-            </p>
-            <p className="mt-1 text-[11px] text-stone-500">
-              {copy.common.routeOriginLabels.capturedPage}
-            </p>
-            <p className="mt-2 text-sm font-medium text-stone-900">
-              {latestOutputPreview.title}
-            </p>
-            <p className="mt-2 text-xs text-stone-600">
-              {latestOutputPreview.summary}
-            </p>
-            {latestOutputPreview.detailLines.length > 0 ? (
-              <ul className="mt-2 space-y-1 text-xs text-stone-600">
-                {latestOutputPreview.detailLines.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            ) : null}
-            {latestOutputPreview.timestampLabel ? (
-              <p className="mt-2 text-xs text-stone-500">
-                {copy.popup.latestCapturedAt(
-                  latestOutputPreview.timestampLabel
-                )}
+            <div id="latest-output-preview">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
+                    {latestOutputPreview.label}
+                  </p>
+                  <p className="mt-1 text-[11px] text-[#8a6330]">
+                    {copy.common.routeOriginLabels.capturedPage}
+                  </p>
+                </div>
+                {latestOutputPreview.timestampLabel ? (
+                  <span className="rounded-full border border-[rgba(183,121,31,0.18)] bg-white px-2.5 py-1 text-[11px] text-[#8a6330]">
+                    {copy.popup.latestCapturedAt(
+                      latestOutputPreview.timestampLabel
+                    )}
+                  </span>
+                ) : null}
+              </div>
+              <p className="mt-3 text-sm font-semibold text-[#1f1c17]">
+                {latestOutputPreview.title}
               </p>
-            ) : null}
-            {latestOutputPreview.href ? (
-              <a
-                className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
-                href={latestOutputPreview.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {latestOutputPreview.hrefLabel ??
-                  copy.common.openLatestCapturedPage}
-              </a>
-            ) : null}
-          </div>
+              <p className="mt-2 text-xs text-[#6c665d]">
+                {latestOutputPreview.summary}
+              </p>
+              {latestOutputPreview.detailLines[0] ? (
+                <p className="mt-2 rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-xs text-[#514a42]">
+                  {latestOutputPreview.detailLines[0]}
+                </p>
+              ) : null}
+              {latestOutputPreview.href ? (
+                <a
+                  className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                  href={latestOutputPreview.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {latestOutputPreview.hrefLabel ??
+                    copy.common.openLatestCapturedPage}
+                </a>
+              ) : null}
+            </div>
+          </Card>
         ) : null}
 
-        <div className="mt-4 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+        <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
             {resolvedActionHeading}
           </p>
-          {actionItems.length > 0 ? (
-            structuredActionItems.length > 0 ? (
-              <div className="mt-2 space-y-2">
-                {structuredActionItems.map((item) => (
+          {featuredActionItem ? (
+            <div className="mt-3 rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4">
+              <a
+                className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
+                href={featuredActionItem.href}
+                target={featuredActionItem.external ? '_blank' : undefined}
+                rel={featuredActionItem.external ? 'noreferrer' : undefined}
+              >
+                {featuredActionItem.label}
+              </a>
+              {featuredActionItem.summary ? (
+                <p className="mt-2 text-xs text-[#6c665d]">
+                  {featuredActionItem.summary}
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <p className="mt-2 text-xs text-[#6c665d]">
+              {resolvedActionEmptySummary}
+            </p>
+          )}
+        </section>
+
+        {showActionDrawer &&
+        (extraStructuredActionItems.length > 0 ||
+          labelOnlyActionItems.length > 0 ||
+          supportingDetails.length > 0) ? (
+          <details className="group">
+            <summary className="flex items-center justify-between rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-3 text-left">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                  {copy.sidePanel.nextRoute}
+                </p>
+                {extraStructuredActionItems.length === 0 &&
+                labelOnlyActionItems.length === 0 ? (
+                  <p className="mt-1 text-xs text-[#6c665d]">
+                    {resolvedActionEmptySummary}
+                  </p>
+                ) : null}
+              </div>
+              <span className="rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-2.5 py-1 text-[11px] font-medium text-[#514a42]">
+                {copy.sidePanel.openRoute}
+              </span>
+            </summary>
+            <div className="mt-3 space-y-3">
+              {extraStructuredActionItems.length > 0
+                ? extraStructuredActionItems.map((item) => (
                   <div
                     key={`${item.label}-${item.href ?? 'static'}`}
-                    className="rounded-xl border border-stone-200 bg-white px-3 py-3"
+                    className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4"
                   >
                     {item.href ? (
                       <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
+                        className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
                         href={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noreferrer' : undefined}
@@ -300,50 +365,50 @@ export function PopupLauncher({
                         {item.label}
                       </a>
                     ) : (
-                      <p className="text-sm font-medium text-stone-700">
+                      <p className="text-sm font-medium text-[#1f1c17]">
                         {item.label}
                       </p>
                     )}
                     {item.summary ? (
-                      <p className="mt-2 text-xs text-stone-600">
+                      <p className="mt-2 text-xs text-[#6c665d]">
                         {item.summary}
                       </p>
                     ) : null}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {labelOnlyActionItems.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-white px-3 py-1 text-xs font-medium text-stone-700"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            )
-          ) : (
-            <p className="mt-2 text-xs text-stone-600">
-              {resolvedActionEmptySummary}
-            </p>
-          )}
-        </div>
+                ))
+                : null}
 
-        {details.length > 0 ? (
-          <ul className={`mt-3 space-y-2 text-xs ${surfaceTokens.muted}`}>
-            {details.map((detail) => (
-              <li
-                key={detail}
-                className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-              >
-                {detail}
-              </li>
-            ))}
-          </ul>
+              {labelOnlyActionItems.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {labelOnlyActionItems.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-3 py-1 text-xs font-medium text-[#514a42]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+
+              {supportingDetails.length > 0 ? (
+                <div className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4">
+                  <div className={`space-y-2 text-xs ${surfaceTokens.muted}`}>
+                    {supportingDetails.map((detail) => (
+                      <p key={detail}>{detail}</p>
+                    ))}
+                  </div>
+                  {hiddenDetailCount > 0 ? (
+                    <p className="mt-3 text-xs text-[#756d62]">
+                      {copy.popup.ledgerNote}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          </details>
         ) : null}
-      </Card>
+      </div>
     </main>
   );
 }
