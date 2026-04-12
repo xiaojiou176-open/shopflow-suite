@@ -147,11 +147,11 @@ describe('createOperatorDecisionBrief', () => {
         blockerSummary: {
           label: 'Still missing reviewable evidence',
           summary:
-            '2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists.',
+            'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.',
           nextStep:
-            'Reconfirm repo verification is green before opening a live Safeway cart session.',
+            'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.',
           sourceHref: 'https://www.safeway.com/shop/cart',
-          sourceLabel: 'Open current capture page',
+          sourceLabel: 'Open current evidence route',
         },
         items: [
           {
@@ -161,11 +161,25 @@ describe('createOperatorDecisionBrief', () => {
             status: 'missing-live-receipt',
             sectionHref: '#live-receipt-evidence',
             summary:
-              'Safeway subscribe live receipt remains blocked until a live receipt bundle exists for safeway.',
+              'Safeway subscribe live receipt still requires a fresh, reviewable live capture from a logged-in Safeway session.',
             nextStep:
-              'Reconfirm repo verification is green before opening a live Safeway cart session.',
+              'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.',
             sourceHref: 'https://www.safeway.com/shop/cart',
-            sourceLabel: 'Open current capture page',
+            sourceLabel: 'Open current evidence route',
+          },
+          {
+            captureId: 'safeway-cancel-live-receipt',
+            title: 'Safeway cancel live receipt',
+            verifiedScope: 'safeway',
+            status: 'rejected',
+            sectionHref: '#live-receipt-review',
+            summary:
+              'Safeway cancel live receipt is currently rejected because the account state did not expose a cancelable Schedule & Save subscription.',
+            reviewSummary:
+              'Current account state has no active Schedule & Save subscription item to cancel.',
+            reviewLabel: 'Rejected in review',
+            sourceHref: 'https://www.safeway.com/schedule-and-save/manage',
+            sourceLabel: 'Open current evidence route',
           },
         ],
       },
