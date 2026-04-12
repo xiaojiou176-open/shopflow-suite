@@ -293,4 +293,78 @@ describe('live browser operator capture packet tooling', () => {
       ])
     );
   });
+
+  it('uses the broader Safeway capture-lane blocker when cart falls back to public_or_unknown under a login-gated session', () => {
+    const packet = createOperatorCapturePacket({
+      diagnoseReport: {
+        probe: {
+          checkedAt: '2026-04-12T22:06:44.096Z',
+          sessionHealth: { safeway: 'login_required' },
+          captureTargetState: { safeway: 'login_required' },
+          deepLinkState: { safeway: 'unknown' },
+          observedTabs: [
+            {
+              url: 'https://www.safeway.com/',
+              title: 'Grocery Delivery Near You - Order Groceries Online | Safeway',
+            },
+            {
+              url: 'https://www.safeway.com/shop/cart',
+              title: '404 | Safeway',
+            },
+            {
+              url: 'https://www.safeway.com/account/sign-in.html',
+              title: 'Sign In | Safeway',
+            },
+          ],
+          targets: [
+            {
+              id: 'safeway-home',
+              label: 'Safeway home',
+              requestedUrl: 'https://www.safeway.com/',
+              finalUrl: 'https://www.safeway.com/',
+              title: 'Grocery Delivery Near You - Order Groceries Online | Safeway',
+              classification: 'login_required',
+              source: 'cdp-target',
+              captureIds: [],
+            },
+            {
+              id: 'safeway-cart',
+              label: 'Safeway cart',
+              requestedUrl: 'https://www.safeway.com/shop/cart',
+              finalUrl: 'https://www.safeway.com/shop/cart',
+              title: '404 | Safeway',
+              classification: 'public_or_unknown',
+              source: 'cdp-target',
+              captureIds: ['safeway-subscribe-live-receipt'],
+            },
+            {
+              id: 'safeway-manage',
+              label: 'Safeway Schedule & Save manage',
+              requestedUrl: 'https://www.safeway.com/schedule-and-save/manage',
+              finalUrl: 'https://www.safeway.com/account/sign-in.html',
+              title: 'Sign In | Safeway',
+              classification: 'login_required',
+              source: 'cdp-target',
+              captureIds: ['safeway-cancel-live-receipt'],
+            },
+          ],
+        },
+      } as never,
+    });
+
+    expect(packet.captureCandidates).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          captureId: 'safeway-subscribe-live-receipt',
+          classification: 'public_or_unknown',
+          blockerReason: 'login_required',
+        }),
+        expect.objectContaining({
+          captureId: 'safeway-cancel-live-receipt',
+          classification: 'login_required',
+          blockerReason: 'login_required',
+        }),
+      ])
+    );
+  });
 });

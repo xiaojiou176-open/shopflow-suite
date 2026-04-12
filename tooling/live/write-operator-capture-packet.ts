@@ -105,6 +105,31 @@ function detectBlockerReason(classification: string) {
   }
 }
 
+function resolveCaptureLaneBlockerReason(args: {
+  appId: string;
+  targetId: ShopflowLiveTargetId;
+  classification: string;
+  safewayCaptureTargetState?: string;
+}) {
+  const {
+    appId,
+    targetId,
+    classification,
+    safewayCaptureTargetState,
+  } = args;
+
+  if (
+    appId === 'ext-albertsons' &&
+    targetId === 'safeway-cart' &&
+    (safewayCaptureTargetState === 'login_required' ||
+      safewayCaptureTargetState === 'deep_link_unstable')
+  ) {
+    return safewayCaptureTargetState;
+  }
+
+  return detectBlockerReason(classification);
+}
+
 export function createOperatorCapturePacket(args: {
   diagnoseReport: ShopflowLiveDiagnoseArtifact;
   screenshotsDirectory?: string;
@@ -161,7 +186,13 @@ export function createOperatorCapturePacket(args: {
     const screenshotLabel = screenshotPath?.split('/').pop();
     const status: CapturePacketCandidateStatus =
       observation.classification === 'session_visible' ? 'capture-ready' : 'blocked';
-    const blockerReason = detectBlockerReason(observation.classification);
+    const blockerReason = resolveCaptureLaneBlockerReason({
+      appId: target.appId,
+      targetId: target.id,
+      classification: observation.classification,
+      safewayCaptureTargetState:
+        diagnoseReport.probe.captureTargetState?.safeway,
+    });
 
     for (const captureId of target.captureIds) {
       captureCandidates.push({
