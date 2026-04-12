@@ -42,13 +42,12 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await expect(sidePanel.locator('body')).toContainText(
       /Safeway subscribe live receipt remains blocked until a live receipt bundle exists for safeway\./i
     );
-    const operatorNextStepCard = sidePanel
-      .locator('section')
-      .filter({ hasText: 'Operator next step' })
-      .first();
     await expect(
-      operatorNextStepCard.getByRole('link').first()
-    ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
+      sidePanel
+        .locator('#readiness-summary')
+        .locator('a[href="https://www.safeway.com/shop/cart"]')
+        .first()
+    ).toBeVisible();
     await expect(
       sidePanel.getByRole('link', { name: 'Open current capture page' }).first()
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
@@ -66,9 +65,12 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
         name: 'Review claim gate',
       })
     ).toHaveAttribute('href', '#live-receipt-evidence');
-    await expect(
-      sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    await expect(sidePanel.locator('#readiness-summary')).toContainText(
+      /Runnable now/i
+    );
+    await expect(sidePanel.locator('#readiness-summary')).toContainText(
+      /Claim boundary/i
+    );
     await sidePanel.close();
 
     const popup = await openExtensionPage(context, extensionId, 'popup');
@@ -86,7 +88,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       /Seen \d{1,2}:\d{2}/i
     );
     await expect(popup.locator('body')).toContainText(
-      /2 live receipt captures still missing for this app\./i
+      /App-level live receipt blocker remains because 2 packets? still need(?:s)? a first capture\./i
     );
     await expect(
       popup.getByRole('link', { name: 'Open supported workflow' })
@@ -122,6 +124,18 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       sidePanelFromPopup.getByText('Shopflow for Albertsons Family')
     ).toBeVisible();
     await sidePanelFromPopup.close();
+
+    const reviewLanePage = await context.newPage();
+    await reviewLanePage.goto(
+      `chrome-extension://${extensionId}/sidepanel.html#live-receipt-review`
+    );
+    await expect(
+      reviewLanePage.locator('#live-receipt-review details')
+    ).toHaveAttribute('open', '');
+    await expect(reviewLanePage.locator('#live-receipt-review')).toContainText(
+      /Review lane/i
+    );
+    await reviewLanePage.close();
   } finally {
     await cleanup();
   }
@@ -214,12 +228,6 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     );
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Top result: Vons API Granola Clusters\./i
-    );
-    await expect(
-      popup.getByRole('link', { name: 'Capture search results' })
-    ).toHaveAttribute(
-      'href',
-      'https://www.vons.com/shop/search-results.html?q=granola'
     );
     await expect(
       popup.getByRole('link', { name: 'Open latest captured page' }).first()

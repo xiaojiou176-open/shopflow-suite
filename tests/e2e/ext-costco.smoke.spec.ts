@@ -23,7 +23,7 @@ test('ext-costco smoke renders product extraction from a routed fixture', async 
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured product/i
     );

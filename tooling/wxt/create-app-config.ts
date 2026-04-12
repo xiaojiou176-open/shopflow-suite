@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import { defineConfig, type UserConfig } from 'wxt';
+import tailwindcss from '@tailwindcss/vite';
 import { storeTopology } from '../../packages/contracts/src/store-topology';
 
 type AppConfigInput = {
@@ -37,6 +38,7 @@ export function createAppConfig(input: AppConfigInput): UserConfig {
   return defineConfig({
     modules: ['@wxt-dev/module-react'],
     vite: () => ({
+      plugins: [tailwindcss()],
       resolve: {
         alias: createPackageAliases(import.meta.dirname),
       },

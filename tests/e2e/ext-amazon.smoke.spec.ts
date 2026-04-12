@@ -23,7 +23,7 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(sidePanel.locator('body')).toContainText(/Recent activity/i);
     await expect(sidePanel.locator('body')).toContainText(
       /www\.amazon\.com · product/i
@@ -82,7 +82,7 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
       /Price: \$49\.99/i
     );
     await expect(popup.locator('body')).toContainText(
-      /2 ready capabilities on the latest detected page\./i
+      /Extract this product and 1 more move are runnable right now\./i
     );
     await expect(
       popup.getByRole('link', { name: 'Extract this product' })

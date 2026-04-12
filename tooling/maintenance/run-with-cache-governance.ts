@@ -21,7 +21,10 @@ function parseCommand(argv: string[]) {
 }
 
 function commandNeedsPlaywrightBrowsers(command: string) {
-  return /\bplaywright\s+test\b/.test(command);
+  return (
+    /\bplaywright\s+test\b/.test(command) ||
+    /\bcapture-ui-surfaces\.ts\b/.test(command)
+  );
 }
 
 function hasPlaywrightBrowsersInstalled(playwrightRoot: string) {

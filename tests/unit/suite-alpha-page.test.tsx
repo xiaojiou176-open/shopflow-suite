@@ -116,8 +116,9 @@ describe('SuiteAlphaPage', () => {
     const html = renderToStaticMarkup(<SuiteAlphaPage />);
 
     expect(html).toContain(
-      'Open the verified scope clause and rollout row first, then open'
+      'Review verified scope clauses'
     );
+    expect(html).toContain('Open claim readiness board');
     expect(html).not.toContain('href="undefined"');
   });
 

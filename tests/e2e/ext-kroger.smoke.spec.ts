@@ -23,7 +23,7 @@ test('ext-kroger smoke renders family deals support without overclaiming beyond 
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(
       sidePanel.locator(
         '#quick-actions a[href="https://www.fredmeyer.com/savings/coupons"]'
