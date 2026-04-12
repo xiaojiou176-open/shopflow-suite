@@ -56,28 +56,28 @@
     "totalCount": 2,
     "needsCaptureCount": 1,
     "captureCount": 0,
-    "recaptureCount": 0,
+    "recaptureCount": 1,
     "missingCount": 1,
     "captureInProgressCount": 0,
-    "reviewPendingCount": 1,
+    "reviewPendingCount": 0,
     "reviewedCount": 0,
-    "rejectedCount": 0,
+    "rejectedCount": 1,
     "expiredCount": 0,
-    "blockerSummary": "App-level live receipt blocker remains because 1 packet is reviewable and still waiting for explicit review, 1 packet still needs a first capture.",
+    "blockerSummary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
     "nextCaptureId": "safeway-subscribe-live-receipt",
-    "nextStatus": "captured",
-    "nextOperatorPath": "review",
+    "nextStatus": "missing-live-receipt",
+    "nextOperatorPath": "capture",
     "nextRequirementTitle": "Safeway subscribe live receipt",
-    "nextStep": "Reconfirm repo verification is green before opening a live Safeway cart session.",
+    "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.",
     "nextSourcePageUrl": "https://www.safeway.com/shop/cart",
-    "nextSourcePageLabel": "Live Safeway cart page",
-    "nextSourceRouteLabel": "Review waiting evidence on source page"
+    "nextSourcePageLabel": "Open current evidence route",
+    "nextSourceRouteLabel": "Open current evidence route"
   },
   "bestRoute": {
     "origin": "evidence-source",
-    "label": "Review waiting evidence on source page",
+    "label": "Open current evidence route",
     "href": "https://www.safeway.com/shop/cart",
-    "summary": "Reconfirm repo verification is green before opening a live Safeway cart session."
+    "summary": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
   },
   "builderSurfaceBoundary": {
     "today": [

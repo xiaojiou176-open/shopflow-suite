@@ -281,7 +281,7 @@
     "entries": [
       {
         "target": "codex",
-        "placement": "ecosystem-secondary",
+        "placement": "front-door-primary",
         "packagingState": "plugin-level-public-distribution-bundle",
         "suggestedSlug": "shopflow-read-only-builder-packet",
         "title": "Shopflow Read-only Builder Packet",
@@ -304,7 +304,7 @@
         ],
         "distributionBundle": {
           "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
-          "officialSurfaceStatus": "official-surface-unconfirmed",
+          "officialSurfaceStatus": "official-surface-confirmed-auth-required",
           "starterBundlePaths": [
             "docs/ecosystem/codex-quickstart.md",
             "docs/ecosystem/agent-quickstarts.md",
@@ -337,7 +337,7 @@
       },
       {
         "target": "claude-code",
-        "placement": "ecosystem-secondary",
+        "placement": "front-door-primary",
         "packagingState": "plugin-level-public-distribution-bundle",
         "suggestedSlug": "shopflow-read-only-operator-packet",
         "title": "Shopflow Read-only Operator Packet",
@@ -359,7 +359,7 @@
         ],
         "distributionBundle": {
           "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
-          "officialSurfaceStatus": "official-surface-unconfirmed",
+          "officialSurfaceStatus": "official-surface-confirmed-auth-required",
           "starterBundlePaths": [
             "docs/ecosystem/claude-code-quickstart.md",
             "docs/ecosystem/agent-quickstarts.md",

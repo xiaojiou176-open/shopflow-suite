@@ -54,7 +54,7 @@
       "id": "ext-temu:https://www.temu.com/search_result.html?search_key=warehouse",
       "appId": "ext-temu",
       "label": "www.temu.com · search",
-      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. Review bundle metadata will appear once repo-owned release artifacts exist.",
+      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as store-review.",
       "timestampLabel": "2:30 AM",
       "href": "https://www.temu.com/search_result.html?search_key=warehouse"
     }
@@ -71,12 +71,12 @@
     "reviewedCount": 0,
     "rejectedCount": 0,
     "expiredCount": 0,
-    "blockerSummary": "Reviewed live evidence is still required before public wording can move forward.",
+    "blockerSummary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
     "nextCaptureId": "temu-filter-live-receipt",
     "nextStatus": "missing-live-receipt",
     "nextOperatorPath": "capture",
     "nextRequirementTitle": "Temu filter live receipt",
-    "nextStep": "Keep public wording claim-gated until reviewed live evidence exists.",
+    "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.",
     "nextSourcePageUrl": "https://www.temu.com/search_result.html?search_key=warehouse",
     "nextSourcePageLabel": "Open current evidence route",
     "nextSourceRouteLabel": "Open current evidence route"
@@ -85,7 +85,7 @@
     "origin": "evidence-source",
     "label": "Open current evidence route",
     "href": "https://www.temu.com/search_result.html?search_key=warehouse",
-    "summary": "Keep public wording claim-gated until reviewed live evidence exists."
+    "summary": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
   },
   "builderSurfaceBoundary": {
     "today": [

@@ -34,7 +34,6 @@ function normalizeDynamicArtifactSummaries<
         key,
         {
           surfaceId: value.surfaceId,
-          kind: value.kind,
         },
       ])
     ),
@@ -202,12 +201,21 @@ describe('builder outcome bundle tooling', () => {
   });
 
   it('keeps the checked-in builder outcome bundle example aligned with the tooling output', () => {
-    const releaseState = createReleaseArtifactState(['ext-albertsons']);
     const expected = buildBuilderOutcomeBundle({
       appId: 'ext-albertsons',
       generatedAt: '2026-04-02T10:00:00.000Z',
-      artifactManifestPath: releaseState.manifestPath,
-      submissionReadinessPath: releaseState.readinessPath,
+      snapshotPath: resolve(
+        repoRoot,
+        'docs/ecosystem/examples/builder-app-snapshot.ext-albertsons.json'
+      ),
+      decisionBriefPath: resolve(
+        repoRoot,
+        'docs/ecosystem/examples/operator-decision-brief.ext-albertsons.json'
+      ),
+      workflowBriefPath: resolve(
+        repoRoot,
+        'docs/ecosystem/examples/workflow-copilot-brief.ext-albertsons.json'
+      ),
     });
     const example = builderOutcomeBundleSchema.parse(
       JSON.parse(

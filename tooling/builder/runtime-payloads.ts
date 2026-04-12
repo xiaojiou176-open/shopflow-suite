@@ -30,6 +30,10 @@ const submissionReadinessPath = resolve(
   repoRoot,
   '.runtime-cache/release-artifacts/submission-readiness.json'
 );
+const reviewedRecordsLatestPath = resolve(
+  repoRoot,
+  '.runtime-cache/live-browser/reviewed-records-latest.json'
+);
 
 type ReleaseArtifactManifestEntry = {
   appId: string;
@@ -48,6 +52,21 @@ type SubmissionReadinessEntry = {
   verifiedScopeCopy?: string;
   requiredEvidenceCaptureIds?: string[];
   repoOwnedNextMove?: string;
+};
+
+type ReviewedRecordsPacket = {
+  reviewedRecords: Array<{
+    captureId: string;
+  }>;
+  rejectedRecords: Array<{
+    captureId: string;
+  }>;
+};
+
+type LiveEvidenceResolution = {
+  reviewedCaptureIds: string[];
+  unresolvedCaptureIds: string[];
+  rejectedCaptureIds: string[];
 };
 
 type CanonicalRuntimePayloadAppId = (typeof canonicalRuntimePayloadAppIds)[number];
@@ -194,11 +213,27 @@ export function supportsCanonicalRuntimePayloads(appId: string) {
 export function createCanonicalBuilderRuntimePayloads(
   appId: string
 ): BuilderRuntimePayloadSet {
+  const artifactState = readReleaseArtifactState();
+  const readinessEntry = artifactState.readiness.entries.find(
+    (entry) => entry.appId === appId
+  );
+  const reviewedRecordsPacket = readLatestReviewedRecordsPacket();
+
   if (appId === 'ext-albertsons') {
     const detection = createAlbertsonsDetection();
     const snapshotRecentActivities = createAlbertsonsSnapshotRecentActivities();
     const modelRecentActivities = createAlbertsonsModelRecentActivities();
-    const evidenceStatus = createAlbertsonsEvidenceStatus();
+    const liveEvidence = resolveLiveEvidenceResolution(
+      readinessEntry?.requiredEvidenceCaptureIds ??
+        getLiveReceiptAppRequirements(appId).map(
+          (requirement) => requirement.captureId
+        ),
+      reviewedRecordsPacket
+    );
+    const evidenceStatus = createAlbertsonsEvidenceStatus(
+      readinessEntry,
+      liveEvidence
+    );
     const latestOutput = createAlbertsonsLatestOutput();
 
     const builderAppSnapshot = createBuilderAppSnapshot({
@@ -220,30 +255,7 @@ export function createCanonicalBuilderRuntimePayloads(
         previewLines: latestOutput.previewLines,
       },
       recentActivities: snapshotRecentActivities,
-      evidenceQueue: {
-        appId: 'ext-albertsons',
-        totalCount: 2,
-        needsCaptureCount: 1,
-        captureCount: 0,
-        recaptureCount: 0,
-        missingCount: 1,
-        captureInProgressCount: 0,
-        reviewPendingCount: 1,
-        reviewedCount: 0,
-        rejectedCount: 0,
-        expiredCount: 0,
-        blockerSummary:
-          'App-level live receipt blocker remains because 1 packet is reviewable and still waiting for explicit review, 1 packet still needs a first capture.',
-        nextCaptureId: 'safeway-subscribe-live-receipt',
-        nextStatus: 'captured',
-        nextOperatorPath: 'review',
-        nextRequirementTitle: 'Safeway subscribe live receipt',
-        nextStep:
-          'Reconfirm repo verification is green before opening a live Safeway cart session.',
-        nextSourcePageUrl: 'https://www.safeway.com/shop/cart',
-        nextSourcePageLabel: 'Live Safeway cart page',
-        nextSourceRouteLabel: 'Review waiting evidence on source page',
-      },
+      evidenceQueue: createAlbertsonsEvidenceQueue(readinessEntry, liveEvidence),
     });
 
     const model = createHomeViewModel(
@@ -274,11 +286,7 @@ export function createCanonicalBuilderRuntimePayloads(
     );
   }
 
-  const artifactState = readReleaseArtifactState();
   const manifestEntry = artifactState.manifest.entries.find(
-    (entry) => entry.appId === appId
-  );
-  const readinessEntry = artifactState.readiness.entries.find(
     (entry) => entry.appId === appId
   );
   const payloads = createScenarioPayloads(scenario, manifestEntry, readinessEntry);
@@ -350,6 +358,36 @@ function readOptionalJson<T>(path: string): T | undefined {
   }
 
   return JSON.parse(readFileSync(path, 'utf8')) as T;
+}
+
+function readLatestReviewedRecordsPacket() {
+  return readOptionalJson<ReviewedRecordsPacket>(reviewedRecordsLatestPath);
+}
+
+function resolveLiveEvidenceResolution(
+  requiredEvidenceCaptureIds: readonly string[],
+  reviewedRecordsPacket?: ReviewedRecordsPacket
+): LiveEvidenceResolution {
+  const reviewedCaptureIdsSet = new Set(
+    reviewedRecordsPacket?.reviewedRecords.map((record) => record.captureId) ?? []
+  );
+  const rejectedCaptureIdsSet = new Set(
+    reviewedRecordsPacket?.rejectedRecords.map((record) => record.captureId) ?? []
+  );
+
+  return {
+    reviewedCaptureIds: requiredEvidenceCaptureIds.filter((captureId) =>
+      reviewedCaptureIdsSet.has(captureId)
+    ),
+    rejectedCaptureIds: requiredEvidenceCaptureIds.filter((captureId) =>
+      rejectedCaptureIdsSet.has(captureId)
+    ),
+    unresolvedCaptureIds: requiredEvidenceCaptureIds.filter(
+      (captureId) =>
+        !reviewedCaptureIdsSet.has(captureId) &&
+        !rejectedCaptureIdsSet.has(captureId)
+    ),
+  };
 }
 
 function createScenarioPayloads(
@@ -602,35 +640,109 @@ function createAlbertsonsModelRecentActivities(): SidePanelHomeViewModel['recent
   ];
 }
 
-function createAlbertsonsEvidenceStatus(): NonNullable<
+function createAlbertsonsEvidenceStatus(
+  readinessEntry?: SubmissionReadinessEntry,
+  liveEvidence: LiveEvidenceResolution = resolveLiveEvidenceResolution(
+    getLiveReceiptAppRequirements('ext-albertsons').map(
+      (requirement) => requirement.captureId
+    )
+  )
+): NonNullable<
   SidePanelHomeViewModel['evidenceStatus']
 > {
+  const subscribeUnresolved =
+    liveEvidence.unresolvedCaptureIds.includes('safeway-subscribe-live-receipt');
+  const cancelRejected =
+    liveEvidence.rejectedCaptureIds.includes('safeway-cancel-live-receipt');
+
   return {
     headline: 'Live receipt readiness',
     blockerSummary: {
-      label: 'Still missing reviewable evidence',
+      label: 'Claim-gated until new Safeway proof exists',
       summary:
-        '2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists.',
-      nextStep:
-        'Reconfirm repo verification is green before opening a live Safeway cart session.',
+        readinessEntry?.readinessSummary ??
+        'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.',
+      nextStep: readinessEntry?.repoOwnedNextMove,
       sourceHref: 'https://www.safeway.com/shop/cart',
-      sourceLabel: 'Open current capture page',
+      sourceLabel: 'Open current evidence route',
     },
     items: [
       {
         captureId: 'safeway-subscribe-live-receipt',
         title: 'Safeway subscribe live receipt',
         verifiedScope: 'safeway',
-        status: 'missing-live-receipt',
+        status: subscribeUnresolved ? 'missing-live-receipt' : 'reviewed',
         sectionHref: '#live-receipt-evidence',
         summary:
-          'Safeway subscribe live receipt remains blocked until a live receipt bundle exists for safeway.',
-        nextStep:
-          'Reconfirm repo verification is green before opening a live Safeway cart session.',
+          'Safeway subscribe live receipt still requires a fresh, reviewable live capture from a logged-in Safeway session.',
+        nextStep: readinessEntry?.repoOwnedNextMove,
         sourceHref: 'https://www.safeway.com/shop/cart',
-        sourceLabel: 'Open current capture page',
+        sourceLabel: 'Open current evidence route',
+      },
+      {
+        captureId: 'safeway-cancel-live-receipt',
+        title: 'Safeway cancel live receipt',
+        verifiedScope: 'safeway',
+        status: cancelRejected ? 'rejected' : 'missing-live-receipt',
+        sectionHref: '#live-receipt-review',
+        summary: cancelRejected
+          ? 'Safeway cancel live receipt is currently rejected because the account state did not expose a cancelable Schedule & Save subscription.'
+          : 'Safeway cancel live receipt still requires a reviewable live bundle from a Safeway account with a cancelable subscription.',
+        reviewSummary: cancelRejected
+          ? 'Current account state has no active Schedule & Save subscription item to cancel.'
+          : undefined,
+        reviewLabel: cancelRejected ? 'Rejected in review' : undefined,
+        sourceHref: 'https://www.safeway.com/schedule-and-save/manage',
+        sourceLabel: 'Open current evidence route',
       },
     ],
+  };
+}
+
+function createAlbertsonsEvidenceQueue(
+  readinessEntry?: SubmissionReadinessEntry,
+  liveEvidence: LiveEvidenceResolution = resolveLiveEvidenceResolution(
+    getLiveReceiptAppRequirements('ext-albertsons').map(
+      (requirement) => requirement.captureId
+    )
+  )
+) {
+  const requiredEvidenceCaptureIds =
+    readinessEntry?.requiredEvidenceCaptureIds ??
+    getLiveReceiptAppRequirements('ext-albertsons').map(
+      (requirement) => requirement.captureId
+    );
+  const unresolvedCount = liveEvidence.unresolvedCaptureIds.length;
+  const reviewedCount = liveEvidence.reviewedCaptureIds.length;
+  const rejectedCount = liveEvidence.rejectedCaptureIds.length;
+  const nextCaptureId =
+    liveEvidence.unresolvedCaptureIds[0] ?? requiredEvidenceCaptureIds[0];
+
+  return {
+    appId: 'ext-albertsons',
+    totalCount: requiredEvidenceCaptureIds.length,
+    needsCaptureCount: unresolvedCount,
+    captureCount: 0,
+    recaptureCount: rejectedCount,
+    missingCount: unresolvedCount,
+    captureInProgressCount: 0,
+    reviewPendingCount: 0,
+    reviewedCount,
+    rejectedCount,
+    expiredCount: 0,
+    blockerSummary:
+      readinessEntry?.readinessSummary ??
+      'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.',
+    nextCaptureId,
+    nextStatus: 'missing-live-receipt' as const,
+    nextOperatorPath: 'capture' as const,
+    nextRequirementTitle: humanizeCaptureId(nextCaptureId),
+    nextStep:
+      readinessEntry?.repoOwnedNextMove ??
+      'Keep wording claim-gated until a fresh Safeway subscribe packet is captured and reviewed.',
+    nextSourcePageUrl: 'https://www.safeway.com/shop/cart',
+    nextSourcePageLabel: 'Open current evidence route',
+    nextSourceRouteLabel: 'Open current evidence route',
   };
 }
 

@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-08T04:12:11.074Z",
+  "generatedAt": "2026-04-12T22:43:37.007Z",
   "appId": "ext-kroger",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -592,7 +592,7 @@
           "id": "ext-kroger:https://www.fredmeyer.com/savings/coupons",
           "appId": "ext-kroger",
           "label": "www.fredmeyer.com · deal",
-          "summary": "Extract family deal cards is runnable right now. Review bundle metadata will appear once repo-owned release artifacts exist.",
+          "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as store-review.",
           "timestampLabel": "2:20 AM",
           "href": "https://www.fredmeyer.com/savings/coupons"
         }
@@ -609,12 +609,12 @@
         "reviewedCount": 0,
         "rejectedCount": 0,
         "expiredCount": 0,
-        "blockerSummary": "Reviewed live evidence is still required before public wording can move forward.",
+        "blockerSummary": "Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.",
         "nextCaptureId": "fred-meyer-verified-scope-live-receipt",
         "nextStatus": "missing-live-receipt",
         "nextOperatorPath": "capture",
         "nextRequirementTitle": "Fred meyer verified scope live receipt",
-        "nextStep": "Keep public wording claim-gated until reviewed live evidence exists.",
+        "nextStep": "Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary.",
         "nextSourcePageUrl": "https://www.fredmeyer.com/savings/coupons",
         "nextSourcePageLabel": "Open current evidence route",
         "nextSourceRouteLabel": "Open current evidence route"
@@ -623,7 +623,7 @@
         "origin": "evidence-source",
         "label": "Open current evidence route",
         "href": "https://www.fredmeyer.com/savings/coupons",
-        "summary": "Keep public wording claim-gated until reviewed live evidence exists."
+        "summary": "Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -649,13 +649,13 @@
       "readOnly": true,
       "appTitle": "Shopflow for Kroger Family",
       "stage": "claim-gated",
-      "summary": "Review bundle is ready for repo-local inspection.",
+      "summary": "Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.",
       "whyNow": [
         "www.fredmeyer.com · deal",
         "Extract family deal cards is runnable right now.",
         "2 live evidence packets still gate public wording."
       ],
-      "nextStep": "Inspect the current review route before changing any public wording.",
+      "nextStep": "Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary.",
       "primaryRouteLabel": "Open current evidence route",
       "primaryRouteHref": "https://www.fredmeyer.com/savings/coupons",
       "primaryRouteOrigin": "evidence-source",
@@ -664,7 +664,7 @@
     "workflowCopilotBrief": {
       "tone": "claim-gated",
       "title": "Workflow copilot",
-      "summary": "Repo-local review bundle is ready for inspection.",
+      "summary": "Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.",
       "bullets": [
         {
           "label": "Current surface",
@@ -681,7 +681,7 @@
       ],
       "nextAction": {
         "label": "Open current evidence route",
-        "reason": "Inspect the current review route before expanding public wording."
+        "reason": "Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary."
       }
     }
   },
@@ -707,13 +707,13 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Repo-owned review artifact manifest for all 8+1 apps after packaging completes."
+      "summary": "Release manifest now proves 3 app entries. ext-kroger is store-review with bundle directory apps/ext-kroger/.output/chrome-mv3 and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Repo-owned submission-readiness checklist that keeps claim-gated and internal-alpha boundaries explicit."
+      "summary": "Submission readiness marks ext-kroger as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-kroger/bundle/shopflow-review-artifact.json. Manual review starts at https://www.fredmeyer.com. Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated."
     }
   ],
   "readyToSyncArtifacts": [
