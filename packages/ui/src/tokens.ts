@@ -1,9 +1,9 @@
 export const surfaceTokens = {
-  appBackground: 'bg-stone-50',
-  cardBackground: 'bg-white',
-  borderColor: 'border-stone-200',
-  headline: 'text-stone-950',
-  body: 'text-stone-700',
-  muted: 'text-stone-500',
-  accent: 'bg-emerald-600 text-white',
+  appBackground: 'bg-[#f6f1e8]',
+  cardBackground: 'bg-[#fffdf8]',
+  borderColor: 'border-[rgba(58,49,38,0.10)]',
+  headline: 'text-[#1f1c17]',
+  body: 'text-[#514a42]',
+  muted: 'text-[#756d62]',
+  accent: 'bg-[#1f6b57] text-white',
 } as const;

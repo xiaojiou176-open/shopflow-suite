@@ -8,6 +8,7 @@ import {
 } from '@shopflow/core';
 import { Card } from '../../../packages/ui/src/primitives';
 import { surfaceTokens } from '../../../packages/ui/src/tokens';
+import { useCurrentHash } from '../../../packages/ui/src/use-current-hash';
 import {
   appDefinition,
   createSuiteAppDefinition,
@@ -42,6 +43,7 @@ export function SuiteAlphaPage({
     locale === 'en' ? suiteCatalog : createSuiteCatalog(locale);
   const localizedStatusBoard =
     locale === 'en' ? suiteStatusBoard : createSuiteStatusBoard(locale);
+  const currentHash = useCurrentHash();
   const [expandedAppId, setExpandedAppId] = useState<string | null>(null);
   const detailMap = useSuiteControlPlane(localizedCatalog, locale);
   const priorityRoutes = derivePriorityRoutes(detailMap, locale);
@@ -53,7 +55,7 @@ export function SuiteAlphaPage({
 
   return (
     <main
-      className={`min-h-screen ${surfaceTokens.appBackground} px-4 py-5 ${surfaceTokens.headline}`}
+      className={`shopflow-surface min-h-screen ${surfaceTokens.appBackground} px-4 py-5 ${surfaceTokens.headline}`}
     >
       <header className="mb-4">
         <div className="flex items-start justify-between gap-3">
@@ -217,11 +219,11 @@ export function SuiteAlphaPage({
             <p className="mt-1 text-xs text-stone-500">
               {copy.claimReadinessSummary}
             </p>
-            <div className="mt-3 grid grid-cols-1 gap-3">
+            <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
               {localizedStatusBoard.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
+                  className="min-w-[190px] rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
                 >
                   <p className="text-xs uppercase tracking-[0.18em] text-stone-500">
                     {item.label}
@@ -280,63 +282,72 @@ export function SuiteAlphaPage({
 
         <div id="current-rollout-map">
           <Card>
-            <h2 className="text-sm font-semibold">
-              {copy.currentRolloutHeading}
-            </h2>
-            <p className="mt-1 text-xs text-stone-500">
-              {copy.currentRolloutSummary}
-            </p>
-            <div className="mt-3 space-y-3">
-              {localizedCatalog.map((item) => (
-                <div
-                  key={item.appId}
-                  id={`rollout-${item.appId}`}
-                  className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-medium">{item.title}</p>
-                      <p className={`text-xs ${surfaceTokens.muted}`}>
-                        {item.wave} · {item.state}
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap justify-end gap-2">
-                      {detailMap[item.appId]?.routeHref ? (
-                        <a
-                          className="rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
-                          aria-label={`Rollout route for ${item.title}: ${detailMap[item.appId]?.routeLabel}`}
-                          href={detailMap[item.appId]?.routeHref}
-                          target="_blank"
-                          rel="noreferrer"
+            <details
+              open={
+                currentHash === '#current-rollout-map' ||
+                currentHash.startsWith('#rollout-') ||
+                undefined
+              }
+            >
+              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.currentRolloutHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {copy.currentRolloutSummary}
+                  </p>
+                </div>
+                <span className="text-xs font-medium text-stone-500">
+                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                </span>
+              </summary>
+              <div className="mt-3 space-y-3">
+                {localizedCatalog.map((item) => (
+                  <div
+                    key={item.appId}
+                    id={`rollout-${item.appId}`}
+                    className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-medium">{item.title}</p>
+                        <p className={`text-xs ${surfaceTokens.muted}`}>
+                          {item.wave} · {item.state}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap justify-end gap-2">
+                        {detailMap[item.appId]?.routeHref ? (
+                          <a
+                            className="rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
+                            aria-label={`Rollout route for ${item.title}: ${detailMap[item.appId]?.routeLabel}`}
+                            href={detailMap[item.appId]?.routeHref}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {detailMap[item.appId]?.routeLabel}
+                          </a>
+                        ) : null}
+                        <button
+                          type="button"
+                          aria-expanded={expandedAppId === item.appId}
+                          aria-label={copy.inspectStatusLabel(item.title)}
+                          className="rounded-xl border border-stone-200 bg-transparent px-3 py-2 text-sm font-medium text-stone-700"
+                          onClick={() =>
+                            setExpandedAppId((current) =>
+                              current === item.appId ? null : item.appId
+                            )
+                          }
                         >
-                          {detailMap[item.appId]?.routeLabel}
-                        </a>
-                      ) : null}
-                      <button
-                        type="button"
-                        aria-expanded={expandedAppId === item.appId}
-                        aria-label={copy.inspectStatusLabel(item.title)}
-                        className="rounded-xl border border-stone-200 bg-transparent px-3 py-2 text-sm font-medium text-stone-700"
-                        onClick={() =>
-                          setExpandedAppId((current) =>
-                            current === item.appId ? null : item.appId
-                          )
-                        }
-                      >
-                        {expandedAppId === item.appId
-                          ? copy.hideStatusActionLabel
-                          : copy.inspectStatusActionLabel}
-                      </button>
+                          {expandedAppId === item.appId
+                            ? copy.hideStatusActionLabel
+                            : copy.inspectStatusActionLabel}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <p className="mt-2 text-xs text-stone-600">{item.note}</p>
-                  {detailMap[item.appId]?.routeSummary ? (
-                    <p className="mt-2 text-xs text-stone-500">
-                      {detailMap[item.appId]?.routeSummary}
-                    </p>
-                  ) : null}
-                  {expandedAppId === item.appId ? (
-                    <div className="mt-3 grid grid-cols-1 gap-3 text-xs text-stone-600">
+                    <p className="mt-2 text-xs text-stone-600">{item.note}</p>
+                    {expandedAppId === item.appId ? (
+                      <div className="mt-3 grid grid-cols-1 gap-3 text-xs text-stone-600">
                       <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
                         <p className="font-semibold text-stone-700">
                           {copy.latestDetectionHeading}
@@ -596,120 +607,150 @@ export function SuiteAlphaPage({
                           </a>
                         </div>
                       </div>
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </details>
           </Card>
         </div>
 
         <div id="evidence-gates">
           <Card>
-            <h2 className="text-sm font-semibold">
-              {copy.evidenceGatesHeading}
-            </h2>
-            <p className="mt-1 text-xs text-stone-500">
-              {copy.evidenceGatesSummary}
-            </p>
-            <div className="mt-3 space-y-3">
-              {suiteEvidenceBlockers.map((item) => {
-                const route = externalEvidenceRoutes[item.appId];
+            <details open={currentHash === '#evidence-gates' || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.evidenceGatesHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {copy.evidenceGatesSummary}
+                  </p>
+                </div>
+                <span className="text-xs font-medium text-stone-500">
+                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                </span>
+              </summary>
+              <div className="mt-3 space-y-3">
+                {suiteEvidenceBlockers.map((item) => {
+                  const route = externalEvidenceRoutes[item.appId];
 
-                return (
-                  <div
-                    key={item.appId}
-                    className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                  >
-                    <p className="text-sm font-medium">{item.title}</p>
-                    <p className="mt-1 text-xs text-stone-600">{item.note}</p>
-                    <p className="mt-2 text-xs text-stone-500">
-                      {route.summary}
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                        href={`#verified-scope-${item.appId}`}
-                      >
-                        {copy.openVerifiedScopeClause(route.publicName)}
-                      </a>
-                      <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                        href={`#rollout-${item.appId}`}
-                      >
-                        {copy.openRolloutRow(route.publicName)}
-                      </a>
-                      {route.href ? (
+                  return (
+                    <div
+                      key={item.appId}
+                      className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
+                    >
+                      <p className="text-sm font-medium">{item.title}</p>
+                      <p className="mt-1 text-xs text-stone-600">{item.note}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
                         <a
-                          className="inline-flex rounded-xl border border-stone-200 bg-stone-900 px-3 py-2 text-xs font-medium text-white"
-                          href={route.href}
-                          target="_blank"
-                          rel="noreferrer"
+                          className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                          href={`#verified-scope-${item.appId}`}
                         >
-                          {route.label}
+                          {copy.openVerifiedScopeClause(route.publicName)}
                         </a>
-                      ) : null}
+                        <a
+                          className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                          href={`#rollout-${item.appId}`}
+                        >
+                          {copy.openRolloutRow(route.publicName)}
+                        </a>
+                        {route.href ? (
+                          <a
+                            className="inline-flex rounded-xl border border-stone-200 bg-stone-900 px-3 py-2 text-xs font-medium text-white"
+                            href={route.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {route.label}
+                          </a>
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            </details>
           </Card>
         </div>
 
         <div id="verified-scope-navigator">
           <Card>
-            <h2 className="text-sm font-semibold">
-              {copy.verifiedScopeHeading}
-            </h2>
-            <p className="mt-1 text-xs text-stone-500">
-              {copy.verifiedScopeSummary}
-            </p>
-            <div className="mt-3 space-y-3">
-              {suiteVerifiedScopeNavigator.map((item) => (
-                <div
-                  key={item.publicName}
-                  id={`verified-scope-${item.appId}`}
-                  className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                >
-                  <p className="text-sm font-medium">{item.publicName}</p>
-                  <p className="mt-1 text-xs text-stone-600">
-                    {item.verifiedScopeCopy}
+            <details
+              open={
+                currentHash === '#verified-scope-navigator' ||
+                currentHash.startsWith('#verified-scope-') ||
+                undefined
+              }
+            >
+              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.verifiedScopeHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {copy.verifiedScopeSummary}
                   </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <a
-                      className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                      href={`#rollout-${item.appId}`}
-                    >
-                      {copy.openRolloutRow(item.publicName)}
-                    </a>
-                    {detailMap[item.appId]?.routeHref ? (
-                      <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-stone-900 px-3 py-2 text-xs font-medium text-white"
-                        href={detailMap[item.appId]!.routeHref}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {detailMap[item.appId]!.routeLabel}
-                      </a>
-                    ) : null}
-                  </div>
                 </div>
-              ))}
-            </div>
+                <span className="text-xs font-medium text-stone-500">
+                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                </span>
+              </summary>
+              <div className="mt-3 space-y-3">
+                {suiteVerifiedScopeNavigator.map((item) => (
+                  <div
+                    key={item.publicName}
+                    id={`verified-scope-${item.appId}`}
+                    className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
+                  >
+                    <p className="text-sm font-medium">{item.publicName}</p>
+                    <p className="mt-1 text-xs text-stone-600">
+                      {item.verifiedScopeCopy}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <a
+                        className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                        href={`#rollout-${item.appId}`}
+                      >
+                        {copy.openRolloutRow(item.publicName)}
+                      </a>
+                      {detailMap[item.appId]?.routeHref ? (
+                        <a
+                          className="inline-flex rounded-xl border border-stone-200 bg-stone-900 px-3 py-2 text-xs font-medium text-white"
+                          href={detailMap[item.appId]!.routeHref}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {detailMap[item.appId]!.routeLabel}
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
           </Card>
         </div>
 
         <div id="provider-runtime-seam">
           <Card>
-            <h2 className="text-sm font-semibold">
-              {copy.providerRuntimeSeamHeading}
-            </h2>
-            <p className="mt-1 text-xs text-stone-500">
-              {copy.providerRuntimeSeamSummary}
-            </p>
-            {runtimeConsumer?.enabled ? (
-              <div className="mt-3 space-y-3">
+            <details open={currentHash === '#provider-runtime-seam' || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.providerRuntimeSeamHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {copy.providerRuntimeSeamSummary}
+                  </p>
+                </div>
+                <span className="text-xs font-medium text-stone-500">
+                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                </span>
+              </summary>
+              {runtimeConsumer?.enabled ? (
+                <div className="mt-3 space-y-3">
                 <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
                     {copy.providerRuntimeSeamBaseUrlHeading}
@@ -781,33 +822,46 @@ export function SuiteAlphaPage({
                     );
                   })}
                 </div>
-              </div>
-            ) : (
-              <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-                <p className="text-sm font-medium text-stone-900">
-                  {copy.providerRuntimeSeamNotConfigured}
-                </p>
-                <p className="mt-2 text-xs text-stone-600">
-                  {copy.providerRuntimeSeamConfigureHint}
-                </p>
-                <code className="mt-3 block rounded-xl border border-stone-200 bg-white px-3 py-3 text-[11px] text-stone-700">
-                  sidepanel.html?switchyardBaseUrl=http://127.0.0.1:4317#provider-runtime-seam
-                </code>
-              </div>
-            )}
+                </div>
+              ) : (
+                <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
+                  <p className="text-sm font-medium text-stone-900">
+                    {copy.providerRuntimeSeamNotConfigured}
+                  </p>
+                  <p className="mt-2 text-xs text-stone-600">
+                    {copy.providerRuntimeSeamConfigureHint}
+                  </p>
+                  <code className="mt-3 block rounded-xl border border-stone-200 bg-white px-3 py-3 text-[11px] text-stone-700">
+                    sidepanel.html?switchyardBaseUrl=http://127.0.0.1:4317#provider-runtime-seam
+                  </code>
+                </div>
+              )}
+            </details>
           </Card>
         </div>
 
         <div id="alpha-guardrails">
           <Card>
-            <h2 className="text-sm font-semibold">
-              {copy.alphaGuardrailsHeading}
-            </h2>
-            <ul className="mt-3 space-y-2 text-sm text-stone-700">
-              {localizedAppDefinition.guardrails.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+            <details open={currentHash === '#alpha-guardrails' || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.alphaGuardrailsHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {localizedAppDefinition.operatorPromise}
+                  </p>
+                </div>
+                <span className="text-xs font-medium text-stone-500">
+                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                </span>
+              </summary>
+              <ul className="mt-3 space-y-2 text-sm text-stone-700">
+                {localizedAppDefinition.guardrails.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </details>
           </Card>
         </div>
       </div>
@@ -844,7 +898,7 @@ function derivePriorityRoutes(
     })
     .filter((item): item is NonNullable<typeof item> => item !== null)
     .sort((left, right) => compareSuiteDetailPriority(left.detail, right.detail))
-    .slice(0, 3);
+    .slice(0, 2);
 }
 
 function getRouteOriginLabel(

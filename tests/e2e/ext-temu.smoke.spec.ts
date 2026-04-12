@@ -54,7 +54,7 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Open current capture page',
@@ -69,7 +69,7 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     const popup = await openExtensionPage(context, extensionId, 'popup');
     await expect(popup.getByText('Shopflow for Temu')).toBeVisible();
     await expect(popup.locator('body')).toContainText(
-      /1 live receipt capture still missing for this app\./i
+      /App-level live receipt blocker remains because 1 packet(?:s)? still need(?:s)? a first capture\./i
     );
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Latest captured search/i
@@ -81,7 +81,7 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
       /Top result: Temu Storage Basket\./i
     );
     await expect(
-      popup.getByRole('link', { name: 'Open supported workflow' })
+      popup.getByRole('link', { name: 'Capture search results' })
     ).toHaveAttribute(
       'href',
       'https://www.temu.com/search_result.html?search_key=desk%20lamp'

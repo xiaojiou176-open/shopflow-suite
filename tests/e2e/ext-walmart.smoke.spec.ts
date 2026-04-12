@@ -23,7 +23,7 @@ test('ext-walmart smoke renders search extraction from a routed fixture', async 
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Jump to latest source page',
@@ -118,11 +118,11 @@ test('ext-walmart smoke uses the latest captured page as the best route when no 
       /Walmart Payload Coffee Sampler/i
     );
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
-      /Best route right now/i
+      /Latest captured page/i
     );
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
-        name: 'Best route right now: Open latest captured page',
+        name: 'Open latest captured page',
       })
       .first()
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');

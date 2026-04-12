@@ -23,7 +23,7 @@ test('ext-target smoke renders differentiated deals support from a routed fixtur
     );
     await expect(
       sidePanel.locator('#readiness-summary')
-    ).toContainText(/Primary route/i);
+    ).toContainText(/Runnable now/i);
     await expect(sidePanel.locator('#recent-proof-block')).toContainText(
       /Latest captured deals/i
     );

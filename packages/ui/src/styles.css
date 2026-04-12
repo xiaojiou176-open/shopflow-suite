@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@source ".";
+@source "../../../apps";
+
+:root {
+  color-scheme: light;
+  font-family:
+    "SF Pro Display", "Avenir Next", "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f6f1e8;
+  color: #1f1c17;
+  font-family: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.shopflow-surface {
+  min-height: 100vh;
+}
+
+.shopflow-surface a[href] {
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.shopflow-surface a[href]:hover {
+  transform: translateY(-1px);
+}
+
+.shopflow-surface a[href]:focus-visible,
+.shopflow-surface button:focus-visible {
+  outline: 2px solid #1f6b57;
+  outline-offset: 2px;
+}
+
+.shopflow-surface summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.shopflow-surface summary::-webkit-details-marker {
+  display: none;
+}
+
+.shopflow-surface details[open] summary {
+  margin-bottom: 0.75rem;
+}
+
+.shopflow-surface ul,
+.shopflow-surface ol {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+@media (max-width: 360px) {
+  .shopflow-surface {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .shopflow-surface h1 {
+    font-size: 1.375rem;
+    line-height: 1.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
