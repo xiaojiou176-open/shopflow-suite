@@ -9,7 +9,7 @@
     },
     {
       "label": "Claim gate",
-      "value": "2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists."
+      "value": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
     },
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open capture queue",
-    "reason": "Reconfirm repo verification is green before opening a live Safeway cart session."
+    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
   }
 }
