@@ -739,7 +739,7 @@ function createAlbertsonsEvidenceQueue(
     nextRequirementTitle: humanizeCaptureId(nextCaptureId),
     nextStep:
       readinessEntry?.repoOwnedNextMove ??
-      'Keep wording claim-gated until a fresh Safeway subscribe packet is captured and reviewed.',
+      'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.',
     nextSourcePageUrl: 'https://www.safeway.com/shop/cart',
     nextSourcePageLabel: 'Open current evidence route',
     nextSourceRouteLabel: 'Open current evidence route',
