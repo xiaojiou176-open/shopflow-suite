@@ -17,7 +17,7 @@
     "@shopflow/runtime": "workspace:*",
     "@shopflow/store-temu": "workspace:*",
     "@shopflow/ui": "workspace:*",
-    "react": "^19.2.4",
+    "react": "^19.2.5",
     "react-dom": "^19.2.4",
     "webextension-polyfill": "^0.12.0"
   },
