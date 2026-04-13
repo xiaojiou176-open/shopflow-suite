@@ -168,8 +168,11 @@ describe('SidePanelHomePage', () => {
     );
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
-    expect(html.indexOf('Quick actions')).toBeLessThan(
-      html.indexOf('Current site')
+    expect(html.indexOf('Current site')).toBeLessThan(
+      html.indexOf('Quick actions')
+    );
+    expect(html.indexOf('Available on this page')).toBeLessThan(
+      html.indexOf('Quick actions')
     );
     expect(html.indexOf('id="quick-actions"')).toBeLessThan(
       html.indexOf('id="live-receipt-readiness"')

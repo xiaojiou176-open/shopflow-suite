@@ -74,6 +74,7 @@ export function getUiShellCopy(locale: UiLocale = 'en') {
     },
     popup: {
       defaultActionHeading: catalog.popup.defaultActionHeading,
+      supportingRoutesHeading: catalog.popup.supportingRoutesHeading,
       openSidePanel: catalog.popup.openSidePanel,
       viewCurrentSupportState: catalog.popup.viewCurrentSupportState,
       openSidePanelQuickActions: catalog.popup.openSidePanelQuickActions,

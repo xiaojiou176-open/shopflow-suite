@@ -169,23 +169,27 @@ export function SuiteAlphaPage({
                 </div>
                 {secondaryRoutes.length > 0 ? (
                   <div className="mt-4 space-y-2 rounded-[1.35rem] border border-white/15 bg-white/8 px-3 py-3">
-                    {secondaryRoutes.map((item) => (
+                    {secondaryRoutes.map((item, index) => (
                       <div
                         key={item.appId}
-                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-3"
+                        className={`px-1 py-3 ${
+                          index > 0 ? 'border-t border-white/10' : ''
+                        }`}
                       >
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-300">
-                          {item.kicker}
-                        </p>
-                        <p className="mt-1 text-sm font-medium text-white">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs text-stone-300">
-                          {item.summary}
-                        </p>
-                        <div className="mt-3 flex flex-wrap gap-2">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-300">
+                              {item.kicker}
+                            </p>
+                            <p className="mt-1 text-sm font-medium text-white">
+                              {item.title}
+                            </p>
+                            <p className="mt-1 text-xs text-stone-300">
+                              {item.summary}
+                            </p>
+                          </div>
                           <a
-                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-medium text-stone-900"
+                            className="inline-flex shrink-0 rounded-full bg-white px-3 py-2 text-xs font-medium text-stone-900"
                             aria-label={copy.priorityRouteAria(
                               item.title,
                               item.label
@@ -196,13 +200,13 @@ export function SuiteAlphaPage({
                           >
                             {item.label}
                           </a>
-                          <a
-                            className="inline-flex rounded-xl border border-white/15 px-3 py-2 text-xs font-medium text-white"
-                            href={`#rollout-${item.appId}`}
-                          >
-                            {copy.openRolloutRow(item.title)}
-                          </a>
                         </div>
+                        <a
+                          className="mt-3 inline-flex rounded-xl border border-white/15 px-3 py-2 text-xs font-medium text-white"
+                          href={`#rollout-${item.appId}`}
+                        >
+                          {copy.openRolloutRow(item.title)}
+                        </a>
                       </div>
                     ))}
                   </div>
@@ -257,61 +261,56 @@ export function SuiteAlphaPage({
                 </div>
 
                 <div className="rounded-[1.5rem] border border-stone-200 bg-white px-4 py-4">
-                  <details>
-                    <summary className="flex items-center justify-between gap-3 rounded-[1.25rem] bg-stone-50 px-3 py-3">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                          {copy.internalAlphaOnly}
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-stone-900">
-                          {claimGatedFocus?.title ?? localizedAppDefinition.startHere[0]?.title}
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+                      {copy.alphaGuardrailsHeading}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-stone-900">
+                      {claimGatedFocus?.title ??
+                        localizedAppDefinition.startHere[0]?.title}
+                    </p>
+                    <p className="mt-1 text-xs text-stone-600">
+                      {claimGatedFocus?.summary ??
+                        localizedAppDefinition.operatorPromise}
+                    </p>
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    {localizedAppDefinition.startHere.map((item, index) => (
+                      <div
+                        key={item.title}
+                        className={`rounded-[1.25rem] border border-stone-200 bg-stone-50 px-3 py-3 ${
+                          index === 0 ? 'shadow-[0_10px_24px_rgba(58,49,38,0.06)]' : ''
+                        }`}
+                      >
+                        <p className="text-sm font-medium text-stone-900">
+                          {item.title}
                         </p>
                         <p className="mt-1 text-xs text-stone-600">
-                          {claimGatedFocus?.summary ?? localizedAppDefinition.operatorPromise}
+                          {item.summary}
                         </p>
+                        <a
+                          className="mt-3 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                          href={item.href}
+                        >
+                          {item.ctaLabel}
+                        </a>
                       </div>
-                      <span className="text-xs font-medium text-stone-500">
-                        {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
-                      </span>
-                    </summary>
-                    <div className="mt-4 space-y-3">
-                      <div className="space-y-3">
-                        {localizedAppDefinition.startHere.map((item) => (
-                          <div
-                            key={item.title}
-                            className="rounded-[1.25rem] border border-stone-200 bg-stone-50 px-3 py-3"
-                          >
-                            <p className="text-sm font-medium text-stone-900">
-                              {item.title}
-                            </p>
-                            <p className="mt-1 text-xs text-stone-600">
-                              {item.summary}
-                            </p>
-                            <a
-                              className="mt-3 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                              href={item.href}
-                            >
-                              {item.ctaLabel}
-                            </a>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {localizedStatusBoard.map((item) => (
-                          <a
-                            key={item.id}
-                            className="inline-flex rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-[11px] font-medium text-stone-700"
-                            href={item.href}
-                          >
-                            <span className="mr-2 font-semibold text-stone-900">
-                              {item.count}
-                            </span>
-                            {item.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </details>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {localizedStatusBoard.map((item) => (
+                      <a
+                        key={item.id}
+                        className="inline-flex rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-[11px] font-medium text-stone-700"
+                        href={item.href}
+                      >
+                        <span className="mr-2 font-semibold text-stone-900">
+                          {item.count}
+                        </span>
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -329,31 +328,46 @@ export function SuiteAlphaPage({
                   <p className="mt-1 text-xs text-stone-500">
                     {copy.priorityRoutesSummary}
                   </p>
+                  {featuredRoute ? (
+                    <p className="mt-2 text-xs text-stone-600">
+                      {featuredRoute.title} · {featuredRoute.summary}
+                    </p>
+                  ) : null}
                 </div>
                 <span className="text-xs font-medium text-stone-500">
                   {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
                 </span>
               </summary>
               <div className="mt-3 space-y-3">
-                {priorityRoutes.map((item) => (
+                {priorityRoutes.map((item, index) => (
                   <div
                     key={item.appId}
-                    className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
+                    className={`rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 ${
+                      index === 0 ? 'bg-white shadow-[0_10px_24px_rgba(58,49,38,0.06)]' : ''
+                    }`}
                   >
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                      {item.kicker}
-                    </p>
-                    <p className="mt-1 text-[11px] text-stone-500">
-                      {item.routeOriginLabel}
-                    </p>
-                    <p className="mt-2 text-sm font-medium">{item.title}</p>
-                    <p className="mt-1 text-xs text-stone-600">{item.summary}</p>
-                    <p className="mt-2 text-xs text-stone-500">
-                      {item.nextStep}
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+                          {item.kicker}
+                        </p>
+                        <p className="mt-1 text-[11px] text-stone-500">
+                          {item.routeOriginLabel}
+                        </p>
+                        <p className="mt-2 text-sm font-medium">{item.title}</p>
+                        <p className="mt-1 text-xs text-stone-600">
+                          {item.summary}
+                        </p>
+                        <p className="mt-2 text-xs text-stone-500">
+                          {item.nextStep}
+                        </p>
+                      </div>
                       <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                        className={`inline-flex shrink-0 rounded-xl px-3 py-2 text-xs font-medium ${
+                          index === 0
+                            ? 'bg-stone-900 text-white'
+                            : 'border border-stone-200 bg-white text-stone-700'
+                        }`}
                         aria-label={copy.priorityRouteAria(
                           item.title,
                           item.label
@@ -364,13 +378,17 @@ export function SuiteAlphaPage({
                       >
                         {item.label}
                       </a>
-                      <a
-                        className="inline-flex rounded-xl border border-stone-200 bg-stone-900 px-3 py-2 text-xs font-medium text-white"
-                        href={`#rollout-${item.appId}`}
-                      >
-                        {copy.openRolloutRow(item.title)}
-                      </a>
                     </div>
+                    <a
+                      className={`mt-3 inline-flex rounded-xl px-3 py-2 text-xs font-medium ${
+                        index === 0
+                          ? 'border border-stone-200 bg-stone-50 text-stone-700'
+                          : 'border border-stone-200 bg-white text-stone-700'
+                      }`}
+                      href={`#rollout-${item.appId}`}
+                    >
+                      {copy.openRolloutRow(item.title)}
+                    </a>
                   </div>
                 ))}
               </div>

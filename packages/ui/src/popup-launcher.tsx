@@ -105,6 +105,18 @@ export function PopupLauncher({
     extraStructuredActionItems.length > 0 ||
     labelOnlyActionItems.length > 0 ||
     supportingDetails.length > 0;
+  const actionDrawerPreview =
+    extraStructuredActionItems[0]?.label ??
+    labelOnlyActionItems[0] ??
+    supportingDetails[0] ??
+    resolvedActionEmptySummary;
+  const actionDrawerCount =
+    extraStructuredActionItems.length +
+    labelOnlyActionItems.length +
+    supportingDetails.length;
+  const actionDrawerHeading = featuredActionItem
+    ? copy.popup.supportingRoutesHeading
+    : resolvedActionHeading;
 
   return (
     <main
@@ -354,18 +366,16 @@ export function PopupLauncher({
             <summary className="flex items-center justify-between rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-3 text-left">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                  {resolvedActionHeading}
+                  {actionDrawerHeading}
                 </p>
-                {!featuredActionItem &&
-                extraStructuredActionItems.length === 0 &&
-                labelOnlyActionItems.length === 0 ? (
-                  <p className="mt-1 text-xs text-[#6c665d]">
-                    {resolvedActionEmptySummary}
-                  </p>
-                ) : null}
+                <p className="mt-1 text-xs text-[#6c665d]">
+                  {actionDrawerPreview}
+                </p>
               </div>
               <span className="rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-2.5 py-1 text-[11px] font-medium text-[#514a42]">
-                {copy.sidePanel.openRoute}
+                {actionDrawerCount > 0
+                  ? `${actionDrawerCount}`
+                  : copy.sidePanel.openRoute}
               </span>
             </summary>
             <div className="mt-3 space-y-3">

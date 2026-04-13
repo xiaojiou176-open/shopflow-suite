@@ -81,11 +81,6 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
     await expect(popup.locator('body')).toContainText(
       /Extract this product and 1 more move are runnable right now\./i
     );
-    await popup
-      .locator('summary')
-      .filter({ hasText: /What this page can do now/i })
-      .first()
-      .click();
     await expect(
       popup.getByRole('link', { name: 'Extract this product' })
     ).toHaveAttribute('href', 'https://www.amazon.com/dp/shopflow-grinder');
@@ -158,11 +153,6 @@ test('ext-amazon smoke reuses semantic search cards before generic tracked links
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Hamilton Beach Fresh Grind Electric Coffee Grinder/i
     );
-    await popup
-      .locator('summary')
-      .filter({ hasText: /What this page can do now/i })
-      .first()
-      .click();
     await expect(
       popup.getByRole('link', { name: 'Capture search results' })
     ).toHaveAttribute('href', 'https://www.amazon.com/s?k=coffee+grinder');

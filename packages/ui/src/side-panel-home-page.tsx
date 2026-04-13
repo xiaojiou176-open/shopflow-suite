@@ -84,6 +84,11 @@ export function SidePanelHomePage({
           originLabel: copy.common.routeOriginLabels.sidePanelSection,
         }
       : null);
+  const recentActivityPreview = model.recentActivities[0] ?? null;
+  const recentActivityOverflow = model.recentActivities.slice(1, 3);
+  const secondaryNavigationPreview = model.secondaryNavigation[0] ?? null;
+  const recentActivityOpen = currentHash === '#recent-activity';
+  const nextRoutesOpen = currentHash === '#next-routes';
 
   return (
     <main
@@ -311,76 +316,6 @@ export function SidePanelHomePage({
           </Card>
         </div>
 
-        <div id="quick-actions">
-          <Card>
-            <div className="mb-3 flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              <h2 className="text-sm font-semibold">
-                {copy.sidePanel.quickActions}
-              </h2>
-            </div>
-            <p className="mb-3 text-xs text-stone-500">
-              {copy.sidePanel.quickActionsIntro}
-            </p>
-            <div className="grid grid-cols-1 gap-3">
-              {model.quickActions.length > 0 ? (
-                model.quickActions.map((action, index) => (
-                  <div
-                    key={action.id}
-                    className={`rounded-xl border px-3 py-3 ${
-                      index === 0
-                        ? 'border-[rgba(31,107,87,0.16)] bg-[#edf6f2] text-[#1f1c17]'
-                        : 'border-stone-200 bg-stone-50 text-stone-900'
-                    }`}
-                  >
-                    <p
-                      className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                        index === 0 ? 'text-[#1f6b57]' : 'text-stone-500'
-                      }`}
-                    >
-                      {index === 0
-                        ? copy.sidePanel.primaryRoute
-                        : copy.sidePanel.supportedMove}
-                    </p>
-                    <p className="mt-2 text-sm font-semibold">{action.label}</p>
-                    <p
-                      className={`mt-1 text-xs ${
-                        index === 0 ? 'text-[#4d645d]' : 'text-stone-600'
-                      }`}
-                    >
-                      {action.summary}
-                    </p>
-                    <a
-                      className={`mt-3 inline-flex rounded-xl px-3 py-2 text-sm font-medium ${
-                        index === 0
-                          ? 'bg-[#1f6b57] text-white'
-                          : 'border border-stone-200 bg-white text-stone-700'
-                      }`}
-                      href={action.href}
-                      target={action.external ? '_blank' : undefined}
-                      rel={action.external ? 'noreferrer' : undefined}
-                    >
-                      {action.label}
-                    </a>
-                  </div>
-                ))
-              ) : (
-                <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
-                  <p className="text-sm font-medium text-stone-900">
-                    {copy.sidePanel.noRunnableCapability}
-                  </p>
-                  <p className="mt-1 text-xs text-stone-600">
-                    {copy.sidePanel.noRunnableCapabilityTail}
-                    {model.readiness.operatorNextStep
-                      ? ` ${copy.sidePanel.nextStepPrefix} ${model.readiness.operatorNextStep}`
-                      : ''}
-                  </p>
-                </div>
-              )}
-            </div>
-          </Card>
-        </div>
-
         <div id="current-site-summary">
           <Card>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.9fr_1.1fr]">
@@ -455,90 +390,173 @@ export function SidePanelHomePage({
           </Card>
         </div>
 
-        <div id="supporting-shelves">
+        <div id="capability-grid">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
-            <div className="space-y-4">
-              <section>
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <Compass className="h-4 w-4" />
-                    <div>
-                      <h2 className="text-sm font-semibold">
-                        {copy.sidePanel.availableOnPage}
-                      </h2>
-                      <p className="mt-1 text-xs text-stone-500">
-                        {readyCapabilities}{' '}
-                        {copy.sidePanel.statusLabels.live.toLowerCase()} ·{' '}
-                        {model.capabilities.length}{' '}
-                        {model.capabilities.length === 1
-                          ? 'capability'
-                          : 'capabilities'}
-                      </p>
-                    </div>
+            <section>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <Compass className="h-4 w-4" />
+                  <div>
+                    <h2 className="text-sm font-semibold">
+                      {copy.sidePanel.availableOnPage}
+                    </h2>
+                    <p className="mt-1 text-xs text-stone-500">
+                      {readyCapabilities}{' '}
+                      {copy.sidePanel.statusLabels.live.toLowerCase()} ·{' '}
+                      {model.capabilities.length}{' '}
+                      {model.capabilities.length === 1
+                        ? 'capability'
+                        : 'capabilities'}
+                    </p>
                   </div>
-                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
-                    {copy.sidePanel.openRoute}
-                  </span>
                 </div>
-                <div className="mt-3 grid grid-cols-1 gap-2">
-                  {model.capabilities.map((capability) => (
-                    <div
-                      key={capability.id}
-                      className={`rounded-xl border px-3 py-3 ${
-                        capability.status === 'ready'
-                          ? 'border-emerald-200 bg-emerald-50'
-                          : capability.status === 'blocked' ||
-                              capability.status === 'degraded' ||
-                              capability.status === 'permission_needed'
-                            ? 'border-amber-200 bg-amber-50'
-                            : 'border-stone-200 bg-white'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="text-sm font-medium">{capability.label}</p>
-                        <span className="text-xs text-stone-500">
-                          {copy.sidePanel.capabilityStatusLabels[
-                            capability.status
-                          ] ?? capability.status}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs text-stone-600">
-                        {capability.description}
-                      </p>
-                      {capability.reason ? (
-                        <p className="mt-2 text-xs text-stone-500">
-                          {copy.sidePanel.whyUnavailable} {capability.reason}
-                        </p>
-                      ) : null}
+                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                  {copy.sidePanel.openRoute}
+                </span>
+              </div>
+              <div className="mt-3 grid grid-cols-1 gap-2">
+                {model.capabilities.map((capability) => (
+                  <div
+                    key={capability.id}
+                    className={`rounded-xl border px-3 py-3 ${
+                      capability.status === 'ready'
+                        ? 'border-emerald-200 bg-emerald-50'
+                        : capability.status === 'blocked' ||
+                            capability.status === 'degraded' ||
+                            capability.status === 'permission_needed'
+                          ? 'border-amber-200 bg-amber-50'
+                          : 'border-stone-200 bg-white'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-sm font-medium">{capability.label}</p>
+                      <span className="text-xs text-stone-500">
+                        {copy.sidePanel.capabilityStatusLabels[
+                          capability.status
+                        ] ?? capability.status}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </section>
+                    <p className="mt-1 text-xs text-stone-600">
+                      {capability.description}
+                    </p>
+                    {capability.reason ? (
+                      <p className="mt-2 text-xs text-stone-500">
+                        {copy.sidePanel.whyUnavailable} {capability.reason}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </section>
+          </Card>
+        </div>
 
-              <section
-                id="recent-activity"
-                className="border-t border-[rgba(58,49,38,0.10)] pt-4"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <ReceiptText className="h-4 w-4" />
-                    <div>
-                      <h2 className="text-sm font-semibold">
-                        {copy.sidePanel.recentActivityHeading}
-                      </h2>
-                      <p className="mt-1 text-xs text-stone-500">
-                        {model.recentActivities[0]?.label ??
-                          copy.sidePanel.noVerifiedActivity}
-                      </p>
+        <div id="quick-actions">
+          <Card>
+            <div className="mb-3 flex items-center gap-2">
+              <Sparkles className="h-4 w-4" />
+              <h2 className="text-sm font-semibold">
+                {copy.sidePanel.quickActions}
+              </h2>
+            </div>
+            <p className="mb-3 text-xs text-stone-500">
+              {copy.sidePanel.quickActionsIntro}
+            </p>
+            <div className="grid grid-cols-1 gap-3">
+              {model.quickActions.length > 0 ? (
+                model.quickActions.map((action, index) => (
+                  <div
+                    key={action.id}
+                    className={`rounded-xl border px-3 py-3 ${
+                      index === 0
+                        ? 'border-[rgba(31,107,87,0.16)] bg-[#edf6f2] text-[#1f1c17]'
+                        : 'border-stone-200 bg-stone-50 text-stone-900'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p
+                          className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+                            index === 0 ? 'text-[#1f6b57]' : 'text-stone-500'
+                          }`}
+                        >
+                          {index === 0
+                            ? copy.sidePanel.primaryRoute
+                            : copy.sidePanel.supportedMove}
+                        </p>
+                        <p className="mt-2 text-sm font-semibold">
+                          {action.label}
+                        </p>
+                        <p
+                          className={`mt-1 text-xs ${
+                            index === 0 ? 'text-[#4d645d]' : 'text-stone-600'
+                          }`}
+                        >
+                          {action.summary}
+                        </p>
+                      </div>
+                      <a
+                        className={`shrink-0 rounded-xl px-3 py-2 text-sm font-medium ${
+                          index === 0
+                            ? 'bg-[#1f6b57] text-white'
+                            : 'border border-stone-200 bg-white text-stone-700'
+                        }`}
+                        href={action.href}
+                        target={action.external ? '_blank' : undefined}
+                        rel={action.external ? 'noreferrer' : undefined}
+                      >
+                        {action.label}
+                      </a>
                     </div>
                   </div>
-                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
-                    {copy.sidePanel.openRoute}
-                  </span>
+                ))
+              ) : (
+                <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3">
+                  <p className="text-sm font-medium text-stone-900">
+                    {copy.sidePanel.noRunnableCapability}
+                  </p>
+                  <p className="mt-1 text-xs text-stone-600">
+                    {copy.sidePanel.noRunnableCapabilityTail}
+                    {model.readiness.operatorNextStep
+                      ? ` ${copy.sidePanel.nextStepPrefix} ${model.readiness.operatorNextStep}`
+                      : ''}
+                  </p>
                 </div>
-                {model.recentActivities.length > 0 ? (
-                  <ul className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
-                    {model.recentActivities.slice(0, 2).map((item) => (
+              )}
+            </div>
+          </Card>
+        </div>
+
+        <div id="recent-activity">
+          <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
+            <details open={recentActivityOpen || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+                <div className="flex min-w-0 items-start gap-2">
+                  <ReceiptText className="mt-0.5 h-4 w-4 shrink-0" />
+                  <div className="min-w-0">
+                    <h2 className="text-sm font-semibold">
+                      {copy.sidePanel.recentActivityHeading}
+                    </h2>
+                    <p className="mt-1 truncate text-xs text-stone-500">
+                      {recentActivityPreview?.label ??
+                        copy.sidePanel.noVerifiedActivity}
+                    </p>
+                    {recentActivityPreview?.summary ? (
+                      <p className="mt-2 text-xs text-stone-600">
+                        {recentActivityPreview.summary}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                  {model.recentActivities.length}
+                </span>
+              </summary>
+              {model.recentActivities.length > 0 ? (
+                <ul className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
+                  {[recentActivityPreview, ...recentActivityOverflow]
+                    .filter((item): item is NonNullable<typeof recentActivityPreview> => Boolean(item))
+                    .map((item) => (
                       <li key={item.id} className="py-3 text-sm text-stone-700">
                         <p className="font-medium">{item.label}</p>
                         {item.summary ? (
@@ -561,56 +579,62 @@ export function SidePanelHomePage({
                         ) : null}
                       </li>
                     ))}
-                  </ul>
-                ) : (
-                  <p className="mt-3 rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-3 text-sm text-stone-500">
-                    {copy.sidePanel.noVerifiedActivity}
-                  </p>
-                )}
-              </section>
+                </ul>
+              ) : (
+                <p className="mt-3 rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-3 text-sm text-stone-500">
+                  {copy.sidePanel.noVerifiedActivity}
+                </p>
+              )}
+            </details>
+          </Card>
+        </div>
 
-              <section className="border-t border-[rgba(58,49,38,0.10)] pt-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <PackageSearch className="h-4 w-4" />
-                    <div>
-                      <h2 className="text-sm font-semibold">
-                        {copy.sidePanel.nextRoutesHeading}
-                      </h2>
-                      <p className="mt-1 text-xs text-stone-500">
-                        {model.secondaryNavigation.length}{' '}
-                        {model.secondaryNavigation.length === 1
-                          ? 'route'
-                          : 'routes'}
+        <div id="next-routes">
+          <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
+            <details open={nextRoutesOpen || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+                <div className="flex min-w-0 items-start gap-2">
+                  <PackageSearch className="mt-0.5 h-4 w-4 shrink-0" />
+                  <div className="min-w-0">
+                    <h2 className="text-sm font-semibold">
+                      {copy.sidePanel.nextRoutesHeading}
+                    </h2>
+                    <p className="mt-1 truncate text-xs text-stone-500">
+                      {secondaryNavigationPreview?.label ??
+                        copy.sidePanel.noRunnableCapability}
+                    </p>
+                    {secondaryNavigationPreview?.summary ? (
+                      <p className="mt-2 text-xs text-stone-600">
+                        {secondaryNavigationPreview.summary}
                       </p>
+                    ) : null}
+                  </div>
+                </div>
+                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                  {model.secondaryNavigation.length}
+                </span>
+              </summary>
+              <div className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
+                {model.secondaryNavigation.map((item) => (
+                  <div key={item.id} className="py-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-medium">{item.label}</p>
+                        <p className="mt-1 text-xs text-stone-500">
+                          {item.summary}
+                        </p>
+                      </div>
+                      <a
+                        className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
+                        href={item.href ?? '#readiness-summary'}
+                      >
+                        {item.actionLabel ?? copy.sidePanel.openRoute}
+                      </a>
                     </div>
                   </div>
-                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
-                    {copy.sidePanel.openRoute}
-                  </span>
-                </div>
-                <div className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
-                  {model.secondaryNavigation.map((item) => (
-                    <div key={item.id} className="py-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <p className="text-sm font-medium">{item.label}</p>
-                          <p className="mt-1 text-xs text-stone-500">
-                            {item.summary}
-                          </p>
-                        </div>
-                        <a
-                          className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
-                          href={item.href ?? '#readiness-summary'}
-                        >
-                          {item.actionLabel ?? copy.sidePanel.openRoute}
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </div>
+                ))}
+              </div>
+            </details>
           </Card>
         </div>
 

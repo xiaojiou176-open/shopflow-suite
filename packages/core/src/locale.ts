@@ -49,6 +49,7 @@ type LocaleCatalog = {
   };
   popup: {
     defaultActionHeading: string;
+    supportingRoutesHeading: string;
     noRunnableCapability: string;
     openSidePanel: string;
     viewCurrentSupportState: string;
@@ -475,6 +476,7 @@ const en: LocaleCatalog = {
   },
   popup: {
     defaultActionHeading: 'What this page can do now',
+    supportingRoutesHeading: 'Supporting routes',
     noRunnableCapability:
       'No runnable capability is available on this page yet.',
     openSidePanel: 'Open Side Panel',
@@ -1034,6 +1036,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
   },
   popup: {
     defaultActionHeading: '当前页面现在能做什么',
+    supportingRoutesHeading: '补充路线',
     noRunnableCapability: '当前页面还没有可立即执行的能力。',
     openSidePanel: '打开侧边面板',
     viewCurrentSupportState: '查看当前支持状态',

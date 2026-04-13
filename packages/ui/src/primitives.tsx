@@ -8,7 +8,7 @@ export function Card({
 }: PropsWithChildren<{ className?: string }>) {
   return (
     <section
-      className={`rounded-[1.75rem] border ${surfaceTokens.borderColor} ${surfaceTokens.cardBackground} p-4 shadow-[0_10px_30px_rgba(58,49,38,0.06)] ${className}`}
+      className={`rounded-[1.75rem] border ${surfaceTokens.borderColor} ${surfaceTokens.cardBackground} p-4 shadow-[0_18px_40px_rgba(58,49,38,0.08),0_2px_8px_rgba(58,49,38,0.04)] ${className}`}
     >
       {children}
     </section>
@@ -32,7 +32,7 @@ export function Button({
 
   return (
     <button
-      className={`cursor-pointer rounded-2xl px-3 py-2 text-sm font-medium transition-colors duration-150 ${toneClass} ${className}`}
+      className={`cursor-pointer rounded-2xl px-3 py-2 text-sm font-medium transition-[background-color,color,transform,box-shadow] duration-150 active:translate-y-[1px] ${toneClass} ${className}`}
     >
       {children}
     </button>
