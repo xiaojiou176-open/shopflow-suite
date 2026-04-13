@@ -54,6 +54,7 @@ export function SuiteAlphaPage({
   );
   const featuredRoute = priorityRoutes[0] ?? null;
   const secondaryRoutes = priorityRoutes.slice(1);
+  const priorityRoutesOpen = currentHash === '#priority-routes' || !featuredRoute;
 
   return (
     <main
@@ -319,7 +320,7 @@ export function SuiteAlphaPage({
 
         <div id="priority-routes">
           <Card>
-            <details open>
+            <details open={priorityRoutesOpen || undefined}>
               <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
                 <div>
                   <h2 className="text-sm font-semibold">
@@ -330,12 +331,12 @@ export function SuiteAlphaPage({
                   </p>
                   {featuredRoute ? (
                     <p className="mt-2 text-xs text-stone-600">
-                      {featuredRoute.title} · {featuredRoute.summary}
+                      {featuredRoute.title} · {featuredRoute.routeOriginLabel}
                     </p>
                   ) : null}
                 </div>
-                <span className="text-xs font-medium text-stone-500">
-                  {getShopflowLocaleCatalog(locale).sidePanel.openRoute}
+                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                  {priorityRoutes.length}
                 </span>
               </summary>
               <div className="mt-3 space-y-3">

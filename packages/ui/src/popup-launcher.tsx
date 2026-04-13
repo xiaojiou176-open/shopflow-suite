@@ -136,14 +136,16 @@ export function PopupLauncher({
                 {copy.popup.quickRouter}
               </p>
               <p className={`mt-3 text-sm ${surfaceTokens.body}`}>{summary}</p>
-              <p className="mt-2 text-xs text-[#756d62]">
-                {copy.popup.quickRouterIntro}
-              </p>
-              {claimBoundaryNote ? (
-                <p className="mt-2 text-xs text-[#8a6330]">
-                  {claimBoundaryNote}
+              <div className="mt-3 rounded-[1.25rem] border border-[rgba(58,49,38,0.10)] bg-[#f8f3eb] px-3 py-3">
+                <p className="text-xs text-[#756d62]">
+                  {copy.popup.quickRouterIntro}
                 </p>
-              ) : null}
+                {claimBoundaryNote ? (
+                  <p className="mt-2 border-t border-[rgba(183,121,31,0.16)] pt-2 text-xs text-[#8a6330]">
+                    {claimBoundaryNote}
+                  </p>
+                ) : null}
+              </div>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {statusLabel ? (
