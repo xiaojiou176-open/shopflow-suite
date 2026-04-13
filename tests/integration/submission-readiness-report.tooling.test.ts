@@ -237,26 +237,87 @@ describe('submission readiness report tooling', () => {
       appId: 'ext-kroger',
       reviewBundleReady: true,
       repoOwnedStatus: 'review-bundle-ready-claim-gated',
-      readinessSummary: expect.stringMatching(/rejected captures/i),
+      readinessSummary: expect.stringMatching(
+        /finalized with rejected captures|claim-gated/i
+      ),
     });
     expect(report.entries[0]?.reviewerChecklist).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           category: 'claim-boundary',
-          status: 'blocked',
-          detail: expect.stringMatching(/rejected captures/i),
+          status: 'attention',
+          detail: expect.stringMatching(
+            /keep wording claim-gated and do not reopen/i
+          ),
         }),
         expect.objectContaining({
           category: 'live-evidence',
-          status: 'blocked',
-          detail: expect.stringMatching(/Do not treat these captures as missing external packets/i),
+          status: 'attention',
+          detail: expect.stringMatching(
+            /Do not treat these captures as missing external packets unless the owner later requests/i
+          ),
         }),
       ])
     );
     expect(report.entries[0]?.repoOwnedNextMove).toMatch(
-      /repo-side recapture or evidence triage/i
+      /do not reopen unless the owner later requests/i
     );
     expect(report.entries[0]?.externalBlockers).toEqual([]);
+  });
+
+  it('keeps rejected captures claim-gated while still surfacing unresolved external live proof', () => {
+    const manifest: ReleaseArtifactManifestEntry[] = [
+      {
+        appId: 'ext-albertsons',
+        publicName: 'Shopflow for Albertsons Family',
+        releaseChannel: 'capability-heavy-candidate',
+        claimState: 'repo-verified',
+        wave: 'Wave 1',
+        tier: 'capability-heavy-product',
+        buildDirectory: 'apps/ext-albertsons/.output/chrome-mv3',
+        zipArtifacts: [
+          'apps/ext-albertsons/.output/shopflowext-albertsons-0.1.0-chrome.zip',
+        ],
+      },
+    ];
+    const report = createSubmissionReadinessReport(manifest, [], {
+      reviewedRecordsPacket: {
+        reviewedRecords: [],
+        rejectedRecords: [{ captureId: 'safeway-cancel-live-receipt' }],
+      },
+    });
+
+    expect(report.entries[0]).toMatchObject({
+      appId: 'ext-albertsons',
+      repoOwnedStatus: 'review-bundle-ready-claim-gated',
+      readinessSummary: expect.stringMatching(
+        /remaining open gate is external capture\/review|claim-gated/i
+      ),
+      repoOwnedNextMove: expect.stringMatching(
+        /external capture\/review is still required/i
+      ),
+    });
+    expect(report.entries[0]?.reviewerChecklist).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          category: 'claim-boundary',
+          status: 'attention',
+          detail: expect.stringMatching(
+            /reviewed external evidence is still unresolved for safeway-subscribe-live-receipt/i
+          ),
+        }),
+        expect.objectContaining({
+          category: 'live-evidence',
+          status: 'attention',
+          detail: expect.stringMatching(
+            /external capture\/review is still unresolved for safeway-subscribe-live-receipt/i
+          ),
+        }),
+      ])
+    );
+    expect(report.entries[0]?.externalBlockers).toEqual([
+      'Reviewed live evidence still requires an external capture/review packet for safeway-subscribe-live-receipt.',
+    ]);
   });
 
   it('turns missing default review hosts into readable reviewer-start-path blockers instead of fake URLs', () => {

@@ -145,6 +145,37 @@ export function createOperatorCapturePacket(args: {
 
   const screenshotPathByUrl = new Map<string, string>();
   const screenshotPathByTitle = new Map<string, string>();
+  const ambiguousScreenshotTitles = new Set<string>();
+  const screenshotTitleCounts = new Map<string, number>();
+
+  const noteTitleOccurrence = (title: string) => {
+    const nextCount = (screenshotTitleCounts.get(title) ?? 0) + 1;
+    screenshotTitleCounts.set(title, nextCount);
+
+    if (nextCount > 1) {
+      ambiguousScreenshotTitles.add(title);
+      screenshotPathByTitle.delete(title);
+    }
+  };
+
+  const rememberTitleFallback = (title: string, screenshotPath: string) => {
+    if (ambiguousScreenshotTitles.has(title)) {
+      return;
+    }
+
+    const existing = screenshotPathByTitle.get(title);
+    if (existing && existing !== screenshotPath) {
+      ambiguousScreenshotTitles.add(title);
+      screenshotPathByTitle.delete(title);
+      return;
+    }
+
+    screenshotPathByTitle.set(title, screenshotPath);
+  };
+
+  const canUseTitleFallback = (pageUrl: string | undefined) =>
+    !pageUrl || !pageUrl.startsWith('chrome-error://');
+
   if (screenshotEntries.length > 0) {
     screenshotEntries.forEach((entry) => {
       if (entry.pageUrl && entry.screenshotPath) {
@@ -155,7 +186,10 @@ export function createOperatorCapturePacket(args: {
         }
       }
       if (entry.title && entry.screenshotPath) {
-        screenshotPathByTitle.set(entry.title, entry.screenshotPath);
+        noteTitleOccurrence(entry.title);
+      }
+      if (entry.title && entry.screenshotPath && canUseTitleFallback(entry.pageUrl)) {
+        rememberTitleFallback(entry.title, entry.screenshotPath);
       }
     });
   } else if (screenshotsDirectory) {
@@ -166,7 +200,10 @@ export function createOperatorCapturePacket(args: {
       if (normalizedTabUrl) {
         screenshotPathByUrl.set(normalizedTabUrl, screenshotPath);
       }
-      screenshotPathByTitle.set(tab.title, screenshotPath);
+      noteTitleOccurrence(tab.title);
+      if (canUseTitleFallback(tab.url)) {
+        rememberTitleFallback(tab.title, screenshotPath);
+      }
     });
   }
 

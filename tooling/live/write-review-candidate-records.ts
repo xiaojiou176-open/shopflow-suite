@@ -31,9 +31,19 @@ type ReviewCandidateRecordsPacket = {
   checkedAt: string;
   sourceArtifacts: {
     operatorCapturePacketLatestPath: string;
+    reviewedRecordsLatestPath?: string;
   };
   capturedRecords: LiveReceiptCaptureRecord[];
   blockedCandidates: OperatorCapturePacket['captureCandidates'];
+};
+
+type ReviewedRecordsPacket = {
+  reviewedRecords: Array<{
+    captureId: string;
+  }>;
+  rejectedRecords: Array<{
+    captureId: string;
+  }>;
 };
 
 function readJsonFile<T>(path: string) {
@@ -65,9 +75,16 @@ function createCapturedRecord(
 
 export function createReviewCandidateRecordsPacket(args: {
   operatorCapturePacket: OperatorCapturePacket;
+  reviewedRecordsPacket?: ReviewedRecordsPacket;
 }) {
-  const { operatorCapturePacket } = args;
+  const { operatorCapturePacket, reviewedRecordsPacket } = args;
   const requirementByCaptureId = new Map<string, LiveReceiptAppRequirement>();
+  const finalizedCaptureIds = new Set([
+    ...(reviewedRecordsPacket?.reviewedRecords.map((record) => record.captureId) ??
+      []),
+    ...(reviewedRecordsPacket?.rejectedRecords.map((record) => record.captureId) ??
+      []),
+  ]);
 
   for (const appId of [
     'ext-albertsons',
@@ -84,9 +101,26 @@ export function createReviewCandidateRecordsPacket(args: {
     }
   }
 
-  const capturedRecords = operatorCapturePacket.captureCandidates
-    .filter((candidate) => candidate.status === 'capture-ready')
-    .map((candidate) => {
+  const capturedRecords: LiveReceiptCaptureRecord[] = [];
+  const blockedCandidates: OperatorCapturePacket['captureCandidates'] = [];
+
+  for (const candidate of operatorCapturePacket.captureCandidates) {
+    if (candidate.status !== 'capture-ready') {
+      blockedCandidates.push(candidate);
+      continue;
+    }
+
+    if (!candidate.screenshotLabel || !candidate.screenshotPath) {
+      if (!finalizedCaptureIds.has(candidate.captureId)) {
+        blockedCandidates.push({
+          ...candidate,
+          status: 'blocked',
+          blockerReason: candidate.blockerReason ?? 'missing_visual_proof',
+        });
+      }
+      continue;
+    }
+
       const requirement = requirementByCaptureId.get(candidate.captureId);
       if (!requirement) {
         throw new Error(
@@ -94,23 +128,24 @@ export function createReviewCandidateRecordsPacket(args: {
         );
       }
 
-      return createCapturedRecord(
+      capturedRecords.push(
+        createCapturedRecord(
         requirement,
         candidate,
         operatorCapturePacket.checkedAt
+        )
       );
-    });
+  }
 
   return {
     mode: 'shopflow_live_review_candidate_records',
     checkedAt: new Date().toISOString(),
     sourceArtifacts: {
       operatorCapturePacketLatestPath: '',
+      reviewedRecordsLatestPath: undefined,
     },
     capturedRecords,
-    blockedCandidates: operatorCapturePacket.captureCandidates.filter(
-      (candidate) => candidate.status !== 'capture-ready'
-    ),
+    blockedCandidates,
   } satisfies ReviewCandidateRecordsPacket;
 }
 
@@ -119,6 +154,10 @@ async function main() {
   const operatorCapturePacketLatestPath = resolve(
     config.artifactDirectory,
     'operator-capture-packet-latest.json'
+  );
+  const reviewedRecordsLatestPath = resolve(
+    config.artifactDirectory,
+    'reviewed-records-latest.json'
   );
 
   if (!existsSync(operatorCapturePacketLatestPath)) {
@@ -130,9 +169,20 @@ async function main() {
   const operatorCapturePacket = readJsonFile<OperatorCapturePacket>(
     operatorCapturePacketLatestPath
   );
-  const packet = createReviewCandidateRecordsPacket({ operatorCapturePacket });
+  const reviewedRecordsPacket = existsSync(reviewedRecordsLatestPath)
+    ? readJsonFile<ReviewedRecordsPacket>(reviewedRecordsLatestPath)
+    : undefined;
+  const packet = createReviewCandidateRecordsPacket({
+    operatorCapturePacket,
+    reviewedRecordsPacket,
+  });
   packet.sourceArtifacts.operatorCapturePacketLatestPath =
     operatorCapturePacketLatestPath;
+  packet.sourceArtifacts.reviewedRecordsLatestPath = existsSync(
+    reviewedRecordsLatestPath
+  )
+    ? reviewedRecordsLatestPath
+    : undefined;
 
   const artifacts = writeLiveJsonArtifact(
     config,

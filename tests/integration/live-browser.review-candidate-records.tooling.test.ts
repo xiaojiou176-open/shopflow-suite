@@ -71,4 +71,74 @@ describe('live browser review candidate records tooling', () => {
       }),
     ]);
   });
+
+  it('skips screenshot-less recaptures when the same captureId is already finalized', () => {
+    const packet = createReviewCandidateRecordsPacket({
+      operatorCapturePacket: {
+        checkedAt: '2026-04-13T02:59:19.519Z',
+        sourceArtifacts: {},
+        captureCandidates: [
+          {
+            captureId: 'fred-meyer-verified-scope-live-receipt',
+            appId: 'ext-kroger',
+            status: 'capture-ready',
+            classification: 'session_visible',
+            finalUrl: 'https://www.fredmeyer.com/pr/weekly-digital-deals',
+            title: 'www.fredmeyer.com',
+          },
+          {
+            captureId: 'qfc-verified-scope-live-receipt',
+            appId: 'ext-kroger',
+            status: 'capture-ready',
+            classification: 'session_visible',
+            finalUrl: 'https://www.qfc.com/search?query=kombucha',
+            title: 'www.qfc.com',
+          },
+        ],
+      },
+      reviewedRecordsPacket: {
+        reviewedRecords: [
+          { captureId: 'fred-meyer-verified-scope-live-receipt' },
+          { captureId: 'qfc-verified-scope-live-receipt' },
+        ],
+        rejectedRecords: [],
+      },
+    });
+
+    expect(packet.capturedRecords).toEqual([]);
+    expect(packet.blockedCandidates).toEqual([]);
+  });
+
+  it('demotes screenshot-less new capture-ready candidates into blocked candidates', () => {
+    const packet = createReviewCandidateRecordsPacket({
+      operatorCapturePacket: {
+        checkedAt: '2026-04-13T02:59:19.519Z',
+        sourceArtifacts: {},
+        captureCandidates: [
+          {
+            captureId: 'safeway-subscribe-live-receipt',
+            appId: 'ext-albertsons',
+            status: 'capture-ready',
+            classification: 'session_visible',
+            finalUrl: 'https://www.safeway.com/shop/cart',
+            title: 'www.safeway.com',
+            blockerReason: 'login_required',
+          },
+        ],
+      },
+      reviewedRecordsPacket: {
+        reviewedRecords: [],
+        rejectedRecords: [],
+      },
+    });
+
+    expect(packet.capturedRecords).toEqual([]);
+    expect(packet.blockedCandidates).toEqual([
+      expect.objectContaining({
+        captureId: 'safeway-subscribe-live-receipt',
+        status: 'blocked',
+        blockerReason: 'login_required',
+      }),
+    ]);
+  });
 });
