@@ -11,7 +11,9 @@ function expectInOrder(markdown: string, earlier: string, later: string) {
   const earlierIndex = markdown.indexOf(earlier);
   const laterIndex = markdown.indexOf(later);
 
-  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(0);
+  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(
+    0
+  );
   expect(laterIndex, `expected to find "${later}"`).toBeGreaterThanOrEqual(0);
   expect(earlierIndex).toBeLessThan(laterIndex);
 }
@@ -81,9 +83,7 @@ describe('builder discoverability docs coherence', () => {
     expect(docsReadme).not.toContain(
       './ecosystem/public-mcp-capability-map.md'
     );
-    expect(docsReadme).not.toContain(
-      './ecosystem/public-skills-catalog.md'
-    );
+    expect(docsReadme).not.toContain('./ecosystem/public-skills-catalog.md');
     expect(docsReadme).not.toContain(
       './ecosystem/plugin-marketplace-metadata.md'
     );
@@ -103,10 +103,10 @@ describe('builder discoverability docs coherence', () => {
     );
 
     expect(codexQuickstart).toContain(
-      'official Codex plugin/directory surfaces exist'
+      'Codex docs and product surfaces are real'
     );
     expect(codexQuickstart).toContain(
-      'Shopflow is not listed or published there'
+      'does not prove a Codex-owned listing surface or Shopflow publication there'
     );
     expect(codexQuickstart).not.toContain('official listing already confirmed');
     expect(claudeQuickstart).toContain('official Claude Code surface exists');
@@ -160,17 +160,29 @@ describe('builder discoverability docs coherence', () => {
     expect(pagesIndex).toContain('## Best First Route');
     expect(pagesIndex).toContain('## Need Help or the Deeper Atlas?');
     expect(pagesIndex).toContain('## Builder Lane Is Real, But Secondary');
-    expectInOrder(pagesIndex, '## Best First Route', '## Builder Lane Is Real, But Secondary');
-    expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite');
-    expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite/releases/latest');
+    expectInOrder(
+      pagesIndex,
+      '## Best First Route',
+      '## Builder Lane Is Real, But Secondary'
+    );
+    expect(pagesIndex).toContain(
+      'https://github.com/xiaojiou176-open/shopflow-suite'
+    );
+    expect(pagesIndex).toContain(
+      'https://github.com/xiaojiou176-open/shopflow-suite/releases/latest'
+    );
   });
 
   it('keeps the release shelf explicit about review-only truth', () => {
     const rootReadme = readRepoFile('README.md');
     const pagesIndex = readRepoFile('docs/index.md');
 
-    expect(rootReadme).toContain('there is already a real review shelf you can inspect today.');
-    expect(rootReadme).toContain('it is a reviewer shelf, not a signed/store-ready shelf.');
+    expect(rootReadme).toContain(
+      'there is already a real review shelf you can inspect today.'
+    );
+    expect(rootReadme).toContain(
+      'it is a reviewer shelf, not a signed/store-ready shelf.'
+    );
     expect(pagesIndex).toContain(
       'attached release shelf now works as a public review shelf'
     );
@@ -415,9 +427,7 @@ describe('builder discoverability docs coherence', () => {
       'pnpm cli:read-only -- public-distribution-bundle'
     );
     expect(builderStartHere).not.toContain('./public-copy.ready.md');
-    expect(builderStartHere).not.toContain(
-      './public-distribution-bundle.md'
-    );
+    expect(builderStartHere).not.toContain('./public-distribution-bundle.md');
     expect(builderStartHere).toContain(
       'pnpm cli:read-only -- agent-target-packet --target'
     );
@@ -453,10 +463,13 @@ describe('builder discoverability docs coherence', () => {
       'plugin-level public distribution bundle'
     );
     expect(publicDistribution).toContain(
-      'official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there'
+      'Codex docs and product surfaces are real, but this repo does not prove a Codex-owned listing surface or Shopflow publication there'
     );
     expect(publicDistribution).toContain(
       'official Claude Code surface exists, but Shopflow is not listed or published there'
+    );
+    expect(pluginMetadata).toContain(
+      'Codex docs and product surfaces are real, but this repo still does not prove a Codex-owned listing surface'
     );
     expect(publicMcp).toContain(
       'pnpm cli:read-only -- public-mcp-capability-map'

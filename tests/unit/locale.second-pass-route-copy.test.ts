@@ -41,10 +41,7 @@ describe('Shopflow second-pass locale route helpers', () => {
       'Priority packet action for Shopflow Suite: Review on latest source page'
     );
     expect(
-      en.suite.decisionBriefRouteAria(
-        'Shopflow Suite',
-        'Open decision brief'
-      )
+      en.suite.decisionBriefRouteAria('Shopflow Suite', 'Open decision brief')
     ).toBe('Decision brief route for Shopflow Suite: Open decision brief');
     expect(
       en.suite.providerRuntimeSeamRouteSummary('http://127.0.0.1:4317')
@@ -52,9 +49,9 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(en.suite.providerRuntimeSeamAcquisitionModes('start, capture')).toBe(
       'Acquisition modes: start, capture.'
     );
-    expect(
-      en.suite.providerRuntimeSeamProviderSummary('Gemini')
-    ).toContain('Gemini can reuse the same read-only seam');
+    expect(en.suite.providerRuntimeSeamProviderSummary('Gemini')).toContain(
+      'Gemini can reuse the same read-only seam'
+    );
     expect(en.suite.providerRuntimeSeamStartLabel('Gemini')).toBe(
       'Start Gemini acquisition'
     );
@@ -66,6 +63,10 @@ describe('Shopflow second-pass locale route helpers', () => {
     );
     expect(en.suite.openVerifiedScopeClause('Shopflow for Amazon')).toBe(
       'Open verified scope clause for Shopflow for Amazon'
+    );
+    expect(en.suite.supportDesksHeading).toBe('Support desks');
+    expect(en.suite.supportDesksSummary).toContain(
+      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down.'
     );
     expect(en.suite.waitingReviewRouteSummary(2)).toBe(
       '2 packets are waiting for review. Start from the freshest known operator page for this app.'
@@ -102,9 +103,7 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(zh.common.openCurrentCapturePage).toBe('打开当前捕获页面');
     expect(zh.sidePanel.openRoute).toBe('打开路线');
     expect(zh.sidePanel.statusLabels.live).toBe('当前可运行');
-    expect(zh.model.capabilityActionLabels.run_action).toBe(
-      '打开支持的工作流'
-    );
+    expect(zh.model.capabilityActionLabels.run_action).toBe('打开支持的工作流');
     expect(
       zh.suite.priorityRouteAria(
         'Shopflow Suite',
@@ -118,13 +117,17 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(zh.suite.providerRuntimeSeamAcquisitionModes('start, capture')).toBe(
       '当前接入模式：start, capture。'
     );
-    expect(
-      zh.suite.providerRuntimeSeamProviderSummary('Gemini')
-    ).toContain('Gemini 可以复用同一条只读接缝');
-    expect(zh.suite.providerRuntimeSeamStartLabel('Gemini')).toBe('开始 Gemini 接入');
+    expect(zh.suite.providerRuntimeSeamProviderSummary('Gemini')).toContain(
+      'Gemini 可以复用同一条只读接缝'
+    );
+    expect(zh.suite.providerRuntimeSeamStartLabel('Gemini')).toBe(
+      '开始 Gemini 接入'
+    );
     expect(zh.suite.providerRuntimeSeamCaptureLabel('Gemini')).toBe(
       '采集 Gemini 接入'
     );
+    expect(zh.suite.supportDesksHeading).toBe('辅助服务台');
+    expect(zh.suite.supportDesksSummary).toContain('压到第二层');
     expect(zh.suite.openRolloutRow('Shopflow for Amazon')).toBe(
       '打开 Shopflow for Amazon 的推进行'
     );
@@ -145,12 +148,12 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(resolveShopflowLocaleFromUrl('?locale=zh-CN', 'en')).toBe('zh-CN');
     expect(resolveShopflowLocaleFromUrl('', 'en-US')).toBe('en');
 
-    expect(createLocaleRouteHref('popup.html?locale=zh-CN#start-here', 'en')).toBe(
-      'popup.html#start-here'
-    );
-    expect(createLocaleRouteHref('/sidepanel.html#claim-readiness-board', 'zh-CN')).toBe(
-      '/sidepanel.html?locale=zh-CN#claim-readiness-board'
-    );
+    expect(
+      createLocaleRouteHref('popup.html?locale=zh-CN#start-here', 'en')
+    ).toBe('popup.html#start-here');
+    expect(
+      createLocaleRouteHref('/sidepanel.html#claim-readiness-board', 'zh-CN')
+    ).toBe('/sidepanel.html?locale=zh-CN#claim-readiness-board');
     expect(
       createLocaleRouteHref(
         'https://shopflow.local/popup.html?locale=zh-CN#start-here',

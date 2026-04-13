@@ -306,6 +306,8 @@ type LocaleCatalog = {
     claimReadinessSummary: string;
     currentRolloutHeading: string;
     currentRolloutSummary: string;
+    supportDesksHeading: string;
+    supportDesksSummary: string;
     inspectStatusLabel: (publicName: string) => string;
     inspectStatusActionLabel: string;
     hideStatusActionLabel: string;
@@ -808,6 +810,9 @@ const en: LocaleCatalog = {
     currentRolloutHeading: 'Current rollout map',
     currentRolloutSummary:
       'Each row tells you which store shell to inspect next, why it is still in its current state, and what the latest shared runtime context says right now.',
+    supportDesksHeading: 'Support desks',
+    supportDesksSummary:
+      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down. Open these desks only when you need deeper governance detail.',
     inspectStatusLabel: (publicName) => `Inspect status for ${publicName}`,
     inspectStatusActionLabel: 'Inspect status',
     hideStatusActionLabel: 'Hide status',
@@ -907,13 +912,13 @@ const en: LocaleCatalog = {
       {
         title: 'Use Suite as the lobby, not the workflow engine',
         summary:
-          'Suite summarizes readiness and routing, but the detailed store workflow still belongs inside each store app.',
-        ctaLabel: 'Review verified scope clauses',
+          'Verified scope, evidence gates, provider seam previews, and alpha rules still stay available, but they should not outrank the first route.',
+        ctaLabel: 'Open support desks',
       },
     ],
     suiteNotesByAppId: {
       'ext-albertsons':
-      '当前已验证范围：Safeway。public-ready 仍被实时证据挡住。',
+        '当前已验证范围：Safeway。public-ready 仍被实时证据挡住。',
       'ext-kroger':
         'Family 壳层已 repo-verified，但 public-ready 仍需要 Fred Meyer + QFC 的已验证范围证据。',
       'ext-amazon': 'Storefront shell 基线已通过。',
@@ -1274,7 +1279,8 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       extract_search: '把当前搜索页当作搜索结果提取的执行现场。',
       extract_deals: '把当前优惠页当作优惠检查的执行现场。',
       run_action: '把当前支持的工作流页面当作下一步操作的执行现场。',
-      export_data: '在导出结构化数据前，先回到最新捕获或最新检测到的页面上下文。',
+      export_data:
+        '在导出结构化数据前，先回到最新捕获或最新检测到的页面上下文。',
     },
     workflowBulletRunnableNow: '当前可运行',
     workflowBulletClaimGate: '宣称门禁',
@@ -1303,8 +1309,8 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       {
         title: '把 Suite 当作大厅，不是工作流引擎',
         summary:
-          'Suite 负责导览与门禁概览，真正的店铺流程仍然回到各自 store app 内执行。',
-        ctaLabel: '查看已验证范围条款',
+          '已验证范围、证据门、外部运行时接缝和 Alpha 规则都还在，但它们不应该抢过第一条路线。',
+        ctaLabel: '打开辅助服务台',
       },
     ],
     startHereHeading: '从这里开始',
@@ -1318,6 +1324,9 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     currentRolloutHeading: '当前推进地图',
     currentRolloutSummary:
       '每一行都告诉你下一步该检查哪个 store shell、它为什么还停在当前状态、以及最新共享运行时上下文指向哪里。',
+    supportDesksHeading: '辅助服务台',
+    supportDesksSummary:
+      '把已验证范围、证据队列、外部运行时接缝和 Alpha 规则压到第二层。只有在需要治理细节时，再打开这些服务台。',
     inspectStatusLabel: (publicName) => `查看 ${publicName} 状态`,
     inspectStatusActionLabel: '查看状态',
     hideStatusActionLabel: '收起状态',
@@ -1351,8 +1360,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       '这些路线只把 BYOK / Web 登录 / auth-session 工作移交给外部运行时层。Shopflow 继续持有 storefront truth、claim wording 和 merchant reviewed evidence。',
     providerRuntimeSeamRouteSummary: (baseUrl) =>
       `只有当外部运行时已经在 ${baseUrl} 可达时，才使用这些路线预览。`,
-    providerRuntimeSeamAcquisitionModes: (modes) =>
-      `当前接入模式：${modes}。`,
+    providerRuntimeSeamAcquisitionModes: (modes) => `当前接入模式：${modes}。`,
     providerRuntimeSeamProviderSummary: (providerName) =>
       `${providerName} 可以复用同一条只读接缝，而不会把 Shopflow 变成外部运行时产品。`,
     providerRuntimeSeamStartLabel: (providerName) =>
@@ -1411,14 +1419,11 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     resumeCaptureFromLatestCapturedPageSummary: (count) =>
       `${count} 个证据包仍需继续采集。先打开最新捕获页面，再从那里继续。`,
     inspectLatestSourcePageLabel: '查看最新来源页面',
-    inspectLatestSourcePageSummary:
-      '回到这个应用最新记录的操作页面。',
+    inspectLatestSourcePageSummary: '回到这个应用最新记录的操作页面。',
     inspectLatestCapturedPageLabel: '查看最新捕获页面',
-    inspectLatestCapturedPageSummary:
-      '打开这个应用最新捕获输出背后的页面。',
+    inspectLatestCapturedPageSummary: '打开这个应用最新捕获输出背后的页面。',
     inspectLatestDetectedPageLabel: '查看最新检测页面',
-    inspectLatestDetectedPageSummary:
-      '打开这个应用最近一次检测到的页面。',
+    inspectLatestDetectedPageSummary: '打开这个应用最近一次检测到的页面。',
     openEvidenceSourcePageLabel: '打开证据来源页面',
     openCaptureSourcePageLabel: '打开采集来源页面',
     openLatestSourcePageLabel: '打开最新来源页面',

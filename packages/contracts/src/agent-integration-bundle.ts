@@ -207,7 +207,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         'Public MCP already shipped for Codex',
       ],
       nextHumanStep:
-        'Use the bundle as the strongest truthful public distribution surface today, and only move to the official Codex plugin/directory flow after the required auth and publication path is intentionally opened for Shopflow.',
+        'Use the bundle as the strongest truthful public distribution surface today, and only move to a Codex-owned publication flow after a real listing surface and auth path are explicitly available to Shopflow.',
     },
     {
       target: 'claude-code',
@@ -455,11 +455,11 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         summary:
           'Plugin-level public distribution bundle for Codex with starter bundle, sample config, install docs, proof loop, and listing payload.',
         boundaryNote:
-          'Starter bundle and listing payload are repo-owned today. Official Codex docs/MCP and plugin-directory surfaces exist, but Shopflow is not officially listed or published there. Do not claim an official Codex plugin, official listing, or marketplace package until Shopflow actually goes through the real auth/publication path.',
-          screenshotSources: [
-            'README.md',
-            'docs/ecosystem/codex-quickstart.md',
-            'docs/ecosystem/builder-start-here.md',
+          'Starter bundle and listing payload are repo-owned today. Official Codex docs and product surfaces exist, but this repo does not prove any Codex-owned listing surface or Shopflow publication there. Do not claim an official Codex plugin, official listing, or marketplace package until a real publication path is confirmed and used.',
+        screenshotSources: [
+          'README.md',
+          'docs/ecosystem/codex-quickstart.md',
+          'docs/ecosystem/builder-start-here.md',
         ],
         capabilityRefs: [
           'integration-surface',
