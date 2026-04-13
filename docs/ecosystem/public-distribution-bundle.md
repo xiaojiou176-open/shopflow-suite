@@ -60,7 +60,7 @@ pnpm cli:read-only -- plugin-marketplace-metadata
 
 | Target | Current bundle state | Shortest truthful entry | Listing status boundary |
 | :--- | :--- | :--- | :--- |
-| `Codex` | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json) | official Codex surface exists, but Shopflow is not listed or published there |
+| `Codex` | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json) | official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there |
 | `Claude Code` | plugin-level public distribution bundle | [Claude Code Quickstart](./claude-code-quickstart.md) + [`agent-target-packet.claude-code.json`](./examples/agent-target-packet.claude-code.json) + [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
 
 ## Related Public Pages

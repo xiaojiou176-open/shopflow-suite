@@ -455,164 +455,164 @@ export function SidePanelHomePage({
           </Card>
         </div>
 
-        <Card>
-          <details>
-            <summary className="flex items-center justify-between rounded-xl bg-stone-50 px-3 py-3">
-              <div className="flex items-center gap-2">
-                <Compass className="h-4 w-4" />
-                <div>
-                  <h2 className="text-sm font-semibold">
-                    {copy.sidePanel.availableOnPage}
-                  </h2>
-                  <p className="mt-1 text-xs text-stone-500">
-                    {readyCapabilities}{' '}
-                    {copy.sidePanel.statusLabels.live.toLowerCase()} ·{' '}
-                    {model.capabilities.length}{' '}
-                    {model.capabilities.length === 1 ? 'capability' : 'capabilities'}
-                  </p>
-                </div>
-              </div>
-              <span className="text-xs font-medium text-stone-500">
-                {copy.sidePanel.openRoute}
-              </span>
-            </summary>
-            <div className="mt-3 grid grid-cols-1 gap-3">
-              {model.capabilities.map((capability) => (
-                <div
-                  key={capability.id}
-                  className={`rounded-xl border px-3 py-3 ${
-                    capability.status === 'ready'
-                      ? 'border-emerald-200 bg-emerald-50'
-                      : capability.status === 'blocked' ||
-                          capability.status === 'degraded' ||
-                          capability.status === 'permission_needed'
-                        ? 'border-amber-200 bg-amber-50'
-                        : 'border-stone-200 bg-stone-50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-medium">{capability.label}</p>
-                    <span className="text-xs text-stone-500">
-                      {copy.sidePanel.capabilityStatusLabels[capability.status] ??
-                        capability.status}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-stone-600">
-                    {capability.description}
-                  </p>
-                  {capability.reason ? (
-                    <p className="mt-2 text-xs text-stone-500">
-                      {copy.sidePanel.whyUnavailable} {capability.reason}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </details>
-        </Card>
-
-        <div id="recent-activity">
-          <Card>
-            <details>
-              <summary className="flex items-center justify-between rounded-xl bg-stone-50 px-3 py-3">
-                <div className="flex items-center gap-2">
-                  <ReceiptText className="h-4 w-4" />
-                  <div>
-                    <h2 className="text-sm font-semibold">
-                      {copy.sidePanel.recentActivityHeading}
-                    </h2>
-                    <p className="mt-1 text-xs text-stone-500">
-                      {model.recentActivities[0]?.label ??
-                        copy.sidePanel.noVerifiedActivity}
-                    </p>
-                  </div>
-                </div>
-                <span className="text-xs font-medium text-stone-500">
-                  {copy.sidePanel.openRoute}
-                </span>
-              </summary>
-              {model.recentActivities.length > 0 ? (
-                <ul className="mt-3 space-y-2 text-sm text-stone-700">
-                  {model.recentActivities.slice(0, 2).map((item) => (
-                    <li
-                      key={item.id}
-                      className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                    >
-                      <p className="font-medium">{item.label}</p>
-                      {item.summary ? (
-                        <p className="mt-1 text-xs text-stone-600">
-                          {item.summary}
-                        </p>
-                      ) : null}
-                      <p className="mt-1 text-xs text-stone-500">
-                        {item.timestampLabel}
-                      </p>
-                      {item.href ? (
-                        <a
-                          className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
-                          href={item.href}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {copy.common.jumpToSourcePage}
-                        </a>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-3 text-sm text-stone-500">
-                  {copy.sidePanel.noVerifiedActivity}
-                </p>
-              )}
-            </details>
-          </Card>
-        </div>
-
-        <Card>
-          <details>
-            <summary className="flex items-center justify-between rounded-xl bg-stone-50 px-3 py-3">
-              <div className="flex items-center gap-2">
-                <PackageSearch className="h-4 w-4" />
-                <div>
-                  <h2 className="text-sm font-semibold">
-                    {copy.sidePanel.nextRoutesHeading}
-                  </h2>
-                  <p className="mt-1 text-xs text-stone-500">
-                    {model.secondaryNavigation.length}{' '}
-                    {model.secondaryNavigation.length === 1 ? 'route' : 'routes'}
-                  </p>
-                </div>
-              </div>
-              <span className="text-xs font-medium text-stone-500">
-                {copy.sidePanel.openRoute}
-              </span>
-            </summary>
-            <div className="mt-3 grid grid-cols-1 gap-2">
-              {model.secondaryNavigation.map((item) => (
-                <div
-                  key={item.id}
-                  className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                >
-                  <div className="flex items-center justify-between gap-3">
+        <div id="supporting-shelves">
+          <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
+            <div className="space-y-4">
+              <section>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <Compass className="h-4 w-4" />
                     <div>
-                      <p className="text-sm font-medium">{item.label}</p>
+                      <h2 className="text-sm font-semibold">
+                        {copy.sidePanel.availableOnPage}
+                      </h2>
                       <p className="mt-1 text-xs text-stone-500">
-                        {item.summary}
+                        {readyCapabilities}{' '}
+                        {copy.sidePanel.statusLabels.live.toLowerCase()} ·{' '}
+                        {model.capabilities.length}{' '}
+                        {model.capabilities.length === 1
+                          ? 'capability'
+                          : 'capabilities'}
                       </p>
                     </div>
-                    <a
-                      className="rounded-xl px-3 py-2 text-sm font-medium text-stone-700 underline underline-offset-2"
-                      href={item.href ?? '#readiness-summary'}
-                    >
-                      {item.actionLabel ?? copy.sidePanel.openRoute}
-                    </a>
                   </div>
+                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                    {copy.sidePanel.openRoute}
+                  </span>
                 </div>
-              ))}
+                <div className="mt-3 grid grid-cols-1 gap-2">
+                  {model.capabilities.map((capability) => (
+                    <div
+                      key={capability.id}
+                      className={`rounded-xl border px-3 py-3 ${
+                        capability.status === 'ready'
+                          ? 'border-emerald-200 bg-emerald-50'
+                          : capability.status === 'blocked' ||
+                              capability.status === 'degraded' ||
+                              capability.status === 'permission_needed'
+                            ? 'border-amber-200 bg-amber-50'
+                            : 'border-stone-200 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="text-sm font-medium">{capability.label}</p>
+                        <span className="text-xs text-stone-500">
+                          {copy.sidePanel.capabilityStatusLabels[
+                            capability.status
+                          ] ?? capability.status}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-stone-600">
+                        {capability.description}
+                      </p>
+                      {capability.reason ? (
+                        <p className="mt-2 text-xs text-stone-500">
+                          {copy.sidePanel.whyUnavailable} {capability.reason}
+                        </p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section
+                id="recent-activity"
+                className="border-t border-[rgba(58,49,38,0.10)] pt-4"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <ReceiptText className="h-4 w-4" />
+                    <div>
+                      <h2 className="text-sm font-semibold">
+                        {copy.sidePanel.recentActivityHeading}
+                      </h2>
+                      <p className="mt-1 text-xs text-stone-500">
+                        {model.recentActivities[0]?.label ??
+                          copy.sidePanel.noVerifiedActivity}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                    {copy.sidePanel.openRoute}
+                  </span>
+                </div>
+                {model.recentActivities.length > 0 ? (
+                  <ul className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
+                    {model.recentActivities.slice(0, 2).map((item) => (
+                      <li key={item.id} className="py-3 text-sm text-stone-700">
+                        <p className="font-medium">{item.label}</p>
+                        {item.summary ? (
+                          <p className="mt-1 text-xs text-stone-600">
+                            {item.summary}
+                          </p>
+                        ) : null}
+                        <p className="mt-1 text-xs text-stone-500">
+                          {item.timestampLabel}
+                        </p>
+                        {item.href ? (
+                          <a
+                            className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
+                            href={item.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {copy.common.jumpToSourcePage}
+                          </a>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-3 rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-3 text-sm text-stone-500">
+                    {copy.sidePanel.noVerifiedActivity}
+                  </p>
+                )}
+              </section>
+
+              <section className="border-t border-[rgba(58,49,38,0.10)] pt-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <PackageSearch className="h-4 w-4" />
+                    <div>
+                      <h2 className="text-sm font-semibold">
+                        {copy.sidePanel.nextRoutesHeading}
+                      </h2>
+                      <p className="mt-1 text-xs text-stone-500">
+                        {model.secondaryNavigation.length}{' '}
+                        {model.secondaryNavigation.length === 1
+                          ? 'route'
+                          : 'routes'}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                    {copy.sidePanel.openRoute}
+                  </span>
+                </div>
+                <div className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
+                  {model.secondaryNavigation.map((item) => (
+                    <div key={item.id} className="py-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-medium">{item.label}</p>
+                          <p className="mt-1 text-xs text-stone-500">
+                            {item.summary}
+                          </p>
+                        </div>
+                        <a
+                          className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm font-medium text-stone-700"
+                          href={item.href ?? '#readiness-summary'}
+                        >
+                          {item.actionLabel ?? copy.sidePanel.openRoute}
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
             </div>
-          </details>
-        </Card>
+          </Card>
+        </div>
 
         {model.evidenceStatus?.items.length ? (
           <div id="live-receipt-readiness">

@@ -102,8 +102,12 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/claude-code-quickstart.md'
     );
 
-    expect(codexQuickstart).toContain('official Codex surface exists');
-    expect(codexQuickstart).toContain('Shopflow is not listed or published there');
+    expect(codexQuickstart).toContain(
+      'official Codex plugin/directory surfaces exist'
+    );
+    expect(codexQuickstart).toContain(
+      'Shopflow is not listed or published there'
+    );
     expect(codexQuickstart).not.toContain('official listing already confirmed');
     expect(claudeQuickstart).toContain('official Claude Code surface exists');
     expect(claudeQuickstart).toContain(
@@ -449,7 +453,7 @@ describe('builder discoverability docs coherence', () => {
       'plugin-level public distribution bundle'
     );
     expect(publicDistribution).toContain(
-      'official Codex surface exists, but Shopflow is not listed or published there'
+      'official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there'
     );
     expect(publicDistribution).toContain(
       'official Claude Code surface exists, but Shopflow is not listed or published there'

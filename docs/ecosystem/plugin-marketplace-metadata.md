@@ -54,7 +54,7 @@ They are **not** proof that:
 
 | Target | Starter bundle | Sample config | Install docs | Listing payload | Official surface status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `codex` | `agent-target-packet.codex.json` + quickstart | `agent-target-packet.codex.json` | [Codex Quickstart](./codex-quickstart.md) | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json) | official Codex surface exists, but Shopflow is not listed or published there |
+| `codex` | `agent-target-packet.codex.json` + quickstart | `agent-target-packet.codex.json` | [Codex Quickstart](./codex-quickstart.md) | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json) | official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there |
 | `claude-code` | `agent-target-packet.claude-code.json` + quickstart + skills catalog | `agent-target-packet.claude-code.json` | [Claude Code Quickstart](./claude-code-quickstart.md) | [plugin-marketplace-metadata.claude-code.json](./examples/plugin-marketplace-metadata.claude-code.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
 
 ## Public Inputs To Pair With
@@ -73,6 +73,6 @@ They are **not** proof that:
 - metadata and listing payloads are still repo-owned prep
 - OpenClaw's packet can support a public GitHub/customPlugins route now, while
   official OpenClaw-owned placement still remains external platform work
-- Codex / Claude Code official surfaces already exist; what is still missing is
-  Shopflow being officially listed or published there through the real auth path
+- Claude Code official surfaces already exist; Codex official docs/MCP and plugin-directory surfaces also exist
+- what is still missing on every confirmed surface is Shopflow being officially listed or published there through the real auth path
 - this page must stay below public-release wording
