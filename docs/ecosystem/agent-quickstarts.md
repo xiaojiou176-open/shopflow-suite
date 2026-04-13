@@ -87,11 +87,11 @@ Use this when you want the shortest copy-paste path instead of the full matrix:
 
 | Target        | Best first command                                               | Best second command                                                   | Best companion doc                                     | Must not claim                                                                                              |
 | :------------ | :--------------------------------------------------------------- | :-------------------------------------------------------------------- | :----------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| `Codex`       | `pnpm cli:read-only -- agent-target-packet --target codex`       | `pnpm cli:read-only -- plugin-marketplace-metadata --target codex`    | [Codex Quickstart](./codex-quickstart.md)              | official Codex integration or an official listing where no official Codex public surface exists             |
-| `Claude Code` | `pnpm cli:read-only -- agent-target-packet --target claude-code` | `pnpm cli:read-only -- public-skills-catalog`                         | [Claude Code Quickstart](./claude-code-quickstart.md)  | official Claude Code integration or an official listing where no official Claude Code public surface exists |
+| `Codex`       | `pnpm cli:read-only -- agent-target-packet --target codex`       | `pnpm cli:read-only -- plugin-marketplace-metadata --target codex`    | [Codex Quickstart](./codex-quickstart.md)              | official Codex integration, or claiming Shopflow is already listed or published on Codex's official surface |
+| `Claude Code` | `pnpm cli:read-only -- agent-target-packet --target claude-code` | `pnpm cli:read-only -- public-skills-catalog`                         | [Claude Code Quickstart](./claude-code-quickstart.md)  | official Claude Code integration, or claiming Shopflow is already listed or published on Claude Code's official surface |
 | `OpenCode`    | `pnpm cli:read-only -- agent-target-packet --target opencode`    | `pnpm cli:read-only -- public-distribution-bundle`                    | [Integration Recipes](./integration-recipes.md)        | main hero placement or official OpenCode package                                                            |
 | `OpenHands`   | `pnpm cli:read-only -- agent-target-packet --target openhands`   | `pnpm cli:read-only -- public-distribution-bundle`                    | [Integration Recipes](./integration-recipes.md)        | main hero placement or official OpenHands package                                                           |
-| `OpenClaw`    | `pnpm cli:read-only -- agent-target-packet --target openclaw`    | `pnpm cli:read-only -- plugin-marketplace-metadata --target openclaw` | [OpenClaw Public-Ready Packet](./openclaw-comparison.md) | fake official listing or official OpenClaw integration without the real external surface                    |
+| `OpenClaw`    | `pnpm cli:read-only -- agent-target-packet --target openclaw`    | `pnpm cli:read-only -- plugin-marketplace-metadata --target openclaw` | [OpenClaw Public-Ready Packet](./openclaw-comparison.md) | fake official listing, or pretending the GitHub/customPlugins route is already the official OpenClaw distribution lane |
 
 ## Boundary Reminder
 
@@ -100,6 +100,5 @@ Use this when you want the shortest copy-paste path instead of the full matrix:
   or published plugin/skills pack
 - a repo-local read-only stdio MCP does exist today
 - Codex and Claude Code are strong-fit examples today
-- OpenClaw is now a public-ready target, but official-listing claims still
-  depend on whether the external ecosystem actually exposes a real official
-  surface
+- OpenClaw is now a public-ready target, but its GitHub/customPlugins route is
+  still different from being officially listed on an OpenClaw-owned surface

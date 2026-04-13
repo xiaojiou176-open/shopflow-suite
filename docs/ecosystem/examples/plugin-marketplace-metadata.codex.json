@@ -5,7 +5,7 @@
   "suggestedSlug": "shopflow-read-only-builder-packet",
   "title": "Shopflow Read-only Builder Packet",
   "summary": "Plugin-level public distribution bundle for Codex with starter bundle, sample config, install docs, proof loop, and listing payload.",
-  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Do not claim an official Codex plugin, official listing, or marketplace package until the real official surface and auth path are confirmed.",
+  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Official Codex surfaces exist, but Shopflow is not officially listed or published there yet. Do not claim an official Codex plugin, official listing, or marketplace package until Shopflow actually goes through the real auth/publication path.",
   "screenshotSources": [
     "README.md",
     "docs/ecosystem/codex-quickstart.md",

@@ -242,7 +242,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         'Shipped public skills pack',
       ],
       nextHumanStep:
-        'Use the bundle as the strongest truthful public distribution surface today, and only move to an official Claude Code listing or write-side skills distribution flow after the real official surface and auth path are confirmed.',
+        'Use the bundle as the strongest truthful public distribution surface today, and only move to an official Claude Code listing or write-side skills distribution flow after the official surface auth path is actually available to Shopflow.',
     },
     {
       target: 'opencode',
@@ -455,7 +455,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         summary:
           'Plugin-level public distribution bundle for Codex with starter bundle, sample config, install docs, proof loop, and listing payload.',
         boundaryNote:
-          'Starter bundle and listing payload are repo-owned today. Do not claim an official Codex plugin, official listing, or marketplace package until the real official surface and auth path are confirmed.',
+          'Starter bundle and listing payload are repo-owned today. Official Codex surfaces exist, but Shopflow is not officially listed or published there yet. Do not claim an official Codex plugin, official listing, or marketplace package until Shopflow actually goes through the real auth/publication path.',
           screenshotSources: [
             'README.md',
             'docs/ecosystem/codex-quickstart.md',
@@ -513,7 +513,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         summary:
           'Plugin-level public distribution bundle for Claude Code with starter bundle, sample config, install docs, proof loop, listing payload, and a skills-facing companion packet.',
         boundaryNote:
-          'Starter bundle and listing payload are repo-owned today. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until the real official surface and auth path are confirmed.',
+          'Starter bundle and listing payload are repo-owned today. Official Claude Code surfaces exist, but Shopflow is not officially listed or published there yet. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until Shopflow actually goes through the real auth/publication path.',
         screenshotSources: [
           'docs/ecosystem/claude-code-quickstart.md',
           'docs/ecosystem/agent-quickstarts.md',

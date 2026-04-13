@@ -8,6 +8,8 @@ In plain language:
 > OpenClaw no longer needs a separate main install box.
 > the canonical install path now lives inside the main Shopflow repo, while the
 > old standalone repo is only a legacy fallback.
+> OpenClaw does have official surfaces, but Shopflow's live public route today
+> is still the GitHub/customPlugins lane below, not an official OpenClaw listing.
 
 Canonical boundary:
 
@@ -29,12 +31,17 @@ That means Shopflow can truthfully show:
 - a public proof loop that shows exactly what evidence to capture once the
   fallback install route is exercised live
 
+That GitHub/customPlugins route is a **documented public route**, not the same
+thing as being placed on an official OpenClaw distribution surface.
+
 It must still **not** be described today as:
 
 - the canonical Shopflow repo
 - an official OpenClaw listing that is already live
 - an official OpenClaw org integration
 - proof that official OpenClaw publication/auth is already complete
+- the GitHub/customPlugins install path as if it were the current official
+  OpenClaw main distribution lane
 
 ## Strongest Truthful Public Route
 
@@ -47,6 +54,10 @@ The strongest truthful public distribution surface today is:
    `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`
 3. discovered through this packet, the ready metadata, and the upstream
    `openclaw/nix-openclaw` public repo
+
+This is the strongest public route Shopflow can prove today, but it is still a
+community-style GitHub/customPlugins route rather than an official OpenClaw
+listing or primary official distribution lane.
 
 Think of it like packing a product for a public shelf:
 

@@ -24,8 +24,7 @@ Claude Code can already consume:
 
 It still must **not** claim:
 
-- official Claude Code integration
-- an official Claude Code listing
+- Shopflow is already officially listed or published on a Claude Code-owned surface
 - a published Claude Code plugin
 - a distributed public Shopflow skills pack
 
@@ -33,17 +32,18 @@ It still must **not** claim:
 
 | Bundle piece               | What Shopflow has now                                                     | Where to open it first                                                                               | What it still must not claim                         |
 | :------------------------- | :------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
-| starter bundle             | Claude Code packet + quickstart + skills catalog companion                | `pnpm cli:read-only -- agent-target-packet --target claude-code`                                     | official Claude Code listing                         |
+| starter bundle             | Claude Code packet + quickstart + skills catalog companion                | `pnpm cli:read-only -- agent-target-packet --target claude-code`                                     | Shopflow is already officially listed or published on a Claude Code-owned surface |
 | sample config              | checked-in Claude Code packet + skills catalog + listing payload examples | `docs/ecosystem/examples/agent-target-packet.claude-code.json`                                       | published Claude Code plugin                         |
-| install docs               | Claude Code install path and operator-facing guide                        | `docs/ecosystem/claude-code-quickstart.md`                                                           | official Claude Code integration                     |
+| install docs               | Claude Code install path and operator-facing guide                        | `docs/ecosystem/claude-code-quickstart.md`                                                           | Shopflow is already officially listed or published on a Claude Code-owned surface |
 | proof loop                 | target packet + skills catalog export + listing payload export            | `pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-skills-catalog.json` | that auth or marketplace submission already happened |
-| metadata / listing payload | checked-in listing payload example + CLI export                           | `docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json`                               | official listing still unconfirmed                   |
+| metadata / listing payload | checked-in listing payload example + CLI export                           | `docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json`                               | official Claude Code surface exists, but Shopflow is not listed or published there |
 
 In plain language:
 
 > Claude Code now has a fuller starter kit than before.
 > You can think of it as the Codex box plus an operator-notes binder.
-> The binder is public-distribution-ready, but it is still **not** an official listing receipt.
+> Claude Code's official surface exists, but this binder is still **not** proof
+> that Shopflow is already listed or published there.
 
 ## Fastest Command Path
 
@@ -134,8 +134,7 @@ pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-s
 
 ### Must not claim
 
-- official Claude Code integration
-- official Claude Code listing
+- Shopflow is already officially listed or published on a Claude Code-owned surface
 - published Claude Code plugin
 - distributed public Shopflow skills pack
 

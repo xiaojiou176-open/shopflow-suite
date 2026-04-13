@@ -60,8 +60,8 @@ pnpm cli:read-only -- plugin-marketplace-metadata
 
 | Target | Current bundle state | Shortest truthful entry | Listing status boundary |
 | :--- | :--- | :--- | :--- |
-| `Codex` | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json) | official listing still unconfirmed |
-| `Claude Code` | plugin-level public distribution bundle | [Claude Code Quickstart](./claude-code-quickstart.md) + [`agent-target-packet.claude-code.json`](./examples/agent-target-packet.claude-code.json) + [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | official listing still unconfirmed |
+| `Codex` | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json) | official Codex surface exists, but Shopflow is not listed or published there |
+| `Claude Code` | plugin-level public distribution bundle | [Claude Code Quickstart](./claude-code-quickstart.md) + [`agent-target-packet.claude-code.json`](./examples/agent-target-packet.claude-code.json) + [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
 
 ## Related Public Pages
 
@@ -88,4 +88,4 @@ If you only need the current repo-owned distribution story, start with:
 - Shopflow still only claims repo-local, read-only builder/runtime surfaces today.
 - This page does **not** upgrade repo-local CLI / runtime-seam / runtime-consumer into official public distribution by itself.
 - External publication still needs the real target registry, marketplace, or hosting path.
-- If the official surface is unknown or unconfirmed, this bundle is the strongest truthful public surface and nothing stronger should be claimed.
+- If an official surface exists but Shopflow is not listed or published there yet, this bundle remains the strongest truthful public surface and nothing stronger should be claimed.

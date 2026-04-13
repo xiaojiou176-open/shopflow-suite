@@ -300,7 +300,7 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         'Official listing already confirmed',
       ],
       nextHumanStep:
-        'Use this bundle on the strongest truthful public distribution surface today, and only move into an official listing flow after the real official surface and auth path are confirmed.',
+        'Use this bundle on the strongest truthful public distribution surface today. If an official surface exists, keep wording at "surface exists but Shopflow is not listed or published there yet" until Shopflow actually goes through the real auth/publication path.',
     },
   ],
 });

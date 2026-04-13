@@ -21,8 +21,7 @@ Codex can already consume:
 
 It still must **not** claim:
 
-- official Codex integration
-- an official Codex listing
+- Shopflow is already officially listed or published on a Codex-owned surface
 - a published Codex plugin
 - a public Shopflow MCP
 
@@ -30,11 +29,11 @@ It still must **not** claim:
 
 | Bundle piece               | What Shopflow has now                                 | Where to open it first                                                                                                                | What it still must not claim                         |
 | :------------------------- | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------- |
-| starter bundle             | repo-owned Codex packet + quickstart                  | `pnpm cli:read-only -- agent-target-packet --target codex`                                                                            | official Codex listing                               |
+| starter bundle             | repo-owned Codex packet + quickstart                  | `pnpm cli:read-only -- agent-target-packet --target codex`                                                                            | Shopflow is already officially listed or published on a Codex-owned surface |
 | sample config              | checked-in Codex packet + listing payload examples    | `docs/ecosystem/examples/agent-target-packet.codex.json`                                                                              | published Codex plugin                               |
-| install docs               | Codex install path and front-door guide               | `docs/ecosystem/codex-quickstart.md`                                                                                                  | official Codex integration                           |
+| install docs               | Codex install path and front-door guide               | `docs/ecosystem/codex-quickstart.md`                                                                                                  | Shopflow is already officially listed or published on a Codex-owned surface |
 | proof loop                 | target packet + listing payload export + bundle check | `pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runtime-cache/cli/plugin-marketplace-metadata.codex.json` | that auth or marketplace submission already happened |
-| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official listing still unconfirmed                   |
+| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official Codex surface exists, but Shopflow is not listed or published there |
 
 In plain language:
 
@@ -125,8 +124,7 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runti
 
 ### Must not claim
 
-- official Codex integration
-- official Codex listing
+- Shopflow is already officially listed or published on a Codex-owned surface
 - published Codex plugin
 - public Shopflow MCP already shipped for Codex
 
@@ -137,4 +135,4 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runti
 - it gives machine-readable starter-bundle outputs instead of asking Codex to
   scrape prose
 - it includes a proof loop for sample config plus listing payload export
-- it keeps official-listing wording behind real official surface confirmation
+- it keeps official Codex surface existence separate from Shopflow not-yet-listed and not-yet-published status there

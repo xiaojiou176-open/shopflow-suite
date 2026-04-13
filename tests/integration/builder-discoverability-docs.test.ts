@@ -102,9 +102,13 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/claude-code-quickstart.md'
     );
 
-    expect(codexQuickstart).toContain('official listing still unconfirmed');
+    expect(codexQuickstart).toContain('official Codex surface exists');
+    expect(codexQuickstart).toContain('Shopflow is not listed or published there');
     expect(codexQuickstart).not.toContain('official listing already confirmed');
-    expect(claudeQuickstart).toContain('official listing still unconfirmed');
+    expect(claudeQuickstart).toContain('official Claude Code surface exists');
+    expect(claudeQuickstart).toContain(
+      'Shopflow is not listed or published there'
+    );
     expect(claudeQuickstart).not.toContain(
       'official listing already confirmed'
     );
@@ -444,7 +448,12 @@ describe('builder discoverability docs coherence', () => {
     expect(publicDistribution).toContain(
       'plugin-level public distribution bundle'
     );
-    expect(publicDistribution).toContain('official listing still unconfirmed');
+    expect(publicDistribution).toContain(
+      'official Codex surface exists, but Shopflow is not listed or published there'
+    );
+    expect(publicDistribution).toContain(
+      'official Claude Code surface exists, but Shopflow is not listed or published there'
+    );
     expect(publicMcp).toContain(
       'pnpm cli:read-only -- public-mcp-capability-map'
     );

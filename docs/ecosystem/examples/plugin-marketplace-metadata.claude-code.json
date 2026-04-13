@@ -5,7 +5,7 @@
   "suggestedSlug": "shopflow-read-only-operator-packet",
   "title": "Shopflow Read-only Operator Packet",
   "summary": "Plugin-level public distribution bundle for Claude Code with starter bundle, sample config, install docs, proof loop, listing payload, and a skills-facing companion packet.",
-  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until the real official surface and auth path are confirmed.",
+  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Official Claude Code surfaces exist, but Shopflow is not officially listed or published there yet. Do not claim an official Claude Code plugin, official listing, or distributed public skills pack until Shopflow actually goes through the real auth/publication path.",
   "screenshotSources": [
     "docs/ecosystem/claude-code-quickstart.md",
     "docs/ecosystem/agent-quickstarts.md",
