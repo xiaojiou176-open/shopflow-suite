@@ -227,6 +227,83 @@ describe('live browser operator capture packet tooling', () => {
     ]);
   });
 
+  it('does not fall back to an ambiguous chrome-error screenshot when duplicate titles exist', () => {
+    const packet = createOperatorCapturePacket({
+      diagnoseReport: {
+        probe: {
+          checkedAt: '2026-04-13T02:31:52.598Z',
+          sessionHealth: { safeway: 'login_required' },
+          captureTargetState: { safeway: 'login_required' },
+          deepLinkState: { safeway: 'unknown' },
+          observedTabs: [
+            {
+              url: 'https://www.safeway.com/shop/cart',
+              title: 'www.safeway.com',
+            },
+            {
+              url: 'chrome-error://chromewebdata/',
+              title: 'www.safeway.com',
+            },
+          ],
+          targets: [
+            {
+              id: 'safeway-cart',
+              label: 'Safeway cart',
+              requestedUrl: 'https://www.safeway.com/shop/cart',
+              finalUrl: 'https://www.safeway.com/shop/cart',
+              title: 'www.safeway.com',
+              classification: 'login_required',
+              source: 'cdp-target',
+              captureIds: ['safeway-subscribe-live-receipt'],
+            },
+          ],
+        },
+        traceBundle: {
+          bundleDirectory:
+            '.runtime-cache/live-browser/bundles/trace-2026-04-13T02-31-52-598Z',
+          summaryPath:
+            '.runtime-cache/live-browser/bundles/trace-2026-04-13T02-31-52-598Z/summary.json',
+          chromeTabsPath: '',
+          chromeProcessesPath: '',
+          cdpSummaryPath: '',
+          screenshotManifestPath:
+            '.runtime-cache/live-browser/bundles/trace-2026-04-13T02-31-52-598Z/screenshots.json',
+          consolePath: '',
+          pageErrorsPath: '',
+          requestFailedPath: '',
+          networkPath: '',
+          screenshotsDirectory: '/tmp/shopflow-live/screenshots',
+          traceMode: 'cdp-passive',
+          pageCount: 2,
+        },
+      } as never,
+      screenshotsDirectory: '/tmp/shopflow-live/screenshots',
+      screenshotEntries: [
+        {
+          pageUrl: 'chrome-error://chromewebdata/',
+          title: 'www.safeway.com',
+          screenshotLabel: 'page-6.png',
+          screenshotPath: '/tmp/shopflow-live/screenshots/page-6.png',
+        },
+        {
+          pageUrl: 'https://www.safeway.com/',
+          title: 'www.safeway.com',
+          screenshotLabel: 'page-3.png',
+          screenshotPath: '/tmp/shopflow-live/screenshots/page-3.png',
+        },
+      ],
+    });
+
+    expect(packet.captureCandidates).toEqual([
+      expect.objectContaining({
+        captureId: 'safeway-subscribe-live-receipt',
+        screenshotLabel: undefined,
+        screenshotPath: undefined,
+        blockerReason: 'login_required',
+      }),
+    ]);
+  });
+
   it('matches screenshot manifest entries even when the final URL still carries query params', () => {
     const packet = createOperatorCapturePacket({
       diagnoseReport: {

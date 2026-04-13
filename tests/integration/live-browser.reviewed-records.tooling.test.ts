@@ -533,6 +533,126 @@ describe('live browser reviewed records tooling', () => {
         }),
       ])
     );
+    expect(packet.blockedCandidates).toEqual([
+      expect.objectContaining({
+        captureId: 'safeway-cancel-live-receipt',
+        blockerReason: 'login_required',
+      }),
+    ]);
+  });
+
+  it('reopens a newer captured record even when an older rejected verdict exists', () => {
+    const packet = createReviewInputTemplatePacket({
+      reviewCandidateRecordsPacket: {
+        checkedAt: '2026-04-13T02:32:15.166Z',
+        sourceArtifacts: {
+          operatorCapturePacketLatestPath: '/tmp/operator-capture-packet.json',
+        },
+        capturedRecords: [
+          {
+            captureId: 'temu-filter-live-receipt',
+            appId: 'ext-temu',
+            storeId: 'temu',
+            verifiedScope: 'temu',
+            pageKind: 'search',
+            actionKind: 'filter_non_local_warehouse',
+            status: 'captured',
+            summary: 'Temu recapture candidate',
+            updatedAt: '2026-04-13T02:32:05.471Z',
+            capturedAt: '2026-04-13T02:32:05.471Z',
+            screenshotLabel: 'page-1.png',
+            sourcePageUrl:
+              'https://www.temu.com/search_result.html?search_key=warehouse',
+            sourcePageLabel: 'Temu',
+          },
+        ],
+        blockedCandidates: [
+          {
+            captureId: 'safeway-subscribe-live-receipt',
+            appId: 'ext-albertsons',
+            targetId: 'safeway-cart',
+            status: 'blocked',
+            classification: 'login_required',
+            blockerReason: 'login_required',
+          },
+        ],
+      },
+      reviewedRecordsPacket: {
+        checkedAt: '2026-04-08T00:12:39.988Z',
+        sourceArtifacts: {
+          reviewCandidateRecordsLatestPath: '/tmp/review-candidate-records.json',
+          reviewInputPath: '/tmp/review-input.json',
+        },
+        reviewedRecords: [
+          {
+            captureId: 'fred-meyer-verified-scope-live-receipt',
+            appId: 'ext-kroger',
+            storeId: 'kroger',
+            verifiedScope: 'fred-meyer',
+            pageKind: 'product',
+            status: 'reviewed',
+            summary: 'Fred Meyer reviewed',
+            updatedAt: '2026-04-08T00:12:39.988Z',
+            capturedAt: '2026-04-08T00:11:39.988Z',
+            reviewedAt: '2026-04-08T00:12:39.988Z',
+            reviewedBy: 'Shopflow QA',
+            reviewSummary: 'Looks good.',
+            screenshotLabel: 'page-5.png',
+          },
+        ],
+        rejectedRecords: [
+          {
+            captureId: 'temu-filter-live-receipt',
+            appId: 'ext-temu',
+            storeId: 'temu',
+            verifiedScope: 'temu',
+            pageKind: 'search',
+            actionKind: 'filter_non_local_warehouse',
+            status: 'rejected',
+            summary: 'Current page does not expose the warehouse filter control.',
+            updatedAt: '2026-04-08T00:12:39.988Z',
+            capturedAt: '2026-04-08T00:11:39.988Z',
+            reviewedAt: '2026-04-08T00:12:39.988Z',
+            reviewedBy: 'Shopflow QA',
+            reviewNotes:
+              'Rejected because the current live page does not show a visible warehouse filter control.',
+            screenshotLabel: 'page-1.png',
+            sourcePageUrl:
+              'https://www.temu.com/search_result.html?search_key=warehouse',
+            sourcePageLabel: 'Temu',
+          },
+        ],
+        undecidedCapturedRecords: [],
+        blockedCandidates: [
+          {
+            captureId: 'safeway-subscribe-live-receipt',
+            appId: 'ext-albertsons',
+            targetId: 'safeway-cart',
+            status: 'blocked',
+            classification: 'deep_link_unstable',
+            blockerReason: 'deep_link_unstable',
+          },
+        ],
+      },
+    });
+
+    expect(packet.alreadyReviewedCaptureIds).toEqual([
+      'fred-meyer-verified-scope-live-receipt',
+    ]);
+    expect(packet.alreadyRejectedCaptureIds).toEqual([]);
+    expect(packet.decisions).toEqual([
+      expect.objectContaining({
+        captureId: 'temu-filter-live-receipt',
+        status: 'pending',
+        requiresActionSnapshot: true,
+      }),
+    ]);
+    expect(packet.blockedCandidates).toEqual([
+      expect.objectContaining({
+        captureId: 'safeway-subscribe-live-receipt',
+        blockerReason: 'login_required',
+      }),
+    ]);
   });
 
   it('keeps already rejected captures out of the next pending review template', () => {
@@ -551,8 +671,8 @@ describe('live browser reviewed records tooling', () => {
             pageKind: 'product',
             status: 'captured',
             summary: 'Fred Meyer candidate',
-            updatedAt: '2026-04-06T00:11:00.000Z',
-            capturedAt: '2026-04-06T00:11:00.000Z',
+            updatedAt: '2026-04-06T00:09:00.000Z',
+            capturedAt: '2026-04-06T00:09:00.000Z',
             screenshotLabel: 'page-2.png',
             sourcePageUrl: 'https://www.fredmeyer.com/pr/weekly-digital-deals',
             sourcePageLabel: 'Weekly Digital Deals - Fred Meyer',
@@ -565,8 +685,8 @@ describe('live browser reviewed records tooling', () => {
             pageKind: 'product',
             status: 'captured',
             summary: 'QFC candidate',
-            updatedAt: '2026-04-06T00:11:00.000Z',
-            capturedAt: '2026-04-06T00:11:00.000Z',
+            updatedAt: '2026-04-06T00:09:00.000Z',
+            capturedAt: '2026-04-06T00:09:00.000Z',
             screenshotLabel: 'page-3.png',
             sourcePageUrl: 'https://www.qfc.com/search?query=kombucha',
             sourcePageLabel: 'Search Products - QFC',

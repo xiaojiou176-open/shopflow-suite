@@ -81,6 +81,53 @@ function readJsonFile<T>(path: string) {
   return JSON.parse(readFileSync(path, 'utf8')) as T;
 }
 
+function parseComparableTimestamp(value: string | undefined) {
+  if (!value) {
+    return Number.NaN;
+  }
+
+  return Date.parse(value);
+}
+
+function resolveFinalizedTimestamp(record: LiveReceiptCaptureRecord) {
+  return (
+    parseComparableTimestamp(record.reviewedAt) ||
+    parseComparableTimestamp(record.updatedAt) ||
+    parseComparableTimestamp(record.capturedAt)
+  );
+}
+
+function resolveCapturedTimestamp(record: LiveReceiptCaptureRecord) {
+  return (
+    parseComparableTimestamp(record.capturedAt) ||
+    parseComparableTimestamp(record.updatedAt)
+  );
+}
+
+function shouldReopenFinalizedCapture(args: {
+  capturedRecord: LiveReceiptCaptureRecord;
+  finalizedRecord?: LiveReceiptCaptureRecord;
+}) {
+  const { capturedRecord, finalizedRecord } = args;
+
+  if (!finalizedRecord) {
+    return false;
+  }
+
+  if (finalizedRecord.status !== 'rejected') {
+    return false;
+  }
+
+  const capturedTimestamp = resolveCapturedTimestamp(capturedRecord);
+  const finalizedTimestamp = resolveFinalizedTimestamp(finalizedRecord);
+
+  if (Number.isNaN(capturedTimestamp) || Number.isNaN(finalizedTimestamp)) {
+    return false;
+  }
+
+  return capturedTimestamp > finalizedTimestamp;
+}
+
 function buildRequirementByCaptureId() {
   const requirementByCaptureId = new Map<string, LiveReceiptAppRequirement>();
 
@@ -148,10 +195,30 @@ export function createReviewInputTemplatePacket(args: {
 }) {
   const { reviewCandidateRecordsPacket, reviewedRecordsPacket } = args;
   const requirementByCaptureId = buildRequirementByCaptureId();
+  const finalizedRecordsByCaptureId = new Map<string, LiveReceiptCaptureRecord>([
+    ...(reviewedRecordsPacket?.reviewedRecords ?? []),
+    ...(reviewedRecordsPacket?.rejectedRecords ?? []),
+  ].map((record) => [record.captureId, record] as const));
+  const reopenedCaptureIds = new Set(
+    reviewCandidateRecordsPacket.capturedRecords
+      .filter((capturedRecord) =>
+        shouldReopenFinalizedCapture({
+          capturedRecord,
+          finalizedRecord: finalizedRecordsByCaptureId.get(
+            capturedRecord.captureId
+          ),
+        })
+      )
+      .map((record) => record.captureId)
+  );
   const alreadyReviewedCaptureIds =
-    reviewedRecordsPacket?.reviewedRecords.map((record) => record.captureId) ?? [];
+    reviewedRecordsPacket?.reviewedRecords
+      .filter((record) => !reopenedCaptureIds.has(record.captureId))
+      .map((record) => record.captureId) ?? [];
   const alreadyRejectedCaptureIds =
-    reviewedRecordsPacket?.rejectedRecords.map((record) => record.captureId) ?? [];
+    reviewedRecordsPacket?.rejectedRecords
+      .filter((record) => !reopenedCaptureIds.has(record.captureId))
+      .map((record) => record.captureId) ?? [];
   const finalizedCaptureIds = new Set([
     ...alreadyReviewedCaptureIds,
     ...alreadyRejectedCaptureIds,
@@ -189,9 +256,7 @@ export function createReviewInputTemplatePacket(args: {
     decisions,
     alreadyReviewedCaptureIds,
     alreadyRejectedCaptureIds,
-    blockedCandidates:
-      reviewedRecordsPacket?.blockedCandidates ??
-      reviewCandidateRecordsPacket.blockedCandidates,
+    blockedCandidates: reviewCandidateRecordsPacket.blockedCandidates,
   } satisfies ReviewInputTemplatePacket;
 }
 

@@ -297,8 +297,11 @@ function resolveRepoOwnedNextMove(
     case 'review-bundle-ready-claim-gated':
       return liveEvidence.allRequiredCapturesReviewed
         ? 'Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary.'
+        : liveEvidence.rejectedCaptureIds.length > 0 &&
+            liveEvidence.unresolvedCaptureIds.length > 0
+        ? `Keep wording claim-gated. Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}, and external capture/review is still required for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`
         : liveEvidence.rejectedCaptureIds.length > 0
-        ? `Keep wording claim-gated. Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}, so repo-side recapture or evidence triage is still required before submission decisioning can move.`
+        ? `Keep wording claim-gated. Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}; do not reopen unless the owner later requests a new capture or scope change.`
         : liveEvidence.unresolvedCaptureIds.length > 0
         ? 'Keep wording claim-gated. Repo-owned reviewer handoff is ready, but reviewed live evidence still requires an external capture/review packet before submission decisioning can move.'
         : 'Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.';
@@ -482,19 +485,23 @@ function createReviewerChecklist(
   if (entry.claimState !== 'public-claim-ready') {
     checklist.push({
       category: 'claim-boundary',
-      status: 'blocked',
+      status: liveEvidence.rejectedCaptureIds.length > 0 ? 'attention' : 'blocked',
       headline:
-        liveEvidence.reviewedCaptureIds.length > 0 ||
-        liveEvidence.rejectedCaptureIds.length > 0 ||
-        liveEvidence.unresolvedCaptureIds.length > 0
+        liveEvidence.rejectedCaptureIds.length > 0
+          ? 'Public claim boundary stays claim-gated because reviewed evidence is negative.'
+          : liveEvidence.reviewedCaptureIds.length > 0 ||
+              liveEvidence.unresolvedCaptureIds.length > 0
           ? 'Public claim boundary is still gated by live evidence.'
           : 'Public claim boundary is still limited to repo-verified wording.',
       detail:
         liveEvidence.reviewedCaptureIds.length > 0 ||
         liveEvidence.rejectedCaptureIds.length > 0 ||
         liveEvidence.unresolvedCaptureIds.length > 0
-          ? liveEvidence.rejectedCaptureIds.length > 0
-            ? `Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}, so public wording must stay claim-gated until the repo decides whether to recapture or keep the rejection.`
+          ? liveEvidence.rejectedCaptureIds.length > 0 &&
+            liveEvidence.unresolvedCaptureIds.length > 0
+            ? `Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}, and reviewed external evidence is still unresolved for ${liveEvidence.unresolvedCaptureIds.join(', ')}. Keep wording claim-gated and do not overclaim.`
+            : liveEvidence.rejectedCaptureIds.length > 0
+            ? `Reviewed live evidence already includes rejected captures for ${liveEvidence.rejectedCaptureIds.join(', ')}. Keep wording claim-gated and do not reopen unless the owner later requests a new capture or scope change.`
             : liveEvidence.unresolvedCaptureIds.length > 0
             ? `Keep wording claim-gated until reviewed live evidence exists for ${liveEvidence.unresolvedCaptureIds.join(', ')}.`
             : 'Reviewed live evidence is already attached, but public wording must stay claim-gated until the repo explicitly raises the claim boundary.'
@@ -519,7 +526,7 @@ function createReviewerChecklist(
       category: 'live-evidence',
       status:
         liveEvidence.rejectedCaptureIds.length > 0
-          ? 'blocked'
+          ? 'attention'
           : entry.claimState === 'public-claim-ready'
           ? 'ready'
           : liveEvidence.allRequiredCapturesReviewed
@@ -529,7 +536,7 @@ function createReviewerChecklist(
             : 'blocked',
       headline:
         liveEvidence.rejectedCaptureIds.length > 0
-          ? 'Reviewed live evidence already includes rejected captures.'
+          ? 'Reviewed live evidence is finalized with rejected captures.'
           : entry.claimState === 'public-claim-ready'
           ? 'Live-evidence requirements remain attached to the submission record.'
           : liveEvidence.allRequiredCapturesReviewed
@@ -538,8 +545,11 @@ function createReviewerChecklist(
             ? 'Reviewed live evidence still requires an external capture/review packet.'
             : 'Reviewed live evidence is still missing from the submission path.',
       detail:
-        liveEvidence.rejectedCaptureIds.length > 0
-          ? `Rejected evidence already exists for ${liveEvidence.rejectedCaptureIds.join(', ')}. Do not treat these captures as missing external packets; decide whether the repo should recapture or keep the rejection in place.`
+        liveEvidence.rejectedCaptureIds.length > 0 &&
+          liveEvidence.unresolvedCaptureIds.length > 0
+          ? `Rejected evidence already exists for ${liveEvidence.rejectedCaptureIds.join(', ')} while external capture/review is still unresolved for ${liveEvidence.unresolvedCaptureIds.join(', ')}. Keep wording claim-gated and do not treat the rejected captures as missing packets.`
+          : liveEvidence.rejectedCaptureIds.length > 0
+          ? `Rejected evidence already exists for ${liveEvidence.rejectedCaptureIds.join(', ')}. Keep wording claim-gated and do not treat these captures as missing external packets unless the owner later requests a new capture or scope change.`
           : entry.claimState === 'public-claim-ready'
           ? `Keep the reviewed evidence packet for ${liveEvidence.reviewedCaptureIds.join(', ')} attached to the release decision trail.`
           : liveEvidence.allRequiredCapturesReviewed
@@ -615,8 +625,11 @@ function createReadinessSummary(
     case 'review-bundle-ready-claim-gated':
       return liveEvidence.allRequiredCapturesReviewed
         ? 'Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.'
+        : liveEvidence.rejectedCaptureIds.length > 0 &&
+            liveEvidence.unresolvedCaptureIds.length > 0
+        ? 'Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.'
         : liveEvidence.rejectedCaptureIds.length > 0
-        ? 'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.'
+        ? 'Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.'
         : liveEvidence.unresolvedCaptureIds.length > 0
         ? reviewerStartPathReady && verificationParityReady
           ? 'Review bundle is complete, reviewer handoff is clear, and the remaining gate is external reviewed live evidence.'
@@ -688,8 +701,11 @@ function createReviewerStartPath(
           liveEvidence.unresolvedCaptureIds.length > 0
         ? liveEvidence.allRequiredCapturesReviewed
           ? 'Start from the reviewer URL, confirm the reviewed live evidence packet stays attached, and keep wording claim-gated until the repo explicitly raises the public boundary.'
+          : liveEvidence.rejectedCaptureIds.length > 0 &&
+              liveEvidence.unresolvedCaptureIds.length > 0
+          ? 'Start from the reviewer URL, inspect the rejected evidence packet, then keep wording claim-gated while the remaining unresolved capture stays on the external review path.'
           : liveEvidence.rejectedCaptureIds.length > 0
-          ? 'Start from the reviewer URL, inspect the rejected evidence packet, and decide whether the capture should be redone before any submission talk.'
+          ? 'Start from the reviewer URL, inspect the rejected evidence packet, and keep wording claim-gated unless the owner later requests a new capture or scope change.'
           : 'Start from the reviewer URL, confirm the store-review bundle stays claim-gated, and record that reviewed live evidence still remains an external gate before any submission talk.'
         : 'Start from the reviewer URL and confirm the store-review bundle matches repo-verified storefront behavior without implying signed or public-ready status.',
   };
