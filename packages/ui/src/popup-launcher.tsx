@@ -113,7 +113,7 @@ export function PopupLauncher({
   const actionDrawerCount =
     extraStructuredActionItems.length +
     labelOnlyActionItems.length +
-    supportingDetails.length;
+    (supportingDetails.length > 0 ? 1 : 0);
   const actionDrawerHeading = featuredActionItem
     ? copy.popup.supportingRoutesHeading
     : resolvedActionHeading;

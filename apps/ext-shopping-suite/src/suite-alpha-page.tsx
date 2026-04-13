@@ -275,26 +275,25 @@ export function SuiteAlphaPage({
                         localizedAppDefinition.operatorPromise}
                     </p>
                   </div>
-                  <div className="mt-4 space-y-2">
-                    {localizedAppDefinition.startHere.map((item, index) => (
-                      <div
-                        key={item.title}
-                        className={`rounded-[1.25rem] border border-stone-200 bg-stone-50 px-3 py-3 ${
-                          index === 0 ? 'shadow-[0_10px_24px_rgba(58,49,38,0.06)]' : ''
-                        }`}
-                      >
-                        <p className="text-sm font-medium text-stone-900">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs text-stone-600">
-                          {item.summary}
-                        </p>
-                        <a
-                          className="mt-3 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                          href={item.href}
-                        >
-                          {item.ctaLabel}
-                        </a>
+                  <div className="mt-4 divide-y divide-[rgba(58,49,38,0.10)] rounded-[1.25rem] border border-stone-200 bg-stone-50 px-3">
+                    {localizedAppDefinition.startHere.map((item) => (
+                      <div key={item.title} className="py-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium text-stone-900">
+                              {item.title}
+                            </p>
+                            <p className="mt-1 text-xs text-stone-600">
+                              {item.summary}
+                            </p>
+                          </div>
+                          <a
+                            className="inline-flex shrink-0 rounded-full border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                            href={item.href}
+                          >
+                            {item.ctaLabel}
+                          </a>
+                        </div>
                       </div>
                     ))}
                   </div>
