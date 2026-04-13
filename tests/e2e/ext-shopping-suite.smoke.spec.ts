@@ -84,6 +84,9 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     await expect(sidePanel.locator('body')).toContainText(
       /Verified scope navigator/i
     );
+    await sidePanel
+      .locator('#priority-routes summary')
+      .click();
     await expect(
       sidePanel
         .locator('#priority-routes')

@@ -89,6 +89,10 @@ export function SidePanelHomePage({
   const secondaryNavigationPreview = model.secondaryNavigation[0] ?? null;
   const recentActivityOpen = currentHash === '#recent-activity';
   const nextRoutesOpen = currentHash === '#next-routes';
+  const capabilityGridOpen =
+    currentHash === '#capability-grid' || model.quickActions.length === 0;
+  const capabilityGridPreview =
+    primaryRoute?.label ?? model.capabilities[0]?.label ?? copy.sidePanel.noRunnableCapability;
 
   return (
     <main
@@ -392,15 +396,18 @@ export function SidePanelHomePage({
 
         <div id="capability-grid">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
-            <section>
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <Compass className="h-4 w-4" />
-                  <div>
+            <details open={capabilityGridOpen || undefined}>
+              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+                <div className="flex min-w-0 items-start gap-2">
+                  <Compass className="mt-0.5 h-4 w-4 shrink-0" />
+                  <div className="min-w-0">
                     <h2 className="text-sm font-semibold">
                       {copy.sidePanel.availableOnPage}
                     </h2>
-                    <p className="mt-1 text-xs text-stone-500">
+                    <p className="mt-1 truncate text-xs text-stone-500">
+                      {capabilityGridPreview}
+                    </p>
+                    <p className="mt-2 text-xs text-stone-600">
                       {readyCapabilities}{' '}
                       {copy.sidePanel.statusLabels.live.toLowerCase()} ·{' '}
                       {model.capabilities.length}{' '}
@@ -411,9 +418,9 @@ export function SidePanelHomePage({
                   </div>
                 </div>
                 <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
-                  {copy.sidePanel.openRoute}
+                  {model.capabilities.length}
                 </span>
-              </div>
+              </summary>
               <div className="mt-3 grid grid-cols-1 gap-2">
                 {model.capabilities.map((capability) => (
                   <div
@@ -447,7 +454,7 @@ export function SidePanelHomePage({
                   </div>
                 ))}
               </div>
-            </section>
+            </details>
           </Card>
         </div>
 
