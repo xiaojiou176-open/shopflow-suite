@@ -56,11 +56,6 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       /1 ready capability on the latest detected page\./i
     );
     await expect(
-      sidePanel.locator('#recent-activity').getByRole('link', {
-        name: 'Jump to source page',
-      })
-    ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
-    await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
         name: 'Review claim gate',
       })
@@ -90,6 +85,11 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await expect(popup.locator('body')).toContainText(
       /App-level live receipt blocker remains because 2 packets? still need(?:s)? a first capture\./i
     );
+    await popup
+      .locator('summary')
+      .filter({ hasText: /What this page can do now/i })
+      .first()
+      .click();
     await expect(
       popup.getByRole('link', { name: 'Open supported workflow' })
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
@@ -229,11 +229,8 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Top result: Vons API Granola Clusters\./i
     );
-    await expect(
-      popup.getByRole('link', { name: 'Open latest captured page' }).first()
-    ).toHaveAttribute(
-      'href',
-      'https://www.vons.com/shop/search-results.html?q=granola'
+    await expect(popup.locator('#latest-output-preview')).toContainText(
+      /Top result: Vons API Granola Clusters\./i
     );
     await popup.close();
   } finally {

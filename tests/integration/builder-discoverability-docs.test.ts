@@ -7,6 +7,15 @@ function readRepoFile(path: string) {
   return readFileSync(resolveFromRepo(path), 'utf8');
 }
 
+function expectInOrder(markdown: string, earlier: string, later: string) {
+  const earlierIndex = markdown.indexOf(earlier);
+  const laterIndex = markdown.indexOf(later);
+
+  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(0);
+  expect(laterIndex, `expected to find "${later}"`).toBeGreaterThanOrEqual(0);
+  expect(earlierIndex).toBeLessThan(laterIndex);
+}
+
 describe('builder discoverability docs coherence', () => {
   it('keeps builder-facing docs and example entrypoints real', () => {
     const declaredPaths = new Set<string>([
@@ -104,12 +113,16 @@ describe('builder discoverability docs coherence', () => {
   it('keeps the root README builder lane clearly secondary to the default product story', () => {
     const readme = readRepoFile('README.md');
 
+    expect(readme).toContain('## Start Here First');
+    expect(readme).toContain('## First Product Route');
+    expect(readme).toContain('## Need Help or the Fuller Atlas?');
+    expect(readme).toContain('## Builder Side Door');
     expect(readme).toContain(
       'This is a **secondary** reading path, not the default repo identity.'
     );
     expect(readme).toContain('the latest review shelf');
     expect(readme).toContain('not a signed/store-ready shelf');
-    expect(readme).toContain('builder-facing packets or the new read-only');
+    expect(readme).toContain('builder-facing packets or the repo-truth');
     expect(readme).toContain('./docs/ecosystem/builder-start-here.md');
     expect(readme).toContain('./docs/ecosystem/integration-recipes.md');
     expect(readme).toContain('./docs/ecosystem/agent-quickstarts.md');
@@ -117,6 +130,8 @@ describe('builder discoverability docs coherence', () => {
     expect(readme).toContain(
       'Target-specific quickstarts, example JSON, and ecosystem-specific packets stay'
     );
+    expect(readme).toContain('strict evidence and claim boundaries');
+    expectInOrder(readme, '## First Product Route', '## Builder Side Door');
     expect(readme).not.toContain('| Target | Start page | Fastest command |');
     expect(readme).not.toContain('./docs/ecosystem/codex-quickstart.md');
     expect(readme).not.toContain('./docs/ecosystem/claude-code-quickstart.md');
@@ -130,12 +145,14 @@ describe('builder discoverability docs coherence', () => {
     expect(pagesIndex).toContain(
       'many storefront doors, one kitchen, one truthful review shelf.'
     );
-    expect(pagesIndex).toContain('## Shopflow In 30 Seconds');
+    expect(pagesIndex).toContain('## Start Here First');
+    expect(pagesIndex).toContain('## What You Can See Right Away');
     expect(pagesIndex).toContain('## What This Repo Is');
     expect(pagesIndex).toContain('## What Is Public Today');
     expect(pagesIndex).toContain('## Best First Route');
-    expect(pagesIndex).toContain('## Need the product feel or the support desk?');
+    expect(pagesIndex).toContain('## Need Help or the Deeper Atlas?');
     expect(pagesIndex).toContain('## Builder Lane Is Real, But Secondary');
+    expectInOrder(pagesIndex, '## Best First Route', '## Builder Lane Is Real, But Secondary');
     expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite');
     expect(pagesIndex).toContain('https://github.com/xiaojiou176-open/shopflow-suite/releases/latest');
   });

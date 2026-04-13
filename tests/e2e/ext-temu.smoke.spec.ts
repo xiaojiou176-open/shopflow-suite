@@ -80,6 +80,11 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Top result: Temu Storage Basket\./i
     );
+    await popup
+      .locator('summary')
+      .filter({ hasText: /What this page can do now/i })
+      .first()
+      .click();
     await expect(
       popup.getByRole('link', { name: 'Capture search results' })
     ).toHaveAttribute(

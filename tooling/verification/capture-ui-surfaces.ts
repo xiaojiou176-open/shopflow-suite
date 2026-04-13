@@ -414,7 +414,8 @@ async function captureStorePopupAndSidepanel(
     const popup = await openExtensionPage(context, extensionId, 'popup');
     await preparePageForCapture(popup, popupPlan.viewport, options.locale);
     await popup.getByText(title).waitFor();
-    await popup.locator('#latest-output-preview').waitFor();
+    await popup.locator('#popup-primary-route').waitFor();
+    await popup.locator('#popup-secondary-route').waitFor();
     await capturePageMain(popup, popupPlan.path);
     await popup.close();
 

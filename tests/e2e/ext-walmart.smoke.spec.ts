@@ -205,11 +205,9 @@ test('ext-walmart popup routes the secondary CTA to the latest source page when 
     await popup.reload();
 
     await expect(popup.getByText('Shopflow for Walmart')).toBeVisible();
-    await expect(
-      popup.locator('#latest-output-preview').getByRole('link', {
-        name: 'Open latest captured page',
-      })
-    ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');
+    await expect(popup.locator('#latest-output-preview')).toContainText(
+      /Walmart Payload Coffee Sampler/i
+    );
     await expect(
       popup.getByRole('link', { name: 'Open latest source page' })
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=granola');

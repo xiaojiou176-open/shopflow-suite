@@ -1,11 +1,27 @@
-# Design System: Shopflow UIUX Extreme Endgame
+# Design System: Shopflow Wave 3 Sovereign UIUX
+
+## 0. Sovereignty
+
+This design system is governed by a single sovereignty stack:
+
+- **Sovereign source:** `Linear`
+- **Popup donor:** `Raycast` for quick-router behavior only
+- **Public/front-door donor:** `Shopify` for first-touch trust framing only
+- **Rhythm donor:** `Apple` for pacing and breathing room only
+- **Comparison only:** `Vercel`, `Stripe`
+
+Hard rule:
+
+> Do not average the donors.
+> Borrow by surface role, not by aesthetic collage.
 
 ## 1. Visual Theme & Atmosphere
 
-Shopflow should feel like a **retail operator concierge**, not a dashboard template.
-The atmosphere is warm, editorial, and restrained: like a high-end field notebook
-for shopping execution, where the first thing you see is the next correct door,
-not a pile of status boxes.
+Shopflow should feel like a **retail operator concierge**, not a dashboard
+template.
+The atmosphere is warm, restrained, and product-first: like a high-end field
+notebook for shopping execution where the first thing you see is the next
+correct door, not a pile of status boxes.
 
 Density target:
 
@@ -27,7 +43,8 @@ In plain language:
 
 > Popup should feel like a hotel concierge pointing at the fastest elevator.
 > Side Panel should feel like the actual room where the work happens.
-> Suite should feel like the building lobby with a clear “start here” desk.
+> Suite should feel like the building lobby with a clear "start here" desk.
+> docs/front door should feel like the front desk, not the archive room.
 
 ## 2. Color Palette & Roles
 
@@ -124,6 +141,7 @@ Surface-specific rules:
   - one supporting route block
   - one compressed proof hint
   - the checklist / extra notes area must feel visibly lower-priority
+  - if something can be demoted behind disclosure without hiding truth, demote it
 - **Side Panel**
   - first viewport should stack:
     - readiness snapshot
@@ -131,12 +149,23 @@ Surface-specific rules:
     - claim boundary / next step
     - proof hint
   - capability matrix and evidence system come later
+  - report lanes must collapse or demote before they visually compete with the
+    main workspace
 - **Suite**
   - first viewport should stack:
     - start-here desk
     - one or two priority routes
     - compressed claim-readiness cue
   - rollout map, evidence gates, verified scope, and seam surfaces move below
+  - per-app inspect slabs belong below the lobby moment, not inside it
+- **docs/front door**
+  - first screen should answer:
+    - what Shopflow is
+    - why it is worth opening now
+    - what the first honest route is
+    - where help or deeper docs live
+  - deep docs atlases, question grids, and builder shelves belong below the
+    first-touch route
 
 ## 6. Motion & Interaction
 
@@ -157,6 +186,7 @@ Perpetual micro-motion is optional and should stay minimal:
 - route-first
 - calm and explicit
 - no packet-speak on the first screen unless the user is already inside an evidence lane
+- no archive-room or docs-warehouse phrasing on the front row
 
 Do:
 
@@ -171,7 +201,42 @@ Avoid:
 - “System performance metrics”
 - filler words that sound like an AI landing page
 
-## 8. Anti-Patterns (Banned)
+## 8. Platform Guardrails
+
+- Popup is a short-lived quick-routing surface, not a long-lived workflow host
+- Side Panel is the persistent companion surface and should complement the
+  current browsing task with minimal distraction
+- first-touch public surfaces should use progressive disclosure:
+  - first screen = what / why / get started / help
+  - deeper structure = linked shelves and task pages
+- disclosure hierarchy defaults to:
+  - `Collapsible / Accordion`
+  - `Dialog / Drawer`
+  - `AlertDialog`
+
+## 9. Surface Grammar
+
+### Popup
+
+- should read as `switchboard`
+- should not read as `mini-sidepanel`
+
+### Side Panel
+
+- should read as `primary work surface`
+- should not read as `report wall`
+
+### Suite
+
+- should read as `concierge lobby`
+- should not read as `internal console`
+
+### docs/front door
+
+- should read as `product-first front desk`
+- should not read as `packet shelf`
+
+## 10. Anti-Patterns (Banned)
 
 - no emoji icons
 - no `Inter`
@@ -185,8 +250,10 @@ Avoid:
 - no popup that behaves like a mini sidepanel
 - no Side Panel that reads like a report wall
 - no Suite first screen that feels like an audit spreadsheet
+- no docs/front door body that feels like a packet atlas before the product is
+  explained
 
-## 9. Implementation Notes
+## 11. Implementation Notes
 
 - prefer semantic color classes via shared tokens
 - use `gap-*` instead of `space-*` when composing stacked sections
@@ -196,8 +263,13 @@ Avoid:
   - border softness
   - typography scale
   - spacing rhythm
+  - disclosure depth
 
-## 10. Artifact Rule
+- prefer hierarchy and demotion before palette changes
+- prefer one strong first action over several equal-weight cards
+- prefer inline disclosure before modal escalation
+
+## 12. Artifact Rule
 
 All high-fidelity design artifacts for this endgame lane must be stored under:
 

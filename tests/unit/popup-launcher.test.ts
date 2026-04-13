@@ -54,6 +54,15 @@ describe('PopupLauncher', () => {
     );
     expect(html).toContain('Primary route');
     expect(html).toContain('Side Panel section');
+    expect(html.indexOf('Primary route')).toBeLessThan(
+      html.indexOf('Secondary route')
+    );
+    expect(html.indexOf('Secondary route')).toBeLessThan(
+      html.indexOf('Latest captured product')
+    );
+    expect(html.indexOf('Latest captured product')).toBeLessThan(
+      html.indexOf('What Suite can route right now')
+    );
     expect(html).toContain('What Suite can route right now');
     expect(html).toContain('Route into the right store shell');
     expect(html).toContain(
@@ -69,18 +78,16 @@ describe('PopupLauncher', () => {
     expect(html).toContain('Open rollout map');
     expect(html).toContain('href="sidepanel.html#current-rollout-map"');
     expect(html).toContain('Latest captured product');
-    expect(html.indexOf('Latest captured product')).toBeLessThan(
-      html.indexOf('What Suite can route right now')
-    );
     expect(html).toContain('Safeway Green Grapes');
     expect(html).toContain('Captured product details with price $4.99.');
     expect(html).toContain('Price: $4.99');
     expect(html).toContain('Open latest captured page');
     expect(html).toContain('Jump to latest source page');
-    expect(html).toContain('Merchant source page');
+    expect(html).not.toContain('Jump back');
     expect(html).toContain(
       'Latest source page routes you back into the live merchant flow. Latest captured page reopens the freshest captured output.'
     );
+    expect(html).toContain('<details');
     expect(html).toContain('Display language');
     expect(html).toContain('href="popup.html?locale=zh-CN"');
   });
@@ -116,11 +123,12 @@ describe('PopupLauncher', () => {
     expect(html).toContain('href="https://www.walmart.com/search?q=granola"');
     expect(html).toContain('Open latest captured page');
     expect(html).toContain('Jump to latest source page');
+    expect(html).not.toContain('Jump back');
     expect(html).toContain(
       'Latest source page routes you back into the live merchant flow. Latest captured page reopens the freshest captured output.'
     );
-    expect(html.indexOf('Jump back')).toBeLessThan(
-      html.indexOf('Latest captured search')
+    expect(html.indexOf('Latest captured search')).toBeLessThan(
+      html.indexOf('Jump to latest source page')
     );
   });
 
@@ -153,8 +161,8 @@ describe('PopupLauncher', () => {
     expect(html).toContain('href="https://www.walmart.com/search?q=coffee"');
     expect(html).toContain('Walmart Payload Coffee Sampler');
     expect(html).toContain('Latest captured page');
-    expect(html.indexOf('Latest captured search')).toBeLessThan(
-      html.indexOf('What this page can do now')
+    expect(html.indexOf('Secondary route')).toBeLessThan(
+      html.indexOf('Latest captured search')
     );
     expect(html).not.toContain('Jump back');
     expect(html).not.toContain('Jump to latest source page');
@@ -178,8 +186,8 @@ describe('PopupLauncher', () => {
       })
     );
 
-    expect(html).toContain('当前页面现在能做什么');
-    expect(html).toContain('当前页面还没有可立即执行的能力。');
+    expect(html).toContain('主路线');
+    expect(html).toContain('次路线');
     expect(html).toContain('打开 Side Panel');
     expect(html).toContain('查看当前支持状态');
     expect(html).toContain('Side Panel 分区');
@@ -192,6 +200,10 @@ describe('PopupLauncher', () => {
     expect(html).toContain(
       '跳到下一条支持状态或 claim 边界路线，而不是把 popup 变成第二个控制台。'
     );
+    expect(html).not.toContain('当前页面现在能做什么');
+    expect(html).not.toContain('当前页面还没有可立即执行的能力。');
+    expect(html).not.toContain('<details');
+    expect(html).toContain('跳回');
     expect(html).toContain('跳回最新来源页面');
   });
 
@@ -214,6 +226,7 @@ describe('PopupLauncher', () => {
 
     expect(html).toContain('Review verified scope clauses');
     expect(html).toContain('Open claim readiness after family selection');
+    expect(html).toContain('<details');
     expect(html).toContain(
       'Start from the family chooser instead of treating popup like a second console.'
     );

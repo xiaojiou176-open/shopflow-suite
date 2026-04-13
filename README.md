@@ -3,11 +3,11 @@
 [Product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md) ·
 [Verification bar](./docs/contracts/testing-and-verification-bar.md) ·
 [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
-[Builder side door](./docs/ecosystem/builder-start-here.md) ·
-[Docs shelf](./docs/README.md)
+[Docs front door](./docs/README.md) ·
+[Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 
-Shopflow is a **Chrome-first shopping extension product family** built as one
-canonical public repo.
+Shopflow is a **Chrome-first shopping extension product family** for `8`
+storefront apps plus `1` Suite shell, kept in one canonical public repo.
 
 ![Shopflow front door](./docs/assets/shopflow-front-door.svg)
 
@@ -19,36 +19,42 @@ In plain language:
 
 ![Shopflow review shelf snapshot card](./docs/assets/shopflow-review-shelf-card.svg)
 
-## Front Door in 20 Seconds
+## Start Here First
 
-- **What it is:** one Chrome-first shopping extension family with `8`
-  storefront apps plus `1` Suite shell.
-- **Why it is worth opening:** one repo already ships the public front door,
-  the latest review shelf, and a truthful read-only stdio MCP without
-  splitting storefront truth across `9` codebases.
-- **What still is not claimed:** reviewed live evidence and signed/store-ready
-  artifacts still gate the public support line.
+- **What this is:** one shopping-only extension family with `8` storefront
+  apps, `1` Suite shell, and one shared engineering kitchen.
+- **Why it is worth opening now:** the repo already ships a product front door,
+  a reviewer-facing release shelf, and a read-only stdio MCP without splitting
+  truth across `9` separate codebases.
+- **First honest route:** read the product boundary, then the verification bar,
+  then the latest review shelf.
+- **Where to get help:** use the docs front door for the fuller atlas, the
+  release review runbook for bundle meaning, and GitHub issues when the public
+  story drifts.
+- **What is still claim-gated:** live receipt evidence bundles and
+  store-ready signed extension release artifacts are not yet in place.
 
 In plain language:
 
-> the public repo, Pages front door, and latest release review shelf are live today.
-> this is still not a signed/store-ready shelf.
+> the public repo and review shelf are real today.
+> the support line is still gated by live evidence and signed release artifacts.
 
-## First Product Path
+## First Product Route
 
-If you only want the shortest honest route, take it in this order:
+If you want the shortest truthful product-first read, take this route:
 
 1. [See the product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md).
 2. [See the verification boundary](./docs/contracts/testing-and-verification-bar.md).
 3. [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
-4. Only after that, if you came here for packets or agent setup, use the
-   [builder side door](./docs/ecosystem/builder-start-here.md).
+4. If you need the fuller map, open the [Docs front door](./docs/README.md).
 
-Secondary proof doors still exist, but they stay secondary:
+## Need Help or the Fuller Atlas?
 
 - [Docs front door](./docs/README.md)
-- [Distribution truth](./DISTRIBUTION.md)
 - [Release artifact review runbook](./docs/runbooks/release-artifact-review.md)
+- [Distribution truth](./DISTRIBUTION.md)
+- [Contributing](./CONTRIBUTING.md)
+- [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 
 ## What You Can See Right Away
 
@@ -58,6 +64,26 @@ Secondary proof doors still exist, but they stay secondary:
 | Pages front door | the current public product story | Chrome Web Store readiness |
 | latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
 | read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
+
+## Builder Side Door
+
+This is a **secondary** reading path, not the default repo identity.
+
+If you already know you are here for builder-facing packets or the repo-truth
+MCP entry, start here after the product route above:
+
+- [Builder Start Here](./docs/ecosystem/builder-start-here.md)
+- [Integration Recipes](./docs/ecosystem/integration-recipes.md)
+- [Agent Quickstarts](./docs/ecosystem/agent-quickstarts.md)
+- [MCP Quickstart](./docs/ecosystem/mcp-quickstart.md)
+
+These surfaces are real today, but they are still **secondary** to the default
+product story:
+
+> shopping extension family under strict evidence and claim boundaries.
+
+Target-specific quickstarts, example JSON, and ecosystem-specific packets stay
+in the docs shelf instead of taking over the root README.
 
 ## Primary Product vs Companion Surfaces
 
@@ -152,35 +178,6 @@ In plain language:
 
 > this repo's main story is still "shopping extension family under evidence
 > gates," not "public plugin marketplace."
-
-## Builder Lane Is Secondary
-
-This is a **secondary** reading path, not the default repo identity.
-
-If you are evaluating Shopflow as an open-source product repo rather than as an
-agent-consumption packet source, read the product and verification docs above
-first.
-
-If you are here specifically for builder-facing packets or the new read-only
-MCP entry, keep the root README short and open the docs shelf instead:
-
-1. [`docs/ecosystem/builder-start-here.md`](./docs/ecosystem/builder-start-here.md)
-2. [`docs/ecosystem/integration-recipes.md`](./docs/ecosystem/integration-recipes.md)
-3. [`docs/ecosystem/agent-quickstarts.md`](./docs/ecosystem/agent-quickstarts.md)
-4. [`docs/ecosystem/mcp-quickstart.md`](./docs/ecosystem/mcp-quickstart.md)
-
-Shopflow is not a generic AI assistant, but it does expose truthful
-builder-facing surfaces today:
-
-- typed contracts plus explicit readiness / claim-boundary truth
-- read-only builder snapshots, workflow briefs, and reviewer artifacts
-- a repo-local read-only CLI plus builder docs and example packets in the docs shelf
-- a repo-local read-only stdio MCP for the same core repo-truth surfaces
-
-Target-specific quickstarts, example JSON, and ecosystem-specific packets stay
-in the docs shelf, not the root README. These surfaces are real today, but
-they are **not** proof that Shopflow already ships a public API, public HTTP
-MCP endpoint, official marketplace listing, or SDK.
 
 The canonical OpenClaw install path is now:
 
