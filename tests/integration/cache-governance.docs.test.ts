@@ -10,13 +10,10 @@ describe('cache and runtime governance docs coherence', () => {
   it('keeps cache boundary language aligned across primary docs', () => {
     const readme = readRepoFile('README.md');
     const docsReadme = readRepoFile('docs/README.md');
-    const diskRunbook = readRepoFile(
-      '.agents/Tasks/private-docs/DISK-FOOTPRINT-GOVERNANCE.md'
-    );
     const toolingReadme = readRepoFile('tooling/README.md');
     const agents = readRepoFile('AGENTS.md');
 
-    for (const content of [readme, diskRunbook, toolingReadme, agents]) {
+    for (const content of [readme, toolingReadme, agents]) {
       expect(content).toContain('~/.cache/shopflow');
       expect(content).toContain('.runtime-cache');
     }
@@ -25,16 +22,14 @@ describe('cache and runtime governance docs coherence', () => {
     expect(docsReadme).not.toContain('browser/chrome-user-data');
     expect(docsReadme).toContain('MCP Quickstart');
 
-    for (const content of [readme, diskRunbook, toolingReadme]) {
+    for (const content of [readme, toolingReadme, agents]) {
       expect(content).toContain('browser/chrome-user-data');
     }
   });
 
   it('keeps hosted CI and canonical live profile wording aligned', () => {
     const readme = readRepoFile('README.md');
-    const diskRunbook = readRepoFile(
-      '.agents/Tasks/private-docs/DISK-FOOTPRINT-GOVERNANCE.md'
-    );
+    const agents = readRepoFile('AGENTS.md');
     const liveRunbook = readRepoFile('docs/runbooks/live-receipt-capture.md');
     const workflow = readRepoFile('.github/workflows/ci.yml');
     const npmrc = readRepoFile('.npmrc');
@@ -42,8 +37,8 @@ describe('cache and runtime governance docs coherence', () => {
     expect(readme).toContain('Profile 1');
     expect(readme).toContain('shopflow');
     expect(readme).toContain('~/.cache/shopflow/browser/chrome-user-data');
-    expect(diskRunbook).toContain('ubuntu-latest');
-    expect(diskRunbook).toContain('self-hosted');
+    expect(agents).toContain('ubuntu-latest');
+    expect(agents).toContain('self-hosted');
     expect(liveRunbook).toContain('Profile 1');
     expect(liveRunbook).toContain('shopflow');
     expect(liveRunbook).toContain('browser:seed-profile');
