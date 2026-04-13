@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-13T07:34:57.491Z",
+  "generatedAt": "2026-04-13T11:51:16.986Z",
   "appId": "ext-temu",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",

@@ -6,7 +6,8 @@ metadata packet.
 In plain language:
 
 > this page explains which listing payload examples already exist, and where
-> the official-listing boundary still begins.
+> the official-listing boundary still begins: official surfaces can exist, while
+> Shopflow is still not listed or published there.
 
 ## Use This When
 
@@ -45,7 +46,7 @@ ship today.
 They are **not** proof that:
 
 - any plugin or listing is already published
-- any official listing surface has been confirmed
+- Shopflow is already listed or published on any official Codex / Claude Code / OpenClaw surface
 - OpenClaw became a first-class front door or second canonical Shopflow repo
 - official marketplace integration already exists
 
@@ -53,8 +54,8 @@ They are **not** proof that:
 
 | Target | Starter bundle | Sample config | Install docs | Listing payload | Official surface status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `codex` | `agent-target-packet.codex.json` + quickstart | `agent-target-packet.codex.json` | [Codex Quickstart](./codex-quickstart.md) | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json) | unconfirmed, no official-listing claim |
-| `claude-code` | `agent-target-packet.claude-code.json` + quickstart + skills catalog | `agent-target-packet.claude-code.json` | [Claude Code Quickstart](./claude-code-quickstart.md) | [plugin-marketplace-metadata.claude-code.json](./examples/plugin-marketplace-metadata.claude-code.json) | unconfirmed, no official-listing claim |
+| `codex` | `agent-target-packet.codex.json` + quickstart | `agent-target-packet.codex.json` | [Codex Quickstart](./codex-quickstart.md) | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json) | official Codex surface exists, but Shopflow is not listed or published there |
+| `claude-code` | `agent-target-packet.claude-code.json` + quickstart + skills catalog | `agent-target-packet.claude-code.json` | [Claude Code Quickstart](./claude-code-quickstart.md) | [plugin-marketplace-metadata.claude-code.json](./examples/plugin-marketplace-metadata.claude-code.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
 
 ## Public Inputs To Pair With
 
@@ -70,8 +71,8 @@ They are **not** proof that:
 ## Boundary Reminder
 
 - metadata and listing payloads are still repo-owned prep
-- OpenClaw's packet can support a public GitHub plugin route now, while official
-  OpenClaw-owned placement still remains external platform work
-- Codex / Claude Code only move from bundle-ready to official listing if the
-  real official surface and auth path are confirmed
+- OpenClaw's packet can support a public GitHub/customPlugins route now, while
+  official OpenClaw-owned placement still remains external platform work
+- Codex / Claude Code official surfaces already exist; what is still missing is
+  Shopflow being officially listed or published there through the real auth path
 - this page must stay below public-release wording

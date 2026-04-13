@@ -49,8 +49,8 @@ Shopflow should not claim that it already is:
 
 | Target | Placement | Truthful wording now | Must not claim now |
 | :--- | :--- | :--- | :--- |
-| `Codex` | front-door primary + public-distribution current-scope | strong builder fit because Shopflow already exposes typed contracts, workflow briefs, review tooling, read-only builder snapshots, and a plugin-level distribution bundle story | official integration or official listing where no official Codex public surface exists |
-| `Claude Code` | front-door primary + public-distribution current-scope | strong builder fit for the same builder-facing reasons, now with a stronger skills-facing and plugin-level distribution path | official integration or official listing where no official Claude Code public surface exists |
+| `Codex` | front-door primary + public-distribution current-scope | strong builder fit because Shopflow already exposes typed contracts, workflow briefs, review tooling, read-only builder snapshots, and a plugin-level distribution bundle story | claiming Shopflow is already officially listed or published on a Codex-owned surface |
+| `Claude Code` | front-door primary + public-distribution current-scope | strong builder fit for the same builder-facing reasons, now with a stronger skills-facing and plugin-level distribution path | claiming Shopflow is already officially listed or published on a Claude Code-owned surface |
 | `MCP` | repo-local read-only stdio now; public transport later | today's runtime truth already supports a truthful capability packet, and the core four surfaces are now attachable through stdio, even though a public MCP server is still not shipped | current public HTTP MCP product or write-capable MCP |
 | `OpenCode` | ecosystem secondary | useful comparison or later-facing integration path when CLI or skills packaging becomes explicit | main hero placement, official package |
 | `OpenHands` | ecosystem secondary | useful comparison for agentic coding and workflow automation | main hero placement, official package |

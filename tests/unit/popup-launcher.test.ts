@@ -60,6 +60,7 @@ describe('PopupLauncher', () => {
     expect(html.indexOf('Secondary route')).toBeLessThan(
       html.indexOf('Latest captured product')
     );
+    expect(html).toContain('id="popup-proof-hint"');
     expect(html.indexOf('Latest captured product')).toBeLessThan(
       html.indexOf('What Suite can route right now')
     );
@@ -161,6 +162,7 @@ describe('PopupLauncher', () => {
     expect(html).toContain('href="https://www.walmart.com/search?q=coffee"');
     expect(html).toContain('Walmart Payload Coffee Sampler');
     expect(html).toContain('Latest captured page');
+    expect(html).toContain('id="popup-proof-hint"');
     expect(html.indexOf('Secondary route')).toBeLessThan(
       html.indexOf('Latest captured search')
     );

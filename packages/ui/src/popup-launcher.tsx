@@ -226,32 +226,6 @@ export function PopupLauncher({
               <p className="mt-3 text-xs text-[#6c665d]">
                 {resolvedSecondarySummary}
               </p>
-              {showProofHint ? (
-                <div className="mt-3 rounded-2xl border border-[rgba(183,121,31,0.16)] bg-white px-3 py-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
-                      {latestOutputPreview?.label ?? copy.popup.jumpBack}
-                    </p>
-                    {latestOutputPreview?.timestampLabel ? (
-                      <span className="rounded-full border border-[rgba(183,121,31,0.18)] bg-[#fff8ef] px-2 py-1 text-[11px] text-[#8a6330]">
-                        {copy.popup.latestCapturedAt(
-                          latestOutputPreview.timestampLabel
-                        )}
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="mt-2 text-xs text-[#6c665d]">
-                    {latestOutputPreview
-                      ? latestOutputPreview.summary
-                      : copy.popup.jumpBackSummary}
-                  </p>
-                  {showSourceCapturedSplit ? (
-                    <p className="mt-2 text-xs text-[#756d62]">
-                      {copy.popup.sourceCapturedSplitSummary}
-                    </p>
-                  ) : null}
-                </div>
-              ) : null}
             </section>
 
             {showProofHint ? (
@@ -259,7 +233,10 @@ export function PopupLauncher({
                 id="latest-output-preview"
                 className="rounded-[1.5rem] border border-[rgba(183,121,31,0.16)] bg-[#fff8ef] px-4 py-3"
               >
-                <div className="flex items-start justify-between gap-3">
+                <div
+                  id="popup-proof-hint"
+                  className="flex items-start justify-between gap-3"
+                >
                   <div className="min-w-0">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
                       {latestOutputPreview?.label ?? copy.popup.jumpBack}
@@ -287,21 +264,33 @@ export function PopupLauncher({
                     <p className="mt-1 text-xs text-[#6c665d]">
                       {latestOutputPreview.summary}
                     </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {latestOutputPreview.href ? (
+                        <a
+                          className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                          href={latestOutputPreview.href}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {latestOutputPreview.hrefLabel ??
+                            copy.common.openLatestCapturedPage}
+                        </a>
+                      ) : null}
+                      {showSourceCapturedSplit ? (
+                        <a
+                          className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                          href={latestSourceHref}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {resolvedLatestSourceLabel}
+                        </a>
+                      ) : null}
+                    </div>
                     {latestOutputPreview.detailLines[0] ? (
                       <p className="mt-2 text-xs text-[#514a42]">
                         {latestOutputPreview.detailLines[0]}
                       </p>
-                    ) : null}
-                    {latestOutputPreview.href ? (
-                      <a
-                        className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                        href={latestOutputPreview.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {latestOutputPreview.hrefLabel ??
-                          copy.common.openLatestCapturedPage}
-                      </a>
                     ) : null}
                   </>
                 ) : latestSourceHref ? (
@@ -321,19 +310,9 @@ export function PopupLauncher({
                 ) : null}
 
                 {showSourceCapturedSplit ? (
-                  <div className="mt-3 space-y-2 border-t border-[rgba(183,121,31,0.16)] pt-3">
-                    <a
-                      className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                      href={latestSourceHref}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {resolvedLatestSourceLabel}
-                    </a>
-                    <p className="text-xs text-[#6c665d]">
-                      {copy.popup.sourceCapturedSplitSummary}
-                    </p>
-                  </div>
+                  <p className="mt-3 border-t border-[rgba(183,121,31,0.16)] pt-3 text-xs text-[#6c665d]">
+                    {copy.popup.sourceCapturedSplitSummary}
+                  </p>
                 ) : null}
               </section>
             ) : null}
