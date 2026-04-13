@@ -9,7 +9,7 @@
   "screenshotSources": [
     "docs/ecosystem/claude-code-quickstart.md",
     "docs/ecosystem/agent-quickstarts.md",
-    "docs/ecosystem/public-distribution-bundle.ready.md"
+    "docs/ecosystem/agent-distribution-artifacts.md"
   ],
   "capabilityRefs": [
     "integration-surface",
@@ -38,8 +38,7 @@
     "installDocs": [
       "docs/ecosystem/claude-code-quickstart.md",
       "docs/ecosystem/agent-quickstarts.md",
-      "docs/ecosystem/public-skills-catalog.ready.md",
-      "docs/ecosystem/public-distribution-bundle.ready.md"
+      "docs/ecosystem/agent-distribution-artifacts.md"
     ],
     "proofLoopCommands": [
       "pnpm cli:read-only -- agent-target-packet --target claude-code",

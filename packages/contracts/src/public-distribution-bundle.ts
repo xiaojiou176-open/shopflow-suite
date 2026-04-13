@@ -69,8 +69,8 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
   boundaryNote:
     'These packets are repo-owned distribution bundles. They make public API / MCP / skills / plugin-marketplace work concrete enough for starter bundles, sample configs, proof loops, and listing payloads, but they do not prove any public surface is already shipped or officially listed.',
   discoverabilitySources: [
-    'docs/ecosystem/ready-to-sync-artifacts.md',
-    'docs/ecosystem/public-distribution-bundle.ready.md',
+    'docs/ecosystem/agent-distribution-artifacts.md',
+    'docs/ecosystem/agent-quickstarts.md',
     'docs/ecosystem/builder-start-here.md',
   ],
   channels: [

@@ -50,10 +50,10 @@ repo-local read-only outcome bundle command. Treat public API / MCP / CLI / SDK
 
 | Use this file | When you need | Destination |
 | :--- | :--- | :--- |
-| `docs/ecosystem/public-copy.ready.md` | the short packet and boundary reminder | prep pass before any external sync |
-| `docs/ecosystem/ready-to-sync-public-copy.md` | paste-ready snippets | GitHub about, release notes, social/page drafts |
-| `docs/ecosystem/release-body.ready.md` | a short release-note block | GitHub release body |
-| `docs/ecosystem/repo-description.ready.md` | one-line repo description | GitHub repo description |
+| `.agents/Tasks/WAVE1-public-sync/public-copy.ready.md` | the short packet and boundary reminder | prep pass before any external sync |
+| `.agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md` | paste-ready snippets | GitHub about, release notes, social/page drafts |
+| `.agents/Tasks/WAVE1-public-sync/release-body.ready.md` | a short release-note block | GitHub release body |
+| `.agents/Tasks/WAVE1-public-sync/repo-description.ready.md` | one-line repo description | GitHub repo description |
 
 For the full chooser, read
 [Ready-to-Sync Artifacts](./ready-to-sync-artifacts.md).

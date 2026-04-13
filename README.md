@@ -48,7 +48,7 @@ Secondary proof doors still exist, but they stay secondary:
 
 - [Docs front door](./docs/README.md)
 - [Distribution truth](./DISTRIBUTION.md)
-- [Evidence and submission current-scope readiness](./docs/ecosystem/evidence-submission-current-scope-readiness.md)
+- [Release artifact review runbook](./docs/runbooks/release-artifact-review.md)
 
 ## What You Can See Right Away
 
@@ -146,7 +146,7 @@ three questions before you read any ecosystem packet pages:
    - [Testing and Verification Bar](./docs/contracts/testing-and-verification-bar.md)
 3. What should reviewers and operators treat as real vs still claim-gated?
    - [Docs Front Door](./docs/README.md)
-   - [Evidence and Submission Current-Scope Readiness](./docs/ecosystem/evidence-submission-current-scope-readiness.md)
+   - [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
 
 In plain language:
 

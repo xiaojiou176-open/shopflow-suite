@@ -332,7 +332,7 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
         },
         {
           kind: 'docs',
-          value: 'docs/ecosystem/ready-to-sync-artifacts.md',
+          value: 'docs/ecosystem/agent-distribution-artifacts.md',
         },
       ],
     },
@@ -436,7 +436,7 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
         },
         {
           kind: 'docs',
-          value: 'docs/ecosystem/ready-to-sync-artifacts.md',
+          value: 'docs/runbooks/release-artifact-review.md',
         },
       ],
     },

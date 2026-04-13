@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-12T22:43:37.004Z",
+  "generatedAt": "2026-04-13T01:39:11.665Z",
   "appId": "ext-amazon",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -193,7 +193,7 @@
           },
           {
             "kind": "docs",
-            "value": "docs/ecosystem/ready-to-sync-artifacts.md"
+            "value": "docs/ecosystem/agent-distribution-artifacts.md"
           }
         ]
       },
@@ -342,7 +342,7 @@
           },
           {
             "kind": "docs",
-            "value": "docs/ecosystem/ready-to-sync-artifacts.md"
+            "value": "docs/runbooks/release-artifact-review.md"
           }
         ]
       },
@@ -590,7 +590,7 @@
           "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
           "appId": "ext-amazon",
           "label": "www.amazon.com · search",
-          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review.",
+          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
           "timestampLabel": "2:10 AM",
           "href": "https://www.amazon.com/s?k=coffee+storage"
         }
@@ -599,7 +599,7 @@
         "origin": "merchant-source",
         "label": "Inspect latest source page",
         "href": "https://www.amazon.com/s?k=coffee+storage",
-        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review."
+        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -683,7 +683,7 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 3 app entries. ext-amazon is store-review with bundle directory apps/ext-amazon/.output/chrome-mv3 and 1 packaged zip artifact."
+      "summary": "Release manifest now proves 9 app entries. ext-amazon is storefront-shell-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-amazon/bundle and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
@@ -695,25 +695,25 @@
   "readyToSyncArtifacts": [
     {
       "id": "public-copy-packet",
-      "path": "docs/ecosystem/public-copy.ready.md",
+      "path": ".agents/Tasks/WAVE1-public-sync/public-copy.ready.md",
       "destination": "sync packet overview",
       "summary": "Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim."
     },
     {
       "id": "paste-ready-public-copy",
-      "path": "docs/ecosystem/ready-to-sync-public-copy.md",
+      "path": ".agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md",
       "destination": "GitHub about, release notes, or social/page drafts",
       "summary": "Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful."
     },
     {
       "id": "release-body",
-      "path": "docs/ecosystem/release-body.ready.md",
+      "path": ".agents/Tasks/WAVE1-public-sync/release-body.ready.md",
       "destination": "release body starter",
       "summary": "Short release-note block that stays inside current claim boundaries."
     },
     {
       "id": "repo-description",
-      "path": "docs/ecosystem/repo-description.ready.md",
+      "path": ".agents/Tasks/WAVE1-public-sync/repo-description.ready.md",
       "destination": "GitHub repo description",
       "summary": "One-line repo description that names the product shape without implying public API, MCP, or CLI availability."
     }

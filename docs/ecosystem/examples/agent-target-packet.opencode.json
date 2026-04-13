@@ -62,7 +62,7 @@
       "sourceDocs": [
         "docs/ecosystem/mcp-quickstart.md",
         "docs/ecosystem/claude-code-quickstart.md",
-        "docs/ecosystem/public-distribution-bundle.ready.md"
+        "docs/runbooks/release-artifact-review.md"
       ],
       "targetFit": [
         "codex",

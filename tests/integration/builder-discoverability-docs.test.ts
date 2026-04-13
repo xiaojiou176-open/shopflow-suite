@@ -17,9 +17,9 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/openclaw-comparison.md',
       'docs/ecosystem/builder-start-here.md',
       'docs/ecosystem/integration-recipes.md',
-      'docs/ecosystem/ready-to-sync-artifacts.md',
-      'docs/ecosystem/builder-current-scope-readiness.md',
-      'docs/ecosystem/evidence-submission-current-scope-readiness.md',
+      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-artifacts.md',
+      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md',
+      '.agents/Tasks/WAVE1-public-sync/evidence-submission-current-scope-readiness.md',
       'docs/ecosystem/examples/README.md',
       ...builderIntegrationSurface.surfaceCatalog.flatMap((entry) =>
         entry.entrypoints
@@ -51,20 +51,7 @@ describe('builder discoverability docs coherence', () => {
     expect(docsReadme).toContain('./ecosystem/agent-distribution-artifacts.md');
     expect(docsReadme).toContain('./ecosystem/integration-recipes.md');
     expect(docsReadme).toContain('./ecosystem/examples/README.md');
-    expect(docsReadme).toContain(
-      './ecosystem/public-mcp-capability-map.ready.md'
-    );
-    expect(docsReadme).toContain('./ecosystem/public-skills-catalog.ready.md');
-    expect(docsReadme).toContain(
-      './ecosystem/plugin-marketplace-metadata.ready.md'
-    );
-    expect(docsReadme).toContain('./ecosystem/ready-to-sync-artifacts.md');
-    expect(docsReadme).toContain(
-      './ecosystem/builder-current-scope-readiness.md'
-    );
-    expect(docsReadme).toContain(
-      './ecosystem/evidence-submission-current-scope-readiness.md'
-    );
+    expect(docsReadme).toContain('./runbooks/release-artifact-review.md');
     expect(docsReadme).toContain(
       'pnpm cli:read-only -- agent-integration-bundle'
     );
@@ -81,6 +68,22 @@ describe('builder discoverability docs coherence', () => {
     );
     expect(docsReadme).toContain(
       'pnpm cli:read-only -- agent-target-packet --target openhands'
+    );
+    expect(docsReadme).not.toContain(
+      './ecosystem/public-mcp-capability-map.ready.md'
+    );
+    expect(docsReadme).not.toContain(
+      './ecosystem/public-skills-catalog.ready.md'
+    );
+    expect(docsReadme).not.toContain(
+      './ecosystem/plugin-marketplace-metadata.ready.md'
+    );
+    expect(docsReadme).not.toContain('./ecosystem/ready-to-sync-artifacts.md');
+    expect(docsReadme).not.toContain(
+      './ecosystem/builder-current-scope-readiness.md'
+    );
+    expect(docsReadme).not.toContain(
+      './ecosystem/evidence-submission-current-scope-readiness.md'
     );
   });
 
@@ -173,13 +176,17 @@ describe('builder discoverability docs coherence', () => {
 
   it('keeps ready-to-sync material explicit about not already being published', () => {
     const artifactsGuide = readRepoFile(
-      'docs/ecosystem/ready-to-sync-artifacts.md'
+      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-artifacts.md'
     );
-    const publicCopy = readRepoFile('docs/ecosystem/public-copy.ready.md');
+    const publicCopy = readRepoFile(
+      '.agents/Tasks/WAVE1-public-sync/public-copy.ready.md'
+    );
     const syncBlocks = readRepoFile(
-      'docs/ecosystem/ready-to-sync-public-copy.md'
+      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md'
     );
-    const releaseBody = readRepoFile('docs/ecosystem/release-body.ready.md');
+    const releaseBody = readRepoFile(
+      '.agents/Tasks/WAVE1-public-sync/release-body.ready.md'
+    );
 
     expect(artifactsGuide).toContain('already published');
     expect(artifactsGuide).toContain('submission-readiness.json');
@@ -197,7 +204,7 @@ describe('builder discoverability docs coherence', () => {
 
   it('keeps the builder current-scope readiness doc branch-aware instead of claiming main already landed', () => {
     const currentScopeReadiness = readRepoFile(
-      'docs/ecosystem/builder-current-scope-readiness.md'
+      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md'
     );
 
     expect(currentScopeReadiness).toContain('Branch-Aware Git Truth');
@@ -308,7 +315,7 @@ describe('builder discoverability docs coherence', () => {
     );
     const builderSurfaces = readRepoFile('docs/ecosystem/builder-surfaces.md');
     const readiness = readRepoFile(
-      'docs/ecosystem/builder-current-scope-readiness.md'
+      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md'
     );
 
     expect(builderStartHere).toContain('pnpm cli:read-only -- runtime-seam');
@@ -354,11 +361,8 @@ describe('builder discoverability docs coherence', () => {
     );
   });
 
-  it('keeps the public distribution bundle visible where ready-to-sync surfaces are explained', () => {
+  it('keeps public distribution routes visible without routing internal sync packets into public docs', () => {
     const docsReadme = readRepoFile('docs/README.md');
-    const readyToSync = readRepoFile(
-      'docs/ecosystem/ready-to-sync-artifacts.md'
-    );
     const builderStartHere = readRepoFile(
       'docs/ecosystem/builder-start-here.md'
     );
@@ -378,16 +382,16 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/plugin-marketplace-metadata.ready.md'
     );
 
-    expect(docsReadme).toContain('public-distribution-bundle.ready.md');
-    expect(docsReadme).toContain('public-mcp-capability-map.ready.md');
-    expect(docsReadme).toContain('public-skills-catalog.ready.md');
-    expect(docsReadme).toContain('plugin-marketplace-metadata.ready.md');
-    expect(readyToSync).toContain('public-distribution-bundle.ready.md');
-    expect(readyToSync).toContain('public-mcp-capability-map.ready.md');
-    expect(readyToSync).toContain('public-skills-catalog.ready.md');
-    expect(readyToSync).toContain('plugin-marketplace-metadata.ready.md');
+    expect(docsReadme).not.toContain('public-distribution-bundle.ready.md');
+    expect(docsReadme).not.toContain('public-mcp-capability-map.ready.md');
+    expect(docsReadme).not.toContain('public-skills-catalog.ready.md');
+    expect(docsReadme).not.toContain('plugin-marketplace-metadata.ready.md');
     expect(builderStartHere).toContain(
       'pnpm cli:read-only -- public-distribution-bundle'
+    );
+    expect(builderStartHere).not.toContain('./public-copy.ready.md');
+    expect(builderStartHere).not.toContain(
+      './public-distribution-bundle.ready.md'
     );
     expect(builderStartHere).toContain(
       'pnpm cli:read-only -- agent-target-packet --target'
@@ -398,6 +402,10 @@ describe('builder discoverability docs coherence', () => {
     expect(integrationRecipes).toContain(
       'pnpm cli:read-only -- public-distribution-bundle'
     );
+    expect(integrationRecipes).not.toContain('./public-copy.ready.md');
+    expect(integrationRecipes).not.toContain('./ready-to-sync-public-copy.md');
+    expect(integrationRecipes).not.toContain('./release-body.ready.md');
+    expect(integrationRecipes).not.toContain('./repo-description.ready.md');
     expect(publicDistribution).toContain(
       'pnpm cli:read-only -- public-distribution-bundle'
     );

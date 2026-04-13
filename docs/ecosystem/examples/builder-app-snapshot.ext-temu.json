@@ -54,7 +54,7 @@
       "id": "ext-temu:https://www.temu.com/search_result.html?search_key=warehouse",
       "appId": "ext-temu",
       "label": "www.temu.com · search",
-      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as store-review.",
+      "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as storefront-shell-candidate.",
       "timestampLabel": "2:30 AM",
       "href": "https://www.temu.com/search_result.html?search_key=warehouse"
     }

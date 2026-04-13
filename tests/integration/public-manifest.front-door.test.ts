@@ -116,7 +116,7 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('Builder side door');
     expect(docsIndex).toContain('Builder Start Here');
-    expect(docsIndex).toContain('Evidence and submission readiness');
+    expect(docsIndex).toContain('Release review runbook');
     expect(mcpQuickstart).toContain('read-only stdio MCP');
     expect(mcpQuickstart).toContain('get_integration_surface');
     expect(mcpQuickstart).toContain('get_runtime_seam');
@@ -133,14 +133,14 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsReadme, 'Builder side door');
     expectPagesSafeFirstHop(docsReadme, 'Public repo README');
     expectPagesSafeFirstHop(docsReadme, 'Distribution truth on GitHub');
-    expectPagesSafeFirstHop(docsReadme, 'Evidence scorecard');
+    expectPagesSafeFirstHop(docsReadme, 'Release review runbook');
 
     expectPagesSafeFirstHop(docsIndex, 'See the product boundary');
     expectPagesSafeFirstHop(docsIndex, 'See the product feel');
     expectPagesSafeFirstHop(docsIndex, 'See the verification boundary');
     expectPagesSafeFirstHop(docsIndex, 'Open the latest review shelf');
     expectPagesSafeFirstHop(docsIndex, 'Builder Start Here');
-    expectPagesSafeFirstHop(docsIndex, 'Evidence and submission readiness');
+    expectPagesSafeFirstHop(docsIndex, 'Release review runbook');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Shopflow Product Surface Spec');
@@ -153,10 +153,6 @@ describe('public manifest and front door', () => {
       'ADR-001: Repo Topology and Product Boundary'
     );
     expectPagesSafeFirstHop(docsIndex, 'Testing and Verification Bar');
-    expectPagesSafeFirstHop(
-      docsIndex,
-      'Evidence and Submission Current-Scope Readiness'
-    );
     expectPagesSafeFirstHop(docsIndex, 'Agent Quickstarts');
     expectPagesSafeFirstHop(docsIndex, 'Integration Recipes');
     expectPagesSafeFirstHop(docsIndex, 'MCP Quickstart');

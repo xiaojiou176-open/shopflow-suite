@@ -167,28 +167,28 @@ export function createBuilderOutcomeBundle({
     readyToSyncArtifacts: [
       {
         id: 'public-copy-packet',
-        path: 'docs/ecosystem/public-copy.ready.md',
+        path: '.agents/Tasks/WAVE1-public-sync/public-copy.ready.md',
         destination: 'sync packet overview',
         summary:
           'Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim.',
       },
       {
         id: 'paste-ready-public-copy',
-        path: 'docs/ecosystem/ready-to-sync-public-copy.md',
+        path: '.agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md',
         destination: 'GitHub about, release notes, or social/page drafts',
         summary:
           'Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful.',
       },
       {
         id: 'release-body',
-        path: 'docs/ecosystem/release-body.ready.md',
+        path: '.agents/Tasks/WAVE1-public-sync/release-body.ready.md',
         destination: 'release body starter',
         summary:
           'Short release-note block that stays inside current claim boundaries.',
       },
       {
         id: 'repo-description',
-        path: 'docs/ecosystem/repo-description.ready.md',
+        path: '.agents/Tasks/WAVE1-public-sync/repo-description.ready.md',
         destination: 'GitHub repo description',
         summary:
           'One-line repo description that names the product shape without implying public API, MCP, or CLI availability.',

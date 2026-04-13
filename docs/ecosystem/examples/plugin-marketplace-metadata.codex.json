@@ -37,7 +37,7 @@
     "installDocs": [
       "docs/ecosystem/codex-quickstart.md",
       "docs/ecosystem/agent-quickstarts.md",
-      "docs/ecosystem/public-distribution-bundle.ready.md"
+      "docs/ecosystem/agent-distribution-artifacts.md"
     ],
     "proofLoopCommands": [
       "pnpm cli:read-only -- agent-target-packet --target codex",

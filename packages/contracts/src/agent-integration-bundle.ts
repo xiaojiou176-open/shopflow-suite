@@ -305,7 +305,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       repoOwnedArtifacts: [
         'docs/ecosystem/openclaw-comparison.md',
         'docs/ecosystem/openclaw-public-ready-matrix.md',
-        'docs/ecosystem/openclaw-publish-unblock-packet.ready.md',
+        'docs/ecosystem/agent-distribution-artifacts.md',
       ],
       skillsState: 'ready-to-sync-packet',
       pluginPackagingState: 'ready-to-publish-packet',
@@ -371,7 +371,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         sourceDocs: [
           'docs/ecosystem/mcp-quickstart.md',
           'docs/ecosystem/claude-code-quickstart.md',
-          'docs/ecosystem/public-distribution-bundle.ready.md',
+          'docs/runbooks/release-artifact-review.md',
         ],
         targetFit: [
           'codex',
@@ -456,10 +456,10 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           'Plugin-level public distribution bundle for Codex with starter bundle, sample config, install docs, proof loop, and listing payload.',
         boundaryNote:
           'Starter bundle and listing payload are repo-owned today. Do not claim an official Codex plugin, official listing, or marketplace package until the real official surface and auth path are confirmed.',
-        screenshotSources: [
-          'README.md',
-          'docs/ecosystem/codex-quickstart.md',
-          'docs/ecosystem/builder-start-here.md',
+          screenshotSources: [
+            'README.md',
+            'docs/ecosystem/codex-quickstart.md',
+            'docs/ecosystem/builder-start-here.md',
         ],
         capabilityRefs: [
           'integration-surface',
@@ -487,7 +487,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           installDocs: [
             'docs/ecosystem/codex-quickstart.md',
             'docs/ecosystem/agent-quickstarts.md',
-            'docs/ecosystem/public-distribution-bundle.ready.md',
+            'docs/ecosystem/agent-distribution-artifacts.md',
           ],
           proofLoopCommands: [
             'pnpm cli:read-only -- agent-target-packet --target codex',
@@ -517,7 +517,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         screenshotSources: [
           'docs/ecosystem/claude-code-quickstart.md',
           'docs/ecosystem/agent-quickstarts.md',
-          'docs/ecosystem/public-distribution-bundle.ready.md',
+          'docs/ecosystem/agent-distribution-artifacts.md',
         ],
         capabilityRefs: [
           'integration-surface',
@@ -546,8 +546,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           installDocs: [
             'docs/ecosystem/claude-code-quickstart.md',
             'docs/ecosystem/agent-quickstarts.md',
-            'docs/ecosystem/public-skills-catalog.ready.md',
-            'docs/ecosystem/public-distribution-bundle.ready.md',
+            'docs/ecosystem/agent-distribution-artifacts.md',
           ],
           proofLoopCommands: [
             'pnpm cli:read-only -- agent-target-packet --target claude-code',
@@ -577,7 +576,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         screenshotSources: [
           'docs/ecosystem/openclaw-comparison.md',
           'docs/ecosystem/openclaw-public-ready-matrix.md',
-          'docs/ecosystem/openclaw-publish-unblock-packet.ready.md',
+          'docs/ecosystem/agent-distribution-artifacts.md',
         ],
         capabilityRefs: ['integration-surface', 'submission-readiness'],
         skillsRefs: ['shopflow-builder-facing-discoverability-and-ready-sync'],
@@ -596,7 +595,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
           installDocs: [
             'docs/ecosystem/openclaw-comparison.md',
             'docs/ecosystem/openclaw-public-ready-matrix.md',
-            'docs/ecosystem/openclaw-publish-unblock-packet.ready.md',
+            'docs/ecosystem/agent-distribution-artifacts.md',
           ],
           proofLoopCommands: [
             'pnpm cli:read-only -- agent-target-packet --target openclaw',

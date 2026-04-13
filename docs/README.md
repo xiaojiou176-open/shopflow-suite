@@ -15,7 +15,7 @@ Shopflow is, what exists today, and what still should not be overclaimed.
 Secondary proof doors:
 [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
 [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
-[Evidence scorecard](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html)
+[Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 
 ## Shopflow in Three Lines
 
@@ -98,7 +98,7 @@ table and start with:
 
 - [ADR-001: Shopflow Repo Topology and Product Boundary](./adr/ADR-001-shopflow-repo-topology-and-product-boundary.md)
 - [Testing and Verification Bar](./contracts/testing-and-verification-bar.md)
-- [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
+- [Release Artifact Review Runbook](./runbooks/release-artifact-review.md)
 
 In plain language:
 
@@ -190,13 +190,12 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 ### "What do review bundles mean, and what do they not mean?"
 
 - [Release Artifact Review Runbook](./runbooks/release-artifact-review.md)
-- [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
+- [Testing and Verification Bar](./contracts/testing-and-verification-bar.md)
 
 ### "Where should a reviewer or operator start when release bundles are already packaged?"
 
 - [Release Artifact Review Runbook](./runbooks/release-artifact-review.md)
 - [Live Receipt Capture Runbook](./runbooks/live-receipt-capture.md)
-- [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
 
 ### "What do I do if a secret, personal detail, or host-specific path escapes into Git or a public packet?"
 
@@ -332,7 +331,6 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - [Builder Read Models](./ecosystem/builder-read-models.md)
 - [Integration Recipes](./ecosystem/integration-recipes.md)
 - [Builder Examples Index](./ecosystem/examples/README.md)
-- [Builder Current-Scope Readiness](./ecosystem/builder-current-scope-readiness.md)
 
 ### "What is current-scope now for English-first copy, product UI locale policy, and future API / MCP / CLI surfaces?"
 
@@ -340,24 +338,23 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - [Agent and MCP Positioning](./ecosystem/agent-and-mcp-positioning.md)
 - [Integration Surface Roadmap](./ecosystem/integration-surface-roadmap.md)
 
-### "How far is the builder-facing current-scope line compressed, and which brakes are still repo-global?"
+### "How do I read the builder lane without mistaking it for public support claims?"
 
-- [Builder Current-Scope Readiness](./ecosystem/builder-current-scope-readiness.md)
+- [Builder Start Here](./ecosystem/builder-start-here.md)
+- [Builder Surfaces](./ecosystem/builder-surfaces.md)
+- [Integration Surface Roadmap](./ecosystem/integration-surface-roadmap.md)
 
-### "What public-facing copy is ready to sync if external permissions are missing?"
+### "Which public docs explain current distribution surfaces without internal sync packets?"
 
-- [Ready-to-Sync Public Copy Packet](./ecosystem/public-copy.ready.md)
-- [Public Distribution Bundle](./ecosystem/public-distribution-bundle.ready.md)
-- [Public MCP Capability Map](./ecosystem/public-mcp-capability-map.ready.md)
-- [Public Skills Catalog](./ecosystem/public-skills-catalog.ready.md)
-- [Plugin Marketplace Metadata](./ecosystem/plugin-marketplace-metadata.ready.md)
-- [Ready-to-Sync Artifacts](./ecosystem/ready-to-sync-artifacts.md)
+- [Agent Quickstarts](./ecosystem/agent-quickstarts.md)
+- [Agent Distribution Artifacts](./ecosystem/agent-distribution-artifacts.md)
+- [MCP Quickstart](./ecosystem/mcp-quickstart.md)
 
-### "How far is the evidence/submission line compressed, and what still remains external?"
+### "Where does reviewer/operator guidance stop and internal sync prep begin?"
 
-- [Evidence and Submission Current-Scope Readiness](./ecosystem/evidence-submission-current-scope-readiness.md)
 - [Release Artifact Review Runbook](./runbooks/release-artifact-review.md)
 - [Live Receipt Capture Runbook](./runbooks/live-receipt-capture.md)
+- [Testing and Verification Bar](./contracts/testing-and-verification-bar.md)
 
 ### "Which repo-local artifact directories are disposable, which are retained, and what stays machine-wide?"
 
@@ -371,12 +368,11 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - repo-owned external cache now lives under `~/.cache/shopflow/**`, while
   non-Shopflow `~/.cache/**` remains machine-wide and out of scope
 
-### "What can I sync to GitHub or release notes when repo truth is ahead of public permissions?"
+### "What should a public reader open instead of internal sync prep packets?"
 
-- [Paste-Ready Public Copy Snippets](./ecosystem/ready-to-sync-public-copy.md)
-- [Release Body Starter](./ecosystem/release-body.ready.md)
-- [Repo Description Line](./ecosystem/repo-description.ready.md)
-- [Ready-to-Sync Artifacts](./ecosystem/ready-to-sync-artifacts.md)
+- [README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
+- [Agent Quickstarts](./ecosystem/agent-quickstarts.md)
+- [Agent Distribution Artifacts](./ecosystem/agent-distribution-artifacts.md)
 
 ## Fast Boundary Notes
 

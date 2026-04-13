@@ -236,19 +236,22 @@ Why this matters:
 
 > it keeps the checked-in rack tied to repo-owned generated truth, not a hand-maintained sample shelf.
 
-## Recipe 4: Pull Ready-to-Sync Copy Without Overclaiming
+## Recipe 4: Keep Sync Copy Out of the Public Shelf
 
-Use this when repo truth is ahead of external permissions and you need copy that
-is ready to paste, but not yet externally published.
+Use this when repo truth is ahead of external permissions and you need to keep
+public docs clean while still preserving sync material for the next operator.
 
-- [Ready-to-Sync Public Copy Packet](./public-copy.ready.md)
-- [Paste-Ready Public Copy Snippets](./ready-to-sync-public-copy.md)
-- [Release Body Starter](./release-body.ready.md)
-- [Repo Description Line](./repo-description.ready.md)
+- public readers should stay on:
+  - [Builder Start Here](./builder-start-here.md)
+  - [Agent Quickstarts](./agent-quickstarts.md)
+  - [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
+- L1-owned sync copy packets now live off the public docs shelf
 
 Why this matters:
 
-> "ready-to-sync" means "the copy is prepared", not "the world already saw it".
+> public docs should explain the product and the real read-only surfaces.
+> sync copy is still useful, but it belongs in the operator packet drawer, not
+> in the customer-facing aisle.
 
 ## Recipe 5: Keep Ecosystem References Honest
 
