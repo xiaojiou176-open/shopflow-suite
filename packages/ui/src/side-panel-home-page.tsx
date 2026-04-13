@@ -242,27 +242,36 @@ export function SidePanelHomePage({
                 </section>
 
                 {followUpRoute && followUpRoute.href !== operatorRoute?.href ? (
-                  <section className="rounded-[1.75rem] border border-[rgba(58,49,38,0.10)] bg-[#f8f3eb] px-4 py-4 text-xs text-[#6c665d]">
-                    <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
-                      {copy.sidePanel.nextRoute}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                      {followUpRoute.label}
-                    </p>
-                    <p className="mt-2 text-xs text-[#6c665d]">
-                      {followUpRoute.summary}
-                    </p>
-                    <a
-                      className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                      aria-label={copy.sidePanel.nextRouteAria(
-                        followUpRoute.label
-                      )}
-                      href={followUpRoute.href}
-                      target={followUpRoute.external ? '_blank' : undefined}
-                      rel={followUpRoute.external ? 'noreferrer' : undefined}
-                    >
-                      {followUpRoute.label}
-                    </a>
+                  <section className="rounded-[1.35rem] border border-[rgba(58,49,38,0.10)] bg-[#f8f3eb] px-4 py-3 text-xs text-[#6c665d]">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
+                          {copy.sidePanel.nextRoute}
+                        </p>
+                        <p className="mt-2 text-sm font-medium text-[#1f1c17]">
+                          {followUpRoute.label}
+                        </p>
+                        <p className="mt-1 text-xs text-[#6c665d]">
+                          {followUpRoute.summary}
+                        </p>
+                      </div>
+                      <a
+                        className="inline-flex shrink-0 rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-xs font-medium text-[#514a42]"
+                        aria-label={copy.sidePanel.nextRouteAria(
+                          followUpRoute.label
+                        )}
+                        href={followUpRoute.href}
+                        target={followUpRoute.external ? '_blank' : undefined}
+                        rel={followUpRoute.external ? 'noreferrer' : undefined}
+                      >
+                        {copy.sidePanel.openRoute}
+                      </a>
+                    </div>
+                    {followUpRoute.originLabel ? (
+                      <p className="mt-2 text-[11px] text-stone-500">
+                        {followUpRoute.originLabel}
+                      </p>
+                    ) : null}
                   </section>
                 ) : null}
 
