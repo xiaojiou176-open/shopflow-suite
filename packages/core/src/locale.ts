@@ -911,16 +911,16 @@ const en: LocaleCatalog = {
     ],
     suiteNotesByAppId: {
       'ext-albertsons':
-        'Currently verified on Safeway. Public-ready still blocked on live receipt.',
+      '当前已验证范围：Safeway。public-ready 仍被实时证据挡住。',
       'ext-kroger':
-        'Family shell is repo-verified, but public-ready still needs verified-scope evidence on Fred Meyer + QFC.',
-      'ext-amazon': 'Storefront shell baseline is green.',
-      'ext-costco': 'Storefront shell baseline is green.',
-      'ext-walmart': 'Storefront shell baseline is green.',
-      'ext-weee': 'Wave 3 storefront shell baseline is green.',
-      'ext-target': 'Deals-capable storefront shell baseline is green.',
+        'Family 壳层已 repo-verified，但 public-ready 仍需要 Fred Meyer + QFC 的已验证范围证据。',
+      'ext-amazon': 'Storefront shell 基线已通过。',
+      'ext-costco': 'Storefront shell 基线已通过。',
+      'ext-walmart': 'Storefront shell 基线已通过。',
+      'ext-weee': 'Wave 3 storefront shell 基线已通过。',
+      'ext-target': 'Deals 能力 storefront shell 基线已通过。',
       'ext-temu':
-        'Differentiated warehouse filter is repo-verified, but public-ready still needs live evidence.',
+        '差异化 warehouse filter 已 repo-verified，但 public-ready 仍需要实时证据。',
     },
     statusBoard: {
       repoVerifiedClear: {
@@ -1006,7 +1006,18 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     openLatestCapturedPage: '打开最新捕获页面',
     openSourcePage: '打开来源页面',
     openEvidenceSourcePage: '打开证据来源页面',
+    openCaptureSourcePage: '打开采集来源页面',
+    openCurrentCapturePage: '打开当前捕获页面',
     openLatestSourcePage: '跳回最新来源页面',
+    openLatestDetectedPage: '打开最新检测页面',
+    openDefaultRoute: '打开默认路线',
+    capturedAtPrefix: '捕获于',
+    loadingRoute: '正在加载下一条有用路线...',
+    loadingQueue: '正在加载证据队列...',
+    loadingDetection: '正在加载最新共享运行时上下文...',
+    loadingActivity: '正在加载最近操作员活动...',
+    loadingOutput: '正在加载最新捕获输出...',
+    loadingNextStep: '正在加载下一步...',
     languageOptionLabels: {
       en: 'English',
       'zh-CN': '简体中文',
@@ -1016,7 +1027,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       capturedPage: '最新捕获页面',
       evidenceSource: '证据来源页面',
       evidenceGate: '证据门禁',
-      sidePanelSection: 'Side Panel 分区',
+      sidePanelSection: '侧边面板分区',
       detectedPage: '最新检测页面',
       defaultRoute: '默认商家入口',
     },
@@ -1024,7 +1035,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
   popup: {
     defaultActionHeading: '当前页面现在能做什么',
     noRunnableCapability: '当前页面还没有可立即执行的能力。',
-    openSidePanel: '打开 Side Panel',
+    openSidePanel: '打开侧边面板',
     viewCurrentSupportState: '查看当前支持状态',
     openMainSurfaceSummary: '打开当前页面对应的主 Shopflow 工作面板。',
     openSecondaryRouteSummary:
@@ -1039,23 +1050,25 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     recentActivityPrefix: '最近活动：',
     seenPrefix: '看到于',
     quickRouterHeading: '快速路由',
-    quickRouterSummary: '先用 Popup 找入口，再去 Side Panel 做真正操作。',
+    quickRouterSummary: '先用弹出窗找入口，再去侧边面板做真正操作。',
     primaryRouteHeading: '主路线',
     secondaryRouteHeading: '次路线',
     jumpBackHeading: '返回现场',
     jumpBackSummary: '回到共享 runtime 里记录的最新商家页面。',
     sourceCapturedSplitSummary:
       '最新来源页面会带你回到真实商家流程；最新捕获页面会重新打开最近一次捕获到的结果。',
-    openSidePanelQuickActions: '打开 Side Panel 快捷操作',
-    openSidePanelReadinessSummary: '打开 Side Panel 准备度摘要',
-    openSidePanelCaptureQueue: '打开 Side Panel 采集队列',
-    openSidePanelReviewLane: '打开 Side Panel 审核通道',
-    openSidePanelRecentActivity: '打开 Side Panel 最近活动',
-    openSidePanelCurrentSiteSummary: '打开 Side Panel 当前站点摘要',
+    openSidePanelQuickActions: '打开侧边面板快捷操作',
+    openSidePanelReadinessSummary: '打开侧边面板准备度摘要',
+    openSidePanelCaptureQueue: '打开侧边面板采集队列',
+    openSidePanelReviewLane: '打开侧边面板审核通道',
+    openSidePanelRecentActivity: '打开侧边面板最近活动',
+    openSidePanelCurrentSiteSummary: '打开侧边面板当前站点摘要',
     resumeLatestCapturedPage: '回到最新捕获页面',
     openLatestSourcePage: '打开最新来源页面',
   },
   sidePanel: {
+    introSummary:
+      '先看这页现在能做什么，再沿着宣称与证据门往下走，不要把仓内验证直接写成公开支持。',
     readinessSummaryHeading: '当前准备度',
     liveReceiptReadinessHeading: 'Live receipt 准备情况',
     whatThisPageCanDoHeading: '当前页面能做什么',
@@ -1068,12 +1081,31 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     availableOnThisPageHeading: '当前页面可用能力',
     noRunnableCapability: '当前页面还没有可立即执行的能力。',
     quickActionsHeading: '快捷操作',
+    quickActionsSummary:
+      '这些卡片都是真实能力路线。先选你要走的动作，再直接跳到真正能执行它的页面或分区。',
+    primarySupportedMove: '主可用动作',
+    supportedMove: '可用动作',
+    blockedPathHonesty:
+      '这里会直接说明哪条路径被挡住，而不是假装被阻塞的动作还能运行。',
+    primaryRouteHeading: '主路线',
+    nextRouteHeading: '下一条路线',
     evidenceOverviewHeading: '证据概览',
     reviewLaneHeading: '审核通道',
+    evidenceSystemSummary:
+      '把这个操作员证据系统分成三层看：证据概览负责采集工作，审核通道负责审核结果，原始证据包账本负责审计细节。',
     rawPacketLedgerHeading: '原始证据包账本',
     decisionBriefHeading: '决策简报',
     nextAssistantMove: '下一步辅助动作',
+    packetPrefix: '证据包：',
+    updatedPrefix: '更新于：',
+    operatorNotePrefix: '操作员备注：',
+    nextStepPrefix: '下一步：',
+    nextStepPrefixInline: '下一步：',
+    latestProofPrefix: '最新证据：',
+    reviewPrefix: '审核状态：',
+    reviewNotePrefix: '审核备注：',
     recentActivityHeading: '最近活动',
+    noVerifiedActivity: '当前浏览器会话里还没有记录到已验证活动。',
     nextRoutesHeading: '下一步路线',
     sourceCapturedSplitSummary:
       '最新来源页面负责带你回到真实商家流程；最新捕获页面负责重新打开最近一次捕获结果。',
@@ -1081,9 +1113,34 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     bestRouteAria: (label) => `当前最佳路线：${label}`,
     nextRouteAria: (label) => `下一条路线：${label}`,
     operatorNextStepAria: (label) => `操作员下一步：${label}`,
+    openRoute: '打开路线',
+    statusLabels: {
+      live: '当前可运行',
+      limited: '受限',
+      idle: '等待中',
+      unsupported: '未支持',
+      error: '需关注',
+    },
+    capabilityStatusLabels: {
+      ready: '可运行',
+      unsupported_page: '未支持页面',
+      unsupported_site: '未支持站点',
+      permission_needed: '需要权限',
+      not_implemented: '未实现',
+      degraded: '降级',
+      blocked: '已阻塞',
+    },
+    countsSummary: (snapshot) =>
+      `统计：已尝试 ${snapshot.attempted} · 已成功 ${snapshot.succeeded} · 已失败 ${snapshot.failed} · 已跳过 ${snapshot.skipped}`,
   },
   model: {
     repoReadyClaimGatedLabel: '仓内已验证，但公开宣称仍被证据门禁限制',
+    repoReadyClaimBoundaryWithScope: (scopeCopy) =>
+      `${scopeCopy} 公开说法在实时证据审核完成前继续保持门禁。`,
+    repoReadyClaimBoundaryWithoutScope:
+      '在实时证据审核完成前，公开说法都必须保持在已验证 claim 边界内。',
+    repoReadyClaimSummaryFallback: (runnableNowSummary) =>
+      `${runnableNowSummary} 公开说法在证据审核完成前仍需保持门禁。`,
     readyOnThisPageLabel: '当前页面可运行',
     needsOperatorAttentionLabel: '需要操作员关注',
     waitingForSupportedPageLabel: '等待支持页面',
@@ -1168,13 +1225,13 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     reviewPendingQueueSummary: (count) => `${count} 个证据包等待明确审核。`,
     reviewedQueueSummary: (count) => `${count} 个证据包已审核。`,
     reviewedEvidenceForAppSummary: () =>
-      '这个应用要求的 live receipt 证据都已经审核完成。',
+      '这个应用要求的实时证据都已经审核完成。',
     missingEvidenceForAppSummary: (count) =>
-      `这个应用还有 ${count} 个 live receipt 证据缺失。`,
+      `这个应用还有 ${count} 个实时证据缺失。`,
     captureInProgressForAppSummary: (count) =>
       `这个应用还有 ${count} 个操作员证据包正在处理中，暂时还不能拿来审核。`,
     reviewPendingForAppSummary: (count) =>
-      `这个应用已有 ${count} 个 live receipt 证据已记录，正在等待审核。`,
+      `这个应用已有 ${count} 个实时证据已记录，正在等待审核。`,
     rejectedForAppSummary: (count) =>
       `这个应用有 ${count} 个证据包在审核中被退回，需要重新采集。`,
     expiredForAppSummary: (count) =>
@@ -1188,6 +1245,34 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       '这条路线已经被识别出来了，但下一步仍需要操作员先处理，不能假装已经可跑。',
     workflowUnsupportedSummary:
       '当前页面还不在支持边界内。先进入支持页面，再谈支持状态。',
+    capabilityLabels: {
+      extract_product: '提取商品',
+      extract_search: '提取搜索结果',
+      extract_deals: '查看优惠',
+      run_action: '执行动作',
+      export_data: '导出数据',
+    },
+    capabilityActionLabels: {
+      extract_product: '提取当前商品',
+      extract_search: '捕获搜索结果',
+      extract_deals: '查看当前优惠',
+      run_action: '打开支持的工作流',
+      export_data: '导出结构化数据',
+    },
+    capabilityDescriptions: {
+      extract_product: '提取当前页面的标准化商品详情。',
+      extract_search: '从当前页面采集结构化搜索结果。',
+      extract_deals: '查看当前优惠面，而不是猜测支持状态。',
+      run_action: '在页面允许时，运行支持的多步骤工作流。',
+      export_data: '以稳定的机器可读格式导出当前捕获数据。',
+    },
+    capabilityExecutionSummaries: {
+      extract_product: '把当前商品页当作商品提取的执行现场。',
+      extract_search: '把当前搜索页当作搜索结果提取的执行现场。',
+      extract_deals: '把当前优惠页当作优惠检查的执行现场。',
+      run_action: '把当前支持的工作流页面当作下一步操作的执行现场。',
+      export_data: '在导出结构化数据前，先回到最新捕获或最新检测到的页面上下文。',
+    },
     workflowBulletRunnableNow: '当前可运行',
     workflowBulletClaimGate: '宣称门禁',
     workflowBulletCurrentSurface: '当前页面',
@@ -1196,21 +1281,21 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
   suite: {
     internalAlphaOnly: '仅限内部 Alpha',
     appSummary:
-      '用于能力导览、rollout 可见性和证据准备度的内部 Alpha 组合壳层。',
+      '用于能力导览、推进状态可见性和证据准备度的内部 Alpha 组合壳层。',
     operatorPromise:
-      '用这个内部 Alpha 面板进入正确的店铺 app、查看 claim 门禁，并确认哪条证据门仍然挡着 public wording。',
+      '用这个内部 Alpha 面板进入正确的店铺 app、查看公开说法门禁，并确认哪条证据门仍然挡着当前公开表述。',
     startHereCards: [
       {
         title: '先进入正确的店铺壳层',
         summary:
-          '先看 rollout 与 verified scope，再进入正确的店铺 app，不要只靠品牌名猜入口。',
-        ctaLabel: '打开 rollout 地图',
+          '先看推进状态与已验证范围，再进入正确的店铺 app，不要只靠品牌名猜入口。',
+        ctaLabel: '打开推进地图',
       },
       {
-        title: '先看 claim 门禁，再谈发布',
+        title: '先看公开说法门禁，再谈发布',
         summary:
           '先检查证据门，保持 repo-verified 与 public-ready wording 分层。',
-        ctaLabel: '打开 claim 准备度面板',
+        ctaLabel: '打开公开说法准备度面板',
       },
       {
         title: '把 Suite 当作大厅，不是工作流引擎',
@@ -1224,10 +1309,10 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     priorityRoutesHeading: '优先路线',
     priorityRoutesSummary:
       '把这里当成驾驶舱的首发路线区，而不是状态陈列区。它会把你先送到当前最值得执行的真实入口。',
-    claimReadinessHeading: 'Claim 准备度面板',
+    claimReadinessHeading: '公开说法准备度面板',
     claimReadinessSummary:
-      '把这里当成门禁路由板，不是发布倒计时。它告诉你哪条声明路径还被证据挡着。',
-    currentRolloutHeading: '当前 rollout 地图',
+      '把这里当成门禁路由板，不是发布倒计时。它告诉你哪条公开表述路径还被证据挡着。',
+    currentRolloutHeading: '当前推进地图',
     currentRolloutSummary:
       '每一行都告诉你下一步该检查哪个 store shell、它为什么还停在当前状态、以及最新共享运行时上下文指向哪里。',
     inspectStatusLabel: (publicName) => `查看 ${publicName} 状态`,
@@ -1242,9 +1327,9 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       `${publicName} 的优先证据动作：${label}`,
     decisionBriefRouteAria: (publicName, label) =>
       `${publicName} 的决策简报路线：${label}`,
-    openSidePanelFamilyChooserLabel: '打开 Side Panel family chooser',
-    openSidePanelRolloutMapLabel: '打开 Side Panel rollout 地图',
-    openSidePanelClaimReadinessLabel: '打开 Side Panel claim 准备度面板',
+    openSidePanelFamilyChooserLabel: '打开侧边面板店铺入口选择器',
+    openSidePanelRolloutMapLabel: '打开侧边面板推进地图',
+    openSidePanelClaimReadinessLabel: '打开侧边面板公开说法准备度面板',
     latestDetectionHeading: '最新检测结果',
     latestRecentActivityHeading: '最新最近活动',
     latestCapturedOutputHeading: '最新捕获输出',
@@ -1253,46 +1338,46 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     priorityPacketHeading: '优先证据包',
     operatorNextStepHeading: '操作员下一步',
     decisionBriefHeading: '决策简报',
-    noOutstandingPacket: '当前没有等待处理的 live receipt 证据包。',
-    providerRuntimeSeamHeading: 'Provider runtime 接缝',
+    noOutstandingPacket: '当前没有等待处理的实时证据包。',
+    providerRuntimeSeamHeading: '外部运行时接缝',
     providerRuntimeSeamSummary:
-      '这是 Suite internal alpha 里第一个真正消费 Switchyard 风格 provider route 的运行时入口。它仍然是只读 handoff，不是 merchant live proof。',
-    providerRuntimeSeamBaseUrlHeading: '当前 runtime 基础地址',
+      '这是 Suite 内部 Alpha 里第一个真正消费 Switchyard 风格外部运行时路线的入口。它仍然只是只读交接，不是商家实时证明。',
+    providerRuntimeSeamBaseUrlHeading: '当前运行时基础地址',
     providerRuntimeSeamBoundaryHeading: '边界说明',
     providerRuntimeSeamBoundaryNote:
-      '这些路线只把 BYOK / Web 登录 / auth-session 工作移交给外部 runtime 层。Shopflow 继续持有 storefront truth、claim wording 和 merchant reviewed evidence。',
+      '这些路线只把 BYOK / Web 登录 / auth-session 工作移交给外部运行时层。Shopflow 继续持有 storefront truth、claim wording 和 merchant reviewed evidence。',
     providerRuntimeSeamRouteSummary: (baseUrl) =>
-      `只有当外部 runtime 已经在 ${baseUrl} 可达时，才使用这些 route preview。`,
+      `只有当外部运行时已经在 ${baseUrl} 可达时，才使用这些路线预览。`,
     providerRuntimeSeamAcquisitionModes: (modes) =>
-      `当前 acquisition 模式：${modes}。`,
+      `当前接入模式：${modes}。`,
     providerRuntimeSeamProviderSummary: (providerName) =>
-      `${providerName} 可以复用同一条只读接缝，而不会把 Shopflow 变成 provider runtime。`,
+      `${providerName} 可以复用同一条只读接缝，而不会把 Shopflow 变成外部运行时产品。`,
     providerRuntimeSeamStartLabel: (providerName) =>
-      `开始 ${providerName} acquisition`,
+      `开始 ${providerName} 接入`,
     providerRuntimeSeamCaptureLabel: (providerName) =>
-      `采集 ${providerName} acquisition`,
+      `采集 ${providerName} 接入`,
     providerRuntimeSeamNotConfigured:
       '这个 Suite 会话还没有配置 Switchyard base URL。',
     providerRuntimeSeamConfigureHint:
-      '当你想预览真实 runtime handoff 路线、但又不把它夸成 public runtime product 时，就给这个 internal-alpha side panel 加上 switchyardBaseUrl 查询参数。',
-    openRolloutRow: (publicName) => `打开 ${publicName} 的 rollout 行`,
+      '当你想预览真实运行时交接路线、但又不把它夸成 public runtime product 时，就给这个 internal-alpha side panel 加上 switchyardBaseUrl 查询参数。',
+    openRolloutRow: (publicName) => `打开 ${publicName} 的推进行`,
     openVerifiedScopeClause: (publicName) =>
       `打开 ${publicName} 的已验证范围条款`,
     statusBoard: {
       repoVerifiedClear: {
-        label: '已 repo-verified，且不再等待额外证据',
+        label: '已通过 repo 验证，且不再等待额外证据',
         summary:
-          '用 rollout 地图检查那些已经 repo-verified、且当前没有额外证据阻塞的 shell。',
-        ctaLabel: '打开 rollout 地图',
+          '用推进地图检查那些已经通过 repo 验证、且当前没有额外证据阻塞的 shell。',
+        ctaLabel: '打开推进地图',
       },
       repoVerifiedClaimGated: {
-        label: '已 repo-verified，但仍被证据门挡住 claim',
+        label: '已通过 repo 验证，但仍被证据门挡住公开说法',
         summary:
           '先去证据门完成采集或审核，再让 repo-verified 进度往 public-ready wording 漂移。',
         ctaLabel: '打开证据门',
       },
       internalAlpha: {
-        label: '仅限内部 Alpha 的 surface',
+        label: '仅限内部 Alpha 的表面',
         summary:
           '需要确认 Suite 仍然只是导览大厅，而不是第二套工作流引擎时，就回到 Alpha 护栏。',
         ctaLabel: '打开 Alpha 护栏',
@@ -1308,13 +1393,29 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       target: '打开 Target 首页',
       temu: '打开 Temu 首页',
     },
+    noFreshContextSummary: (routeLabel, publicName) =>
+      `当前还没有新的页面上下文。先${routeLabel}，让 Suite 为 ${publicName} 捕获运行时上下文。`,
     waitingReviewRouteLabel: '在来源页面审核待处理证据',
+    waitingReviewRouteSummary: (count) =>
+      `${count} 个证据包正在等待审核。先从这个应用最新记录的操作页面开始。`,
     reviewFromLatestCaptureLabel: '从最新捕获页审核待处理证据',
+    reviewFromLatestCaptureSummary: (count) =>
+      `${count} 个证据包正在等待审核。先打开最新捕获页面，再进入审核通道。`,
     resumeCapturePathLabel: '继续采集路径',
+    resumeCapturePathSummary: (count) =>
+      `${count} 个证据包仍需继续采集。先从这个应用最新记录的来源页面开始。`,
     resumeCaptureFromLatestCapturedPageLabel: '从最新捕获页继续采集',
+    resumeCaptureFromLatestCapturedPageSummary: (count) =>
+      `${count} 个证据包仍需继续采集。先打开最新捕获页面，再从那里继续。`,
     inspectLatestSourcePageLabel: '查看最新来源页面',
+    inspectLatestSourcePageSummary:
+      '回到这个应用最新记录的操作页面。',
     inspectLatestCapturedPageLabel: '查看最新捕获页面',
+    inspectLatestCapturedPageSummary:
+      '打开这个应用最新捕获输出背后的页面。',
     inspectLatestDetectedPageLabel: '查看最新检测页面',
+    inspectLatestDetectedPageSummary:
+      '打开这个应用最近一次检测到的页面。',
     openEvidenceSourcePageLabel: '打开证据来源页面',
     openCaptureSourcePageLabel: '打开采集来源页面',
     openLatestSourcePageLabel: '打开最新来源页面',
@@ -1333,7 +1434,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     noDetectionRecorded: '还没有记录到最近的店铺页面检测。',
     noRecentActivity: '这个 app 还没有记录到最近的操作员活动。',
     noCapturedOutput: '这个 app 还没有记录到捕获输出。',
-    noRequiredQueue: '这个 app 当前没有必需的 live receipt 队列。',
+    noRequiredQueue: '这个 app 当前没有必需的实时证据队列。',
     nextStepInspectStoreApp:
       '打开对应的店铺 app，检查页面级准备度和最新输出细节。',
     priorityQueueAction: {
@@ -1343,12 +1444,18 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       capture: (suffix) => `在${suffix}开始采集`,
       open: (suffix) => `打开${suffix}`,
     },
-    evidenceGatesHeading: '仍然挡住 public wording 的证据门',
+    evidenceGatesHeading: '仍然挡住公开说法的证据门',
     evidenceGatesSummary:
       '有些路线还需要继续采集，另一些已经在等待明确审核。仅有 repo verification 还不能越过这两道门。',
     verifiedScopeHeading: '已验证范围导航',
     verifiedScopeSummary:
-      '检查 public wording 是否还落在今天的已验证边界内时，就用这些条款当导航。',
+      '检查公开说法是否还落在今天的已验证边界内时，就用这些条款当导航。',
+    priorityLabels: {
+      'waiting-for-review': '最快解除公开说法审核阻塞的路径',
+      'needs-capture': '仍需新的采集',
+      'ready-to-inspect': '可直接进入实时检查',
+      'seed-runtime': '仍需首次运行时上下文',
+    },
   },
 };
 

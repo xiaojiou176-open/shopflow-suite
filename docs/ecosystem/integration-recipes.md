@@ -259,7 +259,6 @@ Use this when you need to name ecosystem targets without turning Shopflow into a
 fake public platform.
 
 - [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
-- [Integration Surface Roadmap](./integration-surface-roadmap.md)
 
 Current truthful stance:
 

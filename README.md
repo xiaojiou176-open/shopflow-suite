@@ -405,10 +405,6 @@ If a leak has already escaped to a public surface that cannot be cleaned with a
 simple tip-only edit, follow the
 [`Sensitive Surface Incident Response Runbook`](./docs/runbooks/sensitive-surface-incident-response.md).
 
-If final closeout must choose between in-place cleanup and a clean-room
-cutover, follow the
-[`Final Closeout and Hard-Cut Runbook`](./docs/runbooks/final-closeout-and-hard-cut.md).
-
 ## Cache, Profile, and Disk Governance
 
 Shopflow now keeps its cache story in **two owned zones**, not one blurry pile.
@@ -529,9 +525,6 @@ CI stays GitHub Hosted Runner only:
 
 - standard CI lane: `ubuntu-latest`
 - not allowed as repo standard CI: local `self-hosted` runner drift
-
-If you need the full boundary contract, read
-[`docs/runbooks/disk-footprint-governance.md`](./docs/runbooks/disk-footprint-governance.md).
 
 So if you are reading this now, treat Shopflow as:
 
@@ -692,18 +685,12 @@ Start with the docs front door if you want the shortest guided map:
 
 ### Runbook
 
-- [Legacy Metadata Migration Runbook](./docs/runbooks/legacy-metadata-migration.md)
 - [Live Receipt Capture Runbook](./docs/runbooks/live-receipt-capture.md)
 - [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
-- [Final Closeout and Hard-Cut Runbook](./docs/runbooks/final-closeout-and-hard-cut.md)
 
 ### UI
 
 - [Shopflow Product Surface Spec](./docs/ui/shopflow-product-surface-spec.md)
-
-### Blueprint
-
-- [Shopflow MVP Delivery Plan](./docs/blueprints/mvp-delivery-plan.md)
 
 ### Branding
 

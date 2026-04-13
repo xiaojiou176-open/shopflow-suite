@@ -4,13 +4,13 @@
   "readOnly": true,
   "appTitle": "Shopflow for Albertsons Family",
   "stage": "claim-gated",
-  "summary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
+  "summary": "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.",
   "whyNow": [
     "www.safeway.com · cart",
     "Open supported workflow is runnable right now.",
-    "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
+    "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
   ],
-  "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.",
+  "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.",
   "primaryRouteLabel": "Open supported workflow",
   "primaryRouteHref": "https://www.safeway.com/shop/cart",
   "primaryRouteOrigin": "evidence-source",

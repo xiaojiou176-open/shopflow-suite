@@ -172,7 +172,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
     'docs/ecosystem/agent-quickstarts.md',
     'docs/ecosystem/builder-start-here.md',
     'docs/ecosystem/agent-and-mcp-positioning.md',
-    'docs/ecosystem/public-distribution-bundle.ready.md',
+    'docs/ecosystem/public-distribution-bundle.md',
   ],
   profiles: [
     {
@@ -192,7 +192,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       repoOwnedArtifacts: [
         'docs/ecosystem/codex-quickstart.md',
         'docs/ecosystem/agent-quickstarts.md',
-        'docs/ecosystem/public-distribution-bundle.ready.md',
+        'docs/ecosystem/public-distribution-bundle.md',
         'docs/ecosystem/examples/agent-target-packet.codex.json',
         'docs/ecosystem/examples/plugin-marketplace-metadata.codex.json',
       ],
@@ -226,7 +226,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       repoOwnedArtifacts: [
         'docs/ecosystem/claude-code-quickstart.md',
         '.agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md',
-        'docs/ecosystem/public-distribution-bundle.ready.md',
+        'docs/ecosystem/public-distribution-bundle.md',
         'docs/ecosystem/examples/agent-target-packet.claude-code.json',
         'docs/ecosystem/examples/public-skills-catalog.json',
         'docs/ecosystem/examples/plugin-marketplace-metadata.claude-code.json',
@@ -390,7 +390,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
         sourceCommand: 'pnpm mcp:stdio -> get_public_distribution_bundle',
         sourceDocs: [
           'docs/ecosystem/mcp-quickstart.md',
-          'docs/ecosystem/public-distribution-bundle.ready.md',
+          'docs/ecosystem/public-distribution-bundle.md',
         ],
         targetFit: [
           'codex',

@@ -9,7 +9,7 @@
     },
     {
       "label": "Claim gate",
-      "value": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
+      "value": "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
     },
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open capture queue",
-    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
+    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt."
   }
 }

@@ -234,13 +234,6 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - run `pnpm verify:sensitive-public-surface`
 - run `pnpm verify:sensitive-history`
 
-### "How do I decide between repairing the current repo and doing a hard cut into a new canonical repo?"
-
-- [Final Closeout and Hard-Cut Runbook](./runbooks/final-closeout-and-hard-cut.md)
-- run `pnpm verify:sensitive-history`
-- run `pnpm verify:sensitive-public-surface`
-- run `pnpm verify:github-platform-security`
-
 ### "How do I preflight a real merchant browser session without pretending the repo already owns the reviewed packet?"
 
 - [Live Receipt Capture Runbook](./runbooks/live-receipt-capture.md)
@@ -303,7 +296,6 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - [Agent Quickstarts](./ecosystem/agent-quickstarts.md)
 - [Builder Surfaces](./ecosystem/builder-surfaces.md)
 - [Agent and MCP Positioning](./ecosystem/agent-and-mcp-positioning.md)
-- [Integration Surface Roadmap](./ecosystem/integration-surface-roadmap.md)
 
 ### "I am using Codex, Claude Code, OpenCode, or OpenHands. What is the shortest truthful path?"
 
@@ -366,13 +358,11 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 
 - [ADR-003: Builder Integration Surface and Product Language Boundary](./adr/ADR-003-builder-integration-surface-and-product-language-boundary.md)
 - [Agent and MCP Positioning](./ecosystem/agent-and-mcp-positioning.md)
-- [Integration Surface Roadmap](./ecosystem/integration-surface-roadmap.md)
 
 ### "How do I read the builder lane without mistaking it for public support claims?"
 
 - [Builder Start Here](./ecosystem/builder-start-here.md)
 - [Builder Surfaces](./ecosystem/builder-surfaces.md)
-- [Integration Surface Roadmap](./ecosystem/integration-surface-roadmap.md)
 
 ### "Which public docs explain current distribution surfaces without internal sync packets?"
 
@@ -385,18 +375,6 @@ receipt evidence, signed release artifacts, or public-ready scope wording.
 - [Release Artifact Review Runbook](./runbooks/release-artifact-review.md)
 - [Live Receipt Capture Runbook](./runbooks/live-receipt-capture.md)
 - [Testing and Verification Bar](./contracts/testing-and-verification-bar.md)
-
-### "Which repo-local artifact directories are disposable, which are retained, and what stays machine-wide?"
-
-- [Disk Footprint Governance Runbook](./runbooks/disk-footprint-governance.md)
-- [Sensitive Surface Incident Response Runbook](./runbooks/sensitive-surface-incident-response.md)
-- repo-owned internal cache stays under `.runtime-cache/**`
-- use `pnpm audit:disk-footprint` for the current repo-local footprint
-- use `pnpm cleanup:runtime-cache --apply` only for repo-root cleanup
-- use `pnpm cleanup:external-cache --apply` only for `~/.cache/shopflow/**`
-- use `pnpm cleanup:docker --apply` only for Shopflow-labeled Docker resources
-- repo-owned external cache now lives under `~/.cache/shopflow/**`, while
-  non-Shopflow `~/.cache/**` remains machine-wide and out of scope
 
 ### "What should a public reader open instead of internal sync prep packets?"
 

@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-13T01:39:11.671Z",
+  "generatedAt": "2026-04-13T07:34:57.491Z",
   "appId": "ext-temu",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -189,7 +189,7 @@
           },
           {
             "kind": "docs",
-            "value": "docs/ecosystem/public-distribution-bundle.ready.md"
+            "value": "docs/ecosystem/public-distribution-bundle.md"
           },
           {
             "kind": "docs",
@@ -607,12 +607,12 @@
         "reviewedCount": 0,
         "rejectedCount": 0,
         "expiredCount": 0,
-        "blockerSummary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
+        "blockerSummary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
         "nextCaptureId": "temu-filter-live-receipt",
         "nextStatus": "missing-live-receipt",
         "nextOperatorPath": "capture",
         "nextRequirementTitle": "Temu filter live receipt",
-        "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.",
+        "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change.",
         "nextSourcePageUrl": "https://www.temu.com/search_result.html?search_key=warehouse",
         "nextSourcePageLabel": "Open current evidence route",
         "nextSourceRouteLabel": "Open current evidence route"
@@ -621,7 +621,7 @@
         "origin": "evidence-source",
         "label": "Open current evidence route",
         "href": "https://www.temu.com/search_result.html?search_key=warehouse",
-        "summary": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
+        "summary": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -647,13 +647,13 @@
       "readOnly": true,
       "appTitle": "Shopflow for Temu",
       "stage": "claim-gated",
-      "summary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
+      "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
       "whyNow": [
         "www.temu.com · search",
         "Temu search extraction and the warehouse filter workflow are runnable right now.",
         "1 live evidence packet still gate public wording."
       ],
-      "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.",
+      "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change.",
       "primaryRouteLabel": "Open current evidence route",
       "primaryRouteHref": "https://www.temu.com/search_result.html?search_key=warehouse",
       "primaryRouteOrigin": "evidence-source",
@@ -662,7 +662,7 @@
     "workflowCopilotBrief": {
       "tone": "claim-gated",
       "title": "Workflow copilot",
-      "summary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
+      "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
       "bullets": [
         {
           "label": "Current surface",
@@ -679,7 +679,7 @@
       ],
       "nextAction": {
         "label": "Open current evidence route",
-        "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
+        "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change."
       }
     }
   },
@@ -711,7 +711,7 @@
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-temu as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-temu/bundle/shopflow-review-artifact.json. Manual review starts at https://www.temu.com. Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
+      "summary": "Submission readiness marks ext-temu as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-temu/bundle/shopflow-review-artifact.json. Manual review starts at https://www.temu.com. Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated."
     }
   ],
   "readyToSyncArtifacts": [

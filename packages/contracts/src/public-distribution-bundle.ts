@@ -86,12 +86,12 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         {
           kind: 'doc',
           label: 'Ready-to-sync packet',
-          value: 'docs/ecosystem/public-distribution-bundle.ready.md',
+          value: 'docs/ecosystem/public-distribution-bundle.md',
         },
         {
           kind: 'doc',
-          label: 'Current-scope roadmap',
-          value: 'docs/ecosystem/integration-surface-roadmap.md',
+          label: 'Builder entry map',
+          value: 'docs/ecosystem/builder-start-here.md',
         },
         {
           kind: 'checklist',
@@ -139,7 +139,7 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         {
           kind: 'doc',
           label: 'Ready-to-sync packet',
-          value: 'docs/ecosystem/public-mcp-capability-map.ready.md',
+          value: 'docs/ecosystem/public-mcp-capability-map.md',
         },
         {
           kind: 'command',
@@ -171,7 +171,7 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         {
           kind: 'doc',
           label: 'Ready-to-sync packet',
-          value: 'docs/ecosystem/public-skills-catalog.ready.md',
+          value: 'docs/ecosystem/public-skills-catalog.md',
         },
         {
           kind: 'doc',
@@ -231,7 +231,7 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         {
           kind: 'doc',
           label: 'Ready-to-sync packet',
-          value: 'docs/ecosystem/plugin-marketplace-metadata.ready.md',
+          value: 'docs/ecosystem/plugin-marketplace-metadata.md',
         },
         {
           kind: 'doc',

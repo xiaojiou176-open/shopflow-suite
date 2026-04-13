@@ -328,7 +328,7 @@ export const builderIntegrationSurface = builderIntegrationSurfaceSchema.parse({
         },
         {
           kind: 'docs',
-          value: 'docs/ecosystem/public-distribution-bundle.ready.md',
+          value: 'docs/ecosystem/public-distribution-bundle.md',
         },
         {
           kind: 'docs',

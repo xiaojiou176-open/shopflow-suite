@@ -37,7 +37,7 @@ The repo now already contains:
 At the same time, the repo still does **not** contain:
 
 - a public API transport
-- a public MCP surface
+- a public HTTP MCP transport
 - a generated SDK
 - official marketplace packages for external AI coding ecosystems
 
@@ -99,8 +99,8 @@ It does **not** mean:
 The substrate sequence is therefore:
 
 1. typed contracts and read-only runtime truth
-2. builder-facing docs and examples
-3. future read-only API / MCP transport
+2. builder-facing docs, examples, and repo-local stdio MCP transport
+3. future public read-only API / HTTP MCP transport
 4. future CLI wrapper or thin SDK
 
 ### 4. Product language policy is now a contract, not just a copy preference
@@ -153,8 +153,8 @@ Hard rule:
 
 #### Later
 
-- read-only MCP surface backed by the same runtime truth
 - read-only public API transport
+- public HTTP MCP transport backed by the same runtime truth
 - generated client or thin SDK
 - CLI wrapper or skills pack built on the same read models
 
@@ -183,10 +183,7 @@ Shopflow may use the following truthful binding matrix:
 | `OpenCode` | ecosystem secondary | useful comparison or later-facing integration path when CLI/skills packaging becomes explicit | main hero binding, official package |
 | `OpenHands` | ecosystem secondary | useful comparison for agentic coding and automation | main hero binding, official package |
 | `OpenClaw` | public-ready secondary | public-ready install, discovery, and proof route with official-listing claims still gated by the real external surface | official listing, official integration |
-
-`MCP` is not treated as a brand binding in this matrix.
-It remains a future read-only surface category that may later grow from the
-same runtime truth.
+| `MCP` | repo-local read-only stdio now; public transport later | today's runtime truth already supports a truthful stdio MCP entry over the core four surfaces, while public transport and registry publication remain later-stage work | current public HTTP MCP product or write-capable MCP |
 
 ## Consequences
 
