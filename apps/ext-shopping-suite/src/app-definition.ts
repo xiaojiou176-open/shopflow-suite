@@ -5,10 +5,7 @@ import {
   type StoreAppId,
   type StoreWave,
 } from '@shopflow/contracts';
-import {
-  getShopflowLocaleCatalog,
-  type ShopflowLocale,
-} from '@shopflow/core';
+import { getShopflowLocaleCatalog, type ShopflowLocale } from '@shopflow/core';
 
 export function createSuiteAppDefinition(locale: ShopflowLocale = 'en') {
   const copy = getShopflowLocaleCatalog(locale).suite;
@@ -26,12 +23,12 @@ export function createSuiteAppDefinition(locale: ShopflowLocale = 'en') {
         href: '#current-rollout-map',
       },
       {
-        ...copy.startHereCards[2],
-        href: '#verified-scope-navigator',
-      },
-      {
         ...copy.startHereCards[1],
         href: '#claim-readiness-board',
+      },
+      {
+        ...copy.startHereCards[2],
+        href: '#support-desks',
       },
     ],
   } as const;

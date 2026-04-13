@@ -106,31 +106,36 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('aria-current="page"');
     expect(html).toContain('Use Suite as the lobby, not the workflow engine');
     expect(html).toContain('href="#claim-readiness-board"');
-    expect(html).toContain('href="#verified-scope-navigator"');
+    expect(html).toContain('href="#support-desks"');
     expect(html).toContain('href="#alpha-guardrails"');
     expect(html).toContain('id="priority-routes"');
     expect(html).toContain('id="claim-readiness-board"');
     expect(html).toContain('id="current-rollout-map"');
+    expect(html).toContain('Support desks');
+    expect(html).toContain(
+      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down.'
+    );
+    expect(html).toContain('id="support-desks"');
     expect(html).toContain('id="evidence-gates"');
     expect(html).toContain('id="verified-scope-navigator"');
     expect(html).toContain('id="alpha-guardrails"');
     expect(html.indexOf('id="priority-routes"')).toBeLessThan(
-      html.indexOf('id="alpha-guardrails"')
+      html.indexOf('id="support-desks"')
     );
     expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
       html.indexOf('Operator next step')
     );
     expect(
+      html.indexOf('Inspect claim gates before release talk')
+    ).toBeLessThan(
       html.indexOf('Use Suite as the lobby, not the workflow engine')
-    ).toBeLessThan(html.indexOf('Inspect claim gates before release talk'));
+    );
   });
 
   it('keeps fallback blocker guidance honest when no fresh route is available yet', () => {
     const html = renderToStaticMarkup(<SuiteAlphaPage />);
 
-    expect(html).toContain(
-      'Review verified scope clauses'
-    );
+    expect(html).toContain('Open support desks');
     expect(html).toContain('Open claim readiness board');
     expect(html).not.toContain('href="undefined"');
   });
@@ -153,6 +158,7 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('从这里开始');
     expect(html).toContain('证据门');
     expect(html).toContain('已验证范围导航');
+    expect(html).toContain('辅助服务台');
     expect(html).toContain('操作员下一步');
     expect(html).toContain('界面语言');
     expect(html).toContain('仅限内部 Alpha');
@@ -160,6 +166,7 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('Shopflow for Albertsons Family 的优先路线');
     expect(html).toContain('打开证据门');
     expect(html).toContain('把 Suite 当作大厅，不是工作流引擎');
+    expect(html).toContain('打开辅助服务台');
   });
 
   it('renders a real provider-runtime handoff card when a Switchyard base URL is configured', () => {

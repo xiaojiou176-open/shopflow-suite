@@ -52,10 +52,10 @@ They are **not** proof that:
 
 ## Codex / Claude Code Bundle Rows
 
-| Target | Starter bundle | Sample config | Install docs | Listing payload | Official surface status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `codex` | `agent-target-packet.codex.json` + quickstart | `agent-target-packet.codex.json` | [Codex Quickstart](./codex-quickstart.md) | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json) | official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there |
-| `claude-code` | `agent-target-packet.claude-code.json` + quickstart + skills catalog | `agent-target-packet.claude-code.json` | [Claude Code Quickstart](./claude-code-quickstart.md) | [plugin-marketplace-metadata.claude-code.json](./examples/plugin-marketplace-metadata.claude-code.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
+| Target        | Starter bundle                                                       | Sample config                          | Install docs                                          | Listing payload                                                                                         | Official surface status                                                                                                            |
+| :------------ | :------------------------------------------------------------------- | :------------------------------------- | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `codex`       | `agent-target-packet.codex.json` + quickstart                        | `agent-target-packet.codex.json`       | [Codex Quickstart](./codex-quickstart.md)             | [plugin-marketplace-metadata.codex.json](./examples/plugin-marketplace-metadata.codex.json)             | Codex docs and product surfaces are real, but this repo does not prove a Codex-owned listing surface or Shopflow publication there |
+| `claude-code` | `agent-target-packet.claude-code.json` + quickstart + skills catalog | `agent-target-packet.claude-code.json` | [Claude Code Quickstart](./claude-code-quickstart.md) | [plugin-marketplace-metadata.claude-code.json](./examples/plugin-marketplace-metadata.claude-code.json) | official Claude Code surface exists, but Shopflow is not listed or published there                                                 |
 
 ## Public Inputs To Pair With
 
@@ -73,6 +73,6 @@ They are **not** proof that:
 - metadata and listing payloads are still repo-owned prep
 - OpenClaw's packet can support a public GitHub/customPlugins route now, while
   official OpenClaw-owned placement still remains external platform work
-- Claude Code official surfaces already exist; Codex official docs/MCP and plugin-directory surfaces also exist
+- Claude Code official surfaces already exist; Codex docs and product surfaces are real, but this repo still does not prove a Codex-owned listing surface
 - what is still missing on every confirmed surface is Shopflow being officially listed or published there through the real auth path
 - this page must stay below public-release wording

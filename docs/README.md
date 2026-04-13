@@ -55,12 +55,12 @@ Use this order when you want the shortest truthful product-first read:
 
 ## What You Can Inspect Today
 
-| Surface | What it proves today | What it must not be mistaken for |
-| :--- | :--- | :--- |
-| product docs front door | the clearest product-first route through the repo | a packet atlas or link dump |
-| latest review shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
-| public repo README | the short public product story | a replacement for the deeper docs atlas |
-| read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
+| Surface                 | What it proves today                              | What it must not be mistaken for               |
+| :---------------------- | :------------------------------------------------ | :--------------------------------------------- |
+| product docs front door | the clearest product-first route through the repo | a packet atlas or link dump                    |
+| latest review shelf     | reviewer-facing bundles and readiness materials   | a signed store-ready release shelf             |
+| public repo README      | the short public product story                    | a replacement for the deeper docs atlas        |
+| read-only stdio MCP     | repo-truth access for AI tools                    | a public HTTP MCP or official registry listing |
 
 ## Verification Layers
 
@@ -104,12 +104,12 @@ In plain language:
 
 Use this like a floor map:
 
-| Surface | Role | What it proves | What it must not be mistaken for |
-| :--- | :--- | :--- | :--- |
-| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | Shopflow is a browser-first extension family | a packet mirror or MCP-first product |
-| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion skill packet | host-native packet consumers can install one truthful folder | proof that Chrome Web Store or broader Shopflow browser lanes are already live |
-| `distribution/public-packets/` | companion mirror rack | target-specific fallback packets still exist in-repo | a second canonical public front door |
-| `pnpm mcp:stdio` + ecosystem docs | companion repo-truth lane | AI tools can inspect read-only runtime and submission-readiness truth | a public HTTP MCP or public SDK package |
+| Surface                                                          | Role                      | What it proves                                                        | What it must not be mistaken for                                               |
+| :--------------------------------------------------------------- | :------------------------ | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| `apps/ext-*` + `apps/ext-shopping-suite`                         | primary product lane      | Shopflow is a browser-first extension family                          | a packet mirror or MCP-first product                                           |
+| `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion skill packet    | host-native packet consumers can install one truthful folder          | proof that Chrome Web Store or broader Shopflow browser lanes are already live |
+| `distribution/public-packets/`                                   | companion mirror rack     | target-specific fallback packets still exist in-repo                  | a second canonical public front door                                           |
+| `pnpm mcp:stdio` + ecosystem docs                                | companion repo-truth lane | AI tools can inspect read-only runtime and submission-readiness truth | a public HTTP MCP or public SDK package                                        |
 
 ## Public Surfaces In One Glance
 
@@ -136,14 +136,14 @@ In plain language:
 > strict claim boundaries." The ecosystem packet pages are secondary routes,
 > not the main product identity.
 
-| If you searched for... | Open this page first | Run this command first | Reuse this boundary sentence |
-| :--- | :--- | :--- | :--- |
-| `Shopflow Codex plugin` | [Codex Quickstart](./ecosystem/codex-quickstart.md) | `pnpm cli:read-only -- agent-target-packet --target codex` | Shopflow now ships a Codex-specific public-distribution bundle and metadata packet; only call it an official Codex listing where an official Codex surface actually exists. |
-| `Shopflow Claude Code skills` | [Claude Code Quickstart](./ecosystem/claude-code-quickstart.md) | `pnpm cli:read-only -- agent-target-packet --target claude-code` | Shopflow now ships a Claude Code-specific public-distribution bundle and skills-facing packet; only call it an official Claude Code listing where an official surface actually exists. |
-| `Shopflow OpenCode packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target opencode` | OpenCode stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenCode package. |
-| `Shopflow OpenHands packet` | [Agent Quickstarts](./ecosystem/agent-quickstarts.md) | `pnpm cli:read-only -- agent-target-packet --target openhands` | OpenHands stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenHands integration. |
-| `Shopflow MCP` | [MCP Quickstart](./ecosystem/mcp-quickstart.md) | `pnpm mcp:stdio` | Shopflow now ships a repo-local read-only stdio MCP surface today; public transport and registry publication are later-stage work. |
-| `Shopflow OpenClaw` | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw` | Canonical docs and install now live in `shopflow-suite` through `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`; this route is not an official OpenClaw listing. |
+| If you searched for...        | Open this page first                                               | Run this command first                                           | Reuse this boundary sentence                                                                                                                                                                                                  |
+| :---------------------------- | :----------------------------------------------------------------- | :--------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Shopflow Codex plugin`       | [Codex Quickstart](./ecosystem/codex-quickstart.md)                | `pnpm cli:read-only -- agent-target-packet --target codex`       | Shopflow now ships a Codex-specific public-distribution bundle and metadata packet; only call it an official Codex listing if a real Codex-owned listing surface is later confirmed and Shopflow is actually published there. |
+| `Shopflow Claude Code skills` | [Claude Code Quickstart](./ecosystem/claude-code-quickstart.md)    | `pnpm cli:read-only -- agent-target-packet --target claude-code` | Shopflow now ships a Claude Code-specific public-distribution bundle and skills-facing packet; only call it an official Claude Code listing where an official surface actually exists.                                        |
+| `Shopflow OpenCode packet`    | [Agent Quickstarts](./ecosystem/agent-quickstarts.md)              | `pnpm cli:read-only -- agent-target-packet --target opencode`    | OpenCode stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenCode package.                                                                                              |
+| `Shopflow OpenHands packet`   | [Agent Quickstarts](./ecosystem/agent-quickstarts.md)              | `pnpm cli:read-only -- agent-target-packet --target openhands`   | OpenHands stays ecosystem-secondary here; the repo only ships a target-specific handoff packet, not an official OpenHands integration.                                                                                        |
+| `Shopflow MCP`                | [MCP Quickstart](./ecosystem/mcp-quickstart.md)                    | `pnpm mcp:stdio`                                                 | Shopflow now ships a repo-local read-only stdio MCP surface today; public transport and registry publication are later-stage work.                                                                                            |
+| `Shopflow OpenClaw`           | [OpenClaw Public-Ready Packet](./ecosystem/openclaw-comparison.md) | `pnpm cli:read-only -- agent-target-packet --target openclaw`    | Canonical docs and install now live in `shopflow-suite` through `github:xiaojiou176-open/shopflow-suite?dir=distribution/openclaw-plugin`; this route is not an official OpenClaw listing.                                    |
 
 ## What These Terms Mean
 

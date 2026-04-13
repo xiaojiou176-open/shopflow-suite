@@ -49,19 +49,19 @@ pnpm cli:read-only -- plugin-marketplace-metadata
 
 ## Public Distribution Matrix
 
-| Surface | What exists today | What a reader can inspect now | What it must not be mistaken for |
-| :--- | :--- | :--- | :--- |
-| public read-only API | repo-owned docs, boundary notes, and packet shape | this page plus `pnpm cli:read-only -- public-distribution-bundle` | a live public API transport |
-| public read-only MCP | repo-local stdio MCP plus capability packet | [MCP Quickstart](./mcp-quickstart.md), `pnpm mcp:stdio`, and [Public MCP Capability Map](./public-mcp-capability-map.md) | a public HTTP MCP server |
-| public skills | Claude Code-facing starter-bundle companion plus checked-in sample config | [Public Skills Catalog](./public-skills-catalog.md) and [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | an already distributed public skills pack |
-| plugin / marketplace | starter bundles, listing payload examples, install docs, and canonical OpenClaw subdir route | [Plugin Marketplace Metadata](./plugin-marketplace-metadata.md), target packets, and checked-in example JSON | an already published plugin or marketplace listing |
+| Surface              | What exists today                                                                            | What a reader can inspect now                                                                                                 | What it must not be mistaken for                   |
+| :------------------- | :------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- |
+| public read-only API | repo-owned docs, boundary notes, and packet shape                                            | this page plus `pnpm cli:read-only -- public-distribution-bundle`                                                             | a live public API transport                        |
+| public read-only MCP | repo-local stdio MCP plus capability packet                                                  | [MCP Quickstart](./mcp-quickstart.md), `pnpm mcp:stdio`, and [Public MCP Capability Map](./public-mcp-capability-map.md)      | a public HTTP MCP server                           |
+| public skills        | Claude Code-facing starter-bundle companion plus checked-in sample config                    | [Public Skills Catalog](./public-skills-catalog.md) and [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | an already distributed public skills pack          |
+| plugin / marketplace | starter bundles, listing payload examples, install docs, and canonical OpenClaw subdir route | [Plugin Marketplace Metadata](./plugin-marketplace-metadata.md), target packets, and checked-in example JSON                  | an already published plugin or marketplace listing |
 
 ## Codex / Claude Code Public Distribution Matrix
 
-| Target | Current bundle state | Shortest truthful entry | Listing status boundary |
-| :--- | :--- | :--- | :--- |
-| `Codex` | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json) | official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there |
-| `Claude Code` | plugin-level public distribution bundle | [Claude Code Quickstart](./claude-code-quickstart.md) + [`agent-target-packet.claude-code.json`](./examples/agent-target-packet.claude-code.json) + [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | official Claude Code surface exists, but Shopflow is not listed or published there |
+| Target        | Current bundle state                    | Shortest truthful entry                                                                                                                                                                                                   | Listing status boundary                                                                                                            |
+| :------------ | :-------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `Codex`       | plugin-level public distribution bundle | [Codex Quickstart](./codex-quickstart.md) + [`agent-target-packet.codex.json`](./examples/agent-target-packet.codex.json)                                                                                                 | Codex docs and product surfaces are real, but this repo does not prove a Codex-owned listing surface or Shopflow publication there |
+| `Claude Code` | plugin-level public distribution bundle | [Claude Code Quickstart](./claude-code-quickstart.md) + [`agent-target-packet.claude-code.json`](./examples/agent-target-packet.claude-code.json) + [`public-skills-catalog.json`](./examples/public-skills-catalog.json) | official Claude Code surface exists, but Shopflow is not listed or published there                                                 |
 
 ## Related Public Pages
 
