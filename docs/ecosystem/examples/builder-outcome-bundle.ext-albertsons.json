@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-13T11:51:16.977Z",
+  "generatedAt": "2026-04-13T13:50:01.985Z",
   "appId": "ext-albertsons",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",

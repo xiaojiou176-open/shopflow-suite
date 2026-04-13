@@ -92,6 +92,8 @@ describe('builder app snapshot', () => {
         origin: 'evidence-source',
         label: 'Open current evidence route',
         href: 'https://www.safeway.com/shop/cart',
+        summary:
+          'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.',
       },
       builderSurfaceBoundary,
     });

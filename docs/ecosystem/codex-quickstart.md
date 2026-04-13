@@ -33,7 +33,7 @@ It still must **not** claim:
 | sample config              | checked-in Codex packet + listing payload examples    | `docs/ecosystem/examples/agent-target-packet.codex.json`                                                                              | published Codex plugin                               |
 | install docs               | Codex install path and front-door guide               | `docs/ecosystem/codex-quickstart.md`                                                                                                  | Shopflow is already officially listed or published on a Codex-owned surface |
 | proof loop                 | target packet + listing payload export + bundle check | `pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runtime-cache/cli/plugin-marketplace-metadata.codex.json` | that auth or marketplace submission already happened |
-| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official Codex surface exists, but Shopflow is not listed or published there |
+| metadata / listing payload | checked-in listing payload example + CLI export       | `docs/ecosystem/examples/plugin-marketplace-metadata.codex.json`                                                                      | official Codex plugin/directory surfaces exist, but Shopflow is not listed or published there |
 
 In plain language:
 
@@ -135,4 +135,4 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runti
 - it gives machine-readable starter-bundle outputs instead of asking Codex to
   scrape prose
 - it includes a proof loop for sample config plus listing payload export
-- it keeps official Codex surface existence separate from Shopflow not-yet-listed and not-yet-published status there
+- it keeps official Codex docs/MCP and plugin-directory surfaces separate from Shopflow's still-unverified publication status there
