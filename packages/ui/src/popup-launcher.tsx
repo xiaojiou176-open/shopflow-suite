@@ -373,9 +373,7 @@ export function PopupLauncher({
                 </p>
               </div>
               <span className="rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-2.5 py-1 text-[11px] font-medium text-[#514a42]">
-                {actionDrawerCount > 0
-                  ? `${actionDrawerCount}`
-                  : copy.sidePanel.openRoute}
+                {`${actionDrawerCount}`}
               </span>
             </summary>
             <div className="mt-3 space-y-3">
