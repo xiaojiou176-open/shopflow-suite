@@ -87,7 +87,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     );
     await popup
       .locator('summary')
-      .filter({ hasText: /What this page can do now/i })
+      .filter({ hasText: /Supporting routes/i })
       .first()
       .click();
     await expect(

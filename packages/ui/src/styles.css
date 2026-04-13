@@ -38,6 +38,9 @@ textarea {
 
 .shopflow-surface {
   min-height: 100vh;
+  background-image:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 22%);
 }
 
 .shopflow-surface a[href] {
@@ -53,15 +56,32 @@ textarea {
   transform: translateY(-1px);
 }
 
+.shopflow-surface a[href]:active,
+.shopflow-surface button:active {
+  transform: translateY(1px);
+}
+
 .shopflow-surface a[href]:focus-visible,
 .shopflow-surface button:focus-visible {
   outline: 2px solid #1f6b57;
   outline-offset: 2px;
 }
 
+.shopflow-surface h1,
+.shopflow-surface h2,
+.shopflow-surface h3 {
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.shopflow-surface p {
+  text-wrap: pretty;
+}
+
 .shopflow-surface summary {
   cursor: pointer;
   list-style: none;
+  user-select: none;
 }
 
 .shopflow-surface summary::-webkit-details-marker {

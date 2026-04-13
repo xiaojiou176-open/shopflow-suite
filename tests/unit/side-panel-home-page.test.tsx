@@ -155,6 +155,9 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('Claim gate');
     expect(html).toContain('Current surface');
     expect(html).toContain('Open review lane');
+    expect(html).toContain('Current site');
+    expect(html).toContain('Available on this page');
+    expect(html).toContain('Quick actions');
     expect(html).toContain('id="live-receipt-evidence"');
     expect(html).toContain('id="live-receipt-review"');
     expect(html).toContain('Raw packet ledger');
@@ -168,18 +171,29 @@ describe('SidePanelHomePage', () => {
     );
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
-    expect(html.indexOf('Quick actions')).toBeLessThan(
-      html.indexOf('Current site')
-    );
-    expect(html.indexOf('id="quick-actions"')).toBeLessThan(
-      html.indexOf('id="live-receipt-readiness"')
-    );
-    expect(html.indexOf('id="recent-activity"')).toBeLessThan(
-      html.indexOf('id="live-receipt-readiness"')
-    );
-    expect(html.indexOf('Next routes')).toBeLessThan(
-      html.indexOf('Live receipt readiness')
-    );
+    const currentSiteIndex = html.indexOf('Current site');
+    const availableOnPageIndex = html.indexOf('Available on this page');
+    const quickActionsIndex = html.indexOf('Quick actions');
+    const quickActionsSectionIndex = html.indexOf('id="quick-actions"');
+    const recentActivitySectionIndex = html.indexOf('id="recent-activity"');
+    const liveReceiptReadinessIndex = html.indexOf('id="live-receipt-readiness"');
+    const nextRoutesIndex = html.indexOf('Next routes');
+    const liveReceiptHeadingIndex = html.indexOf('Live receipt readiness');
+
+    expect(currentSiteIndex).toBeGreaterThanOrEqual(0);
+    expect(availableOnPageIndex).toBeGreaterThanOrEqual(0);
+    expect(quickActionsIndex).toBeGreaterThanOrEqual(0);
+    expect(quickActionsSectionIndex).toBeGreaterThanOrEqual(0);
+    expect(recentActivitySectionIndex).toBeGreaterThanOrEqual(0);
+    expect(liveReceiptReadinessIndex).toBeGreaterThanOrEqual(0);
+    expect(nextRoutesIndex).toBeGreaterThanOrEqual(0);
+    expect(liveReceiptHeadingIndex).toBeGreaterThanOrEqual(0);
+
+    expect(currentSiteIndex).toBeLessThan(quickActionsIndex);
+    expect(availableOnPageIndex).toBeLessThan(quickActionsIndex);
+    expect(quickActionsSectionIndex).toBeLessThan(liveReceiptReadinessIndex);
+    expect(recentActivitySectionIndex).toBeLessThan(liveReceiptReadinessIndex);
+    expect(nextRoutesIndex).toBeLessThan(liveReceiptHeadingIndex);
   });
 
   it('routes best-route guidance through the latest captured page when no fresher source page exists', () => {

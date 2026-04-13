@@ -82,7 +82,7 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     );
     await popup
       .locator('summary')
-      .filter({ hasText: /What this page can do now/i })
+      .filter({ hasText: /Supporting routes/i })
       .first()
       .click();
     await expect(
