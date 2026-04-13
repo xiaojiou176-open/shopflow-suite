@@ -15,7 +15,7 @@ Chrome-first shopping extension family.
 
 Secondary doors:
 [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
-[Evidence and submission readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html) ·
+[Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) ·
 [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
 [Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
 
@@ -67,7 +67,7 @@ It is not:
 | what product this repo is actually building | [ADR-001: Repo Topology and Product Boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) | this is the contract that locks `8+1`, shopping-only scope, and the Suite boundary |
 | what the repo currently proves, and what it still does not prove | [What Is Public Today](#what-is-public-today) | this page already separates live public surfaces from claim-gated store support lines |
 | what support claims still need stronger evidence | [Testing and Verification Bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) | this is where `fixture-ready`, `repo-verified`, and `public-claim-ready` are separated |
-| how review bundles and submission-readiness should be read | [Evidence and Submission Current-Scope Readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html) | this is the operator/reviewer scorecard |
+| how review bundles and submission boundaries should be read | [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) | this is the public reviewer/operator guide without routing internal scorecards into the front door |
 | how builders or coding agents should approach the repo | [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) | this is the shortest truthful side entrance for builder-facing surfaces |
 
 ## What Is Public Today
@@ -116,7 +116,7 @@ What this does **not** mean:
 1. Read the [product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html).
 2. Read the [verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html).
 3. Open the [latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
-4. If you need the operator scorecard, read [Evidence and Submission Current-Scope Readiness](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html).
+4. If you need the reviewer/operator guide, read [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html).
 5. Only after that, if you are here as a builder, open [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) or [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html).
 
 ## Need the product feel or the support desk?

@@ -93,7 +93,7 @@ When the next operator asks “what exactly should we publish?”, hand them:
 10. [Plugin Marketplace Metadata](./plugin-marketplace-metadata.ready.md)
 11. [Agent Quickstarts](./agent-quickstarts.md)
 12. [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
-13. [Ready-to-Sync Artifacts](./ready-to-sync-artifacts.md)
+13. [Release Artifact Review Runbook](../runbooks/release-artifact-review.md)
 14. [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
 
 That keeps the answer specific without pretending publication already happened.

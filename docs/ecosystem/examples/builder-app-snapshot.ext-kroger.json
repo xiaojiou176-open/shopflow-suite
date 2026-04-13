@@ -56,7 +56,7 @@
       "id": "ext-kroger:https://www.fredmeyer.com/savings/coupons",
       "appId": "ext-kroger",
       "label": "www.fredmeyer.com · deal",
-      "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as store-review.",
+      "summary": "Extract family deal cards is runnable right now. ext-kroger is packaged as capability-heavy-candidate.",
       "timestampLabel": "2:20 AM",
       "href": "https://www.fredmeyer.com/savings/coupons"
     }

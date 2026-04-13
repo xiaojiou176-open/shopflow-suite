@@ -86,7 +86,7 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target claude-code --output 
 - [Agent Quickstarts](./agent-quickstarts.md)
 - [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
 - [Integration Recipes](./integration-recipes.md)
-- [Public Distribution Bundle](./public-distribution-bundle.ready.md)
+- [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
 
 ## Fastest No-Runtime Packet
 
@@ -130,7 +130,7 @@ pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-s
 
 ### Best companion doc
 
-- [Public Skills Catalog](./public-skills-catalog.ready.md)
+- [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
 
 ### Must not claim
 

@@ -54,7 +54,7 @@ Hand these together:
 
 1. this page
 2. [OpenClaw Public-Ready Packet](./openclaw-comparison.md)
-3. [OpenClaw Publish Unblock Packet](./openclaw-publish-unblock-packet.ready.md)
+3. [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
 4. [plugin-marketplace-metadata.openclaw.json](./examples/plugin-marketplace-metadata.openclaw.json)
 5. [agent-target-packet.openclaw.json](./examples/agent-target-packet.openclaw.json)
 

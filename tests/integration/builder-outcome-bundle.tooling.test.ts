@@ -190,11 +190,11 @@ describe('builder outcome bundle tooling', () => {
       expect.arrayContaining([
         expect.objectContaining({
           id: 'public-copy-packet',
-          path: 'docs/ecosystem/public-copy.ready.md',
+          path: '.agents/Tasks/WAVE1-public-sync/public-copy.ready.md',
         }),
         expect.objectContaining({
           id: 'repo-description',
-          path: 'docs/ecosystem/repo-description.ready.md',
+          path: '.agents/Tasks/WAVE1-public-sync/repo-description.ready.md',
         }),
       ])
     );

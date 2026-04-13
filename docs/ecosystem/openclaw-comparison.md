@@ -84,10 +84,9 @@ home-manager switch --flake .#<user>
 Use these in this order when a reader asks "where do I start?":
 
 1. [OpenClaw Public-Ready Matrix](./openclaw-public-ready-matrix.md)
-2. [Plugin Marketplace Metadata](./plugin-marketplace-metadata.ready.md)
-3. [OpenClaw Publish Unblock Packet](./openclaw-publish-unblock-packet.ready.md)
-4. [plugin-marketplace-metadata.openclaw.json](./examples/plugin-marketplace-metadata.openclaw.json)
-5. [agent-target-packet.openclaw.json](./examples/agent-target-packet.openclaw.json)
+2. [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
+3. [plugin-marketplace-metadata.openclaw.json](./examples/plugin-marketplace-metadata.openclaw.json)
+4. [agent-target-packet.openclaw.json](./examples/agent-target-packet.openclaw.json)
 
 If the reader wants the underlying upstream public route first, point them to:
 
@@ -125,8 +124,7 @@ pnpm cli:read-only -- agent-integration-bundle
 Then read:
 
 - [OpenClaw Public-Ready Matrix](./openclaw-public-ready-matrix.md)
-- [Plugin Marketplace Metadata](./plugin-marketplace-metadata.ready.md)
-- [OpenClaw Publish Unblock Packet](./openclaw-publish-unblock-packet.ready.md)
+- [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
 
 ## Must Not Claim
 

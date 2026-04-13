@@ -84,9 +84,8 @@ They are **not** proof that:
 - [Claude Code Quickstart](./claude-code-quickstart.md)
 - [OpenClaw Public-Ready Packet](./openclaw-comparison.md)
 - [OpenClaw Public-Ready Matrix](./openclaw-public-ready-matrix.md)
-- [OpenClaw Publish Unblock Packet](./openclaw-publish-unblock-packet.ready.md)
 - [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
-- [Public Distribution Bundle](./public-distribution-bundle.ready.md)
+- [Agent Quickstarts](./agent-quickstarts.md)
 
 ## Handoff Packet
 

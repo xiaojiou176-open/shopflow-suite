@@ -54,7 +54,7 @@
       "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
       "appId": "ext-amazon",
       "label": "www.amazon.com · search",
-      "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review.",
+      "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
       "timestampLabel": "2:10 AM",
       "href": "https://www.amazon.com/s?k=coffee+storage"
     }
@@ -63,7 +63,7 @@
     "origin": "merchant-source",
     "label": "Inspect latest source page",
     "href": "https://www.amazon.com/s?k=coffee+storage",
-    "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review."
+    "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
   },
   "builderSurfaceBoundary": {
     "today": [

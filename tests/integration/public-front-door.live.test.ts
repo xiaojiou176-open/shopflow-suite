@@ -28,9 +28,9 @@ const liveReceiptTargets: LiveReceiptTarget[] = [
     expectedText: 'Builder Start Here',
   },
   {
-    label: 'Evidence and Submission Current-Scope Readiness',
-    url: 'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/evidence-submission-current-scope-readiness.html',
-    expectedText: 'Evidence and Submission Current-Scope Readiness',
+    label: 'Agent Quickstarts',
+    url: 'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html',
+    expectedText: 'Agent Quickstarts',
   },
   {
     label: 'Shopflow Product Surface Spec',

@@ -78,7 +78,7 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runti
 - [Builder Start Here](./builder-start-here.md)
 - [Integration Recipes](./integration-recipes.md)
 - [Agent Quickstarts](./agent-quickstarts.md)
-- [Public Distribution Bundle](./public-distribution-bundle.ready.md)
+- [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
 
 ## Fastest No-Runtime Packet
 
@@ -121,7 +121,7 @@ pnpm cli:read-only -- plugin-marketplace-metadata --target codex --output .runti
 
 ### Best companion doc
 
-- [Public MCP Capability Map](./public-mcp-capability-map.ready.md)
+- [MCP Quickstart](./mcp-quickstart.md)
 
 ### Must not claim
 

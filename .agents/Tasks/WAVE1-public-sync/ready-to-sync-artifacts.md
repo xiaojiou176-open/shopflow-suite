@@ -29,10 +29,10 @@ Ready-to-sync does **not** mean:
 | one-line repo description | [repo-description.ready.md](./repo-description.ready.md) | you need one short repo summary | proof that the description is already live |
 | short release body | [release-body.ready.md](./release-body.ready.md) | you need a compact release note body | proof that a release is already published |
 | fuller public copy block | [public-copy.ready.md](./public-copy.ready.md) | you need a slightly richer description block | a public support claim |
-| public distribution packet | [public-distribution-bundle.ready.md](./public-distribution-bundle.ready.md) | you need the repo-owned API / MCP / skills / plugin-marketplace handoff packet | proof that any public distribution already happened |
-| MCP packet only | [public-mcp-capability-map.ready.md](./public-mcp-capability-map.ready.md) | you need the read-only MCP capability packet alone | proof that a public HTTP MCP server already exists |
-| skills packet only | [public-skills-catalog.ready.md](./public-skills-catalog.ready.md) | you need the skills distribution packet alone | proof that a public skills pack already exists |
-| plugin metadata packet only | [plugin-marketplace-metadata.ready.md](./plugin-marketplace-metadata.ready.md) | you need the plugin/listing metadata packet alone | proof that a marketplace listing already exists |
+| public distribution packet | [public-distribution-bundle.ready.md](../../docs/ecosystem/public-distribution-bundle.ready.md) | you need the repo-owned API / MCP / skills / plugin-marketplace handoff packet | proof that any public distribution already happened |
+| MCP packet only | [public-mcp-capability-map.ready.md](../../docs/ecosystem/public-mcp-capability-map.ready.md) | you need the read-only MCP capability packet alone | proof that a public HTTP MCP server already exists |
+| skills packet only | [public-skills-catalog.ready.md](../../docs/ecosystem/public-skills-catalog.ready.md) | you need the skills distribution packet alone | proof that a public skills pack already exists |
+| plugin metadata packet only | [plugin-marketplace-metadata.ready.md](../../docs/ecosystem/plugin-marketplace-metadata.ready.md) | you need the plugin/listing metadata packet alone | proof that a marketplace listing already exists |
 | reusable snippets | [ready-to-sync-public-copy.md](./ready-to-sync-public-copy.md) | you need modular copy blocks for GitHub, release notes, or page text | proof that external sync already happened |
 
 ## Suggested Sync Order
@@ -68,13 +68,13 @@ Every ready-to-sync artifact must keep these boundaries visible:
 
 ## Pair These with the Source Pages
 
-- [Builder Start Here](./builder-start-here.md)
-- [Agent Quickstarts](./agent-quickstarts.md)
-- [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
-- [Builder Read Models](./builder-read-models.md)
-- [Agent and MCP Positioning](./agent-and-mcp-positioning.md)
-- [Integration Surface Roadmap](./integration-surface-roadmap.md)
-- [Public Distribution Bundle](./public-distribution-bundle.ready.md)
+- [Builder Start Here](../../docs/ecosystem/builder-start-here.md)
+- [Agent Quickstarts](../../docs/ecosystem/agent-quickstarts.md)
+- [Agent Distribution Artifacts](../../docs/ecosystem/agent-distribution-artifacts.md)
+- [Builder Read Models](../../docs/ecosystem/builder-read-models.md)
+- [Agent and MCP Positioning](../../docs/ecosystem/agent-and-mcp-positioning.md)
+- [Integration Surface Roadmap](../../docs/ecosystem/integration-surface-roadmap.md)
+- [Public Distribution Bundle](../../docs/ecosystem/public-distribution-bundle.ready.md)
 
 ## Pair These with Reviewer Handoff
 
@@ -83,8 +83,8 @@ should the reviewer/operator start?”, use this order instead:
 
 1. `submission-readiness.json` in `.runtime-cache/release-artifacts/`
 2. the per-app `shopflow-review-artifact.json` inside the built review bundle
-3. [Release Artifact Review Runbook](../runbooks/release-artifact-review.md)
-4. [Live Receipt Capture Runbook](../runbooks/live-receipt-capture.md) if the
+3. [Release Artifact Review Runbook](../../docs/runbooks/release-artifact-review.md)
+4. [Live Receipt Capture Runbook](../../docs/runbooks/live-receipt-capture.md) if the
    remaining gate is reviewed live evidence
 5. [Evidence and Submission Current-Scope Readiness](./evidence-submission-current-scope-readiness.md)
 
