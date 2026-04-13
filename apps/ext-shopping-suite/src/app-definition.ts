@@ -26,12 +26,12 @@ export function createSuiteAppDefinition(locale: ShopflowLocale = 'en') {
         href: '#current-rollout-map',
       },
       {
-        ...copy.startHereCards[1],
-        href: '#claim-readiness-board',
-      },
-      {
         ...copy.startHereCards[2],
         href: '#verified-scope-navigator',
+      },
+      {
+        ...copy.startHereCards[1],
+        href: '#claim-readiness-board',
       },
     ],
   } as const;

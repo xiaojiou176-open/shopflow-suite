@@ -94,12 +94,14 @@ export function PopupLauncher({
   const featuredActionItem = structuredActionItems[0];
   const extraStructuredActionItems = structuredActionItems.slice(1);
   const supportingDetails = details.slice(0, 4);
-  const hiddenDetailCount = supportingDetails.length;
   const showSourceCapturedSplit =
     Boolean(latestSourceHref) &&
     Boolean(latestOutputPreview?.href) &&
     latestSourceHref !== latestOutputPreview?.href;
+  const showProofHint = Boolean(latestOutputPreview) || Boolean(latestSourceHref);
   const showActionDrawer =
+    Boolean(featuredActionItem) ||
+    showProofHint ||
     extraStructuredActionItems.length > 0 ||
     labelOnlyActionItems.length > 0 ||
     supportingDetails.length > 0;
@@ -164,7 +166,10 @@ export function PopupLauncher({
           </div>
 
           <div className="mt-4 space-y-3">
-            <section className="rounded-[1.75rem] bg-[#1f1c17] px-4 py-4 text-white shadow-[0_14px_32px_rgba(31,28,23,0.22)]">
+            <section
+              id="popup-primary-route"
+              className="rounded-[1.75rem] bg-[#1f1c17] px-4 py-4 text-white shadow-[0_14px_32px_rgba(31,28,23,0.22)]"
+            >
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#e9e2d8]">
                 {copy.popup.primaryRoute}
               </p>
@@ -192,140 +197,175 @@ export function PopupLauncher({
               </p>
             </section>
 
-            <div className="space-y-3">
-              <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[#fff8ef] px-4 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                  {copy.popup.secondaryRoute}
+            <section
+              id="popup-secondary-route"
+              className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[#fff8ef] px-4 py-4"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                {copy.popup.secondaryRoute}
+              </p>
+              {secondaryOriginLabel ? (
+                <p className="mt-1 text-[11px] text-[#756d62]">
+                  {secondaryOriginLabel}
                 </p>
-                {secondaryOriginLabel ? (
-                  <p className="mt-1 text-[11px] text-[#756d62]">
-                    {secondaryOriginLabel}
-                  </p>
-                ) : null}
-                <div className="mt-3">
-                  {secondaryHref ? (
-                    <a
-                      className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                      href={secondaryHref}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {resolvedSecondaryLabel}
-                    </a>
-                  ) : (
-                    <Button tone="ghost">{resolvedSecondaryLabel}</Button>
-                  )}
-                </div>
-                <p className="mt-3 text-xs text-[#6c665d]">
-                  {resolvedSecondarySummary}
-                </p>
-              </section>
-
-              {latestSourceHref ? (
-                <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                    {copy.popup.jumpBack}
-                  </p>
-                  <p className="mt-1 text-[11px] text-[#756d62]">
-                    {copy.common.routeOriginLabels.merchantSource}
-                  </p>
+              ) : null}
+              <div className="mt-3">
+                {secondaryHref ? (
                   <a
-                    className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
-                    href={latestSourceHref}
+                    className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                    href={secondaryHref}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {resolvedLatestSourceLabel}
+                    {resolvedSecondaryLabel}
                   </a>
-                  <p className="mt-3 text-xs text-[#6c665d]">
-                    {copy.popup.jumpBackSummary}
-                  </p>
-                </section>
-              ) : null}
-            </div>
-          </div>
-
-          {showSourceCapturedSplit ? (
-            <p className="mt-3 text-xs text-[#756d62]">
-              {copy.popup.sourceCapturedSplitSummary}
-            </p>
-          ) : null}
-        </Card>
-
-        {latestOutputPreview ? (
-          <Card
-            className="border-[rgba(183,121,31,0.18)] bg-[#fff8ef]"
-          >
-            <div id="latest-output-preview">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
-                    {latestOutputPreview.label}
-                  </p>
-                  <p className="mt-1 text-[11px] text-[#8a6330]">
-                    {copy.common.routeOriginLabels.capturedPage}
-                  </p>
-                </div>
-                {latestOutputPreview.timestampLabel ? (
-                  <span className="rounded-full border border-[rgba(183,121,31,0.18)] bg-white px-2.5 py-1 text-[11px] text-[#8a6330]">
-                    {copy.popup.latestCapturedAt(
-                      latestOutputPreview.timestampLabel
-                    )}
-                  </span>
-                ) : null}
+                ) : (
+                  <Button tone="ghost">{resolvedSecondaryLabel}</Button>
+                )}
               </div>
-              <p className="mt-3 text-sm font-semibold text-[#1f1c17]">
-                {latestOutputPreview.title}
+              <p className="mt-3 text-xs text-[#6c665d]">
+                {resolvedSecondarySummary}
               </p>
-              <p className="mt-2 text-xs text-[#6c665d]">
-                {latestOutputPreview.summary}
-              </p>
-              {latestOutputPreview.detailLines[0] ? (
-                <p className="mt-2 rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-xs text-[#514a42]">
-                  {latestOutputPreview.detailLines[0]}
-                </p>
+              {showProofHint ? (
+                <div className="mt-3 rounded-2xl border border-[rgba(183,121,31,0.16)] bg-white px-3 py-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
+                      {latestOutputPreview?.label ?? copy.popup.jumpBack}
+                    </p>
+                    {latestOutputPreview?.timestampLabel ? (
+                      <span className="rounded-full border border-[rgba(183,121,31,0.18)] bg-[#fff8ef] px-2 py-1 text-[11px] text-[#8a6330]">
+                        {copy.popup.latestCapturedAt(
+                          latestOutputPreview.timestampLabel
+                        )}
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-2 text-xs text-[#6c665d]">
+                    {latestOutputPreview
+                      ? latestOutputPreview.summary
+                      : copy.popup.jumpBackSummary}
+                  </p>
+                  {showSourceCapturedSplit ? (
+                    <p className="mt-2 text-xs text-[#756d62]">
+                      {copy.popup.sourceCapturedSplitSummary}
+                    </p>
+                  ) : null}
+                </div>
               ) : null}
-              {latestOutputPreview.href ? (
-                <a
-                  className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                  href={latestOutputPreview.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {latestOutputPreview.hrefLabel ??
-                    copy.common.openLatestCapturedPage}
-                </a>
-              ) : null}
-            </div>
-          </Card>
-        ) : null}
+            </section>
 
-        <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-            {resolvedActionHeading}
-          </p>
-          {featuredActionItem ? (
-            <div className="mt-3 rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4">
-              <a
-                className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
-                href={featuredActionItem.href}
-                target={featuredActionItem.external ? '_blank' : undefined}
-                rel={featuredActionItem.external ? 'noreferrer' : undefined}
+            {showProofHint ? (
+              <section
+                id="latest-output-preview"
+                className="rounded-[1.5rem] border border-[rgba(183,121,31,0.16)] bg-[#fff8ef] px-4 py-3"
               >
-                {featuredActionItem.label}
-              </a>
-              {featuredActionItem.summary ? (
-                <p className="mt-2 text-xs text-[#6c665d]">
-                  {featuredActionItem.summary}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6330]">
+                      {latestOutputPreview?.label ?? copy.popup.jumpBack}
+                    </p>
+                    <p className="mt-1 text-[11px] text-[#8a6330]">
+                      {latestOutputPreview
+                        ? copy.common.routeOriginLabels.capturedPage
+                        : copy.common.routeOriginLabels.merchantSource}
+                    </p>
+                  </div>
+                  {latestOutputPreview?.timestampLabel ? (
+                    <span className="rounded-full border border-[rgba(183,121,31,0.18)] bg-white px-2.5 py-1 text-[11px] text-[#8a6330]">
+                      {copy.popup.latestCapturedAt(
+                        latestOutputPreview.timestampLabel
+                      )}
+                    </span>
+                  ) : null}
+                </div>
+
+                {latestOutputPreview ? (
+                  <>
+                    <p className="mt-2 text-sm font-semibold text-[#1f1c17]">
+                      {latestOutputPreview.title}
+                    </p>
+                    <p className="mt-1 text-xs text-[#6c665d]">
+                      {latestOutputPreview.summary}
+                    </p>
+                    {latestOutputPreview.detailLines[0] ? (
+                      <p className="mt-2 text-xs text-[#514a42]">
+                        {latestOutputPreview.detailLines[0]}
+                      </p>
+                    ) : null}
+                    {latestOutputPreview.href ? (
+                      <a
+                        className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                        href={latestOutputPreview.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {latestOutputPreview.hrefLabel ??
+                          copy.common.openLatestCapturedPage}
+                      </a>
+                    ) : null}
+                  </>
+                ) : latestSourceHref ? (
+                  <>
+                    <a
+                      className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                      href={latestSourceHref}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {resolvedLatestSourceLabel}
+                    </a>
+                    <p className="mt-3 text-xs text-[#6c665d]">
+                      {copy.popup.jumpBackSummary}
+                    </p>
+                  </>
+                ) : null}
+
+                {showSourceCapturedSplit ? (
+                  <div className="mt-3 space-y-2 border-t border-[rgba(183,121,31,0.16)] pt-3">
+                    <a
+                      className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                      href={latestSourceHref}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {resolvedLatestSourceLabel}
+                    </a>
+                    <p className="text-xs text-[#6c665d]">
+                      {copy.popup.sourceCapturedSplitSummary}
+                    </p>
+                  </div>
+                ) : null}
+              </section>
+            ) : null}
+
+            {featuredActionItem ? (
+              <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                  {resolvedActionHeading}
                 </p>
-              ) : null}
-            </div>
-          ) : (
-            <p className="mt-2 text-xs text-[#6c665d]">
-              {resolvedActionEmptySummary}
-            </p>
-          )}
-        </section>
+                {featuredActionItem.href ? (
+                  <a
+                    className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
+                    href={featuredActionItem.href}
+                    target={featuredActionItem.external ? '_blank' : undefined}
+                    rel={featuredActionItem.external ? 'noreferrer' : undefined}
+                  >
+                    {featuredActionItem.label}
+                  </a>
+                ) : (
+                  <p className="mt-3 text-sm font-medium text-[#1f1c17]">
+                    {featuredActionItem.label}
+                  </p>
+                )}
+                {featuredActionItem.summary ? (
+                  <p className="mt-2 text-xs text-[#6c665d]">
+                    {featuredActionItem.summary}
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
+          </div>
+        </Card>
 
         {showActionDrawer &&
         (extraStructuredActionItems.length > 0 ||
@@ -335,9 +375,10 @@ export function PopupLauncher({
             <summary className="flex items-center justify-between rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[rgba(255,253,248,0.72)] px-4 py-3 text-left">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                  {copy.sidePanel.nextRoute}
+                  {resolvedActionHeading}
                 </p>
-                {extraStructuredActionItems.length === 0 &&
+                {!featuredActionItem &&
+                extraStructuredActionItems.length === 0 &&
                 labelOnlyActionItems.length === 0 ? (
                   <p className="mt-1 text-xs text-[#6c665d]">
                     {resolvedActionEmptySummary}
@@ -398,7 +439,7 @@ export function PopupLauncher({
                       <p key={detail}>{detail}</p>
                     ))}
                   </div>
-                  {hiddenDetailCount > 0 ? (
+                  {supportingDetails.length > 0 ? (
                     <p className="mt-3 text-xs text-[#756d62]">
                       {copy.popup.ledgerNote}
                     </p>

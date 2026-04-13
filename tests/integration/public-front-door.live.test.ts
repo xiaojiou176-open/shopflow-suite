@@ -71,7 +71,7 @@ async function expectLiveHtmlReceipt(target: LiveReceiptTarget) {
 
 describe('live public front door receipts', () => {
   it(
-    'keeps the public Pages first-hop routes reachable as real HTML pages',
+    'keeps the public Pages product-first routes reachable as real HTML pages',
     async () => {
       for (const target of liveReceiptTargets) {
         await expectLiveHtmlReceipt(target);

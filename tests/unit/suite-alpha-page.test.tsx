@@ -104,12 +104,25 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('href="sidepanel.html"');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
     expect(html).toContain('aria-current="page"');
-    expect(html.indexOf('Priority routes')).toBeLessThan(
-      html.indexOf('Alpha guardrails')
+    expect(html).toContain('Use Suite as the lobby, not the workflow engine');
+    expect(html).toContain('href="#claim-readiness-board"');
+    expect(html).toContain('href="#verified-scope-navigator"');
+    expect(html).toContain('href="#alpha-guardrails"');
+    expect(html).toContain('id="priority-routes"');
+    expect(html).toContain('id="claim-readiness-board"');
+    expect(html).toContain('id="current-rollout-map"');
+    expect(html).toContain('id="evidence-gates"');
+    expect(html).toContain('id="verified-scope-navigator"');
+    expect(html).toContain('id="alpha-guardrails"');
+    expect(html.indexOf('id="priority-routes"')).toBeLessThan(
+      html.indexOf('id="alpha-guardrails"')
     );
-    expect(html.indexOf('Claim readiness board')).toBeLessThan(
+    expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
       html.indexOf('Operator next step')
     );
+    expect(
+      html.indexOf('Use Suite as the lobby, not the workflow engine')
+    ).toBeLessThan(html.indexOf('Inspect claim gates before release talk'));
   });
 
   it('keeps fallback blocker guidance honest when no fresh route is available yet', () => {
@@ -143,8 +156,10 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('操作员下一步');
     expect(html).toContain('界面语言');
     expect(html).toContain('仅限内部 Alpha');
+    expect(html).toContain('Alpha 护栏');
     expect(html).toContain('Shopflow for Albertsons Family 的优先路线');
     expect(html).toContain('打开证据门');
+    expect(html).toContain('把 Suite 当作大厅，不是工作流引擎');
   });
 
   it('renders a real provider-runtime handoff card when a Switchyard base URL is configured', () => {

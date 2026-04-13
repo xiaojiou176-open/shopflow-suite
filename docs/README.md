@@ -10,18 +10,32 @@ Shopflow is, what exists today, and what still should not be overclaimed.
 [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
 [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
 [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
-[Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
-
-Secondary proof doors:
 [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
-[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
 [Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 
-## Shopflow in Three Lines
+Secondary proof doors:
+[Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
+[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
+[Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
 
-- **Category:** a Chrome-first shopping extension family with `8` store apps and `1` suite shell
-- **Heat hook:** multiple storefront entry points can stay discoverable without splitting the engineering source of truth
-- **Current result:** repo-owned contracts, runtime surfaces, and review packaging exist today, but public-ready support claims still require stronger evidence
+## Start Here First
+
+- **What this is:** the product-first docs desk for one Chrome-first shopping
+  extension family with `8` storefront apps and `1` Suite shell.
+- **Why it is worth opening now:** this repo already exposes the product
+  boundary, verification boundary, review shelf, and repo-local read-only MCP
+  without splitting the story across multiple front doors.
+- **First honest route:** read the product boundary, then the verification bar,
+  then the latest review shelf.
+- **Where to get help or a deeper map:** use the public repo README for the
+  short public story, the release review runbook for bundle meaning, and the
+  live receipt capture runbook when you need the real-browser evidence lane.
+- **What is still claim-gated:** reviewed live evidence and signed/store-ready
+  artifacts still gate broader public support wording.
+
+> The product route comes first.
+> Builder packets, deeper shelves, and search-intent redirects are real, but
+> they stay secondary.
 
 ## First Product Path
 
@@ -30,7 +44,23 @@ Use this order when you want the shortest truthful product-first read:
 1. [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html)
 2. [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html)
 3. [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
-4. [Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) only after the first three are clear
+4. [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme)
+
+## Need Help or the Deeper Shelves?
+
+- [Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+- [Builder side door](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
+- [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md)
+
+## What You Can Inspect Today
+
+| Surface | What it proves today | What it must not be mistaken for |
+| :--- | :--- | :--- |
+| product docs front door | the clearest product-first route through the repo | a packet atlas or link dump |
+| latest review shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
+| public repo README | the short public product story | a replacement for the deeper docs atlas |
+| read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
 
 ## Verification Layers
 

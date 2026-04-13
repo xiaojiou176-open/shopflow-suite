@@ -1,3 +1,7 @@
+// @vitest-environment jsdom
+
+import React, { act } from 'react';
+import { createRoot, type Root } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { SidePanelHomeViewModel } from '@shopflow/core';
 import { describe, expect, it } from 'vitest';
@@ -146,6 +150,11 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('Merchant source page');
     expect(html).toContain('Open latest captured page');
     expect(html).toContain('href="https://www.amazon.com/dp/example"');
+    expect(html).toContain('Workflow copilot');
+    expect(html).toContain('Runnable now');
+    expect(html).toContain('Claim gate');
+    expect(html).toContain('Current surface');
+    expect(html).toContain('Open review lane');
     expect(html).toContain('id="live-receipt-evidence"');
     expect(html).toContain('id="live-receipt-review"');
     expect(html).toContain('Raw packet ledger');
@@ -159,6 +168,15 @@ describe('SidePanelHomePage', () => {
     );
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
+    expect(html.indexOf('id="quick-actions"')).toBeLessThan(
+      html.indexOf('id="live-receipt-readiness"')
+    );
+    expect(html.indexOf('id="recent-activity"')).toBeLessThan(
+      html.indexOf('id="live-receipt-readiness"')
+    );
+    expect(html.indexOf('Next routes')).toBeLessThan(
+      html.indexOf('Live receipt readiness')
+    );
   });
 
   it('routes best-route guidance through the latest captured page when no fresher source page exists', () => {
@@ -246,7 +264,9 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('Open latest source page');
     expect(html).toContain('Open review lane');
     expect(html).toContain('href="#live-receipt-review"');
-    expect(html).toContain('No runnable capability is available on this page yet.');
+    expect(html).toContain(
+      'No runnable capability is available on this page yet.'
+    );
   });
 
   it('keeps the claim-boundary follow-up route inside the side-panel when evidence review is the next honest move', () => {
@@ -274,5 +294,62 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('href="#live-receipt-review"');
     expect(html).toContain('Review claim gate');
     expect(html).toContain('Currently verified on Amazon.');
+  });
+
+  it('keeps the live-receipt hash routes auto-opening the matching disclosure lanes', async () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const root: Root = createRoot(container);
+
+    try {
+      window.location.hash = '#live-receipt-review';
+
+      await act(async () => {
+        root.render(<SidePanelHomePage model={model} />);
+      });
+
+      expect(
+        container
+          .querySelector('#live-receipt-readiness details')
+          ?.hasAttribute('open')
+      ).toBe(true);
+      expect(
+        container
+          .querySelector('#live-receipt-review details')
+          ?.hasAttribute('open')
+      ).toBe(true);
+      expect(
+        container
+          .querySelector('#live-receipt-packets details')
+          ?.hasAttribute('open')
+      ).toBe(false);
+
+      window.location.hash = '#live-receipt-packets';
+      await act(async () => {
+        window.dispatchEvent(new HashChangeEvent('hashchange'));
+      });
+
+      expect(
+        container
+          .querySelector('#live-receipt-readiness details')
+          ?.hasAttribute('open')
+      ).toBe(true);
+      expect(
+        container
+          .querySelector('#live-receipt-review details')
+          ?.hasAttribute('open')
+      ).toBe(false);
+      expect(
+        container
+          .querySelector('#live-receipt-packets details')
+          ?.hasAttribute('open')
+      ).toBe(true);
+    } finally {
+      await act(async () => {
+        root.unmount();
+      });
+      container.remove();
+      window.location.hash = '';
+    }
   });
 });

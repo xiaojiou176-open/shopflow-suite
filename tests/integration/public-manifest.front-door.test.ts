@@ -39,6 +39,15 @@ function expectPagesSafeFirstHop(markdown: string, label: string) {
   expect(resolved.pathname).not.toMatch(/\.md$/i);
 }
 
+function expectHeadingOrder(markdown: string, earlier: string, later: string) {
+  const earlierIndex = markdown.indexOf(earlier);
+  const laterIndex = markdown.indexOf(later);
+
+  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(0);
+  expect(laterIndex, `expected to find "${later}"`).toBeGreaterThanOrEqual(0);
+  expect(earlierIndex).toBeLessThan(laterIndex);
+}
+
 describe('public manifest and front door', () => {
   it('keeps the root public manifest aligned with the canonical repo and MCP v1', () => {
     const manifest = readJson('public-manifest.json');
@@ -75,7 +84,7 @@ describe('public manifest and front door', () => {
     ]);
   });
 
-  it('keeps README, docs front door, and Pages index aligned on the new MCP entry', () => {
+  it('keeps README, docs front door, and Pages index aligned on a product-first front door', () => {
     const readme = readText('README.md');
     const docsReadme = readText('docs/README.md');
     const docsIndex = readText('docs/index.md');
@@ -84,23 +93,52 @@ describe('public manifest and front door', () => {
 
     expect(readme).toContain('./docs/assets/shopflow-front-door.svg');
     expect(readme).toContain('./DISTRIBUTION.md');
+    expect(readme).toContain('## Start Here First');
+    expect(readme).toContain('## First Product Route');
+    expect(readme).toContain('## Need Help or the Fuller Atlas?');
+    expect(readme).toContain('## Builder Side Door');
+    expect(readme).toContain('Open an issue');
+    expect(readme).toContain('live receipt evidence bundles');
+    expect(readme).toContain('store-ready signed extension release artifacts');
+    expectHeadingOrder(readme, '## First Product Route', '## Builder Side Door');
     expect(docsReadme).toContain('./assets/shopflow-front-door.svg');
     expect(docsReadme).toContain('Product boundary');
     expect(docsReadme).toContain('Verification bar');
+    expect(docsReadme).toContain('## Start Here First');
+    expect(docsReadme).toContain('## First Product Path');
+    expect(docsReadme).toContain('## Need Help or the Deeper Shelves?');
+    expect(docsReadme).toContain('## What You Can Inspect Today');
     expect(docsReadme).toContain('Distribution truth on GitHub');
+    expect(docsReadme).toContain('Builder side door');
+    expect(docsReadme).toContain('signed/store-ready');
+    expectHeadingOrder(
+      docsReadme,
+      '## First Product Path',
+      '## Search-Intent Redirects'
+    );
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
     expect(docsIndex).toContain(
       'many storefront doors, one kitchen, one truthful review shelf.'
     );
+    expect(docsIndex).toContain('## Start Here First');
+    expect(docsIndex).toContain('## What You Can See Right Away');
+    expect(docsIndex).toContain('## Best First Route');
+    expect(docsIndex).toContain('## Need Help or the Deeper Atlas?');
     expect(docsIndex).toContain('See the product boundary');
-    expect(docsIndex).toContain('See the product feel');
     expect(docsIndex).toContain('See the verification boundary');
+    expect(docsIndex).toContain('Get help');
     expect(docsIndex).toContain('Distribution truth on GitHub');
     expect(docsIndex).toContain('Canonical README on GitHub');
-    expect(docsIndex).toContain('## Need the product feel or the support desk?');
+    expect(docsIndex).toContain('## Builder Lane Is Real, But Secondary');
     expect(docsIndex).toContain('Release Artifact Review Runbook');
     expect(docsIndex).toContain('Open an issue');
     expect(docsIndex).toContain('Contributing on GitHub');
+    expect(docsIndex).toContain('signed store-ready release artifacts are still not in place');
+    expectHeadingOrder(
+      docsIndex,
+      '## Best First Route',
+      '## Builder Lane Is Real, But Secondary'
+    );
     expect(distribution).toContain('## Exact receipts now');
     expect(distribution).toContain('## Ready but not live yet');
     expect(distribution).toContain('## Not published yet');
@@ -136,9 +174,9 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsReadme, 'Release review runbook');
 
     expectPagesSafeFirstHop(docsIndex, 'See the product boundary');
-    expectPagesSafeFirstHop(docsIndex, 'See the product feel');
     expectPagesSafeFirstHop(docsIndex, 'See the verification boundary');
     expectPagesSafeFirstHop(docsIndex, 'Open the latest review shelf');
+    expectPagesSafeFirstHop(docsIndex, 'Get help');
     expectPagesSafeFirstHop(docsIndex, 'Builder Start Here');
     expectPagesSafeFirstHop(docsIndex, 'Release review runbook');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
@@ -146,13 +184,9 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsIndex, 'Shopflow Product Surface Spec');
     expectPagesSafeFirstHop(docsIndex, 'Release Artifact Review Runbook');
     expectPagesSafeFirstHop(docsIndex, 'Live Receipt Capture Runbook');
+    expectPagesSafeFirstHop(docsIndex, 'Docs front door on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Open an issue');
     expectPagesSafeFirstHop(docsIndex, 'Contributing on GitHub');
-    expectPagesSafeFirstHop(
-      docsIndex,
-      'ADR-001: Repo Topology and Product Boundary'
-    );
-    expectPagesSafeFirstHop(docsIndex, 'Testing and Verification Bar');
     expectPagesSafeFirstHop(docsIndex, 'Agent Quickstarts');
     expectPagesSafeFirstHop(docsIndex, 'Integration Recipes');
     expectPagesSafeFirstHop(docsIndex, 'MCP Quickstart');

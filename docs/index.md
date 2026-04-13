@@ -9,9 +9,9 @@ Chrome-first shopping extension family.
 
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
 [See the product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
-[See the product feel](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html) ·
 [See the verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
-[Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+[Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
+[Get help](#need-help-or-the-deeper-atlas)
 
 Secondary doors:
 [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
@@ -19,16 +19,19 @@ Secondary doors:
 [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
 [Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
 
-## Shopflow In 30 Seconds
+## Start Here First
 
-- **Category:** a Chrome-first shopping extension family with `8` storefront
-  apps plus `1` Suite shell
-- **Heat hook:** one repo already packages `8` storefront review bundles plus
-  `1` Suite internal-alpha bundle without splitting storefront truth across `9`
-  code paths
-- **Current result:** the public repo, Pages front door, review shelf, and
-  read-only stdio MCP are live today, but Shopflow is still **not**
-  public-claim-ready for broader support wording
+- **What this is:** the public product-first front desk for one shopping-only
+  extension family with `8` storefront apps and `1` Suite shell.
+- **Why it is worth opening now:** one repo already carries the public repo,
+  the Pages front door, the review shelf, and the repo-local read-only stdio
+  MCP without splitting truth across `9` code paths.
+- **First honest route:** read the product boundary, then the verification
+  boundary, then the latest review shelf.
+- **Where to get help:** use the service desk below for product feel, review
+  guidance, real-browser evidence, and contribution routes.
+- **What is still claim-gated:** reviewed live receipt evidence bundles and
+  signed store-ready release artifacts are still not in place.
 
 In plain language:
 
@@ -36,11 +39,27 @@ In plain language:
 > it still does not have reviewed live receipt evidence bundles or signed
 > store-ready artifacts.
 
-## Public Surfaces
+## What You Can See Right Away
 
 ![Shopflow public Pages snapshot card](./assets/shopflow-pages-front-door-card.svg)
 
 ![Shopflow review shelf snapshot card](./assets/shopflow-review-shelf-card.svg)
+
+## Best First Route
+
+1. Read the [product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html).
+2. Read the [verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html).
+3. Open the [latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
+4. If you need the fuller map, open the [Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme).
+
+## Need Help or the Deeper Atlas?
+
+- [Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
+- [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+- [Docs front door on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
+- [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
+- [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
 
 ## What This Repo Is
 
@@ -59,16 +78,6 @@ It is not:
 - a write-capable MCP hub
 - a generic autonomous agent platform
 - proof that public support claims are already cleared
-
-## Start With The Right Question
-
-| If you want to know... | Open this first | Why this is the shortest honest path |
-| :--- | :--- | :--- |
-| what product this repo is actually building | [ADR-001: Repo Topology and Product Boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) | this is the contract that locks `8+1`, shopping-only scope, and the Suite boundary |
-| what the repo currently proves, and what it still does not prove | [What Is Public Today](#what-is-public-today) | this page already separates live public surfaces from claim-gated store support lines |
-| what support claims still need stronger evidence | [Testing and Verification Bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) | this is where `fixture-ready`, `repo-verified`, and `public-claim-ready` are separated |
-| how review bundles and submission boundaries should be read | [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) | this is the public reviewer/operator guide without routing internal scorecards into the front door |
-| how builders or coding agents should approach the repo | [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) | this is the shortest truthful side entrance for builder-facing surfaces |
 
 ## What Is Public Today
 
@@ -110,37 +119,6 @@ What this does **not** mean:
 - not a signed store-ready shelf
 - not signed store-ready artifact proof
 - not three equal canonical Shopflow repos
-
-## Best First Route
-
-1. Read the [product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html).
-2. Read the [verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html).
-3. Open the [latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
-4. If you need the reviewer/operator guide, read [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html).
-5. Only after that, if you are here as a builder, open [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) or [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html).
-
-## Need the product feel or the support desk?
-
-If the first route above answered **what Shopflow is**, use this service desk to
-answer **what it should feel like** or **where to go when you need help**:
-
-- [Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
-  - use this when you want the clearest product-facing explanation of Side Panel,
-    Popup, Content UI, and Options responsibilities
-- [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
-  - use this when you want the reviewer/operator desk for bundle truth, review
-    channels, and the exact meaning of the current shelf
-- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
-  - use this when you need the real-browser evidence path instead of broader
-    public-support claims
-- [Docs front door on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
-  - use this when you want the fuller atlas instead of only the public Pages
-    front row
-- [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
-  - use this when you found a public-surface gap or a misleading support claim
-- [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
-  - use this when you want the repo's truth rules and local contribution
-    expectations before opening a PR
 
 ## Builder Lane Is Real, But Secondary
 
