@@ -95,29 +95,38 @@ describe('Shopflow second-pass locale route helpers', () => {
     ).toBe('Finish capture on latest captured page');
   });
 
-  it('keeps the zh-CN suite route helpers bilingual but still operational', () => {
+  it('keeps the zh-CN suite route helpers localized while staying operational', () => {
     const zh = getShopflowLocaleCatalog('zh-CN');
 
+    expect(zh.common.capturedAtPrefix).toBe('捕获于');
+    expect(zh.common.openCurrentCapturePage).toBe('打开当前捕获页面');
+    expect(zh.sidePanel.openRoute).toBe('打开路线');
+    expect(zh.sidePanel.statusLabels.live).toBe('当前可运行');
+    expect(zh.model.capabilityActionLabels.run_action).toBe(
+      '打开支持的工作流'
+    );
     expect(
-      zh.suite.priorityRouteAria('Shopflow Suite', '打开 Side Panel family chooser')
-    ).toBe('Shopflow Suite 的优先路线：打开 Side Panel family chooser');
+      zh.suite.priorityRouteAria(
+        'Shopflow Suite',
+        '打开 Side Panel 店铺入口选择器'
+      )
+    ).toBe('Shopflow Suite 的优先路线：打开 Side Panel 店铺入口选择器');
     expect(
       zh.suite.providerRuntimeSeamRouteSummary('http://127.0.0.1:4317')
     ).toContain('http://127.0.0.1:4317');
+    expect(zh.suite.providerRuntimeSeamHeading).toBe('外部运行时接缝');
     expect(zh.suite.providerRuntimeSeamAcquisitionModes('start, capture')).toBe(
-      '当前 acquisition 模式：start, capture。'
+      '当前接入模式：start, capture。'
     );
     expect(
       zh.suite.providerRuntimeSeamProviderSummary('Gemini')
     ).toContain('Gemini 可以复用同一条只读接缝');
-    expect(zh.suite.providerRuntimeSeamStartLabel('Gemini')).toBe(
-      '开始 Gemini acquisition'
-    );
+    expect(zh.suite.providerRuntimeSeamStartLabel('Gemini')).toBe('开始 Gemini 接入');
     expect(zh.suite.providerRuntimeSeamCaptureLabel('Gemini')).toBe(
-      '采集 Gemini acquisition'
+      '采集 Gemini 接入'
     );
     expect(zh.suite.openRolloutRow('Shopflow for Amazon')).toBe(
-      '打开 Shopflow for Amazon 的 rollout 行'
+      '打开 Shopflow for Amazon 的推进行'
     );
     expect(zh.suite.openVerifiedScopeClause('Shopflow for Amazon')).toBe(
       '打开 Shopflow for Amazon 的已验证范围条款'

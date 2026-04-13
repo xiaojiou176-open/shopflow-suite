@@ -29,6 +29,7 @@ The truthful builder-facing surfaces that exist today are:
 - one repo-local runtime payload writer for supported current-scope apps
 - one repo-local read-only outcome bundle command that joins the integration surface, prefers generated runtime payload files when they exist, falls back to checked-in examples when they do not, and folds in generated release-artifact summaries
 - one repo-local read-only CLI prototype that wraps the same read-only surfaces for local consumption
+- one repo-local read-only stdio MCP transport over the same core repo-truth surfaces
 
 ### Example: Operator Decision Brief
 
@@ -78,7 +79,7 @@ It is **not**:
 
 - a public CLI commitment
 - a public API transport
-- a public MCP surface
+- a public HTTP MCP surface
 
 The same current-scope truth now also has a repo-local CLI-shaped wrapper:
 
@@ -123,8 +124,8 @@ official integration or marketplace-claim territory.
 These are plausible next surfaces, but they are **not current product
 capabilities**:
 
-- read-only MCP
 - read-only public API contract
+- public HTTP MCP transport
 - generated client or thin TypeScript SDK
 
 ## No-Go for the Current Stage

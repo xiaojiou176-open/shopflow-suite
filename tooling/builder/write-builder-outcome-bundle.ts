@@ -178,7 +178,23 @@ function readOptionalJson<T>(path: string): T | undefined {
     return undefined;
   }
 
-  return JSON.parse(readFileSync(path, 'utf8')) as T;
+  try {
+    return JSON.parse(readFileSync(path, 'utf8')) as T;
+  } catch (error) {
+    // Cache-governance and test helpers can remove temp artifacts between the
+    // existence check and the actual read. Treat ENOENT as "optional file
+    // missing" instead of turning that race into a hard failure.
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      (error as { code?: string }).code === 'ENOENT'
+    ) {
+      return undefined;
+    }
+
+    throw error;
+  }
 }
 
 function examplePathFor(

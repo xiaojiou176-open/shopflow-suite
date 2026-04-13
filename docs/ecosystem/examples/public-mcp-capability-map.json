@@ -66,7 +66,7 @@
       "sourceCommand": "pnpm mcp:stdio -> get_public_distribution_bundle",
       "sourceDocs": [
         "docs/ecosystem/mcp-quickstart.md",
-        "docs/ecosystem/public-distribution-bundle.ready.md"
+        "docs/ecosystem/public-distribution-bundle.md"
       ],
       "targetFit": [
         "codex",

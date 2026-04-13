@@ -188,7 +188,7 @@ describe('PopupLauncher', () => {
 
     expect(html).toContain('主路线');
     expect(html).toContain('次路线');
-    expect(html).toContain('打开 Side Panel');
+    expect(html).toContain('打开侧边面板');
     expect(html).toContain('查看当前支持状态');
     expect(html).toContain('Side Panel 分区');
     expect(html).toContain('界面语言');

@@ -112,6 +112,101 @@ function createLocalizedExtensionHref(
   return createLocaleRouteHref(`${baseHref}${hash ? `#${hash}` : ''}`, locale);
 }
 
+function localizeShellSourceText(
+  text: string | undefined,
+  locale: UiLocale = 'en'
+) {
+  if (!text || resolveUiLocale(locale) !== 'zh-CN') {
+    return text;
+  }
+
+  return text
+    .replace(/Safeway subscribe live receipt/g, 'Safeway 订阅实时证据')
+    .replace(/Safeway cancel live receipt/g, 'Safeway 取消实时证据')
+    .replace(/Fred Meyer verified-scope live receipt/g, 'Fred Meyer 已验证范围实时证据')
+    .replace(/QFC verified-scope live receipt/g, 'QFC 已验证范围实时证据')
+    .replace(/Temu warehouse filter live receipt/g, 'Temu 仓库筛选实时证据')
+    .replace(/live Safeway cart session/g, 'Safeway 购物车会话')
+    .replace(/live Safeway manage page/g, 'Safeway 管理页面')
+    .replace(/live Temu search page/g, 'Temu 搜索页面')
+    .replace(/Start first capture for ([^.]+)\./g, '先为$1开始首次采集。')
+    .replace(
+      /Reconfirm (.+?) is green before opening (?:a |an )?([^.]+)\./g,
+      '在打开$2之前，先重新确认$1仍然通过。'
+    )
+    .replace(
+      /^Currently verified on (.+?)\. Actions stay gated until live receipts exist\.$/,
+      '当前已验证范围：$1。相关动作在 live receipt 就绪前继续保持门禁。'
+    )
+    .replace(
+      /^Currently verified on (.+?)\. Public-ready still blocked on live receipt\.$/,
+      '当前已验证范围：$1。public-ready 仍被 live receipt 挡住。'
+    )
+    .replace(
+      /^Currently verified on (.+?)\.$/,
+      '当前已验证范围：$1。'
+    )
+    .replace(
+      'Public wording stays gated until live receipt review is complete.',
+      '公开说法在 live receipt 审核完成前继续保持门禁。'
+    )
+    .replace(
+      'Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.',
+      '审核包已完成；已审核的 live evidence 已包含被退回的 captures，剩余开放门禁是 unresolved live proof 的外部采集/审核。'
+    )
+    .replace(
+      'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.',
+      '继续保持 claim-gated。已审核的 live evidence 已包含 safeway-cancel-live-receipt 的 rejected captures，safeway-subscribe-live-receipt 仍需外部采集/审核。'
+    )
+    .replace(
+      'App-level live receipt blocker remains because ',
+      '应用级 live receipt 门禁仍然存在，原因是'
+    )
+    .replace(
+      /(\d+) packets? still need a first capture/g,
+      '$1 个证据包仍需首次采集'
+    )
+    .replace(
+      /(\d+) packets? are waiting for review\. Open the latest captured page before you inspect the review lane\./g,
+      '$1 个证据包正在等待审核。先打开最新捕获页面，再进入审核通道。'
+    )
+    .replace(
+      /No fresh page context exists yet\./g,
+      '当前还没有新的页面上下文。'
+    )
+    .replace(
+      'Reconfirm repo verification is green before opening the live Safeway cart session.',
+      '在打开 live Safeway cart session 之前，先重新确认 repo 验证仍然是绿色。'
+    )
+    .replace(
+      'Reconfirm repo verification is green before opening the live Safeway manage page.',
+      '在打开 live Safeway manage 页面之前，先重新确认 repo 验证仍然是绿色。'
+    )
+    .replace(
+      'Start first capture for Safeway subscribe live receipt.',
+      '为 Safeway subscribe live receipt 开始首次采集。'
+    )
+    .replace(/Next operator path:/g, '下一步操作路径：')
+    .replace(/packets still need/g, '个证据包仍需')
+    .replace(/subscribe/g, '订阅')
+    .replace(/\brepo verification\b/g, 'repo 验证')
+    .replace(/\brepo-verified\b/g, 'repo 已验证')
+    .replace(/\brepo\b/g, '仓内')
+    .replace(/public wording/g, '公开说法')
+    .replace(/live proof/g, '实时证明')
+    .replace(/live receipt/g, '实时证据')
+    .replace(/Popup/g, '弹出窗')
+    .replace(/Side Panel/g, '侧边面板')
+    .replace(/review lane/g, '审核通道')
+    .replace(/raw packet ledger/g, '原始证据包账本')
+    .replace(/audit/g, '审计')
+    .replace(/\blive\b/g, '实时')
+    .replace(
+      ' Use the current supported workflow page as the execution surface for the next operator move.',
+      ' 把当前支持的工作流页面当作下一步操作的执行现场。'
+    );
+}
+
 function createIdleModel(
   app: RuntimeAppDefinition,
   evidenceStatus?: SidePanelHomeViewModel['evidenceStatus'],
@@ -171,8 +266,10 @@ function createIdleModel(
     recentActivities: [],
     readiness: {
       label: dynamicCopy.waitingForSupportedPage,
-      summary: app.summary,
-      claimBoundary: app.verifiedScopeCopy,
+      summary: localizeShellSourceText(app.summary, locale) ?? app.summary,
+      claimBoundary:
+        localizeShellSourceText(app.verifiedScopeCopy, locale) ??
+        app.verifiedScopeCopy,
       operatorNextStep:
         evidenceStatus?.blockerSummary?.nextStep ??
         dynamicCopy.routeIntoSupportedPageFirst,
@@ -518,8 +615,13 @@ function createEvidenceBlockerSummary(
   if (summary.needsCaptureCount > 0) {
     return {
       label: nextOperatorPathLabel,
-      summary: summary.blockerSummary,
-      nextStep: getLiveReceiptNextStep(nextStatus, nextRequirement),
+      summary:
+        localizeShellSourceText(summary.blockerSummary, locale) ??
+        summary.blockerSummary,
+      nextStep: localizeShellSourceText(
+        getLiveReceiptNextStep(nextStatus, nextRequirement),
+        locale
+      ),
       ...route,
     };
   }
@@ -527,8 +629,13 @@ function createEvidenceBlockerSummary(
   if (summary.captureInProgressCount > 0) {
     return {
       label: nextOperatorPathLabel,
-      summary: summary.blockerSummary,
-      nextStep: getLiveReceiptNextStep(nextStatus, nextRequirement),
+      summary:
+        localizeShellSourceText(summary.blockerSummary, locale) ??
+        summary.blockerSummary,
+      nextStep: localizeShellSourceText(
+        getLiveReceiptNextStep(nextStatus, nextRequirement),
+        locale
+      ),
       ...route,
     };
   }
@@ -536,16 +643,26 @@ function createEvidenceBlockerSummary(
   if (summary.reviewPendingCount > 0) {
     return {
       label: nextOperatorPathLabel,
-      summary: summary.blockerSummary,
-      nextStep: getLiveReceiptNextStep(nextStatus, nextRequirement),
+      summary:
+        localizeShellSourceText(summary.blockerSummary, locale) ??
+        summary.blockerSummary,
+      nextStep: localizeShellSourceText(
+        getLiveReceiptNextStep(nextStatus, nextRequirement),
+        locale
+      ),
       ...route,
     };
   }
 
   return {
     label: nextOperatorPathLabel,
-    summary: summary.blockerSummary || dynamicCopy.blockerSummaryReviewedSummary(queueSummary),
-    nextStep: getLiveReceiptNextStep(nextStatus, nextRequirement),
+    summary:
+      localizeShellSourceText(summary.blockerSummary, locale) ||
+      dynamicCopy.blockerSummaryReviewedSummary(queueSummary),
+    nextStep: localizeShellSourceText(
+      getLiveReceiptNextStep(nextStatus, nextRequirement),
+      locale
+    ),
     ...route,
   };
 }
@@ -782,14 +899,20 @@ function createEvidenceStatus(
           },
           locale
         ),
-        operatorHint: getLiveReceiptOperatorHint(requirement, record),
+        operatorHint: localizeShellSourceText(
+          getLiveReceiptOperatorHint(requirement, record),
+          locale
+        ),
         packetSummary: getLiveReceiptPacketSummary(requirement),
-        nextStep: getLiveReceiptNextStep(status, requirement),
+        nextStep: localizeShellSourceText(
+          getLiveReceiptNextStep(status, requirement),
+          locale
+        ),
         screenshotLabel: record?.screenshotLabel,
         updatedAtLabel: record?.updatedAt
           ? formatLocaleDateTime(record.updatedAt, locale)
           : undefined,
-        reviewSummary: record?.reviewSummary,
+        reviewSummary: localizeShellSourceText(record?.reviewSummary, locale),
         reviewLabel:
           record?.status === 'reviewed' && record.reviewedAt
             ? `${dynamicCopy.reviewedEvidence} ${formatLocaleDateTime(record.reviewedAt, locale)}${record.reviewedBy ? ` · ${record.reviewedBy}` : ''}`
@@ -867,14 +990,19 @@ export function RuntimeSidePanelHomePage({
               locale
             ),
             {
-              appSummary: app.summary,
-              verifiedScopeCopy: app.verifiedScopeCopy,
+              appSummary:
+                localizeShellSourceText(app.summary, locale) ?? app.summary,
+              verifiedScopeCopy:
+                localizeShellSourceText(app.verifiedScopeCopy, locale) ??
+                app.verifiedScopeCopy,
               locale,
               latestOutput: latestOutput
                 ? {
                     kind: latestOutput.kind,
                     headline: latestOutput.headline,
-                    summary: latestOutput.summary,
+                    summary:
+                      localizeShellSourceText(latestOutput.summary, locale) ??
+                      latestOutput.summary,
                     previewLines: latestOutput.previewLines,
                     summaryDescriptor: latestOutput.summaryDescriptor,
                     detailEntries: latestOutput.detailEntries,
@@ -945,17 +1073,22 @@ export function RuntimePopupLauncher({ app }: { app: RuntimeAppDefinition }) {
           locale
         ),
         {
-          appSummary: app.summary,
-          verifiedScopeCopy: app.verifiedScopeCopy,
+          appSummary:
+            localizeShellSourceText(app.summary, locale) ?? app.summary,
+          verifiedScopeCopy:
+            localizeShellSourceText(app.verifiedScopeCopy, locale) ??
+            app.verifiedScopeCopy,
           locale,
-          latestOutput: latestOutput
-            ? {
-                kind: latestOutput.kind,
-                headline: latestOutput.headline,
-                summary: latestOutput.summary,
-                previewLines: latestOutput.previewLines,
-                summaryDescriptor: latestOutput.summaryDescriptor,
-                detailEntries: latestOutput.detailEntries,
+              latestOutput: latestOutput
+                ? {
+                    kind: latestOutput.kind,
+                    headline: latestOutput.headline,
+                    summary:
+                      localizeShellSourceText(latestOutput.summary, locale) ??
+                      latestOutput.summary,
+                    previewLines: latestOutput.previewLines,
+                    summaryDescriptor: latestOutput.summaryDescriptor,
+                    detailEntries: latestOutput.detailEntries,
                 capturedAt: latestOutput.capturedAt,
                 pageUrl: latestOutput.pageUrl,
               }

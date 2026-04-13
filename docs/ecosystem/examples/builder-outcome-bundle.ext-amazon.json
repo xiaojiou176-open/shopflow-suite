@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-13T01:39:11.665Z",
+  "generatedAt": "2026-04-13T07:34:57.487Z",
   "appId": "ext-amazon",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -189,7 +189,7 @@
           },
           {
             "kind": "docs",
-            "value": "docs/ecosystem/public-distribution-bundle.ready.md"
+            "value": "docs/ecosystem/public-distribution-bundle.md"
           },
           {
             "kind": "docs",

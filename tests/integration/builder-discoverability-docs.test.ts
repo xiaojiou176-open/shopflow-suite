@@ -79,13 +79,13 @@ describe('builder discoverability docs coherence', () => {
       'pnpm cli:read-only -- agent-target-packet --target openhands'
     );
     expect(docsReadme).not.toContain(
-      './ecosystem/public-mcp-capability-map.ready.md'
+      './ecosystem/public-mcp-capability-map.md'
     );
     expect(docsReadme).not.toContain(
-      './ecosystem/public-skills-catalog.ready.md'
+      './ecosystem/public-skills-catalog.md'
     );
     expect(docsReadme).not.toContain(
-      './ecosystem/plugin-marketplace-metadata.ready.md'
+      './ecosystem/plugin-marketplace-metadata.md'
     );
     expect(docsReadme).not.toContain('./ecosystem/ready-to-sync-artifacts.md');
     expect(docsReadme).not.toContain(
@@ -387,28 +387,28 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/integration-recipes.md'
     );
     const publicDistribution = readRepoFile(
-      'docs/ecosystem/public-distribution-bundle.ready.md'
+      'docs/ecosystem/public-distribution-bundle.md'
     );
     const publicMcp = readRepoFile(
-      'docs/ecosystem/public-mcp-capability-map.ready.md'
+      'docs/ecosystem/public-mcp-capability-map.md'
     );
     const publicSkills = readRepoFile(
-      'docs/ecosystem/public-skills-catalog.ready.md'
+      'docs/ecosystem/public-skills-catalog.md'
     );
     const pluginMetadata = readRepoFile(
-      'docs/ecosystem/plugin-marketplace-metadata.ready.md'
+      'docs/ecosystem/plugin-marketplace-metadata.md'
     );
 
-    expect(docsReadme).not.toContain('public-distribution-bundle.ready.md');
-    expect(docsReadme).not.toContain('public-mcp-capability-map.ready.md');
-    expect(docsReadme).not.toContain('public-skills-catalog.ready.md');
-    expect(docsReadme).not.toContain('plugin-marketplace-metadata.ready.md');
+    expect(docsReadme).not.toContain('public-distribution-bundle.md');
+    expect(docsReadme).not.toContain('public-mcp-capability-map.md');
+    expect(docsReadme).not.toContain('public-skills-catalog.md');
+    expect(docsReadme).not.toContain('plugin-marketplace-metadata.md');
     expect(builderStartHere).toContain(
       'pnpm cli:read-only -- public-distribution-bundle'
     );
     expect(builderStartHere).not.toContain('./public-copy.ready.md');
     expect(builderStartHere).not.toContain(
-      './public-distribution-bundle.ready.md'
+      './public-distribution-bundle.md'
     );
     expect(builderStartHere).toContain(
       'pnpm cli:read-only -- agent-target-packet --target'
@@ -444,7 +444,7 @@ describe('builder discoverability docs coherence', () => {
     expect(publicDistribution).toContain(
       'plugin-level public distribution bundle'
     );
-    expect(publicDistribution).toContain('official-listing claim');
+    expect(publicDistribution).toContain('official listing still unconfirmed');
     expect(publicMcp).toContain(
       'pnpm cli:read-only -- public-mcp-capability-map'
     );
@@ -664,32 +664,26 @@ describe('builder discoverability docs coherence', () => {
     expect(positioning).toContain('Agent Quickstarts');
   });
 
-  it('keeps ready pages shaped like handoff packets instead of prose-only explainers', () => {
+  it('keeps public distribution pages reader-facing instead of sync-packet shaped', () => {
     const publicMcp = readRepoFile(
-      'docs/ecosystem/public-mcp-capability-map.ready.md'
+      'docs/ecosystem/public-mcp-capability-map.md'
     );
     const publicSkills = readRepoFile(
-      'docs/ecosystem/public-skills-catalog.ready.md'
+      'docs/ecosystem/public-skills-catalog.md'
     );
     const pluginMetadata = readRepoFile(
-      'docs/ecosystem/plugin-marketplace-metadata.ready.md'
+      'docs/ecosystem/plugin-marketplace-metadata.md'
     );
 
-    expect(publicMcp).toContain('Handoff Packet');
-    expect(publicMcp).toContain('Best JSON example');
-    expect(publicMcp).toContain(
-      'Shopflow now ships a repo-local read-only stdio MCP today'
-    );
-    expect(publicSkills).toContain('Handoff Packet');
-    expect(publicSkills).toContain('Best JSON example');
-    expect(publicSkills).toContain(
-      'Shopflow ships a repo-owned skills-facing starter-bundle companion today'
-    );
-    expect(pluginMetadata).toContain('Handoff Packet');
-    expect(pluginMetadata).toContain('Best JSON example');
-    expect(pluginMetadata).toContain(
-      'Shopflow ships a repo-owned plugin-level public distribution bundle today'
-    );
+    expect(publicMcp).toContain('Public Inputs To Pair With');
+    expect(publicMcp).not.toContain('Handoff Packet');
+    expect(publicMcp).toContain('pnpm mcp:stdio');
+    expect(publicSkills).toContain('Public Inputs To Pair With');
+    expect(publicSkills).not.toContain('Handoff Packet');
+    expect(publicSkills).toContain('starter bundle');
+    expect(pluginMetadata).toContain('Public Inputs To Pair With');
+    expect(pluginMetadata).not.toContain('Handoff Packet');
+    expect(pluginMetadata).toContain('official-listing');
     expect(pluginMetadata).toContain(
       './examples/plugin-marketplace-metadata.codex.json'
     );

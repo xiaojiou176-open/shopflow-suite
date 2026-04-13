@@ -112,6 +112,33 @@ type SuiteRouteSurfaceKind =
   | 'captureSourcePage'
   | 'defaultStoreRoute';
 
+function localizeSuiteShellText(
+  text: string,
+  locale: ShopflowLocale = 'en'
+) {
+  if (locale !== 'zh-CN') {
+    return text;
+  }
+
+  return text
+    .replace(
+      'Reconfirm repo verification is green before opening the live Safeway cart session.',
+      '在打开 live Safeway cart session 之前，先重新确认 repo 验证仍然是绿色。'
+    )
+    .replace(
+      'Reconfirm repo verification is green before opening the live Safeway manage page.',
+      '在打开 live Safeway manage 页面之前，先重新确认 repo 验证仍然是绿色。'
+    )
+    .replace(/No fresh page context exists yet\./g, '当前还没有新的页面上下文。')
+    .replace(/public wording/g, '公开说法')
+    .replace(/live proof/g, '实时证明')
+    .replace(/live receipt/g, '实时证据')
+    .replace(/\brepo verification\b/g, 'repo 验证')
+    .replace(/\brepo-verified\b/g, 'repo 已验证')
+    .replace(/\brepo\b/g, '仓内')
+    .replace(/\blive\b/g, '实时');
+}
+
 export function createSuiteDetailModel(
   item: SuiteCatalogItem,
   source: SuiteDetailSource,
@@ -235,17 +262,20 @@ export function createSuiteDetailModel(
             ),
       routeLabel: routeTarget.label,
       routeHref: routeTarget.href,
-      routeSummary: routeTarget.summary,
+      routeSummary: localizeSuiteShellText(routeTarget.summary, locale),
       routeOrigin: routeTarget.origin,
       nextStep:
         requirements.length > 0 && highestPriorityRequirement
-          ? getLiveReceiptNextStep(
-              highestPriorityRecord?.status ?? 'missing-live-receipt',
-              highestPriorityRequirement
+          ? localizeSuiteShellText(
+              getLiveReceiptNextStep(
+                highestPriorityRecord?.status ?? 'missing-live-receipt',
+                highestPriorityRequirement
+              ),
+              locale
             )
           : source.latestOutput || source.detection
             ? copy.nextStepInspectStoreApp
-            : item.defaultRouteSummary,
+            : localizeSuiteShellText(item.defaultRouteSummary, locale),
     }
   );
   const evidenceSections = [
@@ -277,7 +307,7 @@ export function createSuiteDetailModel(
       items: section.items.map(({ title, statusLabel, note, actionLabel, href }) => ({
         title,
         statusLabel,
-        note,
+        note: localizeSuiteShellText(note, locale),
         actionLabel,
         href,
       })),
@@ -304,7 +334,7 @@ export function createSuiteDetailModel(
     latestOutputHref: source.latestOutput?.pageUrl,
     routeLabel: routeTarget.label,
     routeHref: routeTarget.href,
-    routeSummary: routeTarget.summary,
+    routeSummary: localizeSuiteShellText(routeTarget.summary, locale),
     routeOrigin: routeTarget.origin,
     operatorDecisionBrief,
     attentionState,
@@ -329,7 +359,7 @@ export function createSuiteDetailModel(
             locale
           ),
           statusLabel: priorityQueueItem.statusLabel,
-          note: priorityQueueItem.note,
+          note: localizeSuiteShellText(priorityQueueItem.note, locale),
           actionLabel: formatPriorityQueueActionLabel(
             priorityQueueItem.operatorPath,
             priorityQueueItem.routeSurfaceKind,
@@ -343,7 +373,7 @@ export function createSuiteDetailModel(
       ({ title, statusLabel, note, actionLabel, href }) => ({
         title,
         statusLabel,
-        note,
+        note: localizeSuiteShellText(note, locale),
         actionLabel,
         href,
       })
@@ -351,13 +381,16 @@ export function createSuiteDetailModel(
     evidenceSections,
     nextStep:
       requirements.length > 0 && highestPriorityRequirement
-        ? getLiveReceiptNextStep(
-            highestPriorityRecord?.status ?? 'missing-live-receipt',
-            highestPriorityRequirement
+        ? localizeSuiteShellText(
+            getLiveReceiptNextStep(
+              highestPriorityRecord?.status ?? 'missing-live-receipt',
+              highestPriorityRequirement
+            ),
+            locale
           )
         : source.latestOutput || source.detection
           ? copy.nextStepInspectStoreApp
-          : item.defaultRouteSummary,
+          : localizeSuiteShellText(item.defaultRouteSummary, locale),
   };
 }
 

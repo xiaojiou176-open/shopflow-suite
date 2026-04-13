@@ -65,13 +65,13 @@ describe('builder app snapshot', () => {
         rejectedCount: 1,
         expiredCount: 0,
         blockerSummary:
-          'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.',
+          'Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.',
         nextCaptureId: 'safeway-subscribe-live-receipt',
         nextStatus: 'missing-live-receipt',
         nextOperatorPath: 'capture',
         nextRequirementTitle: 'Safeway subscribe live receipt',
         nextStep:
-          'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.',
+          'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.',
         nextSourcePageUrl: 'https://www.safeway.com/shop/cart',
         nextSourcePageLabel: 'Open current evidence route',
         nextSourceRouteLabel: 'Open current evidence route',
@@ -151,13 +151,13 @@ describe('builder app snapshot', () => {
         rejectedCount: 1,
         expiredCount: 0,
         blockerSummary:
-          'Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.',
+          'Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.',
         nextCaptureId: 'safeway-subscribe-live-receipt',
         nextStatus: 'missing-live-receipt',
         nextOperatorPath: 'capture',
         nextRequirementTitle: 'Safeway subscribe live receipt',
         nextStep:
-          'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move.',
+          'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.',
         nextSourcePageUrl: 'https://www.safeway.com/shop/cart',
         nextSourcePageLabel: 'Open current evidence route',
         nextSourceRouteLabel: 'Open current evidence route',

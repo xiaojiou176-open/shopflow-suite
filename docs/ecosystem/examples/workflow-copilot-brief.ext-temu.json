@@ -1,7 +1,7 @@
 {
   "tone": "claim-gated",
   "title": "Workflow copilot",
-  "summary": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage.",
+  "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
   "bullets": [
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open current evidence route",
-    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt, so repo-side recapture or evidence triage is still required before submission decisioning can move."
+    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change."
   }
 }
