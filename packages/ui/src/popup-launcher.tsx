@@ -99,24 +99,25 @@ export function PopupLauncher({
     Boolean(latestOutputPreview?.href) &&
     latestSourceHref !== latestOutputPreview?.href;
   const showProofHint = Boolean(latestOutputPreview) || Boolean(latestSourceHref);
-  const showActionDrawer =
-    Boolean(featuredActionItem) ||
-    showProofHint ||
-    extraStructuredActionItems.length > 0 ||
-    labelOnlyActionItems.length > 0 ||
-    supportingDetails.length > 0;
   const actionDrawerPreview =
+    featuredActionItem?.label ??
     extraStructuredActionItems[0]?.label ??
     labelOnlyActionItems[0] ??
     supportingDetails[0] ??
     resolvedActionEmptySummary;
   const actionDrawerCount =
     extraStructuredActionItems.length +
+    (featuredActionItem ? 1 : 0) +
     labelOnlyActionItems.length +
     (supportingDetails.length > 0 ? 1 : 0);
   const actionDrawerHeading = featuredActionItem
     ? copy.popup.supportingRoutesHeading
     : resolvedActionHeading;
+  const showSupportingDrawer =
+    Boolean(featuredActionItem) ||
+    extraStructuredActionItems.length > 0 ||
+    labelOnlyActionItems.length > 0 ||
+    supportingDetails.length > 0;
 
   return (
     <main
@@ -135,13 +136,19 @@ export function PopupLauncher({
               <p className="shopflow-chip shopflow-chip--accent mt-3">
                 {copy.popup.quickRouter}
               </p>
-              <p className={`mt-3 text-sm ${surfaceTokens.body}`}>{summary}</p>
+              <p
+                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden`}
+              >
+                {summary}
+              </p>
               <div className="shopflow-soft-panel mt-4 rounded-[1.4rem] px-3 py-3">
-                <p className="text-xs text-[color:var(--shopflow-muted)]">
-                  {copy.popup.quickRouterIntro}
-                </p>
+                {!claimBoundaryNote ? (
+                  <p className="text-[11px] leading-5 text-[color:var(--shopflow-muted)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
+                    {copy.popup.quickRouterIntro}
+                  </p>
+                ) : null}
                 {claimBoundaryNote ? (
-                  <p className="mt-2 border-t border-[rgba(157,109,47,0.16)] pt-2 text-xs text-[color:var(--shopflow-gold)]">
+                  <p className="text-[11px] leading-5 text-[color:var(--shopflow-gold)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
                     {claimBoundaryNote}
                   </p>
                 ) : null}
@@ -331,39 +338,10 @@ export function PopupLauncher({
               </section>
             ) : null}
 
-            {featuredActionItem ? (
-              <section className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                  {resolvedActionHeading}
-                </p>
-                {featuredActionItem.href ? (
-                  <a
-                    className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
-                    href={featuredActionItem.href}
-                    target={featuredActionItem.external ? '_blank' : undefined}
-                    rel={featuredActionItem.external ? 'noreferrer' : undefined}
-                  >
-                    {featuredActionItem.label}
-                  </a>
-                ) : (
-                  <p className="mt-3 text-sm font-medium text-[#1f1c17]">
-                    {featuredActionItem.label}
-                  </p>
-                )}
-                {featuredActionItem.summary ? (
-                  <p className="mt-2 text-xs text-[#6c665d]">
-                    {featuredActionItem.summary}
-                  </p>
-                ) : null}
-              </section>
-            ) : null}
           </div>
         </Card>
 
-        {showActionDrawer &&
-        (extraStructuredActionItems.length > 0 ||
-          labelOnlyActionItems.length > 0 ||
-          supportingDetails.length > 0) ? (
+        {showSupportingDrawer ? (
           <details className="group">
             <summary className="shopflow-soft-panel flex items-center justify-between rounded-[1.5rem] px-4 py-3 text-left">
               <div>
@@ -379,6 +357,33 @@ export function PopupLauncher({
               </span>
             </summary>
             <div className="mt-3 space-y-3">
+              {featuredActionItem ? (
+                <div className="shopflow-soft-panel--tint rounded-[1.5rem] px-4 py-4">
+                  <p className="shopflow-kicker text-[color:var(--shopflow-accent)]">
+                    {resolvedActionHeading}
+                  </p>
+                  {featuredActionItem.href ? (
+                    <a
+                      className="mt-3 inline-flex rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
+                      href={featuredActionItem.href}
+                      target={featuredActionItem.external ? '_blank' : undefined}
+                      rel={featuredActionItem.external ? 'noreferrer' : undefined}
+                    >
+                      {featuredActionItem.label}
+                    </a>
+                  ) : (
+                    <p className="mt-3 text-sm font-medium text-[#1f1c17]">
+                      {featuredActionItem.label}
+                    </p>
+                  )}
+                  {featuredActionItem.summary ? (
+                    <p className="mt-2 text-xs text-[#4d645d]">
+                      {featuredActionItem.summary}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
+
               {extraStructuredActionItems.length > 0
                 ? extraStructuredActionItems.map((item) => (
                   <div

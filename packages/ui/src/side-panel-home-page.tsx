@@ -216,6 +216,18 @@ export function SidePanelHomePage({
 
                   <div className="mt-4 space-y-4">
                     <div className="rounded-[1.35rem] border border-[rgba(31,107,87,0.16)] bg-[rgba(237,246,242,0.84)] px-4 py-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {model.readiness.claimBoundary ? (
+                          <span className="shopflow-chip shopflow-chip--accent">
+                            {model.readiness.claimBoundary}
+                          </span>
+                        ) : null}
+                        {primaryRoute?.originLabel ? (
+                          <span className="shopflow-chip">
+                            {primaryRoute.originLabel}
+                          </span>
+                        ) : null}
+                      </div>
                       <p className="text-sm font-semibold text-[#1f1c17]">
                         {operatorRoute?.label ??
                           copy.sidePanel.noRunnableCapability}
@@ -236,21 +248,7 @@ export function SidePanelHomePage({
                       ) : null}
                     </div>
 
-                    <div className="grid gap-3 lg:grid-cols-[0.9fr_1.1fr]">
-                      <div className="rounded-[1.3rem] border border-[rgba(157,109,47,0.16)] bg-[rgba(255,247,232,0.9)] px-3 py-3 text-amber-900">
-                        <p className="shopflow-kicker text-[color:var(--shopflow-gold)]">
-                          {copy.sidePanel.claimBoundary}
-                        </p>
-                        <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                          {model.readiness.claimBoundary ??
-                            copy.sidePanel.operatorNextStep}
-                        </p>
-                        <p className="mt-2 text-xs text-amber-900">
-                          {model.readiness.operatorNextStep ??
-                            copy.sidePanel.noRunnableCapabilityTail}
-                        </p>
-                      </div>
-
+                    <div>
                       <section
                         id="latest-output-preview"
                         className="rounded-[1.3rem] border border-[color:var(--shopflow-line)] bg-white/88 px-3 py-3"
@@ -272,24 +270,17 @@ export function SidePanelHomePage({
                             {recentProof?.summary ??
                               copy.sidePanel.noRunnableCapabilityTail}
                           </p>
-                          {recentProof?.detailLines.length ? (
-                            <ul className="mt-2 space-y-1 text-xs text-[#514a42]">
-                              {recentProof.detailLines.map((line) => (
-                                <li
-                                  key={line}
-                                  className="rounded-[1rem] border border-[color:var(--shopflow-line)] bg-[rgba(246,241,232,0.76)] px-3 py-2"
-                                >
-                                  {line}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : null}
                           <div className="mt-3 flex flex-wrap items-center gap-2">
                             {recentProof?.timestampLabel ? (
                               <span className="shopflow-chip">
                                 {recentProof.timestampLabel}
                               </span>
                             ) : null}
+                            {recentProof?.detailLines.slice(0, 2).map((line) => (
+                              <span key={line} className="shopflow-chip">
+                                {line}
+                              </span>
+                            ))}
                             {recentProof?.href ? (
                               <a
                                 className="inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
