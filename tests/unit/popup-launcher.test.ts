@@ -58,12 +58,12 @@ describe('PopupLauncher', () => {
       html.indexOf('Secondary route')
     );
     expect(html.indexOf('Secondary route')).toBeLessThan(
+      html.indexOf('What Suite can route right now')
+    );
+    expect(html.indexOf('What Suite can route right now')).toBeLessThan(
       html.indexOf('Latest captured product')
     );
     expect(html).toContain('id="popup-proof-hint"');
-    expect(html.indexOf('Latest captured product')).toBeLessThan(
-      html.indexOf('What Suite can route right now')
-    );
     expect(html).toContain('What Suite can route right now');
     expect(html).toContain('Route into the right store shell');
     expect(html).toContain(

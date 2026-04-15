@@ -147,12 +147,12 @@ export function SidePanelHomePage({
               {copy.sidePanel.readinessSummary}
             </p>
             <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-[1.2fr_0.85fr]">
-              <section className="rounded-[2rem] bg-[#1f1c17] px-5 py-5 text-white shadow-[0_16px_34px_rgba(31,28,23,0.22)]">
+              <section className="shopflow-hero-panel rounded-[2rem] px-5 py-5 text-white">
                 <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#e9e2d8]">
+                  <span className="shopflow-chip border-white/10 bg-white/10 text-[#e9e2d8]">
                     {model.readiness.label}
                   </span>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] text-[#e9e2d8]">
+                  <span className="shopflow-chip border-white/10 bg-white/10 text-[#e9e2d8]">
                     {model.site.siteName} · {model.site.pageKindLabel}
                   </span>
                 </div>
@@ -204,123 +204,139 @@ export function SidePanelHomePage({
               </section>
 
               <div className="space-y-3">
-                <section className="rounded-[1.75rem] border border-amber-200 bg-amber-50 px-4 py-4 text-xs text-amber-900">
-                  <p className="font-semibold uppercase tracking-[0.18em] text-amber-700">
-                    {copy.sidePanel.claimBoundary}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                    {model.readiness.claimBoundary ??
-                      copy.sidePanel.operatorNextStep}
-                  </p>
-                  <p className="mt-2 text-xs text-amber-900">
-                    {model.readiness.operatorNextStep ??
-                      copy.sidePanel.noRunnableCapabilityTail}
-                  </p>
-                </section>
+                <section className="shopflow-soft-panel rounded-[1.85rem] px-4 py-4 text-xs text-[#6c665d]">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="shopflow-kicker text-[color:var(--shopflow-muted)]">
+                      {copy.sidePanel.operatorNextStep}
+                    </p>
+                    <span className="shopflow-chip shopflow-chip--accent">
+                      {copy.sidePanel.claimBoundary}
+                    </span>
+                  </div>
 
-                <section className="rounded-[1.75rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4 text-xs text-[#6c665d]">
-                  <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {copy.sidePanel.operatorNextStep}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                    {operatorRoute?.label ??
-                      copy.sidePanel.noRunnableCapability}
-                  </p>
-                  <p className="mt-2 text-xs text-[#6c665d]">
-                    {operatorRoute?.summary ?? model.readiness.operatorNextStep}
-                  </p>
-                  {operatorRoute ? (
-                    <a
-                      className="mt-3 inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
-                      href={operatorRoute.href}
-                      target={operatorRoute.external ? '_blank' : undefined}
-                      rel={operatorRoute.external ? 'noreferrer' : undefined}
-                    >
-                      {operatorRoute.label}
-                    </a>
-                  ) : null}
-                </section>
-
-                {followUpRoute && followUpRoute.href !== operatorRoute?.href ? (
-                  <section className="rounded-[1.35rem] border border-[rgba(58,49,38,0.10)] bg-[#f8f3eb] px-4 py-3 text-xs text-[#6c665d]">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
-                          {copy.sidePanel.nextRoute}
-                        </p>
-                        <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                          {followUpRoute.label}
-                        </p>
-                        <p className="mt-1 text-xs text-[#6c665d]">
-                          {followUpRoute.summary}
-                        </p>
+                  <div className="mt-4 space-y-4">
+                    <div className="rounded-[1.35rem] border border-[rgba(31,107,87,0.16)] bg-[rgba(237,246,242,0.84)] px-4 py-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {model.readiness.claimBoundary ? (
+                          <span className="shopflow-chip shopflow-chip--accent">
+                            {model.readiness.claimBoundary}
+                          </span>
+                        ) : null}
+                        {primaryRoute?.originLabel ? (
+                          <span className="shopflow-chip">
+                            {primaryRoute.originLabel}
+                          </span>
+                        ) : null}
                       </div>
-                      <a
-                        className="inline-flex shrink-0 rounded-full border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-xs font-medium text-[#514a42]"
-                        aria-label={copy.sidePanel.nextRouteAria(
-                          followUpRoute.label
-                        )}
-                        href={followUpRoute.href}
-                        target={followUpRoute.external ? '_blank' : undefined}
-                        rel={followUpRoute.external ? 'noreferrer' : undefined}
-                      >
-                        {copy.sidePanel.openRoute}
-                      </a>
+                      <p className="text-sm font-semibold text-[#1f1c17]">
+                        {operatorRoute?.label ??
+                          copy.sidePanel.noRunnableCapability}
+                      </p>
+                      <p className="mt-2 text-xs text-[#4d645d]">
+                        {operatorRoute?.summary ??
+                          model.readiness.operatorNextStep}
+                      </p>
+                      {operatorRoute ? (
+                        <a
+                          className="mt-3 inline-flex rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
+                          href={operatorRoute.href}
+                          target={operatorRoute.external ? '_blank' : undefined}
+                          rel={operatorRoute.external ? 'noreferrer' : undefined}
+                        >
+                          {operatorRoute.label}
+                        </a>
+                      ) : null}
                     </div>
-                    {followUpRoute.originLabel ? (
-                      <p className="mt-2 text-[11px] text-stone-500">
-                        {followUpRoute.originLabel}
-                      </p>
-                    ) : null}
-                  </section>
-                ) : null}
 
-                <section
-                  id="latest-output-preview"
-                  className="rounded-[1.75rem] border border-[rgba(58,49,38,0.10)] bg-white px-4 py-4 text-xs text-[#6c665d]"
-                >
-                  <div id="recent-proof-block">
-                    <p className="font-semibold uppercase tracking-[0.18em] text-stone-500">
-                      {recentProof?.heading ??
-                        copy.sidePanel.recentActivityHeading}
-                    </p>
-                    <p className="mt-1 text-[11px] text-stone-500">
-                      {recentProof?.originLabel ??
-                        copy.common.routeOriginLabels.merchantSource}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-[#1f1c17]">
-                      {recentProof?.title ?? copy.sidePanel.noVerifiedActivity}
-                    </p>
-                    <p className="mt-2 text-xs text-[#6c665d]">
-                      {recentProof?.summary ??
-                        copy.sidePanel.noRunnableCapabilityTail}
-                    </p>
-                    {recentProof?.detailLines.length ? (
-                      <ul className="mt-2 space-y-1 text-xs text-[#514a42]">
-                        {recentProof.detailLines.map((line) => (
-                          <li
-                            key={line}
-                            className="rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2"
-                          >
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                    {recentProof?.timestampLabel ? (
-                      <p className="mt-2 text-xs text-stone-500">
-                        {recentProof.timestampLabel}
-                      </p>
-                    ) : null}
-                    {recentProof?.href ? (
-                      <a
-                        className="mt-2 inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
-                        href={recentProof.href}
-                        target={recentProof.external ? '_blank' : undefined}
-                        rel={recentProof.external ? 'noreferrer' : undefined}
+                    <div>
+                      <section
+                        id="latest-output-preview"
+                        className="rounded-[1.3rem] border border-[color:var(--shopflow-line)] bg-white/88 px-3 py-3"
                       >
-                        {recentProof.hrefLabel}
-                      </a>
+                        <div id="recent-proof-block">
+                          <p className="shopflow-kicker text-[color:var(--shopflow-muted)]">
+                            {recentProof?.heading ??
+                              copy.sidePanel.recentActivityHeading}
+                          </p>
+                          <p className="mt-1 text-[11px] text-stone-500">
+                            {recentProof?.originLabel ??
+                              copy.common.routeOriginLabels.merchantSource}
+                          </p>
+                          <p className="mt-2 text-sm font-medium text-[#1f1c17]">
+                            {recentProof?.title ??
+                              copy.sidePanel.noVerifiedActivity}
+                          </p>
+                          <p className="mt-2 text-xs text-[#6c665d]">
+                            {recentProof?.summary ??
+                              copy.sidePanel.noRunnableCapabilityTail}
+                          </p>
+                          <div className="mt-3 flex flex-wrap items-center gap-2">
+                            {recentProof?.timestampLabel ? (
+                              <span className="shopflow-chip">
+                                {recentProof.timestampLabel}
+                              </span>
+                            ) : null}
+                            {recentProof?.detailLines.slice(0, 2).map((line) => (
+                              <span key={line} className="shopflow-chip">
+                                {line}
+                              </span>
+                            ))}
+                            {recentProof?.href ? (
+                              <a
+                                className="inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
+                                href={recentProof.href}
+                                target={
+                                  recentProof.external ? '_blank' : undefined
+                                }
+                                rel={
+                                  recentProof.external ? 'noreferrer' : undefined
+                                }
+                              >
+                                {recentProof.hrefLabel}
+                              </a>
+                            ) : null}
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+
+                    {followUpRoute &&
+                    followUpRoute.href !== operatorRoute?.href ? (
+                      <section className="rounded-[1.3rem] border border-[color:var(--shopflow-line)] bg-[var(--shopflow-surface-soft)] px-3 py-3 text-xs text-[#6c665d]">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="shopflow-kicker text-[color:var(--shopflow-muted)]">
+                              {copy.sidePanel.nextRoute}
+                            </p>
+                            <p className="mt-2 text-sm font-medium text-[#1f1c17]">
+                              {followUpRoute.label}
+                            </p>
+                            <p className="mt-1 text-xs text-[#6c665d]">
+                              {followUpRoute.summary}
+                            </p>
+                          </div>
+                          <a
+                            className="inline-flex shrink-0 rounded-full border border-[color:var(--shopflow-line)] bg-white px-3 py-2 text-xs font-medium text-[#514a42]"
+                            aria-label={copy.sidePanel.nextRouteAria(
+                              followUpRoute.label
+                            )}
+                            href={followUpRoute.href}
+                            target={
+                              followUpRoute.external ? '_blank' : undefined
+                            }
+                            rel={
+                              followUpRoute.external ? 'noreferrer' : undefined
+                            }
+                          >
+                            {copy.sidePanel.openRoute}
+                          </a>
+                        </div>
+                        {followUpRoute.originLabel ? (
+                          <p className="mt-2 text-[11px] text-stone-500">
+                            {followUpRoute.originLabel}
+                          </p>
+                        ) : null}
+                      </section>
                     ) : null}
                   </div>
                 </section>
@@ -360,7 +376,7 @@ export function SidePanelHomePage({
                 </div>
               </div>
 
-              <section className="rounded-[1.5rem] border border-[rgba(58,49,38,0.10)] bg-[#f8f3eb] px-4 py-4">
+              <section className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
                   {copy.sidePanel.workflowCopilot}
                 </p>
@@ -406,7 +422,7 @@ export function SidePanelHomePage({
         <div id="capability-grid">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
             <details open={capabilityGridOpen || undefined}>
-              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-[1.5rem] px-4 py-4">
                 <div className="flex min-w-0 items-start gap-2">
                   <Compass className="mt-0.5 h-4 w-4 shrink-0" />
                   <div className="min-w-0">
@@ -434,9 +450,9 @@ export function SidePanelHomePage({
                 {model.capabilities.map((capability) => (
                   <div
                     key={capability.id}
-                    className={`rounded-xl border px-3 py-3 ${
+                    className={`rounded-[1.15rem] border px-3 py-3 ${
                       capability.status === 'ready'
-                        ? 'border-emerald-200 bg-emerald-50'
+                        ? 'border-emerald-200 bg-[rgba(236,244,239,0.92)]'
                         : capability.status === 'blocked' ||
                             capability.status === 'degraded' ||
                             capability.status === 'permission_needed'
@@ -483,9 +499,9 @@ export function SidePanelHomePage({
                 model.quickActions.map((action, index) => (
                   <div
                     key={action.id}
-                    className={`rounded-xl border px-3 py-3 ${
+                    className={`rounded-[1.15rem] border px-3 py-3 ${
                       index === 0
-                        ? 'border-[rgba(31,107,87,0.16)] bg-[#edf6f2] text-[#1f1c17]'
+                        ? 'shopflow-soft-panel--tint text-[#1f1c17]'
                         : 'border-stone-200 bg-stone-50 text-stone-900'
                     }`}
                   >
@@ -546,7 +562,7 @@ export function SidePanelHomePage({
         <div id="recent-activity">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
             <details open={recentActivityOpen || undefined}>
-              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-[1.5rem] px-4 py-4">
                 <div className="flex min-w-0 items-start gap-2">
                   <ReceiptText className="mt-0.5 h-4 w-4 shrink-0" />
                   <div className="min-w-0">
@@ -608,7 +624,7 @@ export function SidePanelHomePage({
         <div id="next-routes">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
             <details open={nextRoutesOpen || undefined}>
-              <summary className="flex items-center justify-between gap-3 rounded-[1.5rem] bg-[#f8f3eb] px-4 py-4">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-[1.5rem] px-4 py-4">
                 <div className="flex min-w-0 items-start gap-2">
                   <PackageSearch className="mt-0.5 h-4 w-4 shrink-0" />
                   <div className="min-w-0">
