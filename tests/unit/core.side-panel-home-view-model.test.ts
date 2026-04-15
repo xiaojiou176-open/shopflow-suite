@@ -51,11 +51,11 @@ describe('createHomeViewModel', () => {
     expect(model.quickActions[0]?.summary).toContain(
       'Use the latest captured page when you need a real route but no fresher source page was recorded.'
     );
-    expect(model.readiness.label).toBe('Ready on this page');
+    expect(model.readiness.label).toBe('Ready now');
     expect(model.readiness.summary).toBe(
       'Extract this product is runnable right now.'
     );
-    expect(model.secondaryNavigation[0]?.label).toBe('Review support state');
+    expect(model.secondaryNavigation[0]?.label).toBe('See support state');
     expect(model.secondaryNavigation[0]?.href).toBe('#current-site-summary');
     expect(model.recentActivities).toHaveLength(0);
     expect(model.latestOutputPreview).toMatchObject({
@@ -105,7 +105,7 @@ describe('createHomeViewModel', () => {
     expect(model.evidenceStatus?.items[0]?.packetSummary).toBe(
       '6 required artifacts'
     );
-    expect(model.readiness.label).toBe('Repo-ready, claim-gated');
+    expect(model.readiness.label).toBe('Ready in repo · needs proof');
     expect(model.readiness.operatorNextStep).toContain('Reconfirm repo verification');
     expect(model.secondaryNavigation[1]?.label).toBe('Open capture queue');
     expect(model.secondaryNavigation[1]?.href).toBe('#live-receipt-evidence');

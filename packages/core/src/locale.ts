@@ -496,7 +496,7 @@ const en: LocaleCatalog = {
     openSecondaryRouteSummary:
       'Jump to the next support or claim-boundary view without turning popup into a second console.',
     latestSourceLabel: 'Jump to latest source page',
-    claimBoundaryPrefix: 'Claim boundary:',
+    claimBoundaryPrefix: 'Public wording:',
     evidenceQueuePrefix: 'Evidence queue:',
     evidenceNextStepPrefix: 'Evidence next step:',
     ledgerNote:
@@ -506,7 +506,7 @@ const en: LocaleCatalog = {
     seenPrefix: 'Seen',
     quickRouterHeading: 'Quick router',
     quickRouterSummary:
-      'Use popup for the first route. Use the Side Panel for the real work.',
+      'Choose the next route here, then finish the real work in Side Panel.',
     primaryRouteHeading: 'Primary route',
     secondaryRouteHeading: 'Secondary route',
     jumpBackHeading: 'Jump back',
@@ -524,8 +524,8 @@ const en: LocaleCatalog = {
     bestRouteHeading: 'Best route right now',
     runnableNowHeading: 'Runnable now',
     needsAttentionHeading: 'Needs attention',
-    claimBoundaryHeading: 'Claim boundary',
-    operatorNextStepHeading: 'Operator next step',
+    claimBoundaryHeading: 'Public wording',
+    operatorNextStepHeading: 'Next move',
     currentSiteHeading: 'Current site',
     availableOnThisPageHeading: 'Available on this page',
     quickActionsHeading: 'Quick actions',
@@ -556,15 +556,15 @@ const en: LocaleCatalog = {
       `Counts: attempted ${snapshot.attempted} · succeeded ${snapshot.succeeded} · failed ${snapshot.failed} · skipped ${snapshot.skipped}`,
     reviewPrefix: 'Review:',
     reviewNotePrefix: 'Review note:',
-    recentActivityHeading: 'Recent activity',
+    recentActivityHeading: 'Recent page',
     noVerifiedActivity:
       'No verified activity has been recorded yet for this browser session.',
-    nextRoutesHeading: 'Next routes',
+    nextRoutesHeading: 'More routes',
     openRoute: 'Open route',
     verifiedScopePrefix: 'Verified scope:',
     bestRouteAria: (label) => `Best route right now: ${label}`,
     nextRouteAria: (label) => `Next route: ${label}`,
-    operatorNextStepAria: (label) => `Operator next step: ${label}`,
+    operatorNextStepAria: (label) => `Next move: ${label}`,
     statusLabels: {
       live: 'Ready now',
       limited: 'Limited',
@@ -593,14 +593,14 @@ const en: LocaleCatalog = {
       'Open a supported store page before claiming live capability support.',
     unsupportedSiteLabel: 'Unsupported site',
     unsupportedOperatorNextStep: 'Route into a supported store page first.',
-    repoReadyClaimGatedLabel: 'Repo-ready, claim-gated',
+    repoReadyClaimGatedLabel: 'Ready in repo · needs proof',
     repoReadyClaimBoundaryWithScope: (scopeCopy) =>
       `${scopeCopy} Public wording stays gated until live receipt review is complete.`,
     repoReadyClaimBoundaryWithoutScope:
       'Keep public wording inside the verified claim boundary until live receipt review is complete.',
     repoReadyClaimSummaryFallback: (runnableNowSummary) =>
       `${runnableNowSummary} Public wording still stays behind evidence review.`,
-    readyOnThisPageLabel: 'Ready on this page',
+    readyOnThisPageLabel: 'Ready now',
     needsOperatorAttentionLabel: 'Needs operator attention',
     needsOperatorAttentionSummary:
       'This page is recognized, but the current state is not fully runnable yet.',
@@ -611,7 +611,7 @@ const en: LocaleCatalog = {
     latestCapturedSearchLabel: 'Latest captured search',
     latestCapturedDealsLabel: 'Latest captured deals',
     latestRunnableOutputLabel: 'Latest runnable output',
-    reviewSupportStateLabel: 'Review support state',
+    reviewSupportStateLabel: 'See support state',
     openCurrentSiteSummary: 'Open current site summary',
     supportStateUnsupportedSummary:
       'This page is outside the current support boundary.',
@@ -621,7 +621,7 @@ const en: LocaleCatalog = {
       `${count} ${count === 1 ? 'capability needs' : 'capabilities need'} operator attention before they can run.`,
     supportStateWaitingSummary:
       'Open a supported page to load the current support state.',
-    reviewSupportPolicyLabel: 'Review support policy',
+    reviewSupportPolicyLabel: 'See proof boundary',
     reviewSupportPolicySummary:
       'Use this surface for repo truth, not for public-ready wording.',
     openCaptureQueue: 'Open capture queue',
@@ -773,7 +773,7 @@ const en: LocaleCatalog = {
       'Resume from the evidence-linked source page so the next operator move starts in the right place.',
     currentSiteSummaryRoute:
       'Open the current site summary first to confirm the active host and page kind before you route deeper.',
-    reviewClaimGateLabel: 'Review claim gate',
+    reviewClaimGateLabel: 'Check proof boundary',
     reviewClaimGateSummary:
       'Inspect evidence status and verified-scope cues before using public wording.',
     reviewReadinessSummaryLabel: 'Review readiness summary',
@@ -783,7 +783,7 @@ const en: LocaleCatalog = {
       'Confirm the latest recorded output and use its jump-back link if you need the source page.',
     checkRecentActivitySummaryIdle:
       'Recent activity stays lightweight so this surface remains a router, not a second console.',
-    workflowCopilotHeading: 'Workflow copilot',
+    workflowCopilotHeading: 'Current mission',
     workflowReadySummary:
       'Repo verification is strong enough to inspect this path. Stay inside the runnable-now truth and use the freshest page context.',
     workflowClaimGatedSummary:
@@ -798,21 +798,21 @@ const en: LocaleCatalog = {
     workflowBulletNextMove: 'Next move',
   },
   suite: {
-    internalAlphaOnly: 'Internal alpha only',
+    internalAlphaOnly: 'Alpha preview',
     startHereHeading: 'Start here',
     alphaGuardrailsHeading: 'Alpha guardrails',
-    priorityRoutesHeading: 'Priority routes',
+    priorityRoutesHeading: 'Start with these routes',
     priorityRoutesSummary:
-      'Think of this as the concierge desk. It points to the fastest useful store route right now instead of making operators open every shell manually.',
-    claimReadinessHeading: 'Claim readiness board',
+      'Start from the fastest useful route instead of opening every store shell by hand.',
+    claimReadinessHeading: 'Public wording board',
     claimReadinessSummary:
-      'Read this as a routing board, not a launch board. It tells operators where claim work is still blocked.',
-    currentRolloutHeading: 'Current rollout map',
+      'Use this board to see what still needs proof before public wording changes.',
+    currentRolloutHeading: 'App status map',
     currentRolloutSummary:
-      'Each row tells you which store shell to inspect next, why it is still in its current state, and what the latest shared runtime context says right now.',
-    supportDesksHeading: 'Support desks',
+      'Each row shows what to open next, why it is still in this state, and what the latest shared context says right now.',
+    supportDesksHeading: 'More detail',
     supportDesksSummary:
-      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down. Open these desks only when you need deeper governance detail.',
+      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.',
     inspectStatusLabel: (publicName) => `Inspect status for ${publicName}`,
     inspectStatusActionLabel: 'Inspect status',
     hideStatusActionLabel: 'Hide status',
@@ -821,7 +821,7 @@ const en: LocaleCatalog = {
     frontDoorAria: (publicName, label) =>
       `Front door for ${publicName}: ${label}`,
     operatorNextStepAria: (publicName, label) =>
-      `Operator next step for ${publicName}: ${label}`,
+      `Next move for ${publicName}: ${label}`,
     priorityPacketActionAria: (publicName, label) =>
       `Priority packet action for ${publicName}: ${label}`,
     decisionBriefRouteAria: (publicName, label) =>
@@ -835,7 +835,7 @@ const en: LocaleCatalog = {
     frontDoorHeading: 'Front door for this app',
     evidenceQueueHeading: 'Evidence queue',
     priorityPacketHeading: 'Priority packet',
-    operatorNextStepHeading: 'Operator next step',
+    operatorNextStepHeading: 'Next move',
     decisionBriefHeading: 'Decision brief',
     noOutstandingPacket:
       'No outstanding live receipt packet is waiting right now.',
@@ -860,7 +860,7 @@ const en: LocaleCatalog = {
       'No Switchyard base URL is configured for this Suite session yet.',
     providerRuntimeSeamConfigureHint:
       'Open this internal-alpha side panel with a switchyardBaseUrl query parameter when you want to preview the real runtime handoff routes without overclaiming a public runtime product.',
-    evidenceGatesHeading: 'Evidence gates still blocking public wording',
+    evidenceGatesHeading: 'Proof still missing',
     evidenceGatesSummary:
       'Some routes still need capture work. Others are already waiting for explicit review. Repo verification alone does not clear either gate.',
     verifiedScopeHeading: 'Verified scope navigator',
@@ -910,7 +910,7 @@ const en: LocaleCatalog = {
         ctaLabel: 'Open claim readiness board',
       },
       {
-        title: 'Use Suite as the lobby, not the workflow engine',
+        title: 'Use Suite to choose the next app, not to do the work itself',
         summary:
           'Verified scope, evidence gates, provider seam previews, and alpha rules still stay available, but they should not outrank the first route.',
         ctaLabel: 'Open support desks',
@@ -937,13 +937,13 @@ const en: LocaleCatalog = {
         ctaLabel: 'Open rollout map',
       },
       repoVerifiedClaimGated: {
-        label: 'Repo-verified but still claim-gated by evidence',
+        label: 'Ready in repo, but proof still missing',
         summary:
           'Use evidence gates to capture or review the next packet before you let repo-verified progress drift into public-ready wording.',
         ctaLabel: 'Open evidence gates',
       },
       internalAlpha: {
-        label: 'Internal alpha only surfaces',
+        label: 'Alpha-only surfaces',
         summary:
           'Use alpha guardrails when you need to confirm Suite is still routing into store apps instead of behaving like a second workflow engine.',
         ctaLabel: 'Open alpha guardrails',

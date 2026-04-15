@@ -77,7 +77,7 @@ describe('SuiteAlphaPage', () => {
       />
     );
 
-    expect(html).toContain('Evidence gates still blocking public wording');
+    expect(html).toContain('Proof still missing');
     expect(html).toContain(
       'Open verified scope clause for Shopflow for Albertsons Family'
     );
@@ -98,22 +98,22 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain(
       'Run explicit review from the freshest known source page.'
     );
-    expect(html).toContain('Operator next step');
+    expect(html).toContain('Next move');
     expect(html).toContain('>Review waiting evidence on source page<');
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html"');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
     expect(html).toContain('aria-current="page"');
-    expect(html).toContain('Use Suite as the lobby, not the workflow engine');
+    expect(html).toContain('Use Suite to choose the next app, not to do the work itself');
     expect(html).toContain('href="#claim-readiness-board"');
     expect(html).toContain('href="#support-desks"');
     expect(html).toContain('href="#alpha-guardrails"');
     expect(html).toContain('id="priority-routes"');
     expect(html).toContain('id="claim-readiness-board"');
     expect(html).toContain('id="current-rollout-map"');
-    expect(html).toContain('Support desks');
+    expect(html).toContain('More detail');
     expect(html).toContain(
-      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down.'
+      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.'
     );
     expect(html).toContain('id="support-desks"');
     expect(html).toContain('id="evidence-gates"');
@@ -123,12 +123,12 @@ describe('SuiteAlphaPage', () => {
       html.indexOf('id="support-desks"')
     );
     expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
-      html.indexOf('Operator next step')
+      html.indexOf('Next move')
     );
     expect(
       html.indexOf('Inspect claim gates before release talk')
     ).toBeLessThan(
-      html.indexOf('Use Suite as the lobby, not the workflow engine')
+      html.indexOf('Use Suite to choose the next app, not to do the work itself')
     );
   });
 

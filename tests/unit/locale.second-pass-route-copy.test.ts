@@ -30,7 +30,7 @@ describe('Shopflow second-pass locale route helpers', () => {
         'Review waiting evidence on source page'
       )
     ).toBe(
-      'Operator next step for Shopflow Suite: Review waiting evidence on source page'
+      'Next move for Shopflow Suite: Review waiting evidence on source page'
     );
     expect(
       en.suite.priorityPacketActionAria(
@@ -64,9 +64,9 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(en.suite.openVerifiedScopeClause('Shopflow for Amazon')).toBe(
       'Open verified scope clause for Shopflow for Amazon'
     );
-    expect(en.suite.supportDesksHeading).toBe('Support desks');
+    expect(en.suite.supportDesksHeading).toBe('More detail');
     expect(en.suite.supportDesksSummary).toContain(
-      'Keep verified-scope clauses, evidence queues, provider seam previews, and alpha rules one layer down.'
+      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.'
     );
     expect(en.suite.waitingReviewRouteSummary(2)).toBe(
       '2 packets are waiting for review. Start from the freshest known operator page for this app.'

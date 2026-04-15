@@ -74,12 +74,12 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     await expect(sidePanel.getByText('Shopflow Suite')).toBeVisible();
     await expect(sidePanel.locator('body')).toContainText(/Internal-only alpha/i);
     await expect(sidePanel.locator('body')).toContainText(/Start here/i);
-    await expect(sidePanel.locator('body')).toContainText(/Priority routes/i);
+    await expect(sidePanel.locator('body')).toContainText(/Start with these routes/i);
     await expect(sidePanel.locator('body')).toContainText(
       /Claim readiness board/i
     );
     await expect(sidePanel.locator('body')).toContainText(
-      /Current rollout map/i
+      /App status map/i
     );
     await expect(sidePanel.locator('body')).toContainText(
       /Verified scope navigator/i
@@ -97,7 +97,7 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
 
     const popup = await openExtensionPage(context, extensionId, 'popup');
     await expect(popup.getByText('Shopflow Suite')).toBeVisible();
-    await expect(popup.locator('body')).toContainText(/Internal alpha only/i);
+    await expect(popup.locator('body')).toContainText(/Alpha preview/i);
     await expect(popup.locator('body')).toContainText(/Quick router/i);
     await expect(
       popup.getByRole('link', { name: 'Open Side Panel family chooser' })

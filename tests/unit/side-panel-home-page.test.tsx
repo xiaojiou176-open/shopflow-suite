@@ -40,7 +40,7 @@ const model: SidePanelHomeViewModel = {
   secondaryNavigation: [
     {
       id: 'support-state',
-      label: 'Review support state',
+      label: 'See support state',
       summary: '1 capability is ready right now.',
       href: '#current-site-summary',
       actionLabel: 'Open current site summary',
@@ -65,7 +65,7 @@ const model: SidePanelHomeViewModel = {
     hrefLabel: 'Open latest captured page',
   },
   readiness: {
-    label: 'Repo-ready, claim-gated',
+    label: 'Ready in repo · needs proof',
     summary:
       'Extract this product is runnable right now. Public wording still stays behind evidence review.',
     claimBoundary: 'Currently verified on Amazon.',
@@ -73,7 +73,7 @@ const model: SidePanelHomeViewModel = {
   },
   workflowBrief: {
     tone: 'claim-gated',
-    title: 'Workflow copilot',
+    title: 'Current mission',
     summary:
       'Repo verification is strong enough to inspect this path, but public wording still stays behind evidence review.',
     bullets: [
@@ -150,7 +150,7 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain('Merchant source page');
     expect(html).toContain('Open latest captured page');
     expect(html).toContain('href="https://www.amazon.com/dp/example"');
-    expect(html).toContain('Workflow copilot');
+    expect(html).toContain('Current mission');
     expect(html).toContain('Runnable now');
     expect(html).toContain('Claim gate');
     expect(html).toContain('Current surface');
@@ -164,7 +164,7 @@ describe('SidePanelHomePage', () => {
     expect(html).toContain(
       'Review the evidence queue before using public wording.'
     );
-    expect(html).toContain('Next routes');
+    expect(html).toContain('More routes');
     expect(html).toContain('Open current site summary');
     expect(html).toContain(
       'Amazon evidence is captured and waiting for explicit review.'
@@ -177,7 +177,7 @@ describe('SidePanelHomePage', () => {
     const quickActionsSectionIndex = html.indexOf('id="quick-actions"');
     const recentActivitySectionIndex = html.indexOf('id="recent-activity"');
     const liveReceiptReadinessIndex = html.indexOf('id="live-receipt-readiness"');
-    const nextRoutesIndex = html.indexOf('Next routes');
+    const nextRoutesIndex = html.indexOf('More routes');
     const liveReceiptHeadingIndex = html.indexOf('Live receipt readiness');
 
     expect(currentSiteIndex).toBeGreaterThanOrEqual(0);
@@ -307,9 +307,9 @@ describe('SidePanelHomePage', () => {
       />
     );
 
-    expect(html).toContain('aria-label="Next route: Review claim gate"');
+    expect(html).toContain('aria-label="Next route: Check proof boundary"');
     expect(html).toContain('href="#live-receipt-review"');
-    expect(html).toContain('Review claim gate');
+    expect(html).toContain('Check proof boundary');
     expect(html).toContain('Currently verified on Amazon.');
   });
 
