@@ -88,11 +88,20 @@ export function PopupLauncher({
   const structuredActionItems = actionItems.filter(
     (item): item is Exclude<PopupActionItem, string> => typeof item !== 'string'
   );
+  const dedupedStructuredActionItems = structuredActionItems.filter(
+    (item, index, items) =>
+      items.findIndex(
+        (candidate) =>
+          candidate.label === item.label &&
+          candidate.href === item.href &&
+          candidate.summary === item.summary
+      ) === index
+  );
   const labelOnlyActionItems = actionItems.filter(
     (item): item is string => typeof item === 'string'
   );
-  const featuredActionItem = structuredActionItems[0];
-  const extraStructuredActionItems = structuredActionItems.slice(1);
+  const featuredActionItem = dedupedStructuredActionItems[0];
+  const extraStructuredActionItems = dedupedStructuredActionItems.slice(1);
   const supportingDetails = details.slice(0, 4);
   const showSourceCapturedSplit =
     Boolean(latestSourceHref) &&
@@ -100,24 +109,37 @@ export function PopupLauncher({
     latestSourceHref !== latestOutputPreview?.href;
   const showProofHint = Boolean(latestOutputPreview) || Boolean(latestSourceHref);
   const actionDrawerPreview =
-    featuredActionItem?.label ??
     extraStructuredActionItems[0]?.label ??
     labelOnlyActionItems[0] ??
     supportingDetails[0] ??
     resolvedActionEmptySummary;
   const actionDrawerCount =
     extraStructuredActionItems.length +
-    (featuredActionItem ? 1 : 0) +
     labelOnlyActionItems.length +
     (supportingDetails.length > 0 ? 1 : 0);
-  const actionDrawerHeading = featuredActionItem
-    ? copy.popup.supportingRoutesHeading
-    : resolvedActionHeading;
+  const actionDrawerHeading =
+    extraStructuredActionItems.length > 0 ||
+    labelOnlyActionItems.length > 0 ||
+    supportingDetails.length > 0
+      ? copy.popup.supportingRoutesHeading
+      : resolvedActionHeading;
   const showSupportingDrawer =
-    Boolean(featuredActionItem) ||
     extraStructuredActionItems.length > 0 ||
     labelOnlyActionItems.length > 0 ||
     supportingDetails.length > 0;
+  const fallbackActionStrip =
+    !featuredActionItem &&
+    actionDrawerCount > 0 &&
+    (latestOutputPreview?.href || latestSourceHref)
+      ? {
+          label: actionDrawerPreview,
+          href: latestOutputPreview?.href ?? latestSourceHref!,
+          summary:
+            supportingDetails[0] ??
+            latestOutputPreview?.summary ??
+            resolvedActionEmptySummary,
+        }
+      : null;
 
   return (
     <main
@@ -249,6 +271,44 @@ export function PopupLauncher({
               </p>
             </section>
 
+            {featuredActionItem || fallbackActionStrip ? (
+              <section className="shopflow-soft-panel--tint rounded-[1.35rem] px-4 py-4">
+                <p className="shopflow-kicker text-[color:var(--shopflow-accent)]">
+                  {resolvedActionHeading}
+                </p>
+                <div className="mt-3 flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-[#1f1c17]">
+                      {featuredActionItem?.label ?? fallbackActionStrip?.label}
+                    </p>
+                    {featuredActionItem?.summary ?? fallbackActionStrip?.summary ? (
+                      <p className="mt-1 text-xs text-[#4d645d]">
+                        {featuredActionItem?.summary ?? fallbackActionStrip?.summary}
+                      </p>
+                    ) : null}
+                  </div>
+                  {(featuredActionItem?.href ?? fallbackActionStrip?.href) ? (
+                    <a
+                      className="inline-flex shrink-0 rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
+                      href={featuredActionItem?.href ?? fallbackActionStrip?.href}
+                      target={
+                        featuredActionItem?.external || fallbackActionStrip
+                          ? '_blank'
+                          : undefined
+                      }
+                      rel={
+                        featuredActionItem?.external || fallbackActionStrip
+                          ? 'noreferrer'
+                          : undefined
+                      }
+                    >
+                      {featuredActionItem?.label ?? fallbackActionStrip?.label}
+                    </a>
+                  ) : null}
+                </div>
+              </section>
+            ) : null}
+
             {showProofHint ? (
               <section
                 id="latest-output-preview"
@@ -357,33 +417,6 @@ export function PopupLauncher({
               </span>
             </summary>
             <div className="mt-3 space-y-3">
-              {featuredActionItem ? (
-                <div className="shopflow-soft-panel--tint rounded-[1.5rem] px-4 py-4">
-                  <p className="shopflow-kicker text-[color:var(--shopflow-accent)]">
-                    {resolvedActionHeading}
-                  </p>
-                  {featuredActionItem.href ? (
-                    <a
-                      className="mt-3 inline-flex rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
-                      href={featuredActionItem.href}
-                      target={featuredActionItem.external ? '_blank' : undefined}
-                      rel={featuredActionItem.external ? 'noreferrer' : undefined}
-                    >
-                      {featuredActionItem.label}
-                    </a>
-                  ) : (
-                    <p className="mt-3 text-sm font-medium text-[#1f1c17]">
-                      {featuredActionItem.label}
-                    </p>
-                  )}
-                  {featuredActionItem.summary ? (
-                    <p className="mt-2 text-xs text-[#4d645d]">
-                      {featuredActionItem.summary}
-                    </p>
-                  ) : null}
-                </div>
-              ) : null}
-
               {extraStructuredActionItems.length > 0
                 ? extraStructuredActionItems.map((item) => (
                   <div
