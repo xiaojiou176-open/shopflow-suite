@@ -50,35 +50,32 @@ describe('builder discoverability docs coherence', () => {
   it('keeps the docs front door wired to the current builder entry pages', () => {
     const docsReadme = readRepoFile('docs/README.md');
 
-    expect(docsReadme).toContain('Search-Intent Redirects');
-    expect(docsReadme).toContain('Shopflow Codex plugin');
-    expect(docsReadme).toContain('Shopflow Claude Code skills');
-    expect(docsReadme).toContain('Shopflow OpenCode packet');
-    expect(docsReadme).toContain('Shopflow OpenHands packet');
-    expect(docsReadme).toContain('Shopflow MCP');
-    expect(docsReadme).toContain('Shopflow OpenClaw');
-    expect(docsReadme).toContain('./ecosystem/builder-start-here.md');
-    expect(docsReadme).toContain('./ecosystem/agent-quickstarts.md');
-    expect(docsReadme).toContain('./ecosystem/agent-distribution-artifacts.md');
-    expect(docsReadme).toContain('./ecosystem/integration-recipes.md');
-    expect(docsReadme).toContain('./ecosystem/examples/README.md');
-    expect(docsReadme).toContain('./runbooks/release-artifact-review.md');
+    expect(docsReadme).toContain('## Start Here First');
+    expect(docsReadme).toContain('## First Product Path');
+    expect(docsReadme).toContain('## What You Can Inspect Today');
+    expect(docsReadme).toContain('## Verification Layers');
+    expect(docsReadme).toContain('## Secondary Repo-Local Engineering Shelves');
     expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-integration-bundle'
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html'
     );
     expect(docsReadme).toContain(
-      'pnpm cli:read-only -- public-mcp-capability-map'
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html'
     );
-    expect(docsReadme).toContain('pnpm cli:read-only -- public-skills-catalog');
     expect(docsReadme).toContain(
-      'pnpm cli:read-only -- plugin-marketplace-metadata'
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html'
     );
+    expect(docsReadme).toContain('release-artifact-review.html');
+    expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('pnpm cli:read-only -- runtime-seam');
-    expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-target-packet --target opencode'
-    );
-    expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-target-packet --target openhands'
+    expect(docsReadme).toContain('pnpm cli:read-only -- runtime-consumer');
+    expect(docsReadme).not.toContain('Search-Intent Redirects');
+    expect(docsReadme).not.toContain('Shopflow Codex plugin');
+    expect(docsReadme).not.toContain('Shopflow Claude Code skills');
+    expect(docsReadme).not.toContain('Shopflow OpenCode packet');
+    expect(docsReadme).not.toContain('Shopflow OpenHands packet');
+    expect(docsReadme).not.toContain('./ecosystem/examples/README.md');
+    expect(docsReadme).not.toContain(
+      './ecosystem/examples/agent-target-packet.codex.json'
     );
     expect(docsReadme).not.toContain(
       './ecosystem/public-mcp-capability-map.md'
@@ -512,46 +509,30 @@ describe('builder discoverability docs coherence', () => {
     expect(readme).not.toContain('agent-target-packet.codex.json');
     expect(readme).not.toContain('agent-target-packet.claude-code.json');
     expect(readme).not.toContain('agent-target-packet.openclaw.json');
-    expect(docsReadme).toContain('./ecosystem/agent-quickstarts.md');
     expect(docsReadme).toContain(
-      './ecosystem/examples/agent-integration-bundle.json'
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html'
     );
     expect(docsReadme).toContain(
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html'
+    );
+    expect(docsReadme).toContain(
+      'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html'
+    );
+    expect(docsReadme).not.toContain(
       './ecosystem/examples/agent-target-packet.codex.json'
     );
-    expect(docsReadme).toContain(
+    expect(docsReadme).not.toContain(
       './ecosystem/examples/agent-target-packet.claude-code.json'
     );
-    expect(docsReadme).toContain(
-      './ecosystem/examples/agent-target-packet.opencode.json'
-    );
-    expect(docsReadme).toContain(
-      './ecosystem/examples/agent-target-packet.openhands.json'
-    );
-    expect(docsReadme).toContain(
+    expect(docsReadme).not.toContain(
       './ecosystem/examples/agent-target-packet.openclaw.json'
     );
-    expect(docsReadme).toContain(
+    expect(docsReadme).not.toContain(
       './ecosystem/examples/plugin-marketplace-metadata.codex.json'
     );
-    expect(docsReadme).toContain(
-      './ecosystem/examples/plugin-marketplace-metadata.claude-code.json'
-    );
-    expect(docsReadme).toContain(
-      './ecosystem/examples/plugin-marketplace-metadata.openclaw.json'
-    );
-    expect(docsReadme).toContain('pnpm cli:read-only --help');
-    expect(docsReadme).toContain(
+    expect(docsReadme).not.toContain('pnpm cli:read-only --help');
+    expect(docsReadme).not.toContain(
       'pnpm cli:read-only -- agent-target-packet --target claude-code'
-    );
-    expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-target-packet --target opencode'
-    );
-    expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-target-packet --target openhands'
-    );
-    expect(docsReadme).toContain(
-      'pnpm cli:read-only -- agent-target-packet --target openclaw'
     );
     expect(quickstarts).toContain(
       'pnpm cli:read-only -- agent-integration-bundle'

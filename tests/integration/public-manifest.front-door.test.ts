@@ -106,15 +106,17 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('Verification bar');
     expect(docsReadme).toContain('## Start Here First');
     expect(docsReadme).toContain('## First Product Path');
-    expect(docsReadme).toContain('## Need Help or the Deeper Shelves?');
+    expect(docsReadme).toContain('## Need Help or the Deeper Atlas?');
     expect(docsReadme).toContain('## What You Can Inspect Today');
+    expect(docsReadme).toContain('## Verification Layers');
+    expect(docsReadme).toContain('## Secondary Repo-Local Engineering Shelves');
     expect(docsReadme).toContain('Distribution truth on GitHub');
-    expect(docsReadme).toContain('Builder side door');
+    expect(docsReadme).toContain('Builder Start Here');
     expect(docsReadme).toContain('signed/store-ready');
     expectHeadingOrder(
       docsReadme,
       '## First Product Path',
-      '## Search-Intent Redirects'
+      '## Secondary Repo-Local Engineering Shelves'
     );
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
     expect(docsIndex).toContain(
@@ -152,7 +154,7 @@ describe('public manifest and front door', () => {
     expect(distribution).toContain('count: 0');
     expect(readme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('pnpm mcp:stdio');
-    expect(docsReadme).toContain('Builder side door');
+    expect(docsReadme).toContain('Builder Start Here');
     expect(docsIndex).toContain('Builder Start Here');
     expect(docsIndex).toContain('Release review runbook');
     expect(mcpQuickstart).toContain('read-only stdio MCP');
@@ -168,7 +170,7 @@ describe('public manifest and front door', () => {
 
     expectPagesSafeFirstHop(docsReadme, 'Product boundary');
     expectPagesSafeFirstHop(docsReadme, 'Verification bar');
-    expectPagesSafeFirstHop(docsReadme, 'Builder side door');
+    expectPagesSafeFirstHop(docsReadme, 'Builder Start Here');
     expectPagesSafeFirstHop(docsReadme, 'Public repo README');
     expectPagesSafeFirstHop(docsReadme, 'Distribution truth on GitHub');
     expectPagesSafeFirstHop(docsReadme, 'Release review runbook');
