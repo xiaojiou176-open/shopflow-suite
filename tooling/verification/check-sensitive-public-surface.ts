@@ -13,6 +13,14 @@ import {
 
 const privateRepos = [] as const;
 const publicRepos = ['xiaojiou176-open/shopflow-suite'] as const;
+const GH_JSON_MAX_BUFFER_BYTES = 8 * 1024 * 1024;
+
+type SpawnResult = ReturnType<typeof spawnSync>;
+type SpawnFn = (
+  command: string,
+  args: string[],
+  options: Parameters<typeof spawnSync>[2]
+) => SpawnResult;
 
 type RepoView = {
   isPrivate: boolean;
@@ -42,16 +50,18 @@ export type PublicSurfaceOps = {
   cleanupClone: (cwd: string) => void;
 };
 
-export function runGhJson<T>(args: string[]) {
-  const tokenResult = spawnSync('gh', ['auth', 'token'], {
+export function runGhJsonWith<T>(args: string[], runSpawn: SpawnFn) {
+  const tokenResult = runSpawn('gh', ['auth', 'token'], {
     encoding: 'utf8',
+    maxBuffer: GH_JSON_MAX_BUFFER_BYTES,
   });
   const ghToken =
     process.env.GH_TOKEN ||
     process.env.GITHUB_TOKEN ||
     (tokenResult.status === 0 ? tokenResult.stdout.trim() : '');
-  const result = spawnSync('gh', args, {
+  const result = runSpawn('gh', args, {
     encoding: 'utf8',
+    maxBuffer: GH_JSON_MAX_BUFFER_BYTES,
     env: ghToken
       ? {
           ...process.env,
@@ -62,10 +72,28 @@ export function runGhJson<T>(args: string[]) {
   });
 
   if (result.status !== 0) {
-    throw new Error(result.stderr || `GitHub CLI call failed: gh ${args.join(' ')}`);
+    const errorCode =
+      typeof result.error === 'object' &&
+      result.error !== null &&
+      'code' in result.error
+        ? String(result.error.code)
+        : '';
+    const bufferHint =
+      errorCode === 'ENOBUFS'
+        ? `GitHub CLI call exceeded the ${GH_JSON_MAX_BUFFER_BYTES} byte buffer while reading gh ${args.join(' ')}.`
+        : '';
+    throw new Error(
+      result.stderr ||
+        bufferHint ||
+        `GitHub CLI call failed: gh ${args.join(' ')}`
+    );
   }
 
   return JSON.parse(result.stdout) as T;
+}
+
+export function runGhJson<T>(args: string[]) {
+  return runGhJsonWith<T>(args, spawnSync);
 }
 
 export function clonePublicRepo(repo: string) {

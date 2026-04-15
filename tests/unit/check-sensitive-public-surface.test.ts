@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   collectPublicSurfaceFindings,
   createPublicSurfaceOps,
+  runGhJsonWith,
   scanGitHubTextSurface,
   type PublicSurfaceOps,
 } from '../../tooling/verification/check-sensitive-public-surface';
@@ -159,5 +160,80 @@ describe('sensitive public-surface gate', () => {
       'repos/xiaojiou176-open/shopflow-suite/pulls?state=all&per_page=100',
       'repos/xiaojiou176-open/shopflow-suite/releases?per_page=100',
     ]);
+  });
+
+  it('raises gh maxBuffer so large pull-history payloads do not trip default spawnSync limits', () => {
+    const calls: Array<{
+      command: string;
+      args: string[];
+      options: Parameters<typeof import('node:child_process').spawnSync>[2];
+    }> = [];
+    const ghJson = runGhJsonWith<{ ok: true }>(
+      ['api', 'repos/xiaojiou176-open/shopflow-suite/pulls?state=all&per_page=100'],
+      (command, args, options) => {
+        calls.push({ command, args, options });
+
+        if (args[0] === 'auth') {
+          return {
+            status: 0,
+            stdout: 'token-123\n',
+            stderr: '',
+            signal: null,
+            output: [],
+            pid: 1,
+          } as ReturnType<typeof import('node:child_process').spawnSync>;
+        }
+
+        return {
+          status: 0,
+          stdout: JSON.stringify({ ok: true }),
+          stderr: '',
+          signal: null,
+          output: [],
+          pid: 2,
+        } as ReturnType<typeof import('node:child_process').spawnSync>;
+      }
+    );
+
+    expect(ghJson).toEqual({ ok: true });
+    expect(calls).toHaveLength(2);
+    expect(calls[0]?.options?.maxBuffer).toBe(8 * 1024 * 1024);
+    expect(calls[1]?.options?.maxBuffer).toBe(8 * 1024 * 1024);
+    expect(calls[1]?.options?.env).toMatchObject({
+      GH_TOKEN: 'token-123',
+      GITHUB_TOKEN: 'token-123',
+    });
+  });
+
+  it('reports an explicit ENOBUFS hint when gh output still exceeds the configured buffer', () => {
+    expect(() =>
+      runGhJsonWith(
+        ['api', 'repos/xiaojiou176-open/shopflow-suite/pulls?state=all&per_page=100'],
+        (_command, args) => {
+          if (args[0] === 'auth') {
+            return {
+              status: 0,
+              stdout: 'token-123\n',
+              stderr: '',
+              signal: null,
+              output: [],
+              pid: 1,
+            } as ReturnType<typeof import('node:child_process').spawnSync>;
+          }
+
+          return {
+            status: null,
+            stdout: '',
+            stderr: '',
+            signal: 'SIGTERM',
+            output: [],
+            pid: 2,
+            error: Object.assign(new Error('spawnSync gh ENOBUFS'), {
+              code: 'ENOBUFS',
+            }),
+          } as ReturnType<typeof import('node:child_process').spawnSync>;
+        }
+      )
+    ).toThrow(/exceeded the 8388608 byte buffer/i);
   });
 });
