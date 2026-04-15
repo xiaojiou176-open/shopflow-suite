@@ -8,7 +8,7 @@ export function Card({
 }: PropsWithChildren<{ className?: string }>) {
   return (
     <section
-      className={`rounded-[1.75rem] border ${surfaceTokens.borderColor} ${surfaceTokens.cardBackground} p-4 shadow-[0_18px_40px_rgba(58,49,38,0.08),0_2px_8px_rgba(58,49,38,0.04)] ${className}`}
+      className={`rounded-[1.85rem] border ${surfaceTokens.borderColor} ${surfaceTokens.cardBackground} p-4 shadow-[0_24px_60px_rgba(36,27,20,0.12),0_4px_14px_rgba(36,27,20,0.06)] backdrop-blur-[18px] ${className}`}
     >
       {children}
     </section>
@@ -25,14 +25,14 @@ export function Button({
 }>) {
   const toneClass =
     tone === 'primary'
-      ? surfaceTokens.accent
+      ? `${surfaceTokens.accent} shadow-[0_14px_32px_rgba(24,92,84,0.28)]`
       : tone === 'secondary'
-        ? 'bg-[#1f1c17] text-white'
-        : 'bg-transparent text-[#514a42]';
+        ? 'bg-[var(--shopflow-ink)] text-white shadow-[0_14px_30px_rgba(24,20,16,0.24)]'
+        : 'border border-[color:var(--shopflow-line-strong)] bg-white/78 text-[color:var(--shopflow-body)]';
 
   return (
     <button
-      className={`cursor-pointer rounded-2xl px-3 py-2 text-sm font-medium transition-[background-color,color,transform,box-shadow] duration-150 active:translate-y-[1px] ${toneClass} ${className}`}
+      className={`cursor-pointer rounded-[1.15rem] px-3.5 py-2.5 text-sm font-medium transition-[background-color,color,transform,box-shadow,border-color] duration-200 active:translate-y-[1px] ${toneClass} ${className}`}
     >
       {children}
     </button>

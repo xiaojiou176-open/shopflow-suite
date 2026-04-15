@@ -5,9 +5,25 @@
 
 :root {
   color-scheme: light;
+  --shopflow-bg: #efe5d8;
+  --shopflow-surface: rgba(255, 252, 247, 0.82);
+  --shopflow-surface-soft: rgba(250, 245, 238, 0.9);
+  --shopflow-surface-tint: rgba(238, 246, 241, 0.92);
+  --shopflow-ink: #1f1a15;
+  --shopflow-body: #53473b;
+  --shopflow-muted: #76695c;
+  --shopflow-line: rgba(60, 47, 34, 0.12);
+  --shopflow-line-strong: rgba(60, 47, 34, 0.18);
+  --shopflow-accent: #1f6b57;
+  --shopflow-accent-soft: rgba(31, 107, 87, 0.12);
+  --shopflow-gold: #9d6d2f;
   font-family:
     "SF Pro Display", "Avenir Next", "Segoe UI", system-ui, -apple-system,
     BlinkMacSystemFont, sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "kern" 1,
+    "ss01" 1;
 }
 
 html,
@@ -18,8 +34,11 @@ body,
 
 body {
   margin: 0;
-  background: #f6f1e8;
-  color: #1f1c17;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.66), transparent 28%),
+    radial-gradient(circle at top right, rgba(31, 107, 87, 0.12), transparent 24%),
+    linear-gradient(180deg, #f4ebdf 0%, #eee3d5 56%, #e7dac9 100%);
+  color: var(--shopflow-ink);
   font-family: inherit;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -39,8 +58,9 @@ textarea {
 .shopflow-surface {
   min-height: 100vh;
   background-image:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 22%);
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.52), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(31, 107, 87, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 26%);
 }
 
 .shopflow-surface a[href] {
@@ -71,11 +91,67 @@ textarea {
 .shopflow-surface h2,
 .shopflow-surface h3 {
   text-wrap: balance;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.018em;
 }
 
 .shopflow-surface p {
   text-wrap: pretty;
+}
+
+.shopflow-hero-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 24%),
+    linear-gradient(145deg, #1d1713 0%, #22201a 52%, #184f46 100%);
+  box-shadow:
+    0 26px 52px rgba(18, 15, 12, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.shopflow-soft-panel {
+  border: 1px solid var(--shopflow-line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 242, 233, 0.86));
+  box-shadow:
+    0 16px 34px rgba(36, 27, 20, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.shopflow-soft-panel--tint {
+  border: 1px solid rgba(31, 107, 87, 0.16);
+  background:
+    linear-gradient(180deg, rgba(244, 250, 247, 0.96), rgba(234, 244, 239, 0.92));
+  box-shadow:
+    0 16px 34px rgba(24, 84, 70, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+.shopflow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--shopflow-line);
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--shopflow-muted);
+}
+
+.shopflow-chip--accent {
+  border-color: rgba(31, 107, 87, 0.18);
+  background: rgba(237, 246, 242, 0.9);
+  color: var(--shopflow-accent);
+}
+
+.shopflow-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .shopflow-surface summary {

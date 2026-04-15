@@ -119,8 +119,8 @@ export function SuiteAlphaPage({
         <div id="start-here">
           <Card className="overflow-hidden">
             <div className="grid gap-4 lg:grid-cols-[minmax(0,1.45fr)_minmax(280px,0.95fr)]">
-              <div className="rounded-[1.6rem] bg-stone-900 px-4 py-4 text-white">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-stone-200">
+              <div className="shopflow-hero-panel rounded-[1.75rem] px-4 py-4 text-white">
+                <p className="shopflow-kicker text-stone-200">
                   {copy.startHereHeading}
                 </p>
                 <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-300">
@@ -177,7 +177,7 @@ export function SuiteAlphaPage({
                   </a>
                 </div>
                 {secondaryRoutes.length > 0 ? (
-                  <div className="mt-4 space-y-2 rounded-[1.35rem] border border-white/15 bg-white/8 px-3 py-3">
+                  <div className="mt-4 space-y-2 rounded-[1.35rem] border border-white/15 bg-white/8 px-3 py-3 backdrop-blur-[10px]">
                     {secondaryRoutes.map((item, index) => (
                       <div
                         key={item.appId}
@@ -223,9 +223,9 @@ export function SuiteAlphaPage({
               </div>
 
               <div className="space-y-3">
-                <div className="rounded-[1.5rem] border border-stone-200 bg-stone-50 px-4 py-4">
+                <div className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-stone-700">
+                    <span className="shopflow-chip">
                       {copy.internalAlphaOnly}
                     </span>
                     <a
@@ -251,7 +251,7 @@ export function SuiteAlphaPage({
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         <a
-                          className="inline-flex rounded-xl border border-amber-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                          className="inline-flex rounded-[1.05rem] border border-amber-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
                           href={claimGatedFocus.routeHref}
                           target="_blank"
                           rel="noreferrer"
@@ -269,7 +269,7 @@ export function SuiteAlphaPage({
                   ) : null}
                 </div>
 
-                <div className="rounded-[1.5rem] border border-stone-200 bg-white px-4 py-4">
+                <div className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
                       {copy.alphaGuardrailsHeading}
@@ -328,7 +328,7 @@ export function SuiteAlphaPage({
         <div id="priority-routes">
           <Card>
             <details open={priorityRoutesOpen || undefined}>
-              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-xl px-3 py-3">
                 <div>
                   <h2 className="text-sm font-semibold">
                     {copy.priorityRoutesHeading}
@@ -411,7 +411,7 @@ export function SuiteAlphaPage({
             <details
               open={currentHash === '#claim-readiness-board' || undefined}
             >
-              <summary className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-3">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-xl px-3 py-3">
                 <div>
                   <h2 className="text-sm font-semibold">
                     {copy.claimReadinessHeading}
@@ -568,269 +568,289 @@ export function SuiteAlphaPage({
                     </div>
                     <p className="mt-2 text-xs text-stone-600">{item.note}</p>
                     {expandedAppId === item.appId ? (
-                      <div className="mt-3 grid grid-cols-1 gap-3 text-xs text-stone-600">
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.latestDetectionHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.latestDetection ??
-                              getShopflowLocaleCatalog(locale).common
-                                .loadingDetection}
-                          </p>
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.frontDoorHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.routeHref
-                              ? detailMap[item.appId]?.routeSummary
-                              : getShopflowLocaleCatalog(locale).common
-                                  .loadingRoute}
-                          </p>
-                          {detailMap[item.appId]?.routeHref ? (
-                            <a
-                              className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
-                              aria-label={copy.frontDoorAria(
-                                item.title,
-                                detailMap[item.appId]?.routeLabel ??
-                                  item.defaultRouteLabel
-                              )}
-                              href={detailMap[item.appId]?.routeHref}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {detailMap[item.appId]?.routeLabel}
-                            </a>
-                          ) : null}
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.operatorNextStepHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.nextStep ??
-                              getShopflowLocaleCatalog(locale).common
-                                .loadingNextStep}
-                          </p>
-                          <a
-                            className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
-                            aria-label={copy.operatorNextStepAria(
-                              item.title,
-                              detailMap[item.appId]?.routeLabel ??
-                                item.defaultRouteLabel
-                            )}
-                            href={
-                              detailMap[item.appId]?.routeHref ??
-                              item.defaultRouteUrl
-                            }
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {detailMap[item.appId]?.routeLabel ??
-                              item.defaultRouteLabel}
-                          </a>
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.latestRecentActivityHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.latestActivity ??
-                              getShopflowLocaleCatalog(locale).common
-                                .loadingActivity}
-                          </p>
-                          {detailMap[item.appId]?.latestActivityHref ? (
-                            <a
-                              className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
-                              href={detailMap[item.appId]?.latestActivityHref}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {
-                                getShopflowLocaleCatalog(locale).common
-                                  .jumpToSourcePage
-                              }
-                            </a>
-                          ) : null}
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.latestCapturedOutputHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.latestOutput ??
-                              getShopflowLocaleCatalog(locale).common
-                                .loadingOutput}
-                          </p>
-                          {detailMap[item.appId]?.latestOutputHref ? (
-                            <a
-                              className="mt-2 inline-flex rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
-                              href={detailMap[item.appId]?.latestOutputHref}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {
-                                getShopflowLocaleCatalog(locale).common
-                                  .openLatestCapturedPage
-                              }
-                            </a>
-                          ) : null}
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.evidenceQueueHeading}
-                          </p>
-                          <p className="mt-1">
-                            {detailMap[item.appId]?.evidenceQueue ??
-                              getShopflowLocaleCatalog(locale).common
-                                .loadingQueue}
-                          </p>
-                          {detailMap[item.appId]?.evidenceSections?.length ? (
-                            <div className="mt-3 space-y-2">
-                              {detailMap[item.appId]!.evidenceSections.map(
-                                (section) => (
-                                  <div key={section.title}>
-                                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                                      {section.title} ({section.count})
-                                    </p>
-                                    <div className="mt-2 space-y-2">
-                                      {section.items.map((entry) => (
-                                        <div
-                                          key={entry.title}
-                                          className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-3"
-                                        >
-                                          <p className="text-xs font-semibold text-stone-700">
-                                            {entry.title}
-                                          </p>
-                                          <p className="mt-1 text-xs text-stone-500">
-                                            {entry.statusLabel}
-                                          </p>
-                                          <p className="mt-2 text-xs text-stone-600">
-                                            {entry.note}
-                                          </p>
-                                          <a
-                                            className="mt-2 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                                            href={entry.href}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                          >
-                                            {entry.actionLabel}
-                                          </a>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )
-                              )}
+                      <div className="mt-3 space-y-3 text-xs text-stone-600">
+                        <div className="shopflow-soft-panel rounded-[1.35rem] px-3 py-3">
+                          <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+                            <div className="rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.latestDetectionHeading}
+                              </p>
+                              <p className="mt-1">
+                                {detailMap[item.appId]?.latestDetection ??
+                                  getShopflowLocaleCatalog(locale).common
+                                    .loadingDetection}
+                              </p>
                             </div>
-                          ) : null}
-                        </div>
-                        <div className="rounded-xl border border-stone-200 bg-white px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.priorityPacketHeading}
-                          </p>
-                          {detailMap[item.appId]?.priorityQueueItem ? (
-                            <>
-                              <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                                {
-                                  detailMap[item.appId]?.priorityQueueItem
-                                    ?.operatorPathLabel
-                                }
+                            <div className="rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.frontDoorHeading}
                               </p>
-                              <p className="mt-2 text-xs font-semibold text-stone-700">
-                                {
-                                  detailMap[item.appId]?.priorityQueueItem
-                                    ?.title
-                                }
+                              <p className="mt-1">
+                                {detailMap[item.appId]?.routeHref
+                                  ? detailMap[item.appId]?.routeSummary
+                                  : getShopflowLocaleCatalog(locale).common
+                                      .loadingRoute}
                               </p>
-                              <p className="mt-1 text-xs text-stone-500">
-                                {
-                                  detailMap[item.appId]?.priorityQueueItem
-                                    ?.statusLabel
-                                }
+                              {detailMap[item.appId]?.routeHref ? (
+                                <a
+                                  className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
+                                  aria-label={copy.frontDoorAria(
+                                    item.title,
+                                    detailMap[item.appId]?.routeLabel ??
+                                      item.defaultRouteLabel
+                                  )}
+                                  href={detailMap[item.appId]?.routeHref}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {detailMap[item.appId]?.routeLabel}
+                                </a>
+                              ) : null}
+                            </div>
+                            <div className="rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.operatorNextStepHeading}
                               </p>
-                              <p className="mt-2 text-xs text-stone-600">
-                                {detailMap[item.appId]?.priorityQueueItem?.note}
+                              <p className="mt-1">
+                                {detailMap[item.appId]?.nextStep ??
+                                  getShopflowLocaleCatalog(locale).common
+                                    .loadingNextStep}
                               </p>
                               <a
-                                className="mt-2 inline-flex rounded-xl border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
-                                aria-label={copy.priorityPacketActionAria(
+                                className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
+                                aria-label={copy.operatorNextStepAria(
                                   item.title,
-                                  detailMap[item.appId]?.priorityQueueItem
-                                    ?.actionLabel ?? item.defaultRouteLabel
+                                  detailMap[item.appId]?.routeLabel ??
+                                    item.defaultRouteLabel
                                 )}
                                 href={
-                                  detailMap[item.appId]?.priorityQueueItem?.href
+                                  detailMap[item.appId]?.routeHref ??
+                                  item.defaultRouteUrl
                                 }
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                {
-                                  detailMap[item.appId]?.priorityQueueItem
-                                    ?.actionLabel
-                                }
+                                {detailMap[item.appId]?.routeLabel ??
+                                  item.defaultRouteLabel}
                               </a>
-                            </>
-                          ) : (
-                            <p className="mt-1">{copy.noOutstandingPacket}</p>
-                          )}
-                        </div>
-                        <div className="rounded-xl border border-indigo-200 bg-indigo-50 px-3 py-3">
-                          <p className="font-semibold text-stone-700">
-                            {copy.decisionBriefHeading}
-                          </p>
-                          <p className="mt-1 text-xs text-stone-700">
-                            {
-                              detailMap[item.appId]?.operatorDecisionBrief
-                                ?.summary
-                            }
-                          </p>
-                          <div className="mt-3 space-y-2 text-xs text-stone-700">
-                            {detailMap[
-                              item.appId
-                            ]?.operatorDecisionBrief?.whyNow.map((line) => (
-                              <div
-                                key={`${item.appId}-${line}`}
-                                className="rounded-xl border border-indigo-200 bg-white px-3 py-3"
-                              >
-                                {line}
-                              </div>
-                            ))}
+                            </div>
                           </div>
-                          <div className="mt-3 rounded-xl border border-indigo-200 bg-white px-3 py-3 text-xs text-stone-700">
-                            <p className="font-semibold text-stone-800">
-                              {
-                                detailMap[item.appId]?.operatorDecisionBrief
-                                  ?.primaryRouteLabel
-                              }
+                        </div>
+
+                        <div className="shopflow-soft-panel rounded-[1.35rem] px-3 py-3">
+                          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                            <div className="rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.latestRecentActivityHeading}
+                              </p>
+                              <p className="mt-1">
+                                {detailMap[item.appId]?.latestActivity ??
+                                  getShopflowLocaleCatalog(locale).common
+                                    .loadingActivity}
+                              </p>
+                              {detailMap[item.appId]?.latestActivityHref ? (
+                                <a
+                                  className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
+                                  href={detailMap[item.appId]?.latestActivityHref}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {
+                                    getShopflowLocaleCatalog(locale).common
+                                      .jumpToSourcePage
+                                  }
+                                </a>
+                              ) : null}
+                            </div>
+                            <div className="rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.latestCapturedOutputHeading}
+                              </p>
+                              <p className="mt-1">
+                                {detailMap[item.appId]?.latestOutput ??
+                                  getShopflowLocaleCatalog(locale).common
+                                    .loadingOutput}
+                              </p>
+                              {detailMap[item.appId]?.latestOutputHref ? (
+                                <a
+                                  className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-stone-50 px-3 py-2 text-xs font-medium text-stone-700"
+                                  href={detailMap[item.appId]?.latestOutputHref}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {
+                                    getShopflowLocaleCatalog(locale).common
+                                      .openLatestCapturedPage
+                                  }
+                                </a>
+                              ) : null}
+                            </div>
+                          </div>
+
+                          <div className="mt-3 rounded-[1rem] border border-stone-200 bg-white px-3 py-3">
+                            <p className="font-semibold text-stone-700">
+                              {copy.evidenceQueueHeading}
                             </p>
                             <p className="mt-1">
-                              {
-                                detailMap[item.appId]?.operatorDecisionBrief
-                                  ?.nextStep
-                              }
+                              {detailMap[item.appId]?.evidenceQueue ??
+                                getShopflowLocaleCatalog(locale).common
+                                  .loadingQueue}
                             </p>
-                            <a
-                              className="mt-2 inline-flex rounded-xl border border-indigo-200 bg-indigo-50 px-3 py-2 text-xs font-medium text-stone-700"
-                              aria-label={copy.decisionBriefRouteAria(
-                                item.title,
-                                detailMap[item.appId]?.operatorDecisionBrief
-                                  ?.primaryRouteLabel ?? item.defaultRouteLabel
+                            {detailMap[item.appId]?.evidenceSections?.length ? (
+                              <div className="mt-3 space-y-2">
+                                {detailMap[item.appId]!.evidenceSections.map(
+                                  (section) => (
+                                    <div key={section.title}>
+                                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+                                        {section.title} ({section.count})
+                                      </p>
+                                      <div className="mt-2 space-y-2">
+                                        {section.items.map((entry) => (
+                                          <div
+                                            key={entry.title}
+                                            className="rounded-[1rem] border border-stone-200 bg-stone-50 px-3 py-3"
+                                          >
+                                            <p className="text-xs font-semibold text-stone-700">
+                                              {entry.title}
+                                            </p>
+                                            <p className="mt-1 text-xs text-stone-500">
+                                              {entry.statusLabel}
+                                            </p>
+                                            <p className="mt-2 text-xs text-stone-600">
+                                              {entry.note}
+                                            </p>
+                                            <a
+                                              className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                                              href={entry.href}
+                                              target="_blank"
+                                              rel="noreferrer"
+                                            >
+                                              {entry.actionLabel}
+                                            </a>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+
+                        <div className="shopflow-soft-panel--tint rounded-[1.35rem] px-3 py-3">
+                          <div className="grid grid-cols-1 gap-3 lg:grid-cols-[0.95fr_1.05fr]">
+                            <div className="rounded-[1rem] border border-stone-200 bg-white/88 px-3 py-3">
+                              <p className="font-semibold text-stone-700">
+                                {copy.priorityPacketHeading}
+                              </p>
+                              {detailMap[item.appId]?.priorityQueueItem ? (
+                                <>
+                                  <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                                    {
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.operatorPathLabel
+                                    }
+                                  </p>
+                                  <p className="mt-2 text-xs font-semibold text-stone-700">
+                                    {
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.title
+                                    }
+                                  </p>
+                                  <p className="mt-1 text-xs text-stone-500">
+                                    {
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.statusLabel
+                                    }
+                                  </p>
+                                  <p className="mt-2 text-xs text-stone-600">
+                                    {
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.note
+                                    }
+                                  </p>
+                                  <a
+                                    className="mt-2 inline-flex rounded-[1rem] border border-stone-200 bg-white px-3 py-2 text-xs font-medium text-stone-700"
+                                    aria-label={copy.priorityPacketActionAria(
+                                      item.title,
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.actionLabel ?? item.defaultRouteLabel
+                                    )}
+                                    href={
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.href
+                                    }
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {
+                                      detailMap[item.appId]?.priorityQueueItem
+                                        ?.actionLabel
+                                    }
+                                  </a>
+                                </>
+                              ) : (
+                                <p className="mt-1">{copy.noOutstandingPacket}</p>
                               )}
-                              href={
-                                detailMap[item.appId]?.operatorDecisionBrief
-                                  ?.primaryRouteHref
-                              }
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {
-                                detailMap[item.appId]?.operatorDecisionBrief
-                                  ?.primaryRouteLabel
-                              }
-                            </a>
+                            </div>
+                            <div className="rounded-[1rem] border border-indigo-200 bg-white/88 px-3 py-3 text-xs text-stone-700">
+                              <p className="font-semibold text-stone-700">
+                                {copy.decisionBriefHeading}
+                              </p>
+                              <p className="mt-1 text-xs text-stone-700">
+                                {
+                                  detailMap[item.appId]?.operatorDecisionBrief
+                                    ?.summary
+                                }
+                              </p>
+                              <div className="mt-3 space-y-2 text-xs text-stone-700">
+                                {detailMap[
+                                  item.appId
+                                ]?.operatorDecisionBrief?.whyNow.map((line) => (
+                                  <div
+                                    key={`${item.appId}-${line}`}
+                                    className="rounded-[1rem] border border-indigo-200 bg-white px-3 py-3"
+                                  >
+                                    {line}
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="mt-3 rounded-[1rem] border border-indigo-200 bg-white px-3 py-3 text-xs text-stone-700">
+                                <p className="font-semibold text-stone-800">
+                                  {
+                                    detailMap[item.appId]?.operatorDecisionBrief
+                                      ?.primaryRouteLabel
+                                  }
+                                </p>
+                                <p className="mt-1">
+                                  {
+                                    detailMap[item.appId]?.operatorDecisionBrief
+                                      ?.nextStep
+                                  }
+                                </p>
+                                <a
+                                  className="mt-2 inline-flex rounded-[1rem] border border-indigo-200 bg-indigo-50 px-3 py-2 text-xs font-medium text-stone-700"
+                                  aria-label={copy.decisionBriefRouteAria(
+                                    item.title,
+                                    detailMap[item.appId]?.operatorDecisionBrief
+                                      ?.primaryRouteLabel ??
+                                      item.defaultRouteLabel
+                                  )}
+                                  href={
+                                    detailMap[item.appId]?.operatorDecisionBrief
+                                      ?.primaryRouteHref
+                                  }
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {
+                                    detailMap[item.appId]?.operatorDecisionBrief
+                                      ?.primaryRouteLabel
+                                  }
+                                </a>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -845,7 +865,7 @@ export function SuiteAlphaPage({
         <div id="support-desks">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.92)]">
             <details open={supportDesksOpen || undefined}>
-              <summary className="flex items-center justify-between gap-3 rounded-[1.4rem] bg-[#f6f1e8] px-4 py-4">
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-[1.4rem] px-4 py-4">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
                     {copy.supportDesksHeading}
