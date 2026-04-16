@@ -70,7 +70,7 @@ describe('builder example rack tooling', () => {
 
       expect(snapshot.appId).toBe(result.appId);
       expect(decisionBrief.appTitle).toContain('Shopflow');
-      expect(workflowBrief.title).toBe('Workflow copilot');
+      expect(workflowBrief.title).toBe('Current mission');
       expect(outcomeBundle.appId).toBe(result.appId);
       expect(outcomeBundle.generatedAt).toBe(generatedAt);
       expect(outcomeBundle.payloadSources.builderAppSnapshot.kind).toBe(
