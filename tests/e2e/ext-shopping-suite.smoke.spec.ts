@@ -72,17 +72,17 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     });
 
     await expect(sidePanel.getByText('Shopflow Suite')).toBeVisible();
-    await expect(sidePanel.locator('body')).toContainText(/Internal-only alpha/i);
+    await expect(sidePanel.locator('body')).toContainText(/Suite preview/i);
     await expect(sidePanel.locator('body')).toContainText(/Start here/i);
-    await expect(sidePanel.locator('body')).toContainText(/Start with these routes/i);
+    await expect(sidePanel.locator('body')).toContainText(/Best next stops/i);
     await expect(sidePanel.locator('body')).toContainText(
-      /Claim readiness board/i
+      /What still needs proof/i
     );
     await expect(sidePanel.locator('body')).toContainText(
-      /App status map/i
+      /Pick a store/i
     );
     await expect(sidePanel.locator('body')).toContainText(
-      /Verified scope navigator/i
+      /Verified scope/i
     );
     await sidePanel
       .locator('#priority-routes summary')
@@ -97,7 +97,7 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
 
     const popup = await openExtensionPage(context, extensionId, 'popup');
     await expect(popup.getByText('Shopflow Suite')).toBeVisible();
-    await expect(popup.locator('body')).toContainText(/Alpha preview/i);
+    await expect(popup.locator('body')).toContainText(/Suite preview/i);
     await expect(popup.locator('body')).toContainText(/Quick router/i);
     await expect(
       popup.getByRole('link', { name: 'Open Side Panel family chooser' })

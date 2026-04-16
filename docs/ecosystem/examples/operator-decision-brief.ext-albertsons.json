@@ -14,5 +14,5 @@
   "primaryRouteLabel": "Open supported workflow",
   "primaryRouteHref": "https://www.safeway.com/shop/cart",
   "primaryRouteOrigin": "evidence-source",
-  "claimBoundary": "Currently verified on Safeway. Public wording stays gated until live receipt review is complete."
+  "claimBoundary": "Currently verified on Safeway. Public claims stay limited until live proof review is complete."
 }

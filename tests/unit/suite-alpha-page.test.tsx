@@ -98,45 +98,46 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain(
       'Run explicit review from the freshest known source page.'
     );
-    expect(html).toContain('Next move');
+    expect(html).toContain('Do this next');
     expect(html).toContain('>Review waiting evidence on source page<');
     expect(html).toContain('Display language');
     expect(html).toContain('href="sidepanel.html"');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
     expect(html).toContain('aria-current="page"');
-    expect(html).toContain('Use Suite to choose the next app, not to do the work itself');
+    expect(html).toContain('Use Suite as a lobby');
     expect(html).toContain('href="#claim-readiness-board"');
     expect(html).toContain('href="#support-desks"');
     expect(html).toContain('href="#alpha-guardrails"');
     expect(html).toContain('id="priority-routes"');
     expect(html).toContain('id="claim-readiness-board"');
     expect(html).toContain('id="current-rollout-map"');
-    expect(html).toContain('More detail');
+    expect(html).toContain('Deeper detail');
     expect(html).toContain(
-      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.'
+      'Open this only when you need verified scope clauses, proof queues, runtime handoff notes, or Suite rules.'
     );
     expect(html).toContain('id="support-desks"');
     expect(html).toContain('id="evidence-gates"');
     expect(html).toContain('id="verified-scope-navigator"');
     expect(html).toContain('id="alpha-guardrails"');
+    expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
+      html.indexOf('id="current-rollout-map"')
+    );
+    expect(html.indexOf('id="current-rollout-map"')).toBeLessThan(
+      html.indexOf('id="priority-routes"')
+    );
     expect(html.indexOf('id="priority-routes"')).toBeLessThan(
       html.indexOf('id="support-desks"')
     );
-    expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
-      html.indexOf('Next move')
-    );
-    expect(
-      html.indexOf('Inspect claim gates before release talk')
-    ).toBeLessThan(
-      html.indexOf('Use Suite to choose the next app, not to do the work itself')
+    expect(html.indexOf('Check proof before public claims')).toBeLessThan(
+      html.indexOf('Use Suite as a lobby')
     );
   });
 
   it('keeps fallback blocker guidance honest when no fresh route is available yet', () => {
     const html = renderToStaticMarkup(<SuiteAlphaPage />);
 
-    expect(html).toContain('Open support desks');
-    expect(html).toContain('Open claim readiness board');
+    expect(html).toContain('Open deeper detail');
+    expect(html).toContain('Open proof board');
     expect(html).not.toContain('href="undefined"');
   });
 
@@ -178,7 +179,7 @@ describe('SuiteAlphaPage', () => {
       />
     );
 
-    expect(html).toContain('Provider runtime seam');
+    expect(html).toContain('Advanced runtime handoff');
     expect(html).toContain('Configured runtime base URL');
     expect(html).toContain('http://127.0.0.1:4317');
     expect(html).toContain('/v1/runtime/providers/chatgpt/acquisition/start');

@@ -4,15 +4,14 @@
   "readOnly": true,
   "appTitle": "Shopflow for Temu",
   "stage": "claim-gated",
-  "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
+  "summary": "Reviewed live evidence still gates public wording.",
   "whyNow": [
     "www.temu.com · search",
     "Temu search extraction and the warehouse filter workflow are runnable right now.",
     "1 live evidence packet still gate public wording."
   ],
-  "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change.",
+  "nextStep": "Inspect the current review route before changing any public wording.",
   "primaryRouteLabel": "Open current evidence route",
   "primaryRouteHref": "https://www.temu.com/search_result.html?search_key=warehouse",
-  "primaryRouteOrigin": "evidence-source",
-  "claimBoundary": "Keep public wording inside the current repo-verified scope."
+  "primaryRouteOrigin": "evidence-source"
 }

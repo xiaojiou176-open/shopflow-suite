@@ -236,7 +236,8 @@ export function SuiteAlphaPage({
                     </a>
                   </div>
                   <p className="mt-3 text-sm text-stone-700">
-                    {localizedAppDefinition.operatorPromise}
+                    {localizedAppDefinition.startHere[1]?.summary ??
+                      localizedAppDefinition.operatorPromise}
                   </p>
                   {claimGatedFocus ? (
                     <div className="mt-4 rounded-[1.35rem] border border-amber-200 bg-amber-50 px-3 py-3">
@@ -305,104 +306,9 @@ export function SuiteAlphaPage({
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {localizedStatusBoard.map((item) => (
-                      <a
-                        key={item.id}
-                        className="inline-flex rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-[11px] font-medium text-stone-700"
-                        href={item.href}
-                      >
-                        <span className="mr-2 font-semibold text-stone-900">
-                          {item.count}
-                        </span>
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
-          </Card>
-        </div>
-
-        <div id="priority-routes">
-          <Card>
-            <details open={priorityRoutesOpen || undefined}>
-              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-xl px-3 py-3">
-                <div>
-                  <h2 className="text-sm font-semibold">
-                    {copy.priorityRoutesHeading}
-                  </h2>
-                  <p className="mt-1 text-xs text-stone-500">
-                    {copy.priorityRoutesSummary}
-                  </p>
-                  {featuredRoute ? (
-                    <p className="mt-2 text-xs text-stone-600">
-                      {featuredRoute.title} · {featuredRoute.routeOriginLabel}
-                    </p>
-                  ) : null}
-                </div>
-                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
-                  {priorityRoutes.length}
-                </span>
-              </summary>
-              <div className="mt-3 space-y-3">
-                {priorityRoutes.map((item, index) => (
-                  <div
-                    key={item.appId}
-                    className={`rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 ${
-                      index === 0
-                        ? 'bg-white shadow-[0_10px_24px_rgba(58,49,38,0.06)]'
-                        : ''
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                          {item.kicker}
-                        </p>
-                        <p className="mt-1 text-[11px] text-stone-500">
-                          {item.routeOriginLabel}
-                        </p>
-                        <p className="mt-2 text-sm font-medium">{item.title}</p>
-                        <p className="mt-1 text-xs text-stone-600">
-                          {item.summary}
-                        </p>
-                        <p className="mt-2 text-xs text-stone-500">
-                          {item.nextStep}
-                        </p>
-                      </div>
-                      <a
-                        className={`inline-flex shrink-0 rounded-xl px-3 py-2 text-xs font-medium ${
-                          index === 0
-                            ? 'bg-stone-900 text-white'
-                            : 'border border-stone-200 bg-white text-stone-700'
-                        }`}
-                        aria-label={copy.priorityRouteAria(
-                          item.title,
-                          item.label
-                        )}
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {item.label}
-                      </a>
-                    </div>
-                    <a
-                      className={`mt-3 inline-flex rounded-xl px-3 py-2 text-xs font-medium ${
-                        index === 0
-                          ? 'border border-stone-200 bg-stone-50 text-stone-700'
-                          : 'border border-stone-200 bg-white text-stone-700'
-                      }`}
-                      href={`#rollout-${item.appId}`}
-                    >
-                      {copy.openRolloutRow(item.title)}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </details>
           </Card>
         </div>
 
@@ -855,6 +761,87 @@ export function SuiteAlphaPage({
                         </div>
                       </div>
                     ) : null}
+                  </div>
+                ))}
+              </div>
+            </details>
+          </Card>
+        </div>
+
+        <div id="priority-routes">
+          <Card>
+            <details open={priorityRoutesOpen || undefined}>
+              <summary className="shopflow-soft-panel flex items-center justify-between gap-3 rounded-xl px-3 py-3">
+                <div>
+                  <h2 className="text-sm font-semibold">
+                    {copy.priorityRoutesHeading}
+                  </h2>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {copy.priorityRoutesSummary}
+                  </p>
+                  {featuredRoute ? (
+                    <p className="mt-2 text-xs text-stone-600">
+                      {featuredRoute.title} · {featuredRoute.routeOriginLabel}
+                    </p>
+                  ) : null}
+                </div>
+                <span className="rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-500">
+                  {priorityRoutes.length}
+                </span>
+              </summary>
+              <div className="mt-3 space-y-3">
+                {priorityRoutes.map((item, index) => (
+                  <div
+                    key={item.appId}
+                    className={`rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 ${
+                      index === 0
+                        ? 'bg-white shadow-[0_10px_24px_rgba(58,49,38,0.06)]'
+                        : ''
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+                          {item.kicker}
+                        </p>
+                        <p className="mt-1 text-[11px] text-stone-500">
+                          {item.routeOriginLabel}
+                        </p>
+                        <p className="mt-2 text-sm font-medium">{item.title}</p>
+                        <p className="mt-1 text-xs text-stone-600">
+                          {item.summary}
+                        </p>
+                        <p className="mt-2 text-xs text-stone-500">
+                          {item.nextStep}
+                        </p>
+                      </div>
+                      <a
+                        className={`inline-flex shrink-0 rounded-xl px-3 py-2 text-xs font-medium ${
+                          index === 0
+                            ? 'bg-stone-900 text-white'
+                            : 'border border-stone-200 bg-white text-stone-700'
+                        }`}
+                        aria-label={copy.priorityRouteAria(
+                          item.title,
+                          item.label
+                        )}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.label}
+                      </a>
+                    </div>
+                    <a
+                      className={`mt-3 inline-flex rounded-xl px-3 py-2 text-xs font-medium ${
+                        index === 0
+                          ? 'border border-stone-200 bg-stone-50 text-stone-700'
+                          : 'border border-stone-200 bg-white text-stone-700'
+                      }`}
+                      href={`#rollout-${item.appId}`}
+                    >
+                      {copy.openRolloutRow(item.title)}
+                    </a>
                   </div>
                 ))}
               </div>

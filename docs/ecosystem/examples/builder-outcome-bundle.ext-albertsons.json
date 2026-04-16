@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-13T17:39:10.661Z",
+  "generatedAt": "2026-04-16T00:26:30.566Z",
   "appId": "ext-albertsons",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -649,29 +649,29 @@
       "primaryRouteLabel": "Open supported workflow",
       "primaryRouteHref": "https://www.safeway.com/shop/cart",
       "primaryRouteOrigin": "evidence-source",
-      "claimBoundary": "Currently verified on Safeway. Public wording stays gated until live receipt review is complete."
+      "claimBoundary": "Currently verified on Safeway. Public claims stay limited until live proof review is complete."
     },
     "workflowCopilotBrief": {
       "tone": "claim-gated",
-      "title": "Workflow copilot",
-      "summary": "Repo verification is strong enough to inspect this path, but public wording still stays behind evidence review.",
+      "title": "What to do here",
+      "summary": "This route is strong in repo, but public claims still stay behind proof review.",
       "bullets": [
         {
           "label": "Runnable now",
           "value": "Open supported workflow is runnable right now."
         },
         {
-          "label": "Claim gate",
-          "value": "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
+          "label": "Proof line",
+          "value": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
         },
         {
-          "label": "Current surface",
+          "label": "Current page",
           "value": "www.safeway.com · cart"
         }
       ],
       "nextAction": {
         "label": "Open capture queue",
-        "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt."
+        "reason": "Route back to the freshest known merchant page before you run this capability. Use the current supported workflow page as the execution surface for the next operator move."
       }
     }
   },
@@ -697,13 +697,13 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 9 app entries. ext-albertsons is capability-heavy-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-albertsons/bundle and 1 packaged zip artifact."
+      "summary": "Repo-owned review artifact manifest for all 8+1 apps after packaging completes."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-albertsons as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-albertsons/bundle/shopflow-review-artifact.json. Manual review starts at https://www.safeway.com. Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
+      "summary": "Repo-owned submission-readiness checklist that keeps claim-gated and internal-alpha boundaries explicit."
     }
   ],
   "readyToSyncArtifacts": [

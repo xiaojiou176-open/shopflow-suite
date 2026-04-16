@@ -1,7 +1,7 @@
 {
   "tone": "ready-now",
-  "title": "Workflow copilot",
-  "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
+  "title": "What to do here",
+  "summary": "Ready for repo-local review.",
   "bullets": [
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open current review start page",
-    "reason": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised."
+    "reason": "Inspect the current review route before expanding public wording."
   }
 }

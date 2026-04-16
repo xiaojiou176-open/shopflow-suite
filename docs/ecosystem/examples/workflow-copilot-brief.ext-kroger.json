@@ -1,7 +1,7 @@
 {
   "tone": "claim-gated",
-  "title": "Workflow copilot",
-  "summary": "Review bundle is complete and reviewed live evidence is already attached, but public wording still remains claim-gated.",
+  "title": "What to do here",
+  "summary": "Reviewed live evidence still gates public wording.",
   "bullets": [
     {
       "label": "Current surface",
@@ -18,6 +18,6 @@
   ],
   "nextAction": {
     "label": "Open current evidence route",
-    "reason": "Reviewed live evidence is already attached. Keep wording claim-gated until the repo explicitly raises the public-claim boundary."
+    "reason": "Inspect the current review route before expanding public wording."
   }
 }

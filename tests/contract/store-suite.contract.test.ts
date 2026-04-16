@@ -155,7 +155,7 @@ describe('shopping-suite internal alpha contract', () => {
           count: 1,
         }),
         expect.objectContaining({
-          title: 'Review lane',
+          title: 'Review queue',
           count: 1,
         }),
       ])

@@ -31,7 +31,7 @@ test('ext-kroger smoke renders family deals support without overclaiming beyond 
     ).toHaveAttribute('href', 'https://www.fredmeyer.com/savings/coupons');
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
-        name: 'Check proof boundary',
+        name: 'Check claim limit',
       })
     ).toHaveAttribute('href', '#live-receipt-evidence');
   } finally {
