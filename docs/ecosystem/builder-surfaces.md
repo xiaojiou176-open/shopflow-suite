@@ -44,13 +44,13 @@ The truthful builder-facing surfaces that exist today are:
   "whyNow": [
     "www.safeway.com · cart",
     "Open supported workflow is runnable right now.",
-    "2 packets still need capture or recapture. Public wording stays blocked until a reviewable packet exists."
+    "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
   ],
-  "nextStep": "Reconfirm repo verification is green before opening a live Safeway cart session.",
+  "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.",
   "primaryRouteLabel": "Open supported workflow",
   "primaryRouteHref": "https://www.safeway.com/shop/cart",
   "primaryRouteOrigin": "evidence-source",
-  "claimBoundary": "Currently verified on Safeway. Public wording stays gated until live receipt review is complete."
+  "claimBoundary": "Currently verified on Safeway. Public claims stay limited until live proof review is complete."
 }
 ```
 

@@ -147,8 +147,8 @@ function localizeShellSourceText(
       '当前已验证范围：$1。'
     )
     .replace(
-      'Public wording stays gated until live receipt review is complete.',
-      '公开说法在 live receipt 审核完成前继续保持门禁。'
+      'Public claims stay limited until live proof review is complete.',
+      '公开说法在 live proof 审核完成前继续保持限制。'
     )
     .replace(
       'Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof.',

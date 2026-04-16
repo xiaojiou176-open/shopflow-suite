@@ -1,23 +1,23 @@
 {
   "tone": "claim-gated",
-  "title": "Workflow copilot",
-  "summary": "Repo verification is strong enough to inspect this path, but public wording still stays behind evidence review.",
+  "title": "What to do here",
+  "summary": "This route is strong in repo, but public claims still stay behind proof review.",
   "bullets": [
     {
       "label": "Runnable now",
       "value": "Open supported workflow is runnable right now."
     },
     {
-      "label": "Claim gate",
-      "value": "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
+      "label": "Proof line",
+      "value": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
     },
     {
-      "label": "Current surface",
+      "label": "Current page",
       "value": "www.safeway.com · cart"
     }
   ],
   "nextAction": {
     "label": "Open capture queue",
-    "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt."
+    "reason": "Route back to the freshest known merchant page before you run this capability. Use the current supported workflow page as the execution surface for the next operator move."
   }
 }
