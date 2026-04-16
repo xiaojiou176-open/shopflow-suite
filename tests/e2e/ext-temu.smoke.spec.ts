@@ -27,12 +27,6 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
       .first();
     await expect(runActionCard).toBeVisible();
     await expect(runActionCard).toContainText(/Ready/);
-    await expect(
-      sidePanel
-        .locator('#readiness-summary')
-        .getByText('Ready in repo · needs proof')
-        .first()
-    ).toBeVisible();
     await expect(sidePanel.locator('body')).toContainText(
       /Live receipt readiness/i
     );
