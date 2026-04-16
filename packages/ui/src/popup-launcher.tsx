@@ -127,6 +127,7 @@ export function PopupLauncher({
     extraStructuredActionItems.length > 0 ||
     labelOnlyActionItems.length > 0 ||
     supportingDetails.length > 0;
+  const headerNote = claimBoundaryNote ?? copy.popup.quickRouterIntro;
   const fallbackActionStrip =
     !featuredActionItem &&
     actionDrawerCount > 0 &&
@@ -159,22 +160,19 @@ export function PopupLauncher({
                 {copy.popup.quickRouter}
               </p>
               <p
-                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden`}
+                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
               >
                 {summary}
               </p>
-              <div className="shopflow-soft-panel mt-4 rounded-[1.4rem] px-3 py-3">
-                {!claimBoundaryNote ? (
-                  <p className="text-[11px] leading-5 text-[color:var(--shopflow-muted)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
-                    {copy.popup.quickRouterIntro}
-                  </p>
-                ) : null}
-                {claimBoundaryNote ? (
-                  <p className="text-[11px] leading-5 text-[color:var(--shopflow-gold)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden">
-                    {claimBoundaryNote}
-                  </p>
-                ) : null}
-              </div>
+              <p
+                className={`mt-3 text-[11px] leading-5 ${
+                  claimBoundaryNote
+                    ? 'text-[color:var(--shopflow-gold)]'
+                    : 'text-[color:var(--shopflow-muted)]'
+                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
+              >
+                {headerNote}
+              </p>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {statusLabel ? (

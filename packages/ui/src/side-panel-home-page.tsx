@@ -150,14 +150,14 @@ export function SidePanelHomePage({
               <section className="shopflow-hero-panel rounded-[2rem] px-5 py-5 text-white">
                 <div className="flex flex-wrap gap-2">
                   <span className="shopflow-chip border-white/10 bg-white/10 text-[#e9e2d8]">
-                    {model.readiness.label}
+                    {copy.sidePanel.bestRoute}
                   </span>
                   <span className="shopflow-chip border-white/10 bg-white/10 text-[#e9e2d8]">
                     {model.site.siteName} · {model.site.pageKindLabel}
                   </span>
                 </div>
                 <p className="mt-4 text-lg font-semibold">
-                  {model.readiness.label}
+                  {primaryRoute?.label ?? model.readiness.label}
                 </p>
                 <p className="mt-2 text-sm text-[#ede7de]">
                   {model.readiness.summary}
@@ -379,9 +379,6 @@ export function SidePanelHomePage({
               <section className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
                   {copy.sidePanel.workflowCopilot}
-                </p>
-                <p className="mt-2 text-sm font-semibold text-[#1f1c17]">
-                  {model.workflowBrief.title}
                 </p>
                 <p className="mt-2 text-xs text-[#6c665d]">
                   {model.workflowBrief.summary}
