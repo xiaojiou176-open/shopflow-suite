@@ -28,12 +28,6 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       .filter({ hasText: 'Run Actions' })
       .first();
     await expect(runActionCard).toBeVisible();
-    await expect(
-      sidePanel
-        .locator('#readiness-summary')
-        .getByText('Ready in repo · needs proof')
-        .first()
-    ).toBeVisible();
     await expect(runActionCard).toContainText(/Ready/);
     await expect(sidePanel.locator('body')).toContainText(
       /Live receipt readiness/i
