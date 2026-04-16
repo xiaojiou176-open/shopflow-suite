@@ -19,20 +19,20 @@ const appDefinition = createSuiteAppDefinition(locale);
 const languageOptionLabels = uiCopy.common.languageOptionLabels;
 const popupRouteSummary =
   locale === 'zh-CN'
-    ? '先打开 family chooser 找到正确 store shell，再跳去 claim readiness 和 verified scope，最后才谈 public wording。'
-    : 'Open the family chooser first, then jump to claim readiness and verified scope before you talk about public wording.';
+    ? '先打开 family chooser 找到正确 store shell，再去 proof board 和 verified scope，最后才谈公开说法。'
+    : 'Open the family chooser first, then check the proof board and verified scope before you make public claims.';
 const popupRouteDetails =
   locale === 'zh-CN'
     ? [
         '先用 family chooser 进入正确的 store shell，不要把 popup 当第二个控制台。',
-        'claim readiness board 负责告诉你哪些说法还不能外放。',
+        'proof board 负责告诉你哪些说法还不能外放。',
         'verified scope clauses 是最后一道诚实边界，不要跳过。',
       ]
     : [
-        'Use the family chooser first so you enter the correct store shell instead of treating the popup like a second control room.',
-        'Claim readiness tells you which wording still cannot move onto the public surface.',
-        'Verified scope clauses are the final honesty gate before any release-facing claim.',
-      ];
+      'Use the family chooser first so you enter the correct store shell instead of treating the popup like a second control room.',
+      'The proof board tells you which claims still cannot move onto the public surface.',
+      'Verified scope clauses are the final honesty gate before any release-facing claim.',
+    ];
 const localeOptions = uiLocaleValues.map((nextLocale) => ({
   label: languageOptionLabels[nextLocale],
   href: createLocaleRouteHref(

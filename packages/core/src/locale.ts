@@ -496,7 +496,7 @@ const en: LocaleCatalog = {
     openSecondaryRouteSummary:
       'Jump to the next support or claim-boundary view without turning popup into a second console.',
     latestSourceLabel: 'Jump to latest source page',
-    claimBoundaryPrefix: 'Public wording:',
+    claimBoundaryPrefix: 'Before public claims:',
     evidenceQueuePrefix: 'Evidence queue:',
     evidenceNextStepPrefix: 'Evidence next step:',
     ledgerNote:
@@ -517,20 +517,20 @@ const en: LocaleCatalog = {
   },
   sidePanel: {
     introSummary:
-      'Start with what this page can do now, then follow the claim and evidence gates before making support statements.',
+      'Start with what this page can do now, then check the proof line before you make public claims.',
     liveReceiptReadinessHeading: 'Live receipt readiness',
     readinessSummaryHeading: 'Readiness summary',
     whatThisPageCanDoHeading: 'What this page can do now',
     bestRouteHeading: 'Best route right now',
     runnableNowHeading: 'Runnable now',
     needsAttentionHeading: 'Needs attention',
-    claimBoundaryHeading: 'Public wording',
-    operatorNextStepHeading: 'Next move',
-    currentSiteHeading: 'Current site',
-    availableOnThisPageHeading: 'Available on this page',
-    quickActionsHeading: 'Quick actions',
+    claimBoundaryHeading: 'Before public claims',
+    operatorNextStepHeading: 'Do this next',
+    currentSiteHeading: 'This page',
+    availableOnThisPageHeading: 'What else works here',
+    quickActionsHeading: 'Supported moves',
     quickActionsSummary:
-      'These cards are real capability routes. Pick the move you want, then jump straight into the page or section that can actually run it.',
+      'These are the quickest safe moves from this page. Pick one, then jump straight into the page or section that can actually run it.',
     primarySupportedMove: 'Primary supported move',
     supportedMove: 'Supported move',
     noRunnableCapability:
@@ -541,12 +541,12 @@ const en: LocaleCatalog = {
     primaryRouteHeading: 'Primary route',
     nextRouteHeading: 'Next route',
     evidenceSystemSummary:
-      'Use this operator system in three layers: evidence overview for capture work, review lane for review outcomes, and raw packet ledger for audit detail.',
+      'Use this area in three layers: proof overview for capture work, review queue for outcomes, and the detailed log for audit detail.',
     evidenceOverviewHeading: 'Evidence overview',
-    reviewLaneHeading: 'Review lane',
-    rawPacketLedgerHeading: 'Raw packet ledger',
-    decisionBriefHeading: 'Decision brief',
-    nextAssistantMove: 'Next assistant move',
+    reviewLaneHeading: 'Review queue',
+    rawPacketLedgerHeading: 'Detailed evidence log',
+    decisionBriefHeading: 'Why this route',
+    nextAssistantMove: 'Best next step',
     packetPrefix: 'Packet:',
     updatedPrefix: 'Updated:',
     operatorNotePrefix: 'Operator note:',
@@ -556,10 +556,10 @@ const en: LocaleCatalog = {
       `Counts: attempted ${snapshot.attempted} · succeeded ${snapshot.succeeded} · failed ${snapshot.failed} · skipped ${snapshot.skipped}`,
     reviewPrefix: 'Review:',
     reviewNotePrefix: 'Review note:',
-    recentActivityHeading: 'Recent page',
+    recentActivityHeading: 'Latest source',
     noVerifiedActivity:
       'No verified activity has been recorded yet for this browser session.',
-    nextRoutesHeading: 'More routes',
+    nextRoutesHeading: 'More places to go',
     openRoute: 'Open route',
     verifiedScopePrefix: 'Verified scope:',
     bestRouteAria: (label) => `Best route right now: ${label}`,
@@ -595,11 +595,11 @@ const en: LocaleCatalog = {
     unsupportedOperatorNextStep: 'Route into a supported store page first.',
     repoReadyClaimGatedLabel: 'Ready in repo · needs proof',
     repoReadyClaimBoundaryWithScope: (scopeCopy) =>
-      `${scopeCopy} Public wording stays gated until live receipt review is complete.`,
+      `${scopeCopy} Public claims stay limited until live proof review is complete.`,
     repoReadyClaimBoundaryWithoutScope:
-      'Keep public wording inside the verified claim boundary until live receipt review is complete.',
+      'Keep public claims inside the verified scope until live proof review is complete.',
     repoReadyClaimSummaryFallback: (runnableNowSummary) =>
-      `${runnableNowSummary} Public wording still stays behind evidence review.`,
+      `${runnableNowSummary} Public claims still stay behind proof review.`,
     readyOnThisPageLabel: 'Ready now',
     needsOperatorAttentionLabel: 'Needs operator attention',
     needsOperatorAttentionSummary:
@@ -621,9 +621,9 @@ const en: LocaleCatalog = {
       `${count} ${count === 1 ? 'capability needs' : 'capabilities need'} operator attention before they can run.`,
     supportStateWaitingSummary:
       'Open a supported page to load the current support state.',
-    reviewSupportPolicyLabel: 'See proof boundary',
+    reviewSupportPolicyLabel: 'See claim limit',
     reviewSupportPolicySummary:
-      'Use this surface for repo truth, not for public-ready wording.',
+      'Use this surface for repo truth, not for public-ready claims.',
     openCaptureQueue: 'Open capture queue',
     openReviewLane: 'Open review lane',
     openReadinessSummary: 'Open readiness summary',
@@ -730,7 +730,7 @@ const en: LocaleCatalog = {
     blockerSummaryReviewPendingLabel: 'Waiting for explicit evidence review',
     blockerSummaryReviewedLabel: 'Reviewed packets recorded in repo ledger',
     blockerSummaryMissingSummary: (queueSummary) =>
-      `${queueSummary}. Public wording stays blocked until a reviewable packet exists.`,
+      `${queueSummary}. Public claims stay blocked until reviewable proof exists.`,
     blockerSummaryInProgressSummary: (queueSummary) =>
       `${queueSummary}. In-progress packets are not reviewable evidence yet.`,
     blockerSummaryReviewPendingSummary: (queueSummary) =>
@@ -772,10 +772,10 @@ const en: LocaleCatalog = {
     evidenceSourceRouteSummary:
       'Resume from the evidence-linked source page so the next operator move starts in the right place.',
     currentSiteSummaryRoute:
-      'Open the current site summary first to confirm the active host and page kind before you route deeper.',
-    reviewClaimGateLabel: 'Check proof boundary',
+      'Open this page summary first to confirm the active host and page type before you go deeper.',
+    reviewClaimGateLabel: 'Check claim limit',
     reviewClaimGateSummary:
-      'Inspect evidence status and verified-scope cues before using public wording.',
+      'Inspect proof status and verified scope before you make public claims.',
     reviewReadinessSummaryLabel: 'Review readiness summary',
     reviewReadinessSummarySummary:
       'Use the top summary card to separate runnable-now truth from follow-up operator work.',
@@ -783,39 +783,39 @@ const en: LocaleCatalog = {
       'Confirm the latest recorded output and use its jump-back link if you need the source page.',
     checkRecentActivitySummaryIdle:
       'Recent activity stays lightweight so this surface remains a router, not a second console.',
-    workflowCopilotHeading: 'Current mission',
+    workflowCopilotHeading: 'What to do here',
     workflowReadySummary:
-      'Repo verification is strong enough to inspect this path. Stay inside the runnable-now truth and use the freshest page context.',
+      'This route is strong in repo. Stay inside what works on this page and use the freshest page context.',
     workflowClaimGatedSummary:
-      'Repo verification is strong enough to inspect this path, but public wording still stays behind evidence review.',
+      'This route is strong in repo, but public claims still stay behind proof review.',
     workflowNeedsAttentionSummary:
-      'The page is recognized, but the next operator move still needs attention before this route becomes safely runnable.',
+      'This page is recognized, but the next move still needs attention before this route becomes safely runnable.',
     workflowUnsupportedSummary:
-      'This surface is outside the current supported boundary. Route into a supported page before making support statements.',
+      'This page is outside the current supported boundary. Route into a supported page before you say it works.',
     workflowBulletRunnableNow: 'Runnable now',
-    workflowBulletClaimGate: 'Claim gate',
-    workflowBulletCurrentSurface: 'Current surface',
-    workflowBulletNextMove: 'Next move',
+    workflowBulletClaimGate: 'Proof line',
+    workflowBulletCurrentSurface: 'Current page',
+    workflowBulletNextMove: 'Do next',
   },
   suite: {
-    internalAlphaOnly: 'Alpha preview',
+    internalAlphaOnly: 'Suite preview',
     startHereHeading: 'Start here',
-    alphaGuardrailsHeading: 'Alpha guardrails',
-    priorityRoutesHeading: 'Start with these routes',
+    alphaGuardrailsHeading: 'Suite rules',
+    priorityRoutesHeading: 'Best next stops',
     priorityRoutesSummary:
-      'Start from the fastest useful route instead of opening every store shell by hand.',
-    claimReadinessHeading: 'Public wording board',
+      'Use these when you need another strong route after the start-here pick.',
+    claimReadinessHeading: 'What still needs proof',
     claimReadinessSummary:
-      'Use this board to see what still needs proof before public wording changes.',
-    currentRolloutHeading: 'App status map',
+      'Check this before you change public claims.',
+    currentRolloutHeading: 'Pick a store',
     currentRolloutSummary:
-      'Each row shows what to open next, why it is still in this state, and what the latest shared context says right now.',
-    supportDesksHeading: 'More detail',
+      'Each row tells you where to open next and why it is in this state.',
+    supportDesksHeading: 'Deeper detail',
     supportDesksSummary:
-      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.',
+      'Open this only when you need verified scope clauses, proof queues, runtime handoff notes, or Suite rules.',
     inspectStatusLabel: (publicName) => `Inspect status for ${publicName}`,
-    inspectStatusActionLabel: 'Inspect status',
-    hideStatusActionLabel: 'Hide status',
+    inspectStatusActionLabel: 'Show details',
+    hideStatusActionLabel: 'Hide details',
     priorityRouteAria: (publicName, label) =>
       `Priority route for ${publicName}: ${label}`,
     frontDoorAria: (publicName, label) =>
@@ -829,19 +829,19 @@ const en: LocaleCatalog = {
     openSidePanelFamilyChooserLabel: 'Open Side Panel family chooser',
     openSidePanelRolloutMapLabel: 'Open Side Panel rollout map',
     openSidePanelClaimReadinessLabel: 'Open Side Panel claim readiness board',
-    latestDetectionHeading: 'Latest detection',
-    latestRecentActivityHeading: 'Latest recent activity',
-    latestCapturedOutputHeading: 'Latest captured output',
-    frontDoorHeading: 'Front door for this app',
-    evidenceQueueHeading: 'Evidence queue',
-    priorityPacketHeading: 'Priority packet',
-    operatorNextStepHeading: 'Next move',
-    decisionBriefHeading: 'Decision brief',
+    latestDetectionHeading: 'Latest page',
+    latestRecentActivityHeading: 'Latest source',
+    latestCapturedOutputHeading: 'Latest output',
+    frontDoorHeading: 'Open this app',
+    evidenceQueueHeading: 'Proof queue',
+    priorityPacketHeading: 'Top proof task',
+    operatorNextStepHeading: 'Do this next',
+    decisionBriefHeading: 'Why this route',
     noOutstandingPacket:
-      'No outstanding live receipt packet is waiting right now.',
-    providerRuntimeSeamHeading: 'Provider runtime seam',
+      'No proof task is waiting right now.',
+    providerRuntimeSeamHeading: 'Advanced runtime handoff',
     providerRuntimeSeamSummary:
-      'This internal-alpha section is the first real Shopflow runtime consumer for Switchyard-style provider routes. It stays read-only and does not replace merchant live proof.',
+      'This advanced internal card previews Switchyard-style runtime routes. It stays read-only and does not replace merchant live proof.',
     providerRuntimeSeamBaseUrlHeading: 'Configured runtime base URL',
     providerRuntimeSeamBoundaryHeading: 'Boundary note',
     providerRuntimeSeamBoundaryNote:
@@ -863,7 +863,7 @@ const en: LocaleCatalog = {
     evidenceGatesHeading: 'Proof still missing',
     evidenceGatesSummary:
       'Some routes still need capture work. Others are already waiting for explicit review. Repo verification alone does not clear either gate.',
-    verifiedScopeHeading: 'Verified scope navigator',
+    verifiedScopeHeading: 'Verified scope',
     verifiedScopeSummary:
       "Use these clauses when checking whether public wording is still inside today's verified boundary.",
     openRolloutRow: (publicName) => `Open rollout row for ${publicName}`,
@@ -888,9 +888,9 @@ const en: LocaleCatalog = {
     noFreshContextSummary: (routeLabel, publicName) =>
       `No fresh page context exists yet. ${routeLabel} so Suite can capture runtime context for ${publicName}.`,
     appSummary:
-      'Internal-only alpha composition shell for capability navigation, rollout visibility, and evidence readiness.',
+      'Internal alpha hallway for picking the right store app, checking rollout state, and seeing proof readiness.',
     operatorPromise:
-      'Use this internal alpha surface to route into the right store app, inspect claim gates, and review which evidence gate still keeps public wording closed.',
+      'Use Suite to pick the right store app, see what still needs proof, and avoid making public claims too early.',
     guardrails: [
       'No public claim',
       'No second logic plane',
@@ -898,55 +898,55 @@ const en: LocaleCatalog = {
     ],
     startHereCards: [
       {
-        title: 'Route into the right store shell',
+        title: 'Pick the right store first',
         summary:
-          'Start with rollout state and verified scope so operators open the correct store app instead of guessing from brand names alone.',
-        ctaLabel: 'Open rollout map',
+          'Start with rollout state and verified scope so you open the right store app without guessing from brand names.',
+        ctaLabel: 'Open store map',
       },
       {
-        title: 'Inspect claim gates before release talk',
+        title: 'Check proof before public claims',
         summary:
-          'Keep repo-verified progress separate from public-ready wording by checking evidence gates first.',
-        ctaLabel: 'Open claim readiness board',
+          'Keep repo progress separate from public claims by checking missing proof first.',
+        ctaLabel: 'Open proof board',
       },
       {
-        title: 'Use Suite to choose the next app, not to do the work itself',
+        title: 'Use Suite as a lobby',
         summary:
-          'Verified scope, evidence gates, provider seam previews, and alpha rules still stay available, but they should not outrank the first route.',
-        ctaLabel: 'Open support desks',
+          'Verified scope, proof queues, runtime handoff notes, and Suite rules still live here, but they should not outrank the first route.',
+        ctaLabel: 'Open deeper detail',
       },
     ],
     suiteNotesByAppId: {
       'ext-albertsons':
-        '当前已验证范围：Safeway。public-ready 仍被实时证据挡住。',
+        'Currently verified on Safeway. Public claims are still limited by missing live proof.',
       'ext-kroger':
-        'Family 壳层已 repo-verified，但 public-ready 仍需要 Fred Meyer + QFC 的已验证范围证据。',
-      'ext-amazon': 'Storefront shell 基线已通过。',
-      'ext-costco': 'Storefront shell 基线已通过。',
-      'ext-walmart': 'Storefront shell 基线已通过。',
-      'ext-weee': 'Wave 3 storefront shell 基线已通过。',
-      'ext-target': 'Deals 能力 storefront shell 基线已通过。',
+        'Family shell is repo-verified, but public claims still need reviewed proof for Fred Meyer + QFC.',
+      'ext-amazon': 'Storefront shell baseline is repo-verified.',
+      'ext-costco': 'Storefront shell baseline is repo-verified.',
+      'ext-walmart': 'Storefront shell baseline is repo-verified.',
+      'ext-weee': 'Wave 3 storefront shell baseline is repo-verified.',
+      'ext-target': 'Deals storefront shell baseline is repo-verified.',
       'ext-temu':
-        '差异化 warehouse filter 已 repo-verified，但 public-ready 仍需要实时证据。',
+        'Warehouse filter path is repo-verified, but public claims still need live proof.',
     },
     statusBoard: {
       repoVerifiedClear: {
-        label: 'Repo-verified and not waiting on extra evidence',
+        label: 'Ready to inspect',
         summary:
-          'Use the rollout map to inspect shells that are repo-verified without an active extra evidence blocker.',
-        ctaLabel: 'Open rollout map',
+          'These store shells are stable in repo and are not blocked by extra proof work right now.',
+        ctaLabel: 'Open store map',
       },
       repoVerifiedClaimGated: {
-        label: 'Ready in repo, but proof still missing',
+        label: 'Proof still missing',
         summary:
-          'Use evidence gates to capture or review the next packet before you let repo-verified progress drift into public-ready wording.',
-        ctaLabel: 'Open evidence gates',
+          'These apps are strong in repo, but public claims still need capture or review work.',
+        ctaLabel: 'Open proof board',
       },
       internalAlpha: {
-        label: 'Alpha-only surfaces',
+        label: 'Suite-only rules',
         summary:
-          'Use alpha guardrails when you need to confirm Suite is still routing into store apps instead of behaving like a second workflow engine.',
-        ctaLabel: 'Open alpha guardrails',
+          'Use these guardrails to keep Suite acting like a lobby instead of a second workflow engine.',
+        ctaLabel: 'Open Suite rules',
       },
     },
     waitingReviewRouteLabel: 'Review waiting evidence on source page',

@@ -517,7 +517,7 @@ function createScenarioPayloads(
   };
   const workflowCopilotBrief: WorkflowCopilotBrief = {
     tone: stage === 'ready-now' ? 'ready-now' : 'claim-gated',
-    title: 'Current mission',
+    title: 'What to do here',
     summary:
       readinessEntry?.readinessSummary ??
       'Repo-local review bundle is ready for inspection.',

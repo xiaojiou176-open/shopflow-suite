@@ -20,7 +20,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await expect(sidePanel.getByText('Shopflow for Albertsons Family')).toBeVisible();
     const currentSiteCard = sidePanel
       .locator('section')
-      .filter({ hasText: 'Current site' })
+      .filter({ hasText: 'This page' })
       .first();
     await expect(currentSiteCard).toContainText('www.safeway.com · cart');
     const runActionCard = sidePanel
@@ -28,7 +28,12 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       .filter({ hasText: 'Run Actions' })
       .first();
     await expect(runActionCard).toBeVisible();
-    await expect(sidePanel.getByText('Ready in repo · needs proof')).toBeVisible();
+    await expect(
+      sidePanel
+        .locator('#readiness-summary')
+        .getByText('Ready in repo · needs proof')
+        .first()
+    ).toBeVisible();
     await expect(runActionCard).toContainText(/Ready/);
     await expect(sidePanel.locator('body')).toContainText(
       /Live receipt readiness/i
@@ -51,20 +56,20 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await expect(
       sidePanel.getByRole('link', { name: 'Open current capture page' }).first()
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
-    await expect(sidePanel.locator('body')).toContainText(/Recent activity/i);
+    await expect(sidePanel.locator('body')).toContainText(/Latest source/i);
     await expect(sidePanel.locator('body')).toContainText(
       /1 ready capability on the latest detected page\./i
     );
     await expect(
       sidePanel.locator('#readiness-summary').getByRole('link', {
-        name: 'Check proof boundary',
+        name: 'Check claim limit',
       })
     ).toHaveAttribute('href', '#live-receipt-evidence');
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
       /Runnable now/i
     );
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
-      /Public wording/i
+      /Before public claims/i
     );
     await sidePanel.close();
 
@@ -133,7 +138,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       reviewLanePage.locator('#live-receipt-review details')
     ).toHaveAttribute('open', '');
     await expect(reviewLanePage.locator('#live-receipt-review')).toContainText(
-      /Review lane/i
+      /Review queue/i
     );
     await reviewLanePage.close();
   } finally {
@@ -221,7 +226,7 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     await expect(popup.getByText('Shopflow for Albertsons Family')).toBeVisible();
     await expect(popup.locator('body')).toContainText(/www\.vons\.com · search/i);
     await expect(popup.locator('body')).toContainText(
-      /Public wording: Currently verified on Safeway\./i
+      /Before public claims: Currently verified on Safeway\./i
     );
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Captured 1 search result/i

@@ -157,7 +157,7 @@ export function SidePanelHomePage({
                   </span>
                 </div>
                 <p className="mt-4 text-lg font-semibold">
-                  {primaryRoute?.label ?? copy.sidePanel.noRunnableCapability}
+                  {model.readiness.label}
                 </p>
                 <p className="mt-2 text-sm text-[#ede7de]">
                   {model.readiness.summary}

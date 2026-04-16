@@ -64,9 +64,9 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(en.suite.openVerifiedScopeClause('Shopflow for Amazon')).toBe(
       'Open verified scope clause for Shopflow for Amazon'
     );
-    expect(en.suite.supportDesksHeading).toBe('More detail');
+    expect(en.suite.supportDesksHeading).toBe('Deeper detail');
     expect(en.suite.supportDesksSummary).toContain(
-      'Keep verified-scope clauses, proof queues, provider seam previews, and alpha rules one layer down.'
+      'Open this only when you need verified scope clauses, proof queues, runtime handoff notes, or Suite rules.'
     );
     expect(en.suite.waitingReviewRouteSummary(2)).toBe(
       '2 packets are waiting for review. Start from the freshest known operator page for this app.'
