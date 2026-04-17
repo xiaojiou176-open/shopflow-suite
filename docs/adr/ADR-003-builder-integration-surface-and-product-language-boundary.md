@@ -4,11 +4,10 @@
 - Date: 2026-04-01
 - Owners: Shopflow Product + Ecosystem
 - Related:
-  - [ADR-001: Shopflow Repo Topology and Product Boundary](./ADR-001-shopflow-repo-topology-and-product-boundary.md)
-  - [ADR-002: Release Wave and Product Tiering](./ADR-002-release-wave-and-product-tiering.md)
-  - [Shopflow Product Surface Spec](../ui/shopflow-product-surface-spec.md)
-  - [Agent and MCP Positioning](../ecosystem/agent-and-mcp-positioning.md)
-  - [Builder Read Models](../ecosystem/builder-read-models.md)
+- [ADR-001: Shopflow Repo Topology and Product Boundary](./ADR-001-shopflow-repo-topology-and-product-boundary.md)
+- [ADR-002: Release Wave and Product Tiering](./ADR-002-release-wave-and-product-tiering.md)
+- [Agent and MCP Positioning](../ecosystem/agent-and-mcp-positioning.md)
+- [Builder Read Models](../ecosystem/builder-read-models.md)
 
 ## Context
 
@@ -223,5 +222,4 @@ This ADR is only complete when the same change set also updates:
 - `README.md`
 - `docs/README.md`
 - `docs/ecosystem/agent-and-mcp-positioning.md`
-- `docs/ui/shopflow-product-surface-spec.md`
 - `CHANGELOG.md`

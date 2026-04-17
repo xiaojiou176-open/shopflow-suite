@@ -75,11 +75,11 @@ pnpm cli:read-only -- public-skills-catalog --output .runtime-cache/cli/public-s
 pnpm cli:read-only -- plugin-marketplace-metadata --target claude-code --output .runtime-cache/cli/plugin-marketplace-metadata.claude-code.json
 ```
 
-## Local Skill Scaffolds Worth Reading
+## Skills-Facing Companion Pages Worth Reading
 
-- `.agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md`
-- `.agents/skills/shopflow-live-browser-ops/SKILL.md`
-- `.agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md`
+- [Public Skills Catalog](./public-skills-catalog.md)
+- [Live Receipt Capture Runbook](../runbooks/live-receipt-capture.md)
+- [Agent Quickstarts](./agent-quickstarts.md)
 
 ## Best Companion Pages
 

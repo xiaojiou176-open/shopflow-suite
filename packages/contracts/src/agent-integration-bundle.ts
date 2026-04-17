@@ -225,7 +225,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       ],
       repoOwnedArtifacts: [
         'docs/ecosystem/claude-code-quickstart.md',
-        '.agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md',
+        'docs/ecosystem/public-skills-catalog.md',
         'docs/ecosystem/public-distribution-bundle.md',
         'docs/ecosystem/examples/agent-target-packet.claude-code.json',
         'docs/ecosystem/examples/public-skills-catalog.json',
@@ -411,8 +411,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       {
         id: 'shopflow-read-only-runtime-seam-consumption',
         label: 'Shopflow read-only runtime seam consumption',
-        sourcePath:
-          '.agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md',
+        sourcePath: 'docs/ecosystem/claude-code-quickstart.md',
         distributionState: 'repo-local-skill-scaffold',
         targetFit: ['codex', 'claude-code'],
         summary:
@@ -422,7 +421,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       {
         id: 'shopflow-live-browser-ops',
         label: 'Shopflow live browser ops',
-        sourcePath: '.agents/skills/shopflow-live-browser-ops/SKILL.md',
+        sourcePath: 'docs/runbooks/live-receipt-capture.md',
         distributionState: 'repo-local-skill-scaffold',
         targetFit: ['claude-code', 'codex'],
         summary:
@@ -432,8 +431,7 @@ export const agentIntegrationBundle = agentIntegrationBundleSchema.parse({
       {
         id: 'shopflow-builder-facing-discoverability-and-ready-sync',
         label: 'Shopflow builder-facing discoverability and ready-sync',
-        sourcePath:
-          '.agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md',
+        sourcePath: 'docs/ecosystem/agent-quickstarts.md',
         distributionState: 'repo-local-skill-scaffold',
         targetFit: ['codex', 'claude-code', 'openclaw'],
         summary:

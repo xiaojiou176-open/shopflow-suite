@@ -183,7 +183,6 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsIndex, 'Release review runbook');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
-    expectPagesSafeFirstHop(docsIndex, 'Shopflow Product Surface Spec');
     expectPagesSafeFirstHop(docsIndex, 'Release Artifact Review Runbook');
     expectPagesSafeFirstHop(docsIndex, 'Live Receipt Capture Runbook');
     expectPagesSafeFirstHop(docsIndex, 'Docs front door on GitHub');

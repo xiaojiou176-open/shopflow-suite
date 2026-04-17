@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-16T00:26:30.571Z",
+  "generatedAt": "2026-04-17T15:04:50.513Z",
   "appId": "ext-amazon",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -590,7 +590,7 @@
           "id": "ext-amazon:https://www.amazon.com/s?k=coffee+storage",
           "appId": "ext-amazon",
           "label": "www.amazon.com · search",
-          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review.",
+          "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate.",
           "timestampLabel": "2:10 AM",
           "href": "https://www.amazon.com/s?k=coffee+storage"
         }
@@ -599,7 +599,7 @@
         "origin": "merchant-source",
         "label": "Inspect latest source page",
         "href": "https://www.amazon.com/s?k=coffee+storage",
-        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as store-review."
+        "summary": "Extract Amazon search results is runnable right now. ext-amazon is packaged as storefront-shell-candidate."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -625,21 +625,22 @@
       "readOnly": true,
       "appTitle": "Shopflow for Amazon",
       "stage": "ready-now",
-      "summary": "Ready for repo-local review.",
+      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
       "whyNow": [
         "www.amazon.com · search",
         "Extract Amazon search results is runnable right now.",
         "Keep public wording inside the current repo-verified scope."
       ],
-      "nextStep": "Inspect the current review route before changing any public wording.",
+      "nextStep": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised.",
       "primaryRouteLabel": "Open current review start page",
       "primaryRouteHref": "https://www.amazon.com/s?k=coffee+storage",
-      "primaryRouteOrigin": "merchant-source"
+      "primaryRouteOrigin": "merchant-source",
+      "claimBoundary": "Keep public wording inside the current repo-verified scope."
     },
     "workflowCopilotBrief": {
       "tone": "ready-now",
       "title": "What to do here",
-      "summary": "Ready for repo-local review.",
+      "summary": "Review bundle is complete, but public wording must stay inside the current repo-verified scope.",
       "bullets": [
         {
           "label": "Current surface",
@@ -656,7 +657,7 @@
       ],
       "nextAction": {
         "label": "Open current review start page",
-        "reason": "Inspect the current review route before expanding public wording."
+        "reason": "Keep wording inside repo-verified scope and only advance once the public-claim boundary is explicitly raised."
       }
     }
   },
@@ -682,39 +683,39 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 3 app entries. ext-amazon is store-review with bundle directory apps/ext-amazon/.output/chrome-mv3 and 1 packaged zip artifact."
+      "summary": "Release manifest now proves 9 app entries. ext-amazon is storefront-shell-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-amazon/bundle and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-amazon as review-bundle-ready-awaiting-signing. Review bundle ready: yes. Ready for repo-local review."
+      "summary": "Submission readiness marks ext-amazon as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-amazon/bundle/shopflow-review-artifact.json. Manual review starts at https://www.amazon.com. Review bundle is complete, but public wording must stay inside the current repo-verified scope."
     }
   ],
   "readyToSyncArtifacts": [
     {
       "id": "public-copy-packet",
-      "path": ".agents/Tasks/WAVE1-public-sync/public-copy.ready.md",
-      "destination": "sync packet overview",
-      "summary": "Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim."
+      "path": "docs/ecosystem/public-distribution-bundle.md",
+      "destination": "public distribution overview",
+      "summary": "Public-facing distribution guide that explains which current-scope surfaces are already usable and what they still must not overclaim."
     },
     {
       "id": "paste-ready-public-copy",
-      "path": ".agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md",
-      "destination": "GitHub about, release notes, or social/page drafts",
-      "summary": "Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful."
+      "path": "docs/ecosystem/agent-quickstarts.md",
+      "destination": "target-specific quickstart copy",
+      "summary": "Public quickstart matrix that keeps agent-facing copy truthful while still giving each target one shortest current-scope entry path."
     },
     {
       "id": "release-body",
-      "path": ".agents/Tasks/WAVE1-public-sync/release-body.ready.md",
-      "destination": "release body starter",
-      "summary": "Short release-note block that stays inside current claim boundaries."
+      "path": "DISTRIBUTION.md",
+      "destination": "distribution status ledger",
+      "summary": "Canonical distribution ledger that distinguishes what is already live, what is only ready, and what still remains manual later."
     },
     {
       "id": "repo-description",
-      "path": ".agents/Tasks/WAVE1-public-sync/repo-description.ready.md",
-      "destination": "GitHub repo description",
-      "summary": "One-line repo description that names the product shape without implying public API, MCP, or CLI availability."
+      "path": "README.md",
+      "destination": "canonical repo front door",
+      "summary": "Canonical public repo front door that names the product shape without implying public API, MCP, or CLI availability."
     }
   ]
 }

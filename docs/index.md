@@ -60,9 +60,6 @@ In plain language:
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
 
-Maintainer reference:
-[Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
-
 ## What This Repo Is
 
 Shopflow is a **browser extension product repo**.

@@ -33,11 +33,6 @@ const liveReceiptTargets: LiveReceiptTarget[] = [
     expectedText: 'Agent Quickstarts',
   },
   {
-    label: 'Shopflow Product Surface Spec',
-    url: 'https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html',
-    expectedText: 'Shopflow Product Surface Spec',
-  },
-  {
     label: 'Release Artifact Review Runbook',
     url: 'https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html',
     expectedText: 'Release Artifact Review Runbook',

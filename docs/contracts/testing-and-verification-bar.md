@@ -5,8 +5,6 @@
 - Owners: Shopflow Quality
 - Related:
   - [ADR-002: Release Wave and Product Tiering](../adr/ADR-002-release-wave-and-product-tiering.md)
-  - [Store Adapter Contract](./store-adapter-contract.md)
-  - [Store Capability Priority Matrix](./store-capability-priority-matrix.md)
 
 ## Purpose
 

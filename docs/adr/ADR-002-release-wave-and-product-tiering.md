@@ -5,7 +5,6 @@
 - Owners: Shopflow Product Architecture
 - Related:
   - [ADR-001: Shopflow Repo Topology and Product Boundary](./ADR-001-shopflow-repo-topology-and-product-boundary.md)
-  - [Store Capability Priority Matrix](../contracts/store-capability-priority-matrix.md)
   - [Testing and Verification Bar](../contracts/testing-and-verification-bar.md)
 
 ## Context

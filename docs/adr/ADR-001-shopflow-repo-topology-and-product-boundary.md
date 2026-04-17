@@ -5,8 +5,6 @@
 - Owners: Shopflow Architecture
 - Related:
   - [ADR-002: Release Wave and Product Tiering](./ADR-002-release-wave-and-product-tiering.md)
-  - [Store Adapter Contract](../contracts/store-adapter-contract.md)
-  - [Store Capability Priority Matrix](../contracts/store-capability-priority-matrix.md)
 
 ## Context
 
@@ -259,6 +257,4 @@ Rejected because:
 This ADR is only complete when the following documents are also treated as binding:
 
 - [ADR-002: Release Wave and Product Tiering](./ADR-002-release-wave-and-product-tiering.md)
-- [Store Adapter Contract](../contracts/store-adapter-contract.md)
-- [Store Capability Priority Matrix](../contracts/store-capability-priority-matrix.md)
 - [Testing and Verification Bar](../contracts/testing-and-verification-bar.md)

@@ -198,19 +198,17 @@ The short version is:
 
 Current repo state is **all `8+1` app shells materialized, with Wave 1 + Wave 2 repo-verified, Wave 3 Kroger/Weee now repo-verified, and a Suite internal alpha shell in place**.
 
-What is already in place at the contract and policy layer:
+What is already in place on the public contract and policy shelf:
 
 - repo topology decisions
 - release-wave decisions
-- store adapter contract
-- capability priority matrix
 - verification bar
-- migration runbook
 - live receipt capture runbook
-- UI surface specification
-- MVP delivery blueprint
 - branding rules
-- dependency and reuse policy
+
+Additional maintainer-only implementation contracts, UI surface specs, and
+dependency policy notes now stay in local private docs instead of the public
+docs shelf.
 
 What is already in place in the repo implementation layer:
 
@@ -679,18 +677,12 @@ Start with the docs front door if you want the shortest guided map:
 
 ### Contracts
 
-- [Store Adapter Contract](./docs/contracts/store-adapter-contract.md)
-- [Store Capability Priority Matrix](./docs/contracts/store-capability-priority-matrix.md)
 - [Testing and Verification Bar](./docs/contracts/testing-and-verification-bar.md)
 
 ### Runbook
 
 - [Live Receipt Capture Runbook](./docs/runbooks/live-receipt-capture.md)
 - [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
-
-### Maintainer UI Reference
-
-- [Shopflow Product Surface Spec](./docs/ui/shopflow-product-surface-spec.md)
 
 ### Branding
 

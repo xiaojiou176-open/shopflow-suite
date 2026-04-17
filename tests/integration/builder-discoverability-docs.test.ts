@@ -478,6 +478,38 @@ describe('builder discoverability docs coherence', () => {
     expect(pluginMetadata).toContain('plugin-level-public-distribution-bundle');
   });
 
+  it('keeps public docs and checked-in example packets free of internal .agents paths', () => {
+    const claudeQuickstart = readRepoFile(
+      'docs/ecosystem/claude-code-quickstart.md'
+    );
+    const agentIntegrationBundle = readRepoFile(
+      'docs/ecosystem/examples/agent-integration-bundle.json'
+    );
+    const codexPacket = readRepoFile(
+      'docs/ecosystem/examples/agent-target-packet.codex.json'
+    );
+    const claudePacket = readRepoFile(
+      'docs/ecosystem/examples/agent-target-packet.claude-code.json'
+    );
+    const openClawPacket = readRepoFile(
+      'docs/ecosystem/examples/agent-target-packet.openclaw.json'
+    );
+    const publicSkillsCatalog = readRepoFile(
+      'docs/ecosystem/examples/public-skills-catalog.json'
+    );
+    const builderOutcomeBundle = readRepoFile(
+      'docs/ecosystem/examples/builder-outcome-bundle.ext-albertsons.json'
+    );
+
+    expect(claudeQuickstart).not.toContain('.agents/');
+    expect(agentIntegrationBundle).not.toContain('.agents/');
+    expect(codexPacket).not.toContain('.agents/');
+    expect(claudePacket).not.toContain('.agents/');
+    expect(openClawPacket).not.toContain('.agents/');
+    expect(publicSkillsCatalog).not.toContain('.agents/');
+    expect(builderOutcomeBundle).not.toContain('.agents/');
+  });
+
   it('keeps agent-specific quickstarts visible across the front door and packet docs', () => {
     const readme = readRepoFile('README.md');
     const docsReadme = readRepoFile('docs/README.md');
