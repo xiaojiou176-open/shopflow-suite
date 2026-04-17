@@ -54,12 +54,14 @@ In plain language:
 
 ## Need Help or the Deeper Atlas?
 
-- [Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
 - [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 - [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
 - [Docs front door on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
+
+Maintainer reference:
+[Shopflow Product Surface Spec](https://xiaojiou176-open.github.io/shopflow-suite/ui/shopflow-product-surface-spec.html)
 
 ## What This Repo Is
 
@@ -103,8 +105,8 @@ It is not:
 
 Use the public repo surface like one front entrance:
 
-| Repo | Role now | Open this when | Must not be mistaken for |
-| :--- | :--- | :--- | :--- |
+| Repo                              | Role now            | Open this when                                                                         | Must not be mistaken for                                     |
+| :-------------------------------- | :------------------ | :------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
 | `xiaojiou176-open/shopflow-suite` | only canonical repo | you want the main product, docs, Pages, release, review shelf, and read-only stdio MCP | a mirror, packet-only side shelf, or public HTTP MCP service |
 
 If you only want one link, use:

@@ -28,9 +28,9 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/openclaw-comparison.md',
       'docs/ecosystem/builder-start-here.md',
       'docs/ecosystem/integration-recipes.md',
-      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-artifacts.md',
-      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md',
-      '.agents/Tasks/WAVE1-public-sync/evidence-submission-current-scope-readiness.md',
+      'docs/ecosystem/public-distribution-bundle.md',
+      'docs/ecosystem/plugin-marketplace-metadata.md',
+      'docs/ecosystem/builder-surfaces.md',
       'docs/ecosystem/examples/README.md',
       ...builderIntegrationSurface.surfaceCatalog.flatMap((entry) =>
         entry.entrypoints
@@ -209,47 +209,46 @@ describe('builder discoverability docs coherence', () => {
   });
 
   it('keeps ready-to-sync material explicit about not already being published', () => {
-    const artifactsGuide = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-artifacts.md'
+    const distributionBundle = readRepoFile(
+      'docs/ecosystem/public-distribution-bundle.md'
     );
-    const publicCopy = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/public-copy.ready.md'
+    const pluginMetadata = readRepoFile(
+      'docs/ecosystem/plugin-marketplace-metadata.md'
     );
-    const syncBlocks = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md'
+    const builderStartHere = readRepoFile(
+      'docs/ecosystem/builder-start-here.md'
     );
-    const releaseBody = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/release-body.ready.md'
+    const agentArtifacts = readRepoFile(
+      'docs/ecosystem/agent-distribution-artifacts.md'
     );
 
-    expect(artifactsGuide).toContain('already published');
-    expect(artifactsGuide).toContain('submission-readiness.json');
-    expect(artifactsGuide).toContain(
-      './evidence-submission-current-scope-readiness.md'
+    expect(distributionBundle).toContain('already published');
+    expect(distributionBundle).toContain('strongest truthful public surface');
+    expect(pluginMetadata).toContain(
+      'what is still missing on every confirmed surface is Shopflow being officially listed or published there'
     );
-    expect(publicCopy).toContain('ready-to-sync, not already synced');
-    expect(syncBlocks).toContain(
-      'ready-to-sync is not the same thing as already synced'
+    expect(builderStartHere).toContain(
+      'do not treat ready-to-sync copy as already synced copy'
     );
-    expect(releaseBody).toContain(
-      'It is not proof that the release body is already published.'
+    expect(agentArtifacts).toContain(
+      'these are checked-in examples, not published marketplace payloads'
     );
   });
 
   it('keeps the builder current-scope readiness doc branch-aware instead of claiming main already landed', () => {
-    const currentScopeReadiness = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md'
+    const distributionBundle = readRepoFile(
+      'docs/ecosystem/public-distribution-bundle.md'
+    );
+    const agentQuickstarts = readRepoFile(
+      'docs/ecosystem/agent-quickstarts.md'
     );
 
-    expect(currentScopeReadiness).toContain('Branch-Aware Git Truth');
-    expect(currentScopeReadiness).toContain(
-      'must **not** be used as proof that local `main` has landed on `origin/main`'
+    expect(distributionBundle).toContain(
+      'External publication still needs the real target registry, marketplace, or hosting path.'
     );
-    expect(currentScopeReadiness).toContain(
-      'branch-aware and fresh-recheck-only'
-    );
-    expect(currentScopeReadiness).not.toContain(
-      'the current local `main` is now landed on `origin/main`'
+    expect(agentQuickstarts).not.toContain('main already landed');
+    expect(agentQuickstarts).toContain(
+      'current repo-local, read-only surfaces'
     );
   });
 
@@ -348,9 +347,6 @@ describe('builder discoverability docs coherence', () => {
       'docs/ecosystem/integration-recipes.md'
     );
     const builderSurfaces = readRepoFile('docs/ecosystem/builder-surfaces.md');
-    const readiness = readRepoFile(
-      '.agents/Tasks/WAVE1-public-sync/builder-current-scope-readiness.md'
-    );
 
     expect(builderStartHere).toContain('pnpm cli:read-only -- runtime-seam');
     expect(builderReadModels).toContain('pnpm cli:read-only -- runtime-seam');
@@ -368,7 +364,6 @@ describe('builder discoverability docs coherence', () => {
     expect(builderSurfaces).toContain(
       'pnpm cli:read-only -- agent-integration-bundle'
     );
-    expect(readiness).toContain('pnpm cli:read-only -- runtime-seam');
   });
 
   it('keeps the thin runtime-consumer entrypoint visible where Switchyard boundaries are explained', () => {

@@ -58,12 +58,12 @@ If you want the shortest truthful product-first read, take this route:
 
 ## What You Can See Right Away
 
-| Surface | What it proves today | What it must not be mistaken for |
-| :--- | :--- | :--- |
-| public repo | the canonical product and docs front door | a packet-only side shelf |
-| Pages front door | the current public product story | Chrome Web Store readiness |
-| latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf |
-| read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
+| Surface              | What it proves today                            | What it must not be mistaken for               |
+| :------------------- | :---------------------------------------------- | :--------------------------------------------- |
+| public repo          | the canonical product and docs front door       | a packet-only side shelf                       |
+| Pages front door     | the current public product story                | Chrome Web Store readiness                     |
+| latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf             |
+| read-only stdio MCP  | repo-truth access for AI tools                  | a public HTTP MCP or official registry listing |
 
 ## Builder Side Door
 
@@ -90,12 +90,12 @@ in the docs shelf instead of taking over the root README.
 Think of Shopflow like a mall with one real storefront and a few information
 desks:
 
-| Surface | Role | Why it exists | What it must not be mistaken for |
-| :--- | :--- | :--- | :--- |
-| `apps/ext-*` + `apps/ext-shopping-suite` | primary product lane | the browser-first extension family itself | a packet mirror or an MCP-first product |
+| Surface                                                          | Role                          | Why it exists                                                                  | What it must not be mistaken for                                |
+| :--------------------------------------------------------------- | :---------------------------- | :----------------------------------------------------------------------------- | :-------------------------------------------------------------- |
+| `apps/ext-*` + `apps/ext-shopping-suite`                         | primary product lane          | the browser-first extension family itself                                      | a packet mirror or an MCP-first product                         |
 | `distribution/openclaw-plugin/skills/shopflow-read-only-packet/` | companion public skill packet | one portable folder for host-native skill flows such as OpenClaw and OpenHands | proof that Shopflow browser/store lanes are already listed live |
-| `distribution/public-packets/` | companion packet mirror | smaller target-specific handoff packets when a side shelf helps | the canonical Shopflow front door or a second product repo |
-| `pnpm mcp:stdio` + builder docs | companion repo-truth surface | read-only repo, runtime-seam, and submission-readiness access for AI tools | a public HTTP MCP, public SDK, or Chrome Web Store state |
+| `distribution/public-packets/`                                   | companion packet mirror       | smaller target-specific handoff packets when a side shelf helps                | the canonical Shopflow front door or a second product repo      |
+| `pnpm mcp:stdio` + builder docs                                  | companion repo-truth surface  | read-only repo, runtime-seam, and submission-readiness access for AI tools     | a public HTTP MCP, public SDK, or Chrome Web Store state        |
 
 ## What You Can Inspect Today
 
@@ -135,8 +135,8 @@ Shopflow's public GitHub surface now uses **one main front door**.
 
 If you only open one repo, open `xiaojiou176-open/shopflow-suite`.
 
-| Repo | Role now | Use it for | Must not be mistaken for |
-| :--- | :--- | :--- | :--- |
+| Repo                              | Role now            | Use it for                                                                       | Must not be mistaken for                                                  |
+| :-------------------------------- | :------------------ | :------------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
 | `xiaojiou176-open/shopflow-suite` | only canonical repo | the default product, docs, Pages, release, review shelf, and read-only MCP entry | a packet-only side shelf, a second repo, or a public HTTP API/MCP service |
 
 In plain language:
@@ -339,13 +339,13 @@ Shopflow now uses a **five-layer verification contract** so local authoring,
 hosted CI, external/public-surface drift checks, and manual live proof do not
 all pile into the same gate.
 
-| Layer | Primary lane | What it is for | What it must not pretend to prove |
-| :--- | :--- | :--- | :--- |
-| `pre-commit` | `pnpm verify:local-hygiene` | fast local hygiene: lint, typecheck, catalog parity, sensitive worktree scan | full history safety, browser realism, release packaging, or public-surface drift |
-| `pre-push` | `pnpm verify:pre-push` | stronger local gate: pre-commit checks plus coverage, sensitive history, and repo-local unit/contract/integration confidence | E2E/browser realism, release packaging, or external/public-surface drift |
-| `hosted` | `shopflow-ci` -> `pnpm verify:release-readiness` | strongest repo-owned serial lane: hygiene, history, unit/contract/integration/E2E, and review-bundle packaging | reviewed live evidence, signing, store submission, or GitHub platform capability presence |
-| `nightly` | `external-governance` -> `pnpm verify:external-governance` | GitHub-hosted public-surface drift and platform-security capability checks | local authoring correctness or claim-ready support proof |
-| `manual` | live/browser/signing/submission commands | real browser/session review, explicit review input, signing, and store-console work | deterministic CI or repo-only automation |
+| Layer        | Primary lane                                               | What it is for                                                                                                               | What it must not pretend to prove                                                         |
+| :----------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| `pre-commit` | `pnpm verify:local-hygiene`                                | fast local hygiene: lint, typecheck, catalog parity, sensitive worktree scan                                                 | full history safety, browser realism, release packaging, or public-surface drift          |
+| `pre-push`   | `pnpm verify:pre-push`                                     | stronger local gate: pre-commit checks plus coverage, sensitive history, and repo-local unit/contract/integration confidence | E2E/browser realism, release packaging, or external/public-surface drift                  |
+| `hosted`     | `shopflow-ci` -> `pnpm verify:release-readiness`           | strongest repo-owned serial lane: hygiene, history, unit/contract/integration/E2E, and review-bundle packaging               | reviewed live evidence, signing, store submission, or GitHub platform capability presence |
+| `nightly`    | `external-governance` -> `pnpm verify:external-governance` | GitHub-hosted public-surface drift and platform-security capability checks                                                   | local authoring correctness or claim-ready support proof                                  |
+| `manual`     | live/browser/signing/submission commands                   | real browser/session review, explicit review input, signing, and store-console work                                          | deterministic CI or repo-only automation                                                  |
 
 Shopflow now wires these local mechanical gates at the repo root:
 
@@ -402,8 +402,9 @@ Important boundary:
 > A disabled platform feature is a platform gap, not proof that the code failed.
 
 If a leak has already escaped to a public surface that cannot be cleaned with a
-simple tip-only edit, follow the
-[`Sensitive Surface Incident Response Runbook`](./docs/runbooks/sensitive-surface-incident-response.md).
+simple tip-only edit, treat it as a blocker-grade incident and follow the
+repo-owned security response process before continuing any public distribution
+work.
 
 ## Cache, Profile, and Disk Governance
 
@@ -660,8 +661,7 @@ When documents disagree, follow this order:
 4. `docs/ui/`
 5. `docs/blueprints/`
 6. `docs/branding/`
-7. `docs/vendor/`
-8. root docs
+7. root docs
 
 Do not use prior chats or assumptions as runtime truth.
 
@@ -688,17 +688,13 @@ Start with the docs front door if you want the shortest guided map:
 - [Live Receipt Capture Runbook](./docs/runbooks/live-receipt-capture.md)
 - [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
 
-### UI
+### Maintainer UI Reference
 
 - [Shopflow Product Surface Spec](./docs/ui/shopflow-product-surface-spec.md)
 
 ### Branding
 
 - [Shopflow Brand and Claim Boundary](./docs/branding/shopflow-brand-and-claim-boundary.md)
-
-### Vendor / Reuse Policy
-
-- [Dependency and Reuse Policy](./docs/vendor/dependency-and-reuse-policy.md)
 
 ## Implementation Readiness
 

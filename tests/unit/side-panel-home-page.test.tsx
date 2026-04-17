@@ -176,7 +176,9 @@ describe('SidePanelHomePage', () => {
     const quickActionsIndex = html.indexOf('Supported moves');
     const quickActionsSectionIndex = html.indexOf('id="quick-actions"');
     const recentActivitySectionIndex = html.indexOf('id="recent-activity"');
-    const liveReceiptReadinessIndex = html.indexOf('id="live-receipt-readiness"');
+    const liveReceiptReadinessIndex = html.indexOf(
+      'id="live-receipt-readiness"'
+    );
     const nextRoutesIndex = html.indexOf('More places to go');
     const liveReceiptHeadingIndex = html.indexOf('Live receipt readiness');
 
@@ -189,7 +191,7 @@ describe('SidePanelHomePage', () => {
     expect(nextRoutesIndex).toBeGreaterThanOrEqual(0);
     expect(liveReceiptHeadingIndex).toBeGreaterThanOrEqual(0);
 
-    expect(currentSiteIndex).toBeLessThan(quickActionsIndex);
+    expect(quickActionsIndex).toBeLessThan(currentSiteIndex);
     expect(availableOnPageIndex).toBeLessThan(quickActionsIndex);
     expect(quickActionsSectionIndex).toBeLessThan(liveReceiptReadinessIndex);
     expect(recentActivitySectionIndex).toBeLessThan(liveReceiptReadinessIndex);
