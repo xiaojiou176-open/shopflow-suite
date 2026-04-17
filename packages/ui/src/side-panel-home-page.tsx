@@ -92,7 +92,9 @@ export function SidePanelHomePage({
   const capabilityGridOpen =
     currentHash === '#capability-grid' || model.quickActions.length === 0;
   const capabilityGridPreview =
-    primaryRoute?.label ?? model.capabilities[0]?.label ?? copy.sidePanel.noRunnableCapability;
+    primaryRoute?.label ??
+    model.capabilities[0]?.label ??
+    copy.sidePanel.noRunnableCapability;
 
   return (
     <main
@@ -241,7 +243,9 @@ export function SidePanelHomePage({
                           className="mt-3 inline-flex rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
                           href={operatorRoute.href}
                           target={operatorRoute.external ? '_blank' : undefined}
-                          rel={operatorRoute.external ? 'noreferrer' : undefined}
+                          rel={
+                            operatorRoute.external ? 'noreferrer' : undefined
+                          }
                         >
                           {operatorRoute.label}
                         </a>
@@ -276,11 +280,13 @@ export function SidePanelHomePage({
                                 {recentProof.timestampLabel}
                               </span>
                             ) : null}
-                            {recentProof?.detailLines.slice(0, 2).map((line) => (
-                              <span key={line} className="shopflow-chip">
-                                {line}
-                              </span>
-                            ))}
+                            {recentProof?.detailLines
+                              .slice(0, 2)
+                              .map((line) => (
+                                <span key={line} className="shopflow-chip">
+                                  {line}
+                                </span>
+                              ))}
                             {recentProof?.href ? (
                               <a
                                 className="inline-flex text-xs font-medium text-stone-700 underline underline-offset-2"
@@ -289,7 +295,9 @@ export function SidePanelHomePage({
                                   recentProof.external ? '_blank' : undefined
                                 }
                                 rel={
-                                  recentProof.external ? 'noreferrer' : undefined
+                                  recentProof.external
+                                    ? 'noreferrer'
+                                    : undefined
                                 }
                               >
                                 {recentProof.hrefLabel}
@@ -341,77 +349,6 @@ export function SidePanelHomePage({
                   </div>
                 </section>
               </div>
-            </div>
-          </Card>
-        </div>
-
-        <div id="current-site-summary">
-          <Card>
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
-                      {copy.sidePanel.currentSite}
-                    </p>
-                    <p className="mt-2 text-sm font-medium">
-                      {model.site.siteName}
-                    </p>
-                    <p className={`text-xs ${surfaceTokens.muted}`}>
-                      {model.site.host} · {model.site.pageKindLabel}
-                    </p>
-                    <p className={`mt-1 text-xs ${surfaceTokens.muted}`}>
-                      {model.site.urlLabel}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap justify-end gap-2">
-                    <span className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">
-                      {copy.sidePanel.statusLabels[model.appStatus]}
-                    </span>
-                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
-                      {readyCapabilities}{' '}
-                      {copy.sidePanel.statusLabels.live.toLowerCase()}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <section className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
-                  {copy.sidePanel.workflowCopilot}
-                </p>
-                <p className="mt-2 text-xs text-[#6c665d]">
-                  {model.workflowBrief.summary}
-                </p>
-                <ul className="mt-3 grid grid-cols-1 gap-2">
-                  {model.workflowBrief.bullets.slice(0, 3).map((item) => (
-                    <li
-                      key={`${item.label}-${item.value}`}
-                      className="rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-3"
-                    >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-sm text-[#1f1c17]">
-                        {item.value}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-                {model.workflowBrief.nextAction ? (
-                  <div className="mt-3 rounded-2xl border border-[rgba(31,107,87,0.16)] bg-[#edf6f2] px-3 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f6b57]">
-                      {copy.sidePanel.nextAssistantMove}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-[#1f1c17]">
-                      {model.workflowBrief.nextAction.label}
-                    </p>
-                    <p className="mt-1 text-xs text-[#4d645d]">
-                      {model.workflowBrief.nextAction.reason}
-                    </p>
-                  </div>
-                ) : null}
-              </section>
             </div>
           </Card>
         </div>
@@ -556,6 +493,74 @@ export function SidePanelHomePage({
           </Card>
         </div>
 
+        <div id="current-site-summary">
+          <Card>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
+                      {copy.sidePanel.currentSite}
+                    </p>
+                    <p className="mt-2 text-sm font-medium">
+                      {model.site.siteName}
+                    </p>
+                    <p className={`text-xs ${surfaceTokens.muted}`}>
+                      {model.site.host} · {model.site.pageKindLabel}
+                    </p>
+                    <p className={`mt-1 text-xs ${surfaceTokens.muted}`}>
+                      {model.site.urlLabel}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap justify-end gap-2">
+                    <span className="rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-600">
+                      {copy.sidePanel.statusLabels[model.appStatus]}
+                    </span>
+                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+                      {readyCapabilities}{' '}
+                      {copy.sidePanel.statusLabels.live.toLowerCase()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <section className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">
+                  {copy.sidePanel.workflowCopilot}
+                </p>
+                <p className="mt-2 text-xs text-[#6c665d]">
+                  {model.workflowBrief.summary}
+                </p>
+                <ul className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-[1.25rem] border border-[rgba(58,49,38,0.10)] bg-white/90 px-3">
+                  {model.workflowBrief.bullets.slice(0, 3).map((item) => (
+                    <li key={`${item.label}-${item.value}`} className="py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-sm text-[#1f1c17]">
+                        {item.value}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                {model.workflowBrief.nextAction ? (
+                  <div className="mt-3 rounded-2xl border border-[rgba(31,107,87,0.16)] bg-[#edf6f2] px-3 py-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1f6b57]">
+                      {copy.sidePanel.nextAssistantMove}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-[#1f1c17]">
+                      {model.workflowBrief.nextAction.label}
+                    </p>
+                    <p className="mt-1 text-xs text-[#4d645d]">
+                      {model.workflowBrief.nextAction.reason}
+                    </p>
+                  </div>
+                ) : null}
+              </section>
+            </div>
+          </Card>
+        </div>
+
         <div id="recent-activity">
           <Card className="overflow-hidden bg-[rgba(255,253,248,0.82)]">
             <details open={recentActivityOpen || undefined}>
@@ -584,7 +589,12 @@ export function SidePanelHomePage({
               {model.recentActivities.length > 0 ? (
                 <ul className="mt-3 divide-y divide-[rgba(58,49,38,0.10)] rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3">
                   {[recentActivityPreview, ...recentActivityOverflow]
-                    .filter((item): item is NonNullable<typeof recentActivityPreview> => Boolean(item))
+                    .filter(
+                      (
+                        item
+                      ): item is NonNullable<typeof recentActivityPreview> =>
+                        Boolean(item)
+                    )
                     .map((item) => (
                       <li key={item.id} className="py-3 text-sm text-stone-700">
                         <p className="font-medium">{item.label}</p>

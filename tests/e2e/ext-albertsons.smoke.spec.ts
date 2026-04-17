@@ -8,20 +8,22 @@ import {
 } from './support/extension-smoke';
 
 test('ext-albertsons smoke reflects cart action state honestly in the side panel', async () => {
-  const { context, extensionId, cleanup } = await launchExtensionApp(
-    'ext-albertsons'
-  );
+  const { context, extensionId, cleanup } =
+    await launchExtensionApp('ext-albertsons');
 
   try {
     const merchantPage = await openFixturePage(context, 'ext-albertsons');
     await waitForDetectionDataset(merchantPage, 'ext-albertsons', 'cart');
 
-    const sidePanel = await openExtensionPage(context, extensionId, 'sidepanel');
-    await expect(sidePanel.getByText('Shopflow for Albertsons Family')).toBeVisible();
-    const currentSiteCard = sidePanel
-      .locator('section')
-      .filter({ hasText: 'This page' })
-      .first();
+    const sidePanel = await openExtensionPage(
+      context,
+      extensionId,
+      'sidepanel'
+    );
+    await expect(
+      sidePanel.getByText('Shopflow for Albertsons Family')
+    ).toBeVisible();
+    const currentSiteCard = sidePanel.locator('#current-site-summary');
     await expect(currentSiteCard).toContainText('www.safeway.com · cart');
     const runActionCard = sidePanel
       .locator('section')
@@ -68,7 +70,9 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await sidePanel.close();
 
     const popup = await openExtensionPage(context, extensionId, 'popup');
-    await expect(popup.getByText('Shopflow for Albertsons Family')).toBeVisible();
+    await expect(
+      popup.getByText('Shopflow for Albertsons Family')
+    ).toBeVisible();
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Latest runnable output/i
     );
@@ -78,9 +82,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     await expect(popup.locator('body')).toContainText(
       /Recent activity: www\.safeway\.com · cart/i
     );
-    await expect(popup.locator('body')).toContainText(
-      /Seen \d{1,2}:\d{2}/i
-    );
+    await expect(popup.locator('body')).toContainText(/Seen \d{1,2}:\d{2}/i);
     await expect(popup.locator('body')).toContainText(
       /App-level live receipt blocker remains because 2 packets? still need(?:s)? a first capture\./i
     );
@@ -100,7 +102,10 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
     await expect(
       popup.getByRole('link', { name: 'Open Side Panel quick actions' })
-    ).toHaveAttribute('href', /sidepanel\.html(?:\?locale=en)?#quick-actions$/i);
+    ).toHaveAttribute(
+      'href',
+      /sidepanel\.html(?:\?locale=en)?#quick-actions$/i
+    );
     await expect(
       popup.getByRole('link', { name: 'Open Side Panel capture queue' })
     ).toHaveAttribute(
@@ -141,9 +146,8 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
 });
 
 test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vons search extraction through page-owned API context', async () => {
-  const { context, extensionId, cleanup } = await launchExtensionApp(
-    'ext-albertsons'
-  );
+  const { context, extensionId, cleanup } =
+    await launchExtensionApp('ext-albertsons');
 
   try {
     await context.route(
@@ -194,9 +198,17 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     await merchantPage.reload();
     await waitForDetectionDataset(merchantPage, 'ext-albertsons', 'search');
 
-    const sidePanel = await openExtensionPage(context, extensionId, 'sidepanel');
-    await expect(sidePanel.getByText('Shopflow for Albertsons Family')).toBeVisible();
-    await expect(sidePanel.locator('body')).toContainText(/www\.vons\.com · search/i);
+    const sidePanel = await openExtensionPage(
+      context,
+      extensionId,
+      'sidepanel'
+    );
+    await expect(
+      sidePanel.getByText('Shopflow for Albertsons Family')
+    ).toBeVisible();
+    await expect(sidePanel.locator('body')).toContainText(
+      /www\.vons\.com · search/i
+    );
     await expect(sidePanel.locator('body')).toContainText(
       /Currently verified on Safeway\./i
     );
@@ -217,8 +229,12 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
     await sidePanel.close();
 
     const popup = await openExtensionPage(context, extensionId, 'popup');
-    await expect(popup.getByText('Shopflow for Albertsons Family')).toBeVisible();
-    await expect(popup.locator('body')).toContainText(/www\.vons\.com · search/i);
+    await expect(
+      popup.getByText('Shopflow for Albertsons Family')
+    ).toBeVisible();
+    await expect(popup.locator('body')).toContainText(
+      /www\.vons\.com · search/i
+    );
     await expect(popup.locator('body')).toContainText(
       /Before public claims: Currently verified on Safeway\./i
     );

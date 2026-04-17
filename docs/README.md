@@ -37,12 +37,12 @@ first, not the whole back office.
 
 ## What You Can Inspect Today
 
-| Surface | What it proves today | What it must not be mistaken for |
-| :--- | :--- | :--- |
-| product docs front door | the clearest product-first route through the repo | a packet atlas or builder dump |
-| latest review shelf | reviewer-facing bundles and readiness materials | a signed store-ready shelf |
-| public repo README | the short public product story | a replacement for deeper docs and runbooks |
-| read-only stdio MCP | repo-truth access for AI tools | a public HTTP MCP or official registry listing |
+| Surface                 | What it proves today                              | What it must not be mistaken for               |
+| :---------------------- | :------------------------------------------------ | :--------------------------------------------- |
+| product docs front door | the clearest product-first route through the repo | a packet atlas or builder dump                 |
+| latest review shelf     | reviewer-facing bundles and readiness materials   | a signed store-ready shelf                     |
+| public repo README      | the short public product story                    | a replacement for deeper docs and runbooks     |
+| read-only stdio MCP     | repo-truth access for AI tools                    | a public HTTP MCP or official registry listing |
 
 ## Verification Layers
 
@@ -66,7 +66,6 @@ Important boundary:
 
 - [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 - [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
-- [Sensitive Surface Incident Response Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/sensitive-surface-incident-response.html)
 - [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)

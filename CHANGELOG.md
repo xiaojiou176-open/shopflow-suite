@@ -135,8 +135,8 @@ The format is based on Keep a Changelog.
 - root hygiene and CI gate wiring now route those sensitive-surface checks
   through `verify:local-hygiene`, `verify:release-readiness`, `pre-commit`,
   and the GitHub-hosted `verify` job with full history checkout.
-- [Sensitive Surface Incident Response Runbook](./docs/runbooks/sensitive-surface-incident-response.md)
-  for public-surface cases that cannot be fixed by a simple tip-only edit.
+- repo-owned sensitive-surface response guidance for public-surface cases that
+  cannot be fixed by a simple tip-only edit.
 - tracked public-distribution scaffolds under `distribution/`:
   - `distribution/public-packets/**` for the Codex / Claude Code / OpenClaw
     public fallback rack
