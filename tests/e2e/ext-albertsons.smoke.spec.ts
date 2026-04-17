@@ -101,19 +101,19 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       popup.getByRole('link', { name: 'Jump to source page' }).first()
     ).toHaveAttribute('href', 'https://www.safeway.com/shop/cart');
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel quick actions' })
+      popup.getByRole('link', { name: 'Open main workspace' })
     ).toHaveAttribute(
       'href',
       /sidepanel\.html(?:\?locale=en)?#quick-actions$/i
     );
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel capture queue' })
+      popup.getByRole('link', { name: 'Open capture queue' })
     ).toHaveAttribute(
       'href',
       /sidepanel\.html(?:\?locale=en)?#live-receipt-evidence$/i
     );
     const sidePanelHref = await popup
-      .getByRole('link', { name: 'Open Side Panel quick actions' })
+      .getByRole('link', { name: 'Open main workspace' })
       .getAttribute('href');
     expect(sidePanelHref).toMatch(
       /sidepanel\.html(?:\?locale=en)?#quick-actions$/i

@@ -100,10 +100,10 @@ test('ext-shopping-suite smoke stays internal-only and renders rollout navigatio
     await expect(popup.locator('body')).toContainText(/Suite preview/i);
     await expect(popup.locator('body')).toContainText(/Quick router/i);
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel family chooser' })
+      popup.getByRole('link', { name: 'Open store chooser' })
     ).toHaveAttribute('href', /sidepanel\.html(?:\?locale=en)?#start-here$/i);
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel claim readiness board' })
+      popup.getByRole('link', { name: 'Open claim gate' })
     ).toHaveAttribute(
       'href',
       /sidepanel\.html(?:\?locale=en)?#claim-readiness-board$/i

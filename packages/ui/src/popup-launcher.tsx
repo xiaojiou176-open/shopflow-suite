@@ -113,7 +113,8 @@ export function PopupLauncher({
     Boolean(latestSourceHref) &&
     Boolean(latestOutputPreview?.href) &&
     latestSourceHref !== latestOutputPreview?.href;
-  const showProofHint = Boolean(latestOutputPreview) || Boolean(latestSourceHref);
+  const showProofHint =
+    Boolean(latestOutputPreview) || Boolean(latestSourceHref);
   const actionDrawerPreview =
     extraStructuredActionItems[0]?.label ??
     labelOnlyActionItems[0] ??
@@ -177,7 +178,7 @@ export function PopupLauncher({
                 {copy.popup.quickRouter}
               </p>
               <p
-                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden`}
+                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
               >
                 {summary}
               </p>
@@ -186,16 +187,14 @@ export function PopupLauncher({
                   claimBoundaryNote
                     ? 'text-[color:var(--shopflow-gold)]'
                     : 'text-[color:var(--shopflow-muted)]'
-                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
+                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
               >
                 {headerNote}
               </p>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {statusLabel ? (
-                <span className="shopflow-chip">
-                  {statusLabel}
-                </span>
+                <span className="shopflow-chip">{statusLabel}</span>
               ) : null}
               {localeOptions.length > 0 ? (
                 <div className="flex flex-col items-end gap-2">
@@ -298,30 +297,34 @@ export function PopupLauncher({
                     <p className="text-sm font-semibold text-[#1f1c17]">
                       {featuredActionItem?.label ?? fallbackActionStrip?.label}
                     </p>
-                    {featuredActionItem?.summary ?? fallbackActionStrip?.summary ? (
+                    {(featuredActionItem?.summary ??
+                    fallbackActionStrip?.summary) ? (
                       <p className="mt-1 text-xs text-[#4d645d]">
-                        {featuredActionItem?.summary ?? fallbackActionStrip?.summary}
+                        {featuredActionItem?.summary ??
+                          fallbackActionStrip?.summary}
                       </p>
                     ) : null}
                   </div>
                   {(featuredActionItem?.href ?? fallbackActionStrip?.href) ? (
                     <a
                       className="inline-flex shrink-0 rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
-                      href={featuredActionItem?.href ?? fallbackActionStrip?.href}
+                      href={
+                        featuredActionItem?.href ?? fallbackActionStrip?.href
+                      }
                       onClick={createClickHandler(featuredActionItem?.onClick)}
                       target={
                         featuredActionItem?.onClick
                           ? undefined
                           : featuredActionItem?.external || fallbackActionStrip
-                          ? '_blank'
-                          : undefined
+                            ? '_blank'
+                            : undefined
                       }
                       rel={
                         featuredActionItem?.onClick
                           ? undefined
                           : featuredActionItem?.external || fallbackActionStrip
-                          ? 'noreferrer'
-                          : undefined
+                            ? 'noreferrer'
+                            : undefined
                       }
                     >
                       {featuredActionItem?.label ?? fallbackActionStrip?.label}
@@ -419,7 +422,6 @@ export function PopupLauncher({
                 ) : null}
               </section>
             ) : null}
-
           </div>
         </Card>
 
@@ -441,31 +443,31 @@ export function PopupLauncher({
             <div className="mt-3 space-y-3">
               {extraStructuredActionItems.length > 0
                 ? extraStructuredActionItems.map((item) => (
-                  <div
-                    key={`${item.label}-${item.href ?? 'static'}`}
-                    className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4"
-                  >
-                    {item.href ? (
-                      <a
-                        className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
-                        href={item.href}
-                        target={item.external ? '_blank' : undefined}
-                        rel={item.external ? 'noreferrer' : undefined}
-                      >
-                        {item.label}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-medium text-[#1f1c17]">
-                        {item.label}
-                      </p>
-                    )}
-                    {item.summary ? (
-                      <p className="mt-2 text-xs text-[#6c665d]">
-                        {item.summary}
-                      </p>
-                    ) : null}
-                  </div>
-                ))
+                    <div
+                      key={`${item.label}-${item.href ?? 'static'}`}
+                      className="shopflow-soft-panel rounded-[1.5rem] px-4 py-4"
+                    >
+                      {item.href ? (
+                        <a
+                          className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
+                          href={item.href}
+                          target={item.external ? '_blank' : undefined}
+                          rel={item.external ? 'noreferrer' : undefined}
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-medium text-[#1f1c17]">
+                          {item.label}
+                        </p>
+                      )}
+                      {item.summary ? (
+                        <p className="mt-2 text-xs text-[#6c665d]">
+                          {item.summary}
+                        </p>
+                      ) : null}
+                    </div>
+                  ))
                 : null}
 
               {labelOnlyActionItems.length > 0 ? (

@@ -146,7 +146,7 @@ describe('PopupLauncher', () => {
           detailLines: ['Results: 12', 'Top match: Coffee Sampler'],
         },
         primaryHref: 'sidepanel.html#quick-actions',
-        primaryLabel: 'Open Side Panel quick actions',
+        primaryLabel: 'Open main workspace',
         primaryOriginLabel: 'Side Panel section',
         primarySummary:
           'Open the Side Panel quick-actions section for the one runnable move on this page.',
@@ -191,16 +191,16 @@ describe('PopupLauncher', () => {
     expect(html).toContain('主路线');
     expect(html).toContain('次路线');
     expect(html).toContain('打开侧边面板');
-    expect(html).toContain('查看当前支持状态');
+    expect(html).toContain('查看支持状态');
     expect(html).toContain('Side Panel 分区');
     expect(html).toContain('界面语言');
     expect(html).toContain('简体中文');
     expect(html).toContain('href="popup.html"');
     expect(html).toContain('href="popup.html?locale=zh-CN"');
     expect(html).toContain('aria-current="page"');
-    expect(html).toContain('打开当前页面对应的主 Shopflow 工作面板。');
+    expect(html).toContain('打开当前页面对应的主 Shopflow 工作面。');
     expect(html).toContain(
-      '跳到下一条支持状态或 claim 边界路线，而不是把 popup 变成第二个控制台。'
+      '跳到下一条支持或宣称门禁路线，不把弹出窗变成第二个控制台。'
     );
     expect(html).not.toContain('当前页面现在能做什么');
     expect(html).not.toContain('当前页面还没有可立即执行的能力。');

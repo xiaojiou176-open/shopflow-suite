@@ -141,14 +141,14 @@ test('ext-walmart smoke uses the latest captured page as the best route when no 
     ).toHaveAttribute('href', 'https://www.walmart.com/search?q=coffee');
     await expect(
       popupRelaunch.getByRole('link', {
-        name: 'Open Side Panel readiness summary',
+        name: 'Open readiness summary',
       })
     ).toHaveAttribute(
       'href',
       /sidepanel\.html(?:\?locale=en)?#readiness-summary$/i
     );
     await expect(
-      popupRelaunch.getByRole('link', { name: 'Open Side Panel current site summary' })
+      popupRelaunch.getByRole('link', { name: 'Open site summary' })
     ).toHaveCount(0);
   } finally {
     await cleanup();

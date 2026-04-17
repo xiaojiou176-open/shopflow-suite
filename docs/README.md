@@ -39,13 +39,13 @@ If you want the public first-touch lobby, start with the Pages front door above.
 
 ## What You Can Inspect Today
 
-| Surface                 | What it proves today                              | What it must not be mistaken for               |
-| :---------------------- | :------------------------------------------------ | :--------------------------------------------- |
-| public Pages front door | the clearest public first-touch route             | a packet atlas or builder dump                 |
-| GitHub docs atlas       | the deeper repo-local service desk                | a second public homepage                       |
-| latest review shelf     | reviewer-facing bundles and readiness materials   | a signed store-ready shelf                     |
-| public repo README      | the short public product story                    | a replacement for deeper docs and runbooks     |
-| read-only stdio MCP     | repo-truth access for AI tools                    | a public HTTP MCP or official registry listing |
+| Surface                 | What it proves today                            | What it must not be mistaken for               |
+| :---------------------- | :---------------------------------------------- | :--------------------------------------------- |
+| public Pages front door | the clearest public first-touch route           | a packet atlas or builder dump                 |
+| GitHub docs atlas       | the deeper repo-local service desk              | a second public homepage                       |
+| latest review shelf     | reviewer-facing bundles and readiness materials | a signed store-ready shelf                     |
+| public repo README      | the short public product story                  | a replacement for deeper docs and runbooks     |
+| read-only stdio MCP     | repo-truth access for AI tools                  | a public HTTP MCP or official registry listing |
 
 ## Verification Layers
 
@@ -74,16 +74,17 @@ Important boundary:
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
 
-## Secondary Repo-Local Engineering Shelves
+## Secondary Builder / Maintainer Shelves
 
 If you already know you are here for repo-local builder, agent, or MCP
-materials, jump straight to the secondary shelves below:
+materials, jump straight to the secondary shelves below.
+If you are only checking the public product story, you can stop before this section:
 
 - [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
 - [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html)
 - [MCP Quickstart](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html)
 
-Useful repo-local commands:
+### Maintainer-only local commands
 
 - `pnpm mcp:stdio`
 - `pnpm cli:read-only -- runtime-seam`
@@ -92,7 +93,7 @@ Useful repo-local commands:
 These shelves are real, but they are still **secondary** to the default product
 route above.
 
-## Live Browser Lane
+## Maintainer-Only Live Browser Lane
 
 When you need the real-browser lane instead of static repo proof, start here:
 
@@ -103,13 +104,13 @@ When you need the real-browser lane instead of static repo proof, start here:
 - `pnpm review-candidate-records:live`
 - `pnpm review-input-template:live`
 
-Useful evidence files:
+Maintainer evidence files:
 
 - `.runtime-cache/live-browser/open-live-browser-latest.json`
 - `.runtime-cache/live-browser/diagnose-latest.json`
 - `.runtime-cache/live-browser/probe-latest.json`
 
-Useful budget fields:
+Maintainer budget fields:
 
 - `browserInstanceBudget.browserMainProcessPids`
 - `browserInstanceBudget.matchingRequestedRootPids`

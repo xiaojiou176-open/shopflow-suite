@@ -64,7 +64,7 @@ export function createSuiteCatalog(locale: ShopflowLocale = 'en') {
       }
 
       if (state === 'repo-verified-claim-gated') {
-        return '已通过仓内验证，但公开说法仍受证据门限制';
+        return '已通过仓内验证 · 仍需证据';
       }
     }
 
@@ -73,7 +73,7 @@ export function createSuiteCatalog(locale: ShopflowLocale = 'en') {
     }
 
     if (state === 'repo-verified-claim-gated') {
-      return 'Repo-verified, claim-gated';
+      return 'Repo-verified · proof-gated';
     }
 
     return state;

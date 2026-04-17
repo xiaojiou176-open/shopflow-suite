@@ -1,4 +1,11 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -84,5 +91,75 @@ describe('repo process lock tooling', () => {
 
     expect(metadataSnapshot.lockName).toBe('ui-surface-capture');
     expect(metadataSnapshot.pid).toBe(process.pid);
+  });
+
+  it('allows reentrant use of the same repo-local lock inside one process', async () => {
+    const lockRoot = mkdtempSync(join(tmpdir(), 'shopflow-locks-reentrant-'));
+    cleanupPaths.push(lockRoot);
+    const order: string[] = [];
+
+    await withRepoProcessLock(
+      'ui-surface-capture',
+      async () => {
+        order.push('outer-start');
+        await withRepoProcessLock(
+          'ui-surface-capture',
+          async () => {
+            order.push('inner');
+            expect(
+              existsSync(
+                join(lockRoot, 'ui-surface-capture.lock', 'holder.json')
+              )
+            ).toBe(true);
+          },
+          {
+            lockRoot,
+            pollMs: 10,
+            timeoutMs: 1_000,
+          }
+        );
+        order.push('outer-end');
+      },
+      {
+        lockRoot,
+        pollMs: 10,
+        timeoutMs: 1_000,
+      }
+    );
+
+    expect(order).toEqual(['outer-start', 'inner', 'outer-end']);
+    expect(existsSync(join(lockRoot, 'ui-surface-capture.lock'))).toBe(false);
+  });
+
+  it('clears a stale repo-local lock when the recorded holder pid is already gone', async () => {
+    const lockRoot = mkdtempSync(join(tmpdir(), 'shopflow-locks-stale-'));
+    cleanupPaths.push(lockRoot);
+    const lockDirectory = join(lockRoot, 'ui-surface-capture.lock');
+    mkdirSync(lockDirectory, { recursive: true });
+    writeFileSync(
+      join(lockDirectory, 'holder.json'),
+      JSON.stringify(
+        {
+          lockName: 'ui-surface-capture',
+          pid: 999_999,
+          acquiredAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    );
+
+    const result = await withRepoProcessLock(
+      'ui-surface-capture',
+      async () => 'recovered',
+      {
+        lockRoot,
+        pollMs: 10,
+        timeoutMs: 1_000,
+      }
+    );
+
+    expect(result).toBe('recovered');
+    expect(existsSync(join(lockRoot, 'ui-surface-capture.lock'))).toBe(false);
   });
 });

@@ -15,7 +15,7 @@ describe('createSuiteDetailModel', () => {
       title: 'Shopflow for Albertsons Family',
       wave: 'Wave 1',
       state: 'repo-verified-claim-gated',
-      stateLabel: '已通过仓内验证，但公开说法仍受证据门限制',
+      stateLabel: '已通过仓内验证 · 仍需证据',
       note: 'Currently verified on Safeway.',
       defaultRouteUrl: 'https://www.safeway.com/',
       defaultRouteLabel: '打开 Safeway 首页',

@@ -13,9 +13,9 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(
       en.suite.priorityRouteAria(
         'Shopflow Suite',
-        'Open Side Panel family chooser'
+        'Open store chooser'
       )
-    ).toBe('Priority route for Shopflow Suite: Open Side Panel family chooser');
+    ).toBe('Priority route for Shopflow Suite: Open store chooser');
     expect(
       en.suite.frontDoorAria(
         'Shopflow Suite',
@@ -82,11 +82,11 @@ describe('Shopflow second-pass locale route helpers', () => {
     );
     expect(
       en.suite.noFreshContextSummary(
-        'Open Side Panel family chooser',
+        'Open store chooser',
         'Shopflow Suite'
       )
     ).toBe(
-      'No fresh page context exists yet. Open Side Panel family chooser so Suite can capture runtime context for Shopflow Suite.'
+      'No fresh page context exists yet. Open store chooser so Suite can capture runtime context for Shopflow Suite.'
     );
     expect(en.suite.priorityQueueAction.review('latest source page')).toBe(
       'Review on latest source page'
@@ -107,9 +107,9 @@ describe('Shopflow second-pass locale route helpers', () => {
     expect(
       zh.suite.priorityRouteAria(
         'Shopflow Suite',
-        '打开 Side Panel 店铺入口选择器'
+        '打开店铺入口'
       )
-    ).toBe('Shopflow Suite 的优先路线：打开 Side Panel 店铺入口选择器');
+    ).toBe('Shopflow Suite 的优先路线：打开店铺入口');
     expect(
       zh.suite.providerRuntimeSeamRouteSummary('http://127.0.0.1:4317')
     ).toContain('http://127.0.0.1:4317');

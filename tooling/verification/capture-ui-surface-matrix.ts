@@ -7,6 +7,7 @@ import {
   type UiCaptureStoreAppId,
 } from './capture-ui-surfaces.ts';
 import { repoRoot } from '../../tests/support/repo-paths.ts';
+import { withRepoProcessLock } from '../shared/with-repo-process-lock.ts';
 import { writeFileAtomically } from '../shared/write-file-atomically.ts';
 
 type MatrixCaptureTarget = {
@@ -106,72 +107,77 @@ function stageArtifact(sourcePath: string, destinationPath: string) {
 }
 
 export async function captureUiSurfaceMatrix() {
-  const matrixResults = [];
+  return withRepoProcessLock('ui-surface-capture', async () => {
+    const matrixResults = [];
 
-  for (const target of uiSurfaceMatrixTargets) {
-    const outputRoot = resolve(defaultMatrixRoot, target.outputSlug);
-    const runId = new Date().toISOString().replace(/[:]/g, '-');
+    for (const target of uiSurfaceMatrixTargets) {
+      const outputRoot = resolve(defaultMatrixRoot, target.outputSlug);
+      const runId = new Date().toISOString().replace(/[:]/g, '-');
 
-    const result = await captureUiSurfaces({
-      appId: target.appId,
-      locale: target.locale,
-      outputRoot,
-      runId,
-    });
+      const result = await captureUiSurfaces({
+        appId: target.appId,
+        locale: target.locale,
+        outputRoot,
+        runId,
+      });
 
-    matrixResults.push({
-      target,
-      outputRoot,
-      runId,
-      manifestPath: result.manifestPath,
-    });
-  }
-
-  const stagedArtifacts = selectedArtifacts.map((artifact) => {
-    const sourceMatrix = matrixResults.find(
-      (result) => result.target.outputSlug === artifact.sourceOutputSlug
-    );
-    if (!sourceMatrix) {
-      throw new Error(
-        `Unable to locate matrix result for ${artifact.sourceOutputSlug}.`
-      );
+      matrixResults.push({
+        target,
+        outputRoot,
+        runId,
+        manifestPath: result.manifestPath,
+      });
     }
 
-    const sourcePath = resolve(
-      sourceMatrix.outputRoot,
-      sourceMatrix.runId,
-      artifact.relativeCapturePath
-    );
-    const destinationPath = resolve(defaultArtifactRoot, artifact.destinationFileName);
+    const stagedArtifacts = selectedArtifacts.map((artifact) => {
+      const sourceMatrix = matrixResults.find(
+        (result) => result.target.outputSlug === artifact.sourceOutputSlug
+      );
+      if (!sourceMatrix) {
+        throw new Error(
+          `Unable to locate matrix result for ${artifact.sourceOutputSlug}.`
+        );
+      }
 
-    stageArtifact(sourcePath, destinationPath);
+      const sourcePath = resolve(
+        sourceMatrix.outputRoot,
+        sourceMatrix.runId,
+        artifact.relativeCapturePath
+      );
+      const destinationPath = resolve(
+        defaultArtifactRoot,
+        artifact.destinationFileName
+      );
 
-    return {
-      destinationPath: relative(repoRoot, destinationPath),
-      sourcePath: relative(repoRoot, sourcePath),
+      stageArtifact(sourcePath, destinationPath);
+
+      return {
+        destinationPath: relative(repoRoot, destinationPath),
+        sourcePath: relative(repoRoot, sourcePath),
+      };
+    });
+
+    const manifest: UiSurfaceMatrixManifest = {
+      generatedAt: new Date().toISOString(),
+      outputRoot: relative(repoRoot, defaultMatrixRoot),
+      targets: matrixResults.map((result) => ({
+        appId: result.target.appId,
+        locale: result.target.locale,
+        outputRoot: relative(repoRoot, result.outputRoot),
+        manifestPath: relative(repoRoot, result.manifestPath),
+      })),
+      stagedArtifacts,
     };
+
+    const serialized = `${JSON.stringify(manifest, null, 2)}\n`;
+    const manifestPath = resolve(
+      defaultMatrixRoot,
+      'ui-surface-matrix-manifest-latest.json'
+    );
+
+    writeFileAtomically(manifestPath, serialized);
+    return serialized;
   });
-
-  const manifest: UiSurfaceMatrixManifest = {
-    generatedAt: new Date().toISOString(),
-    outputRoot: relative(repoRoot, defaultMatrixRoot),
-    targets: matrixResults.map((result) => ({
-      appId: result.target.appId,
-      locale: result.target.locale,
-      outputRoot: relative(repoRoot, result.outputRoot),
-      manifestPath: relative(repoRoot, result.manifestPath),
-    })),
-    stagedArtifacts,
-  };
-
-  const serialized = `${JSON.stringify(manifest, null, 2)}\n`;
-  const manifestPath = resolve(
-    defaultMatrixRoot,
-    'ui-surface-matrix-manifest-latest.json'
-  );
-
-  writeFileAtomically(manifestPath, serialized);
-  return serialized;
 }
 
 export async function uiSurfaceMatrixMain() {
@@ -179,7 +185,10 @@ export async function uiSurfaceMatrixMain() {
   process.stdout.write(serialized);
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
   uiSurfaceMatrixMain().catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
     process.stderr.write(`${message}\n`);
