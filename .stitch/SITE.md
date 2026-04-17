@@ -26,11 +26,11 @@ It is not a marketing microsite loop; it is a design-workbench loop for popup, s
 - [x] popup
 - [x] sidepanel
 - [x] suite
-- [ ] docs-front-door refinement
+- [x] docs-front-door refinement
 
 ## 5. Roadmap
 
-- harden docs/front-door product-first copy only if current repo-owned docs still feel robotic
+- keep `docs/index.md` as the public Pages lobby and `docs/README.md` as the GitHub-local atlas/service desk
 - keep multi-app matrix current when major UI shifts land
 - if Stitch auth becomes available, regenerate native high-fidelity artifacts from the current `.stitch/DESIGN.md`
 

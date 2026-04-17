@@ -1,27 +1,29 @@
-# Shopflow Docs Front Door
+# Shopflow Docs Atlas
 
 ![Shopflow front door](./assets/shopflow-front-door.svg)
 
 ![Shopflow storefront atlas](./assets/shopflow-storefront-atlas.svg)
 
-This page is the shortest honest map for readers who need the product story
-first, not the whole back office.
-
+[Public Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/) ·
 [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
 [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
 [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
 [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
 [Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 
+This page is the GitHub-local docs atlas and service desk.
+If you want the public first-touch lobby, start with the Pages front door above.
+
 ## Start Here First
 
 - **What this is:** the product-first docs desk for one Chrome-first shopping
-  extension family with `8` storefront apps and `1` Suite shell.
+  extension family with `8` storefront apps and `1` Suite shell, kept as a
+  GitHub-local atlas instead of a second public front desk.
 - **Why it is worth opening now:** the repo already exposes a real product
   front door, a real review shelf, and a real repo-local read-only MCP without
   splitting truth across multiple public repos.
-- **First honest route:** read the product boundary, then the verification bar,
-  then the latest review shelf.
+- **First honest route:** open the public Pages front door for first touch, then
+  use this atlas when you want the deeper GitHub-local shelves.
 - **What is still claim-gated:** reviewed live receipt evidence and
   signed/store-ready artifacts still gate broader public support wording.
 
@@ -30,16 +32,17 @@ first, not the whole back office.
 
 ## First Product Path
 
-1. [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html)
-2. [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html)
-3. [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
-4. [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme)
+1. [Public Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/)
+2. [Product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html)
+3. [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html)
+4. [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 
 ## What You Can Inspect Today
 
 | Surface                 | What it proves today                              | What it must not be mistaken for               |
 | :---------------------- | :------------------------------------------------ | :--------------------------------------------- |
-| product docs front door | the clearest product-first route through the repo | a packet atlas or builder dump                 |
+| public Pages front door | the clearest public first-touch route             | a packet atlas or builder dump                 |
+| GitHub docs atlas       | the deeper repo-local service desk                | a second public homepage                       |
 | latest review shelf     | reviewer-facing bundles and readiness materials   | a signed store-ready shelf                     |
 | public repo README      | the short public product story                    | a replacement for deeper docs and runbooks     |
 | read-only stdio MCP     | repo-truth access for AI tools                    | a public HTTP MCP or official registry listing |
@@ -64,6 +67,7 @@ Important boundary:
 
 ## Need Help or the Deeper Atlas?
 
+- [Public Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/)
 - [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 - [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
 - [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md)

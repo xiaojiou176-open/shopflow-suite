@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import type { UiLocale } from '@shopflow/core';
 import { Button, Card } from './primitives';
 import { surfaceTokens } from './tokens';
@@ -10,6 +11,7 @@ type PopupActionItem =
       summary?: string;
       href?: string;
       external?: boolean;
+      onClick?: () => void | Promise<void>;
     };
 
 type LocaleOption = {
@@ -29,7 +31,9 @@ export function PopupLauncher({
   latestOutputPreview,
   latestSourceHref,
   primaryHref,
+  primaryOnClick,
   secondaryHref,
+  secondaryOnClick,
   statusLabel,
   primaryLabel,
   secondaryLabel,
@@ -59,7 +63,9 @@ export function PopupLauncher({
   };
   latestSourceHref?: string;
   primaryHref?: string;
+  primaryOnClick?: () => void | Promise<void>;
   secondaryHref?: string;
+  secondaryOnClick?: () => void | Promise<void>;
   statusLabel?: string;
   primaryLabel?: string;
   secondaryLabel?: string;
@@ -142,6 +148,17 @@ export function PopupLauncher({
         }
       : null;
 
+  function createClickHandler(handler?: () => void | Promise<void>) {
+    if (!handler) {
+      return undefined;
+    }
+
+    return async (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      await handler();
+    };
+  }
+
   return (
     <main
       className={`shopflow-surface min-w-[320px] ${surfaceTokens.appBackground} p-4 ${surfaceTokens.headline}`}
@@ -160,7 +177,7 @@ export function PopupLauncher({
                 {copy.popup.quickRouter}
               </p>
               <p
-                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
+                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden`}
               >
                 {summary}
               </p>
@@ -169,7 +186,7 @@ export function PopupLauncher({
                   claimBoundaryNote
                     ? 'text-[color:var(--shopflow-gold)]'
                     : 'text-[color:var(--shopflow-muted)]'
-                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
+                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
               >
                 {headerNote}
               </p>
@@ -224,8 +241,9 @@ export function PopupLauncher({
                   <a
                     className="inline-flex rounded-2xl bg-[#1f6b57] px-3 py-2 text-sm font-medium text-white shadow-[0_10px_24px_rgba(31,107,87,0.24)]"
                     href={primaryHref}
-                    target="_blank"
-                    rel="noreferrer"
+                    onClick={createClickHandler(primaryOnClick)}
+                    target={primaryOnClick ? undefined : '_blank'}
+                    rel={primaryOnClick ? undefined : 'noreferrer'}
                   >
                     {resolvedPrimaryLabel}
                   </a>
@@ -255,8 +273,9 @@ export function PopupLauncher({
                   <a
                     className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-white px-3 py-2 text-sm font-medium text-[#514a42]"
                     href={secondaryHref}
-                    target="_blank"
-                    rel="noreferrer"
+                    onClick={createClickHandler(secondaryOnClick)}
+                    target={secondaryOnClick ? undefined : '_blank'}
+                    rel={secondaryOnClick ? undefined : 'noreferrer'}
                   >
                     {resolvedSecondaryLabel}
                   </a>
@@ -289,13 +308,18 @@ export function PopupLauncher({
                     <a
                       className="inline-flex shrink-0 rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
                       href={featuredActionItem?.href ?? fallbackActionStrip?.href}
+                      onClick={createClickHandler(featuredActionItem?.onClick)}
                       target={
-                        featuredActionItem?.external || fallbackActionStrip
+                        featuredActionItem?.onClick
+                          ? undefined
+                          : featuredActionItem?.external || fallbackActionStrip
                           ? '_blank'
                           : undefined
                       }
                       rel={
-                        featuredActionItem?.external || fallbackActionStrip
+                        featuredActionItem?.onClick
+                          ? undefined
+                          : featuredActionItem?.external || fallbackActionStrip
                           ? 'noreferrer'
                           : undefined
                       }

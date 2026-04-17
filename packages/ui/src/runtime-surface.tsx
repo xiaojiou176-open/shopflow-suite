@@ -36,6 +36,11 @@ import {
 import browser from 'webextension-polyfill';
 import { useEffect, useMemo, useState } from 'react';
 import { getEvidenceSectionHref } from './evidence-section-routing';
+import {
+  createLocalizedExtensionHref,
+  createLocalizedExtensionPath,
+  createOpenSidePanelRouteAction,
+} from './open-side-panel-route';
 import { PopupLauncher } from './popup-launcher';
 import { localizeRecentActivities } from './recent-activity-copy';
 import { SidePanelHomePage } from './side-panel-home-page';
@@ -101,15 +106,6 @@ function createCurrentSurfaceLocaleOptions(
     ),
     active: locale === nextLocale,
   }));
-}
-
-function createLocalizedExtensionHref(
-  fileName: 'sidepanel.html' | 'popup.html',
-  locale: UiLocale,
-  hash?: string
-) {
-  const baseHref = browser.runtime.getURL(fileName);
-  return createLocaleRouteHref(`${baseHref}${hash ? `#${hash}` : ''}`, locale);
 }
 
 function localizeShellSourceText(
@@ -471,6 +467,13 @@ function createPopupRouteModel(
       locale,
       readyCount > 0 ? 'quick-actions' : 'readiness-summary'
     ),
+    primaryOnClick: createOpenSidePanelRouteAction(
+      createLocalizedExtensionPath(
+        'sidepanel.html',
+        locale,
+        readyCount > 0 ? 'quick-actions' : 'readiness-summary'
+      )
+    ),
     primarySummary:
       readyCount > 0
         ? uiCopy.sidePanel.quickActionsIntro
@@ -495,6 +498,20 @@ function createPopupRouteModel(
               ? 'recent-activity'
               : 'current-site-summary'
         ),
+    secondaryOnClick:
+      directSecondaryRoute == null
+        ? createOpenSidePanelRouteAction(
+            createLocalizedExtensionPath(
+              'sidepanel.html',
+              locale,
+              hasEvidenceQueue
+                ? evidenceSectionHref.replace(/^#/, '')
+                : latestActivity
+                  ? 'recent-activity'
+                  : 'current-site-summary'
+            )
+          )
+        : undefined,
     secondarySummary: hasEvidenceQueue
       ? (blockerSummary?.summary ?? dynamicCopy.reviewClaimGateSummary)
       : directSecondaryRoute
@@ -1163,10 +1180,12 @@ export function RuntimePopupLauncher({ app }: { app: RuntimeAppDefinition }) {
       localeOptions={createCurrentSurfaceLocaleOptions(locale)}
       locale={locale}
       primaryHref={routeModel.primaryHref}
+      primaryOnClick={routeModel.primaryOnClick}
       primaryLabel={routeModel.primaryLabel}
       primaryOriginLabel={routeModel.primaryOriginLabel}
       primarySummary={routeModel.primarySummary}
       secondaryHref={routeModel.secondaryHref}
+      secondaryOnClick={routeModel.secondaryOnClick}
       secondaryLabel={routeModel.secondaryLabel}
       secondaryOriginLabel={routeModel.secondaryOriginLabel}
       secondarySummary={routeModel.secondarySummary}

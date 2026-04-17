@@ -185,7 +185,7 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Release Artifact Review Runbook');
     expectPagesSafeFirstHop(docsIndex, 'Live Receipt Capture Runbook');
-    expectPagesSafeFirstHop(docsIndex, 'Docs front door on GitHub');
+    expectPagesSafeFirstHop(docsIndex, 'Docs atlas on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Open an issue');
     expectPagesSafeFirstHop(docsIndex, 'Contributing on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Agent Quickstarts');

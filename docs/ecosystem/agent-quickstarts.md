@@ -16,6 +16,14 @@ packets, start here:
 - [MCP Quickstart](./mcp-quickstart.md)
 - `pnpm mcp:stdio`
 
+## Choose Your Lane First
+
+Use this page when you want the fastest answer to one of these three questions:
+
+- **Need a live repo-local transport?** Start with [MCP Quickstart](./mcp-quickstart.md).
+- **Need a target-specific onboarding packet?** Stay here and use the target matrix below.
+- **Need the fuller human docs before any packets?** Start with [Builder Start Here](./builder-start-here.md).
+
 ## Fastest Honest Entry by Target
 
 | Target        | Current placement   | Start here                                               | Fastest command                                                  | No-runtime artifact                                                                       |

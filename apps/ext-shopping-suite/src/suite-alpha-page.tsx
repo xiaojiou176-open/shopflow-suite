@@ -439,14 +439,17 @@ export function SuiteAlphaPage({
                       <div>
                         <p className="text-sm font-medium">{item.title}</p>
                         <p className={`text-xs ${surfaceTokens.muted}`}>
-                          {item.wave} · {item.state}
+                          {item.wave} · {item.stateLabel}
                         </p>
                       </div>
                       <div className="flex flex-wrap justify-end gap-2">
                         {detailMap[item.appId]?.routeHref ? (
                           <a
                             className="rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700"
-                            aria-label={`Rollout route for ${item.title}: ${detailMap[item.appId]?.routeLabel}`}
+                            aria-label={copy.frontDoorAria(
+                              item.title,
+                              detailMap[item.appId]?.routeLabel ?? ''
+                            )}
                             href={detailMap[item.appId]?.routeHref}
                             target="_blank"
                             rel="noreferrer"

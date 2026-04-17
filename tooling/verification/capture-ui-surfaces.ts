@@ -12,6 +12,7 @@ import {
   type ExtensionAppId,
 } from '../../tests/e2e/support/extension-smoke';
 import { repoRoot, resolveFromRepo } from '../../tests/support/repo-paths';
+import { withRepoProcessLock } from '../shared/with-repo-process-lock';
 import { writeFileAtomically } from '../shared/write-file-atomically';
 
 export const uiCaptureStoreAppIdValues = [
@@ -507,27 +508,29 @@ function writeCaptureManifest(
 export async function captureUiSurfaces(
   options: UiSurfaceCaptureOptions
 ) {
-  mkdirSync(resolve(options.outputRoot, options.runId), {
-    recursive: true,
+  return withRepoProcessLock('ui-surface-capture', async () => {
+    mkdirSync(resolve(options.outputRoot, options.runId), {
+      recursive: true,
+    });
+
+    ensureUiCaptureBuild(options.appId);
+    ensureUiCaptureBuild('ext-shopping-suite');
+
+    const plan = buildUiSurfaceCapturePlan(options);
+    await captureStorePopupAndSidepanel(options, plan);
+    await captureSuiteSurface(options, plan);
+
+    for (const entry of plan) {
+      copyLatestAlias(entry.path, entry.latestAliasPath);
+    }
+
+    const manifestPath = writeCaptureManifest(options, plan);
+
+    return {
+      plan,
+      manifestPath,
+    };
   });
-
-  ensureUiCaptureBuild(options.appId);
-  ensureUiCaptureBuild('ext-shopping-suite');
-
-  const plan = buildUiSurfaceCapturePlan(options);
-  await captureStorePopupAndSidepanel(options, plan);
-  await captureSuiteSurface(options, plan);
-
-  for (const entry of plan) {
-    copyLatestAlias(entry.path, entry.latestAliasPath);
-  }
-
-  const manifestPath = writeCaptureManifest(options, plan);
-
-  return {
-    plan,
-    manifestPath,
-  };
 }
 
 export async function uiSurfaceCaptureMain(argv = process.argv.slice(2)) {

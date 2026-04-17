@@ -7,6 +7,9 @@ Chrome-first shopping extension family.
 
 > many storefront doors, one kitchen, one truthful review shelf.
 
+This is the public Pages lobby.
+If you are already browsing inside the repo on GitHub, use the docs atlas there instead of treating both pages as the same front desk.
+
 [Open the public repo](https://github.com/xiaojiou176-open/shopflow-suite) ·
 [See the product boundary](https://xiaojiou176-open.github.io/shopflow-suite/adr/ADR-001-shopflow-repo-topology-and-product-boundary.html) ·
 [See the verification boundary](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
@@ -17,7 +20,8 @@ Secondary doors:
 [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
 [Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) ·
 [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
-[Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
+[Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
+[Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
 
 ## Start Here First
 
@@ -56,7 +60,7 @@ In plain language:
 
 - [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 - [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
-- [Docs front door on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
+- [Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
 

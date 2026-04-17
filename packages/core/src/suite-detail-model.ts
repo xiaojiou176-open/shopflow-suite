@@ -34,6 +34,7 @@ export type SuiteCatalogItem = {
   title: string;
   wave: string;
   state: string;
+  stateLabel: string;
   note: string;
   defaultRouteUrl: string;
   defaultRouteLabel: string;
