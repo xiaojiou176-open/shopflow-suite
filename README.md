@@ -3,7 +3,8 @@
 [Product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md) ·
 [Verification bar](./docs/contracts/testing-and-verification-bar.md) ·
 [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
-[Docs front door](./docs/README.md) ·
+[Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/) ·
+[Docs atlas](./docs/README.md) ·
 [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 
 Shopflow is a **Chrome-first shopping extension product family** for `8`
@@ -28,7 +29,8 @@ In plain language:
   truth across `9` separate codebases.
 - **First honest route:** read the product boundary, then the verification bar,
   then the latest review shelf.
-- **Where to get help:** use the docs front door for the fuller atlas, the
+- **Where to get help:** use the Pages front door for the public first touch,
+  then the GitHub docs atlas for the fuller map, the
   release review runbook for bundle meaning, and GitHub issues when the public
   story drifts.
 - **What is still claim-gated:** live receipt evidence bundles and
@@ -46,11 +48,13 @@ If you want the shortest truthful product-first read, take this route:
 1. [See the product boundary](./docs/adr/ADR-001-shopflow-repo-topology-and-product-boundary.md).
 2. [See the verification boundary](./docs/contracts/testing-and-verification-bar.md).
 3. [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest).
-4. If you need the fuller map, open the [Docs front door](./docs/README.md).
+4. If you want the public first-touch lobby, open the [Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/).
+5. If you need the fuller GitHub-local map, open the [Docs atlas](./docs/README.md).
 
 ## Need Help or the Fuller Atlas?
 
-- [Docs front door](./docs/README.md)
+- [Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/)
+- [Docs atlas](./docs/README.md)
 - [Release artifact review runbook](./docs/runbooks/release-artifact-review.md)
 - [Distribution truth](./DISTRIBUTION.md)
 - [Contributing](./CONTRIBUTING.md)

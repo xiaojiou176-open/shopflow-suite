@@ -1078,7 +1078,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     introSummary:
       '先看这页现在能做什么，再沿着宣称与证据门往下走，不要把仓内验证直接写成公开支持。',
     readinessSummaryHeading: '当前准备度',
-    liveReceiptReadinessHeading: 'Live receipt 准备情况',
+    liveReceiptReadinessHeading: '实时证据准备情况',
     whatThisPageCanDoHeading: '当前页面能做什么',
     bestRouteHeading: '当前最佳路线',
     runnableNowHeading: '当前可运行',
@@ -1234,6 +1234,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     reviewedQueueSummary: (count) => `${count} 个证据包已审核。`,
     reviewedEvidenceForAppSummary: () =>
       '这个应用要求的实时证据都已经审核完成。',
+    noReviewLaneItems: '审核通道里还没有进入任何证据包。',
     missingEvidenceForAppSummary: (count) =>
       `这个应用还有 ${count} 个实时证据缺失。`,
     captureInProgressForAppSummary: (count) =>
@@ -1293,6 +1294,11 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       '用于能力导览、推进状态可见性和证据准备度的内部 Alpha 组合壳层。',
     operatorPromise:
       '用这个内部 Alpha 面板进入正确的店铺 app、查看公开说法门禁，并确认哪条证据门仍然挡着当前公开表述。',
+    guardrails: [
+      '不直接做公开支持宣称',
+      '不变成第二套逻辑平面',
+      '负责把你送进店铺 app，而不是替代它们',
+    ],
     startHereCards: [
       {
         title: '先进入正确的店铺壳层',
@@ -1303,7 +1309,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       {
         title: '先看公开说法门禁，再谈发布',
         summary:
-          '先检查证据门，保持 repo-verified 与 public-ready wording 分层。',
+          '先检查证据门，保持“仓内已验证”和“可以公开说支持”两层分开。',
         ctaLabel: '打开公开说法准备度面板',
       },
       {
@@ -1384,7 +1390,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       repoVerifiedClaimGated: {
         label: '已通过 repo 验证，但仍被证据门挡住公开说法',
         summary:
-          '先去证据门完成采集或审核，再让 repo-verified 进度往 public-ready wording 漂移。',
+          '先去证据门完成采集或审核，再把“仓内已验证”往公开说法层推进。',
         ctaLabel: '打开证据门',
       },
       internalAlpha: {

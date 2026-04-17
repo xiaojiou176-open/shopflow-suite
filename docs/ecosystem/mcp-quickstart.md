@@ -8,6 +8,12 @@ In plain language:
 > this is the local socket you plug into when you want AI to use Shopflow's
 > real repo-owned read models instead of scraping prose.
 
+## Choose This Only When You Need Transport
+
+- If you need a **live stdio transport**, stay on this page.
+- If you need a **target-specific onboarding packet** for Codex / Claude Code / OpenClaw, use [Agent Quickstarts](./agent-quickstarts.md).
+- If you need the **human-first builder docs path**, use [Builder Start Here](./builder-start-here.md).
+
 ## What This MCP Is
 
 - a **stdio-only** MCP server

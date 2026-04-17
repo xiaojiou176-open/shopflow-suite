@@ -57,15 +57,39 @@ function deriveSuiteState(appId: StoreAppId, claimState: string) {
 export function createSuiteCatalog(locale: ShopflowLocale = 'en') {
   const copy = getShopflowLocaleCatalog(locale).suite;
 
+  const formatStateLabel = (state: string) => {
+    if (locale === 'zh-CN') {
+      if (state === 'repo-verified') {
+        return '已通过仓内验证';
+      }
+
+      if (state === 'repo-verified-claim-gated') {
+        return '已通过仓内验证，但公开说法仍受证据门限制';
+      }
+    }
+
+    if (state === 'repo-verified') {
+      return 'Repo-verified';
+    }
+
+    if (state === 'repo-verified-claim-gated') {
+      return 'Repo-verified, claim-gated';
+    }
+
+    return state;
+  };
+
   return Object.values(storeCatalog).map((entry) => {
     const boundary = publicClaimBoundaries[entry.storeId];
     const defaultRouteLabel = copy.defaultRouteLabelsByStoreId[entry.storeId];
+    const state = deriveSuiteState(entry.appId, boundary.claimState);
 
     return {
       appId: entry.appId,
       title: boundary.publicName,
       wave: formatWaveLabel(entry.wave),
-      state: deriveSuiteState(entry.appId, boundary.claimState),
+      state,
+      stateLabel: formatStateLabel(state),
       note: copy.suiteNotesByAppId[entry.appId],
       defaultRouteUrl: `https://${entry.defaultHosts[0]}/`,
       defaultRouteLabel,

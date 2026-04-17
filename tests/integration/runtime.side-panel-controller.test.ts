@@ -41,6 +41,25 @@ describe('side panel controller', () => {
     expect(chromeApi.sidePanel.openCalls).toEqual([{ tabId: 9 }]);
   });
 
+  it('preserves query and hash fragments for localized deep-link side panel routes', async () => {
+    const chromeApi = createChromeApi();
+    const controller = new SidePanelController(
+      'sidepanel.html?locale=zh-CN#claim-readiness-board',
+      chromeApi
+    );
+
+    await controller.openForTab(12);
+
+    expect(chromeApi.sidePanel.optionCalls).toEqual([
+      {
+        enabled: true,
+        path: 'sidepanel.html?locale=zh-CN#claim-readiness-board',
+        tabId: 12,
+      },
+    ]);
+    expect(chromeApi.sidePanel.openCalls).toEqual([{ tabId: 12 }]);
+  });
+
   it('can disable a tab explicitly when support is unavailable', async () => {
     const chromeApi = createChromeApi();
     const controller = new SidePanelController('sidepanel.html', chromeApi);

@@ -4,7 +4,13 @@ import {
   resolveShopflowLocaleFromUrl,
   uiLocaleValues,
 } from '@shopflow/core';
-import { getUiShellCopy, PopupLauncher } from '@shopflow/ui';
+import {
+  createLocalizedExtensionHref,
+  createLocalizedExtensionPath,
+  createOpenSidePanelRouteAction,
+  getUiShellCopy,
+  PopupLauncher,
+} from '@shopflow/ui';
 import { createSuiteAppDefinition } from '../../src/app-definition';
 
 const currentUrl = new URL(window.location.href);
@@ -19,14 +25,14 @@ const appDefinition = createSuiteAppDefinition(locale);
 const languageOptionLabels = uiCopy.common.languageOptionLabels;
 const popupRouteSummary =
   locale === 'zh-CN'
-    ? '先打开 family chooser 找到正确 store shell，再去 proof board 和 verified scope，最后才谈公开说法。'
+    ? '先打开店铺入口选择器找到正确店铺壳层，再去证据门和已验证范围，最后才谈公开说法。'
     : 'Open the family chooser first, then check the proof board and verified scope before you make public claims.';
 const popupRouteDetails =
   locale === 'zh-CN'
     ? [
-        '先用 family chooser 进入正确的 store shell，不要把 popup 当第二个控制台。',
-        'proof board 负责告诉你哪些说法还不能外放。',
-        'verified scope clauses 是最后一道诚实边界，不要跳过。',
+        '先用店铺入口选择器进入正确的店铺壳层，不要把弹出窗当第二个控制台。',
+        '证据门会告诉你哪些说法还不能外放。',
+        '已验证范围条款是最后一道诚实边界，不要跳过。',
       ]
     : [
       'Use the family chooser first so you enter the correct store shell instead of treating the popup like a second control room.',
@@ -42,19 +48,24 @@ const localeOptions = uiLocaleValues.map((nextLocale) => ({
   active: locale === nextLocale,
 }));
 
-function createSuiteSidePanelHref(hash: string) {
-  const sidePanelHref = chrome.runtime.getURL(`sidepanel.html${hash}`);
-  return locale === 'en'
-    ? sidePanelHref
-    : createLocaleRouteHref(sidePanelHref, locale);
+function createSuiteSidePanelPath(hash: string) {
+  return createLocalizedExtensionPath(
+    'sidepanel.html',
+    locale,
+    hash.replace(/^#/, '')
+  );
 }
 
 const suiteActionItems = [
   ...appDefinition.startHere.slice(2).map((item) => ({
     label: item.ctaLabel,
     summary: item.summary,
-    href: createSuiteSidePanelHref(item.href),
-    external: true,
+    href: createLocalizedExtensionHref(
+      'sidepanel.html',
+      locale,
+      item.href.replace(/^#/, '')
+    ),
+    onClick: createOpenSidePanelRouteAction(createSuiteSidePanelPath(item.href)),
   })),
 ];
 
@@ -66,10 +77,16 @@ createRoot(document.getElementById('root')!).render(
     actionHeading={suiteCopy.priorityRoutes}
     actionItems={suiteActionItems}
     localeOptions={localeOptions}
-    primaryHref={createSuiteSidePanelHref('#start-here')}
+    primaryHref={createLocalizedExtensionHref('sidepanel.html', locale, 'start-here')}
+    primaryOnClick={createOpenSidePanelRouteAction(createSuiteSidePanelPath('#start-here'))}
     primaryLabel={suiteCopy.openSidePanelFamilyChooser}
     primarySummary={suiteCopy.currentRolloutSummary}
-    secondaryHref={createSuiteSidePanelHref('#claim-readiness-board')}
+    secondaryHref={createLocalizedExtensionHref(
+      'sidepanel.html',
+      locale,
+      'claim-readiness-board'
+    )}
+    secondaryOnClick={createOpenSidePanelRouteAction(createSuiteSidePanelPath('#claim-readiness-board'))}
     secondaryLabel={suiteCopy.openSidePanelClaimReadiness}
     secondarySummary={suiteCopy.claimReadinessSummary}
     details={[
