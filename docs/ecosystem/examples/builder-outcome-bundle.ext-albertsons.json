@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-16T00:26:30.566Z",
+  "generatedAt": "2026-04-17T15:04:50.508Z",
   "appId": "ext-albertsons",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -662,7 +662,7 @@
         },
         {
           "label": "Proof line",
-          "value": "Review bundle is complete, but reviewed live evidence includes rejected captures, so release wording is still blocked on repo-side evidence triage."
+          "value": "Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
         },
         {
           "label": "Current page",
@@ -671,7 +671,7 @@
       ],
       "nextAction": {
         "label": "Open capture queue",
-        "reason": "Route back to the freshest known merchant page before you run this capability. Use the current supported workflow page as the execution surface for the next operator move."
+        "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt."
       }
     }
   },
@@ -697,39 +697,39 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Repo-owned review artifact manifest for all 8+1 apps after packaging completes."
+      "summary": "Release manifest now proves 9 app entries. ext-albertsons is capability-heavy-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-albertsons/bundle and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Repo-owned submission-readiness checklist that keeps claim-gated and internal-alpha boundaries explicit."
+      "summary": "Submission readiness marks ext-albertsons as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-albertsons/bundle/shopflow-review-artifact.json. Manual review starts at https://www.safeway.com. Review bundle is complete; reviewed live evidence already includes rejected captures, and the remaining open gate is external capture/review on unresolved live proof."
     }
   ],
   "readyToSyncArtifacts": [
     {
       "id": "public-copy-packet",
-      "path": ".agents/Tasks/WAVE1-public-sync/public-copy.ready.md",
-      "destination": "sync packet overview",
-      "summary": "Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim."
+      "path": "docs/ecosystem/public-distribution-bundle.md",
+      "destination": "public distribution overview",
+      "summary": "Public-facing distribution guide that explains which current-scope surfaces are already usable and what they still must not overclaim."
     },
     {
       "id": "paste-ready-public-copy",
-      "path": ".agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md",
-      "destination": "GitHub about, release notes, or social/page drafts",
-      "summary": "Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful."
+      "path": "docs/ecosystem/agent-quickstarts.md",
+      "destination": "target-specific quickstart copy",
+      "summary": "Public quickstart matrix that keeps agent-facing copy truthful while still giving each target one shortest current-scope entry path."
     },
     {
       "id": "release-body",
-      "path": ".agents/Tasks/WAVE1-public-sync/release-body.ready.md",
-      "destination": "release body starter",
-      "summary": "Short release-note block that stays inside current claim boundaries."
+      "path": "DISTRIBUTION.md",
+      "destination": "distribution status ledger",
+      "summary": "Canonical distribution ledger that distinguishes what is already live, what is only ready, and what still remains manual later."
     },
     {
       "id": "repo-description",
-      "path": ".agents/Tasks/WAVE1-public-sync/repo-description.ready.md",
-      "destination": "GitHub repo description",
-      "summary": "One-line repo description that names the product shape without implying public API, MCP, or CLI availability."
+      "path": "README.md",
+      "destination": "canonical repo front door",
+      "summary": "Canonical public repo front door that names the product shape without implying public API, MCP, or CLI availability."
     }
   ]
 }

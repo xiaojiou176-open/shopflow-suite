@@ -6,7 +6,6 @@
 - Related:
   - [Testing and Verification Bar](../contracts/testing-and-verification-bar.md)
   - [Shopflow Brand and Claim Boundary](../branding/shopflow-brand-and-claim-boundary.md)
-  - [Store Adapter Contract](../contracts/store-adapter-contract.md)
 
 ## Purpose
 

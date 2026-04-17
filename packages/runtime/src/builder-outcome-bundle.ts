@@ -167,31 +167,31 @@ export function createBuilderOutcomeBundle({
     readyToSyncArtifacts: [
       {
         id: 'public-copy-packet',
-        path: '.agents/Tasks/WAVE1-public-sync/public-copy.ready.md',
-        destination: 'sync packet overview',
+        path: 'docs/ecosystem/public-distribution-bundle.md',
+        destination: 'public distribution overview',
         summary:
-          'Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim.',
+          'Public-facing distribution guide that explains which current-scope surfaces are already usable and what they still must not overclaim.',
       },
       {
         id: 'paste-ready-public-copy',
-        path: '.agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md',
-        destination: 'GitHub about, release notes, or social/page drafts',
+        path: 'docs/ecosystem/agent-quickstarts.md',
+        destination: 'target-specific quickstart copy',
         summary:
-          'Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful.',
+          'Public quickstart matrix that keeps agent-facing copy truthful while still giving each target one shortest current-scope entry path.',
       },
       {
         id: 'release-body',
-        path: '.agents/Tasks/WAVE1-public-sync/release-body.ready.md',
-        destination: 'release body starter',
+        path: 'DISTRIBUTION.md',
+        destination: 'distribution status ledger',
         summary:
-          'Short release-note block that stays inside current claim boundaries.',
+          'Canonical distribution ledger that distinguishes what is already live, what is only ready, and what still remains manual later.',
       },
       {
         id: 'repo-description',
-        path: '.agents/Tasks/WAVE1-public-sync/repo-description.ready.md',
-        destination: 'GitHub repo description',
+        path: 'README.md',
+        destination: 'canonical repo front door',
         summary:
-          'One-line repo description that names the product shape without implying public API, MCP, or CLI availability.',
+          'Canonical public repo front door that names the product shape without implying public API, MCP, or CLI availability.',
       },
     ],
   });

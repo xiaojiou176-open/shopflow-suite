@@ -2,7 +2,7 @@
   "bundleId": "builder-outcome-bundle",
   "schemaVersion": "shopflow.builder-outcome-bundle.v2",
   "readOnly": true,
-  "generatedAt": "2026-04-16T00:26:30.575Z",
+  "generatedAt": "2026-04-17T15:04:50.518Z",
   "appId": "ext-temu",
   "integrationSurface": {
     "surfaceId": "builder-integration-surface",
@@ -590,7 +590,7 @@
           "id": "ext-temu:https://www.temu.com/search_result.html?search_key=warehouse",
           "appId": "ext-temu",
           "label": "www.temu.com · search",
-          "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as store-review.",
+          "summary": "Temu search extraction and the warehouse filter workflow are runnable right now. ext-temu is packaged as storefront-shell-candidate.",
           "timestampLabel": "2:30 AM",
           "href": "https://www.temu.com/search_result.html?search_key=warehouse"
         }
@@ -607,12 +607,12 @@
         "reviewedCount": 0,
         "rejectedCount": 0,
         "expiredCount": 0,
-        "blockerSummary": "Reviewed live evidence still gates public wording.",
+        "blockerSummary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
         "nextCaptureId": "temu-filter-live-receipt",
         "nextStatus": "missing-live-receipt",
         "nextOperatorPath": "capture",
         "nextRequirementTitle": "Temu filter live receipt",
-        "nextStep": "Keep public wording claim-gated until reviewed live evidence exists.",
+        "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change.",
         "nextSourcePageUrl": "https://www.temu.com/search_result.html?search_key=warehouse",
         "nextSourcePageLabel": "Open current evidence route",
         "nextSourceRouteLabel": "Open current evidence route"
@@ -621,7 +621,7 @@
         "origin": "evidence-source",
         "label": "Open current evidence route",
         "href": "https://www.temu.com/search_result.html?search_key=warehouse",
-        "summary": "Keep public wording claim-gated until reviewed live evidence exists."
+        "summary": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change."
       },
       "builderSurfaceBoundary": {
         "today": [
@@ -647,21 +647,22 @@
       "readOnly": true,
       "appTitle": "Shopflow for Temu",
       "stage": "claim-gated",
-      "summary": "Reviewed live evidence still gates public wording.",
+      "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
       "whyNow": [
         "www.temu.com · search",
         "Temu search extraction and the warehouse filter workflow are runnable right now.",
         "1 live evidence packet still gate public wording."
       ],
-      "nextStep": "Inspect the current review route before changing any public wording.",
+      "nextStep": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change.",
       "primaryRouteLabel": "Open current evidence route",
       "primaryRouteHref": "https://www.temu.com/search_result.html?search_key=warehouse",
-      "primaryRouteOrigin": "evidence-source"
+      "primaryRouteOrigin": "evidence-source",
+      "claimBoundary": "Keep public wording inside the current repo-verified scope."
     },
     "workflowCopilotBrief": {
       "tone": "claim-gated",
       "title": "What to do here",
-      "summary": "Reviewed live evidence still gates public wording.",
+      "summary": "Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated.",
       "bullets": [
         {
           "label": "Current surface",
@@ -678,7 +679,7 @@
       ],
       "nextAction": {
         "label": "Open current evidence route",
-        "reason": "Inspect the current review route before expanding public wording."
+        "reason": "Keep wording claim-gated. Reviewed live evidence already includes rejected captures for temu-filter-live-receipt; do not reopen unless the owner later requests a new capture or scope change."
       }
     }
   },
@@ -704,39 +705,39 @@
       "id": "artifact-manifest",
       "path": ".runtime-cache/release-artifacts/manifest.json",
       "command": "pnpm package:artifacts",
-      "summary": "Release manifest now proves 3 app entries. ext-temu is store-review with bundle directory apps/ext-temu/.output/chrome-mv3 and 1 packaged zip artifact."
+      "summary": "Release manifest now proves 9 app entries. ext-temu is storefront-shell-candidate with bundle directory .runtime-cache/release-artifacts/apps/ext-temu/bundle and 1 packaged zip artifact."
     },
     {
       "id": "submission-readiness-report",
       "path": ".runtime-cache/release-artifacts/submission-readiness.json",
       "command": "pnpm release:write-submission-readiness-report",
-      "summary": "Submission readiness marks ext-temu as review-bundle-ready-claim-gated. Review bundle ready: yes. Reviewed live evidence still gates public wording."
+      "summary": "Submission readiness marks ext-temu as review-bundle-ready-claim-gated. Review bundle ready: yes. Review artifact manifest: .runtime-cache/release-artifacts/apps/ext-temu/bundle/shopflow-review-artifact.json. Manual review starts at https://www.temu.com. Review bundle is complete, and reviewed live evidence is finalized with rejected captures, so public wording stays claim-gated."
     }
   ],
   "readyToSyncArtifacts": [
     {
       "id": "public-copy-packet",
-      "path": ".agents/Tasks/WAVE1-public-sync/public-copy.ready.md",
-      "destination": "sync packet overview",
-      "summary": "Short packet that explains which current-scope public copy is ready to paste and what it still must not overclaim."
+      "path": "docs/ecosystem/public-distribution-bundle.md",
+      "destination": "public distribution overview",
+      "summary": "Public-facing distribution guide that explains which current-scope surfaces are already usable and what they still must not overclaim."
     },
     {
       "id": "paste-ready-public-copy",
-      "path": ".agents/Tasks/WAVE1-public-sync/ready-to-sync-public-copy.md",
-      "destination": "GitHub about, release notes, or social/page drafts",
-      "summary": "Paste-ready snippets and destination guidance for external sync work that still remains repo-truthful."
+      "path": "docs/ecosystem/agent-quickstarts.md",
+      "destination": "target-specific quickstart copy",
+      "summary": "Public quickstart matrix that keeps agent-facing copy truthful while still giving each target one shortest current-scope entry path."
     },
     {
       "id": "release-body",
-      "path": ".agents/Tasks/WAVE1-public-sync/release-body.ready.md",
-      "destination": "release body starter",
-      "summary": "Short release-note block that stays inside current claim boundaries."
+      "path": "DISTRIBUTION.md",
+      "destination": "distribution status ledger",
+      "summary": "Canonical distribution ledger that distinguishes what is already live, what is only ready, and what still remains manual later."
     },
     {
       "id": "repo-description",
-      "path": ".agents/Tasks/WAVE1-public-sync/repo-description.ready.md",
-      "destination": "GitHub repo description",
-      "summary": "One-line repo description that names the product shape without implying public API, MCP, or CLI availability."
+      "path": "README.md",
+      "destination": "canonical repo front door",
+      "summary": "Canonical public repo front door that names the product shape without implying public API, MCP, or CLI availability."
     }
   ]
 }

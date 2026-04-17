@@ -5,7 +5,6 @@
 - Owners: Shopflow Brand + Product
 - Related:
   - [ADR-002: Release Wave and Product Tiering](../adr/ADR-002-release-wave-and-product-tiering.md)
-  - [Store Adapter Contract](../contracts/store-adapter-contract.md)
   - [Testing and Verification Bar](../contracts/testing-and-verification-bar.md)
 
 ## Purpose

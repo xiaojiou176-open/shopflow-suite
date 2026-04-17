@@ -175,9 +175,8 @@ export const publicDistributionBundle = publicDistributionBundleSchema.parse({
         },
         {
           kind: 'doc',
-          label: 'Local skill scaffold reference',
-          value:
-            '.agents/skills/shopflow-read-only-runtime-seam-consumption/SKILL.md',
+          label: 'Skills catalog guide',
+          value: 'docs/ecosystem/public-skills-catalog.md',
         },
         {
           kind: 'command',
