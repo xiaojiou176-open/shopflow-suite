@@ -2,7 +2,9 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { resolveFromRepo } from '../support/repo-paths';
 
-const pagesBaseUrl = new URL('https://xiaojiou176-open.github.io/shopflow-suite/');
+const pagesBaseUrl = new URL(
+  'https://xiaojiou176-open.github.io/shopflow-suite/'
+);
 
 function readJson(path: string) {
   return JSON.parse(readFileSync(resolveFromRepo(path), 'utf8'));
@@ -27,7 +29,9 @@ function expectPagesSafeFirstHop(markdown: string, label: string) {
   const href = findMarkdownLink(markdown, label);
 
   if (href.startsWith('https://github.com/xiaojiou176-open/shopflow-suite')) {
-    expect(href).toMatch(/^https:\/\/github\.com\/xiaojiou176-open\/shopflow-suite/);
+    expect(href).toMatch(
+      /^https:\/\/github\.com\/xiaojiou176-open\/shopflow-suite/
+    );
     return;
   }
 
@@ -43,7 +47,9 @@ function expectHeadingOrder(markdown: string, earlier: string, later: string) {
   const earlierIndex = markdown.indexOf(earlier);
   const laterIndex = markdown.indexOf(later);
 
-  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(0);
+  expect(earlierIndex, `expected to find "${earlier}"`).toBeGreaterThanOrEqual(
+    0
+  );
   expect(laterIndex, `expected to find "${later}"`).toBeGreaterThanOrEqual(0);
   expect(earlierIndex).toBeLessThan(laterIndex);
 }
@@ -76,7 +82,9 @@ describe('public manifest and front door', () => {
       },
       quickstart: 'docs/ecosystem/mcp-quickstart.md',
     });
-    expect(manifest.mcp.tools.map((tool: { name: string }) => tool.name)).toEqual([
+    expect(
+      manifest.mcp.tools.map((tool: { name: string }) => tool.name)
+    ).toEqual([
       'get_integration_surface',
       'get_runtime_seam',
       'get_submission_readiness',
@@ -100,7 +108,11 @@ describe('public manifest and front door', () => {
     expect(readme).toContain('Open an issue');
     expect(readme).toContain('live receipt evidence bundles');
     expect(readme).toContain('store-ready signed extension release artifacts');
-    expectHeadingOrder(readme, '## First Product Route', '## Builder Side Door');
+    expectHeadingOrder(
+      readme,
+      '## First Product Route',
+      '## Builder Side Door'
+    );
     expect(docsReadme).toContain('./assets/shopflow-front-door.svg');
     expect(docsReadme).toContain('Product boundary');
     expect(docsReadme).toContain('Verification bar');
@@ -109,14 +121,14 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('## Need Help or the Deeper Atlas?');
     expect(docsReadme).toContain('## What You Can Inspect Today');
     expect(docsReadme).toContain('## Verification Layers');
-    expect(docsReadme).toContain('## Secondary Repo-Local Engineering Shelves');
+    expect(docsReadme).toContain('## Secondary Builder / Maintainer Shelves');
     expect(docsReadme).toContain('Distribution truth on GitHub');
     expect(docsReadme).toContain('Builder Start Here');
     expect(docsReadme).toContain('signed/store-ready');
     expectHeadingOrder(
       docsReadme,
       '## First Product Path',
-      '## Secondary Repo-Local Engineering Shelves'
+      '## Secondary Builder / Maintainer Shelves'
     );
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
     expect(docsIndex).toContain(
@@ -135,7 +147,9 @@ describe('public manifest and front door', () => {
     expect(docsIndex).toContain('Release Artifact Review Runbook');
     expect(docsIndex).toContain('Open an issue');
     expect(docsIndex).toContain('Contributing on GitHub');
-    expect(docsIndex).toContain('signed store-ready release artifacts are still not in place');
+    expect(docsIndex).toContain(
+      'signed store-ready release artifacts are still not in place'
+    );
     expectHeadingOrder(
       docsIndex,
       '## Best First Route',

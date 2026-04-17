@@ -28,7 +28,7 @@ test('ext-albertsons popup and sidepanel keep the core a11y / reflow contract', 
       )
       .toBe(true);
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel quick actions' })
+      popup.getByRole('link', { name: 'Open main workspace' })
     ).toBeVisible();
     await popup.close();
 

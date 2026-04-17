@@ -1,4 +1,11 @@
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 import { resolve } from 'node:path';
 import { repoRoot } from '../../tests/support/repo-paths';
 
@@ -9,11 +16,54 @@ type RepoProcessLockOptions = {
 };
 
 const defaultLockRoot = resolve(repoRoot, '.runtime-cache/locks');
+const lockContextStorage = new AsyncLocalStorage<Set<string>>();
 
 function sleep(ms: number) {
   return new Promise((resolvePromise) => {
     setTimeout(resolvePromise, ms);
   });
+}
+
+function isPidAlive(pid: number) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      error.code === 'EPERM'
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+}
+
+function tryClearStaleLock(lockDirectory: string, lockMetadataPath: string) {
+  if (!existsSync(lockMetadataPath)) {
+    return false;
+  }
+
+  try {
+    const metadata = JSON.parse(readFileSync(lockMetadataPath, 'utf8')) as {
+      pid?: number;
+    };
+    if (typeof metadata.pid !== 'number' || Number.isNaN(metadata.pid)) {
+      return false;
+    }
+
+    if (isPidAlive(metadata.pid)) {
+      return false;
+    }
+
+    rmSync(lockDirectory, { recursive: true, force: true });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export async function withRepoProcessLock<T>(
@@ -27,6 +77,10 @@ export async function withRepoProcessLock<T>(
   const lockDirectory = resolve(lockRoot, `${lockName}.lock`);
   const lockMetadataPath = resolve(lockDirectory, 'holder.json');
   const startedAt = Date.now();
+
+  if (lockContextStorage.getStore()?.has(lockDirectory)) {
+    return await task();
+  }
 
   mkdirSync(lockRoot, { recursive: true });
 
@@ -42,6 +96,10 @@ export async function withRepoProcessLock<T>(
         error.code !== 'EEXIST'
       ) {
         throw error;
+      }
+
+      if (tryClearStaleLock(lockDirectory, lockMetadataPath)) {
+        continue;
       }
 
       if (Date.now() - startedAt >= timeoutMs) {
@@ -70,7 +128,11 @@ export async function withRepoProcessLock<T>(
         2
       )}\n`
     );
-    return await task();
+    const inheritedLocks = lockContextStorage.getStore();
+    const nextLocks = new Set(inheritedLocks ?? []);
+    nextLocks.add(lockDirectory);
+
+    return await lockContextStorage.run(nextLocks, async () => task());
   } finally {
     rmSync(lockDirectory, { recursive: true, force: true });
   }

@@ -94,10 +94,10 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
       /Use the current supported workflow page as the execution surface for the next operator move\./i
     );
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel quick actions' })
+      popup.getByRole('link', { name: 'Open main workspace' })
     ).toHaveAttribute('href', /sidepanel\.html(?:\?locale=en)?#quick-actions$/i);
     await expect(
-      popup.getByRole('link', { name: 'Open Side Panel capture queue' })
+      popup.getByRole('link', { name: 'Open capture queue' })
     ).toHaveAttribute(
       'href',
       /sidepanel\.html(?:\?locale=en)?#live-receipt-evidence$/i

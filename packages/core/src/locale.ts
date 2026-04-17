@@ -482,19 +482,18 @@ const en: LocaleCatalog = {
     noRunnableCapability:
       'No runnable capability is available on this page yet.',
     openSidePanel: 'Open Side Panel',
-    viewCurrentSupportState: 'View current support state',
-    openSidePanelQuickActions: 'Open Side Panel quick actions',
-    openSidePanelReadinessSummary: 'Open Side Panel readiness summary',
-    openSidePanelCaptureQueue: 'Open Side Panel capture queue',
-    openSidePanelReviewLane: 'Open Side Panel review lane',
-    openSidePanelRecentActivity: 'Open Side Panel recent activity',
-    openSidePanelCurrentSiteSummary: 'Open Side Panel current site summary',
+    viewCurrentSupportState: 'Review support state',
+    openSidePanelQuickActions: 'Open main workspace',
+    openSidePanelReadinessSummary: 'Open readiness summary',
+    openSidePanelCaptureQueue: 'Open capture queue',
+    openSidePanelReviewLane: 'Open review lane',
+    openSidePanelRecentActivity: 'Open recent activity',
+    openSidePanelCurrentSiteSummary: 'Open site summary',
     resumeLatestCapturedPage: 'Resume latest captured page',
     openLatestSourcePage: 'Open latest source page',
-    openMainSurfaceSummary:
-      'Open the main Shopflow surface for the current page.',
+    openMainSurfaceSummary: 'Open the main Shopflow workspace for this page.',
     openSecondaryRouteSummary:
-      'Jump to the next support or claim-boundary view without turning popup into a second console.',
+      'Jump to the next support or claim view without turning the popup into a second console.',
     latestSourceLabel: 'Jump to latest source page',
     claimBoundaryPrefix: 'Before public claims:',
     evidenceQueuePrefix: 'Evidence queue:',
@@ -506,7 +505,7 @@ const en: LocaleCatalog = {
     seenPrefix: 'Seen',
     quickRouterHeading: 'Quick router',
     quickRouterSummary:
-      'Choose the next route here, then finish the real work in Side Panel.',
+      'Pick the next route here, then finish the work in the side panel.',
     primaryRouteHeading: 'Primary route',
     secondaryRouteHeading: 'Secondary route',
     jumpBackHeading: 'Jump back',
@@ -805,11 +804,10 @@ const en: LocaleCatalog = {
     priorityRoutesSummary:
       'Use these when you need another strong route after the start-here pick.',
     claimReadinessHeading: 'What still needs proof',
-    claimReadinessSummary:
-      'Check this before you change public claims.',
+    claimReadinessSummary: 'Check this before you change public claims.',
     currentRolloutHeading: 'Pick a store',
     currentRolloutSummary:
-      'Each row tells you where to open next and why it is in this state.',
+      'Each row tells you what to open next and why it is still in this state.',
     supportDesksHeading: 'Deeper detail',
     supportDesksSummary:
       'Open this only when you need verified scope clauses, proof queues, runtime handoff notes, or Suite rules.',
@@ -826,9 +824,9 @@ const en: LocaleCatalog = {
       `Priority packet action for ${publicName}: ${label}`,
     decisionBriefRouteAria: (publicName, label) =>
       `Decision brief route for ${publicName}: ${label}`,
-    openSidePanelFamilyChooserLabel: 'Open Side Panel family chooser',
-    openSidePanelRolloutMapLabel: 'Open Side Panel rollout map',
-    openSidePanelClaimReadinessLabel: 'Open Side Panel claim readiness board',
+    openSidePanelFamilyChooserLabel: 'Open store chooser',
+    openSidePanelRolloutMapLabel: 'Open rollout map',
+    openSidePanelClaimReadinessLabel: 'Open claim gate',
     latestDetectionHeading: 'Latest page',
     latestRecentActivityHeading: 'Latest source',
     latestCapturedOutputHeading: 'Latest output',
@@ -837,8 +835,7 @@ const en: LocaleCatalog = {
     priorityPacketHeading: 'Top proof task',
     operatorNextStepHeading: 'Do this next',
     decisionBriefHeading: 'Why this route',
-    noOutstandingPacket:
-      'No proof task is waiting right now.',
+    noOutstandingPacket: 'No proof task is waiting right now.',
     providerRuntimeSeamHeading: 'Advanced runtime handoff',
     providerRuntimeSeamSummary:
       'This advanced internal card previews Switchyard-style runtime routes. It stays read-only and does not replace merchant live proof.',
@@ -1044,10 +1041,10 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     supportingRoutesHeading: '补充路线',
     noRunnableCapability: '当前页面还没有可立即执行的能力。',
     openSidePanel: '打开侧边面板',
-    viewCurrentSupportState: '查看当前支持状态',
-    openMainSurfaceSummary: '打开当前页面对应的主 Shopflow 工作面板。',
+    viewCurrentSupportState: '查看支持状态',
+    openMainSurfaceSummary: '打开当前页面对应的主 Shopflow 工作面。',
     openSecondaryRouteSummary:
-      '跳到下一条支持状态或 claim 边界路线，而不是把 popup 变成第二个控制台。',
+      '跳到下一条支持或宣称门禁路线，不把弹出窗变成第二个控制台。',
     latestSourceLabel: '跳回最新来源页面',
     claimBoundaryPrefix: '宣称边界：',
     evidenceQueuePrefix: '证据队列：',
@@ -1058,19 +1055,19 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
     recentActivityPrefix: '最近活动：',
     seenPrefix: '看到于',
     quickRouterHeading: '快速路由',
-    quickRouterSummary: '先用弹出窗找入口，再去侧边面板做真正操作。',
+    quickRouterSummary: '先用弹出窗找路，再去侧边面板做真正操作。',
     primaryRouteHeading: '主路线',
     secondaryRouteHeading: '次路线',
     jumpBackHeading: '返回现场',
     jumpBackSummary: '回到共享 runtime 里记录的最新商家页面。',
     sourceCapturedSplitSummary:
       '最新来源页面会带你回到真实商家流程；最新捕获页面会重新打开最近一次捕获到的结果。',
-    openSidePanelQuickActions: '打开侧边面板快捷操作',
-    openSidePanelReadinessSummary: '打开侧边面板准备度摘要',
-    openSidePanelCaptureQueue: '打开侧边面板采集队列',
-    openSidePanelReviewLane: '打开侧边面板审核通道',
-    openSidePanelRecentActivity: '打开侧边面板最近活动',
-    openSidePanelCurrentSiteSummary: '打开侧边面板当前站点摘要',
+    openSidePanelQuickActions: '打开主工作面',
+    openSidePanelReadinessSummary: '打开准备度摘要',
+    openSidePanelCaptureQueue: '打开采集队列',
+    openSidePanelReviewLane: '打开审核通道',
+    openSidePanelRecentActivity: '打开最近活动',
+    openSidePanelCurrentSiteSummary: '打开站点摘要',
     resumeLatestCapturedPage: '回到最新捕获页面',
     openLatestSourcePage: '打开最新来源页面',
   },
@@ -1308,8 +1305,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       },
       {
         title: '先看公开说法门禁，再谈发布',
-        summary:
-          '先检查证据门，保持“仓内已验证”和“可以公开说支持”两层分开。',
+        summary: '先检查证据门，保持“仓内已验证”和“可以公开说支持”两层分开。',
         ctaLabel: '打开公开说法准备度面板',
       },
       {
@@ -1329,7 +1325,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       '把这里当成门禁路由板，不是发布倒计时。它告诉你哪条公开表述路径还被证据挡着。',
     currentRolloutHeading: '当前推进地图',
     currentRolloutSummary:
-      '每一行都告诉你下一步该检查哪个 store shell、它为什么还停在当前状态、以及最新共享运行时上下文指向哪里。',
+      '每一行都告诉你下一步该开哪里，以及为什么还停在当前状态。',
     supportDesksHeading: '辅助服务台',
     supportDesksSummary:
       '把已验证范围、证据队列、外部运行时接缝和 Alpha 规则压到第二层。只有在需要治理细节时，再打开这些服务台。',
@@ -1345,9 +1341,9 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       `${publicName} 的优先证据动作：${label}`,
     decisionBriefRouteAria: (publicName, label) =>
       `${publicName} 的决策简报路线：${label}`,
-    openSidePanelFamilyChooserLabel: '打开侧边面板店铺入口选择器',
-    openSidePanelRolloutMapLabel: '打开侧边面板推进地图',
-    openSidePanelClaimReadinessLabel: '打开侧边面板公开说法准备度面板',
+    openSidePanelFamilyChooserLabel: '打开店铺入口',
+    openSidePanelRolloutMapLabel: '打开推进地图',
+    openSidePanelClaimReadinessLabel: '打开宣称门禁',
     latestDetectionHeading: '最新检测结果',
     latestRecentActivityHeading: '最新最近活动',
     latestCapturedOutputHeading: '最新捕获输出',
@@ -1389,8 +1385,7 @@ const zhCnOverrides: DeepPartial<LocaleCatalog> = {
       },
       repoVerifiedClaimGated: {
         label: '已通过 repo 验证，但仍被证据门挡住公开说法',
-        summary:
-          '先去证据门完成采集或审核，再把“仓内已验证”往公开说法层推进。',
+        summary: '先去证据门完成采集或审核，再把“仓内已验证”往公开说法层推进。',
         ctaLabel: '打开证据门',
       },
       internalAlpha: {

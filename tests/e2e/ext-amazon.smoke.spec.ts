@@ -91,7 +91,7 @@ test('ext-amazon smoke renders product extraction from a routed fixture', async 
       popup.getByRole('link', { name: 'Open latest captured page' }).first()
     ).toHaveAttribute('href', 'https://www.amazon.com/dp/shopflow-grinder');
     const sidePanelHref = await popup
-      .getByRole('link', { name: 'Open Side Panel quick actions' })
+      .getByRole('link', { name: 'Open main workspace' })
       .getAttribute('href');
     expect(sidePanelHref).toMatch(
       /sidepanel\.html(?:\?locale=en)?#quick-actions$/i

@@ -54,7 +54,7 @@ describe('builder discoverability docs coherence', () => {
     expect(docsReadme).toContain('## First Product Path');
     expect(docsReadme).toContain('## What You Can Inspect Today');
     expect(docsReadme).toContain('## Verification Layers');
-    expect(docsReadme).toContain('## Secondary Repo-Local Engineering Shelves');
+    expect(docsReadme).toContain('## Secondary Builder / Maintainer Shelves');
     expect(docsReadme).toContain(
       'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html'
     );
