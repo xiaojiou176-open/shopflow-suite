@@ -52,6 +52,25 @@ Important boundary:
 - repo-tracked PyPI package receipt
 - repo-tracked MCP.so public page receipt
 
+## Current official publish-prep order
+
+These are the strongest truthful prep lanes today if publication happens later:
+
+| Surface | Current status | What to prepare now | What must still not be claimed yet |
+| --- | --- | --- | --- |
+| `npm` | official and stable | package metadata, trusted publishing, provenance, 2FA, maintainer access | that Shopflow already ships a public package today |
+| `Claude Code` | official plugin / marketplace surface exists | `.claude-plugin/plugin.json`, screenshots, homepage/privacy/terms, marketplace-ready README | that Shopflow is already listed or published there |
+| `OpenClaw / ClawHub` | official public lane exists | OpenClaw plugin package metadata, ClawHub-ready install/discovery copy, npm-safe package path | that the primary browser/store lane itself is already publicly published there |
+| `MCP Registry` | official but `preview` | registry metadata only after a real npm-published MCP package exists | that registry publication already exists today |
+| `Codex / OpenAI` | plugin system exists, official directory still preview-like / opening up | plugin metadata, screenshots, homepage/privacy/terms, dogfood-ready bundle | that Shopflow can already self-serve an official Codex listing today |
+
+Recommended prep order:
+
+1. `npm`
+2. `Claude Code` / `OpenClaw + ClawHub`
+3. `MCP Registry` if a real public MCP package is opened
+4. `Codex / OpenAI` official directory later
+
 ## Manual later
 
 - Custom GitHub social preview upload still belongs to GitHub Settings.

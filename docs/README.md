@@ -45,25 +45,6 @@ If you want the public first-touch lobby, start with the Pages front door above.
 | GitHub docs atlas       | the deeper repo-local service desk              | a second public homepage                       |
 | latest review shelf     | reviewer-facing bundles and readiness materials | a signed store-ready shelf                     |
 | public repo README      | the short public product story                  | a replacement for deeper docs and runbooks     |
-| read-only stdio MCP     | repo-truth access for AI tools                  | a public HTTP MCP or official registry listing |
-
-## Verification Layers
-
-- `pre-commit`
-  - `pnpm verify:local-hygiene`
-- `pre-push`
-  - `pnpm verify:pre-push`
-- `hosted`
-  - `shopflow-ci` runs `pnpm verify:release-readiness`
-- `nightly`
-  - `external-governance` runs `pnpm verify:external-governance`
-- `manual`
-  - live/browser/review/signing/submission lanes
-
-Important boundary:
-
-> `verify:release-readiness` is the strongest repo-owned lane.
-> It is still not the same thing as reviewed live evidence, signing, or real store submission.
 
 ## Need Help or the Deeper Atlas?
 
@@ -83,12 +64,6 @@ If you are only checking the public product story, you can stop before this sect
 - [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html)
 - [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html)
 - [MCP Quickstart](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html)
-
-### Quick command entrypoints
-
-- `pnpm mcp:stdio`
-- `pnpm cli:read-only -- runtime-seam`
-- `pnpm cli:read-only -- runtime-consumer --base-url <switchyard-base-url>`
 
 These shelves are real, but they are still **secondary** to the default product
 route above.
@@ -116,3 +91,27 @@ repo-local artifact paths, or maintainer-only release choreography.
 Repo verification is real progress.
 It is still not a substitute for reviewed live evidence, signed artifacts, or
 store submission.
+
+## Verification Layers
+
+- `pre-commit`
+  - `pnpm verify:local-hygiene`
+- `pre-push`
+  - `pnpm verify:pre-push`
+- `hosted`
+  - `shopflow-ci` runs `pnpm verify:release-readiness`
+- `nightly`
+  - `external-governance` runs `pnpm verify:external-governance`
+- `manual`
+  - live/browser/review/signing/submission lanes
+
+Important boundary:
+
+> `verify:release-readiness` is the strongest repo-owned lane.
+> It is still not the same thing as reviewed live evidence, signing, or real store submission.
+
+### Builder quick commands
+
+- `pnpm mcp:stdio`
+- `pnpm cli:read-only -- runtime-seam`
+- `pnpm cli:read-only -- runtime-consumer --base-url <switchyard-base-url>`

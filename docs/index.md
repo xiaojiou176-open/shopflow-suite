@@ -16,20 +16,13 @@ If you are already browsing inside the repo on GitHub, use the docs atlas there 
 [Open the latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
 [Get help](#need-help-or-the-deeper-atlas)
 
-Secondary doors:
-[Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
-[Release review boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) ·
-[Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
-[Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
-[Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
-
 ## Start Here First
 
 - **What this is:** the public product-first front desk for one shopping-only
   extension family with `8` storefront apps and `1` Suite shell.
 - **Why it is worth opening now:** one repo already carries the public repo,
-  the Pages front door, the review shelf, and the repo-local read-only stdio
-  MCP without splitting truth across `9` code paths.
+  the Pages front door, the review shelf, and a truthful public docs map
+  without splitting truth across `9` code paths.
 - **First honest route:** read the product boundary, then the verification
   boundary, then the latest review shelf.
 - **Where to get help:** use the service desk below for product feel, review
@@ -60,6 +53,8 @@ In plain language:
 
 - [Release Review Shelf Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 - [Live Receipt Evidence Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+- [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md)
+- [Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme)
 - [Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
