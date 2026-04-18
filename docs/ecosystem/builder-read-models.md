@@ -174,7 +174,7 @@ That bundle now also includes:
 - builder discoverability routes
 - payload source metadata that says whether each payload came from a generated runtime file, an explicit input file, or a checked-in example
 - generated summaries from the repo-owned release manifest and submission-readiness report when those artifacts exist
-- ready-to-sync copy pointers
+- companion public-copy references
 
 Use [Integration Recipes](./integration-recipes.md) when you want the shortest
 command or file path for a concrete read-only consumption flow.

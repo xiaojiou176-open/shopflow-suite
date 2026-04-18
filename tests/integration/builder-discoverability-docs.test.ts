@@ -194,16 +194,15 @@ describe('builder discoverability docs coherence', () => {
     expect(rootReadme).toContain('requested Shopflow user-data-dir');
     expect(rootReadme).toContain('requested debugging port');
 
+    expect(docsReadme).toContain('## Maintainer Boundary');
     expect(docsReadme).toContain(
+      'Detailed maintainer-only browser, review, and release procedures are kept'
+    );
+    expect(docsReadme).toContain('**off** the public docs shelf');
+    expect(docsReadme).not.toContain(
       '.runtime-cache/live-browser/open-live-browser-latest.json'
     );
-    expect(docsReadme).toContain(
-      'browserInstanceBudget.browserMainProcessPids'
-    );
-    expect(docsReadme).toContain(
-      'browserInstanceBudget.matchingRequestedRootPids'
-    );
-    expect(docsReadme).toContain(
+    expect(docsReadme).not.toContain(
       'browserInstanceBudget.matchingRequestedPortPids'
     );
   });

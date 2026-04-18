@@ -84,7 +84,7 @@ If you are only checking the public product story, you can stop before this sect
 - [Agent Quickstarts](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/agent-quickstarts.html)
 - [MCP Quickstart](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/mcp-quickstart.html)
 
-### Maintainer-only local commands
+### Quick command entrypoints
 
 - `pnpm mcp:stdio`
 - `pnpm cli:read-only -- runtime-seam`
@@ -93,28 +93,19 @@ If you are only checking the public product story, you can stop before this sect
 These shelves are real, but they are still **secondary** to the default product
 route above.
 
-## Maintainer-Only Live Browser Lane
+## Maintainer Boundary
 
-When you need the real-browser lane instead of static repo proof, start here:
+Detailed maintainer-only browser, review, and release procedures are kept
+**off** the public docs shelf.
 
-- `pnpm preflight:live`
-- `pnpm diagnose:live`
-- `pnpm probe:live`
-- `pnpm operator-capture-packet:live`
-- `pnpm review-candidate-records:live`
-- `pnpm review-input-template:live`
+Public docs explain:
 
-Maintainer evidence files:
+- what the product proves today
+- what is still claim-gated
+- how to inspect the public review shelf truthfully
 
-- `.runtime-cache/live-browser/open-live-browser-latest.json`
-- `.runtime-cache/live-browser/diagnose-latest.json`
-- `.runtime-cache/live-browser/probe-latest.json`
-
-Maintainer budget fields:
-
-- `browserInstanceBudget.browserMainProcessPids`
-- `browserInstanceBudget.matchingRequestedRootPids`
-- `browserInstanceBudget.matchingRequestedPortPids`
+They do **not** act as the operator manual for local browser/session handling,
+repo-local artifact paths, or maintainer-only release choreography.
 
 ## Truth Layers
 

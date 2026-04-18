@@ -39,9 +39,11 @@ describe('cache and runtime governance docs coherence', () => {
     expect(readme).toContain('~/.cache/shopflow/browser/chrome-user-data');
     expect(agents).toContain('ubuntu-latest');
     expect(agents).toContain('self-hosted');
-    expect(liveRunbook).toContain('Profile 1');
-    expect(liveRunbook).toContain('shopflow');
-    expect(liveRunbook).toContain('browser:seed-profile');
+    expect(liveRunbook).toContain('Live Receipt Evidence Boundary');
+    expect(liveRunbook).toContain('repo-verified');
+    expect(liveRunbook).toContain('public-claim-ready');
+    expect(liveRunbook).not.toContain('Profile 1');
+    expect(liveRunbook).not.toContain('browser:seed-profile');
     expect(workflow).toContain('ubuntu-latest');
     expect(workflow).not.toContain('self-hosted');
     expect(npmrc).toContain('.cache/shopflow/pnpm-store');
