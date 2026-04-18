@@ -55,7 +55,8 @@ If you want the shortest truthful product-first read, take this route:
 
 - [Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/)
 - [Docs atlas](./docs/README.md)
-- [Release artifact review runbook](./docs/runbooks/release-artifact-review.md)
+- [Release Review Shelf Boundary](./docs/runbooks/release-artifact-review.md)
+- [Live Receipt Evidence Boundary](./docs/runbooks/live-receipt-capture.md)
 - [Distribution truth](./DISTRIBUTION.md)
 - [Contributing](./CONTRIBUTING.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
