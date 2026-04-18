@@ -1,210 +1,85 @@
-# Release Artifact Review Runbook
+# Release Review Shelf Boundary
 
-- Status: Draft
-- Date: 2026-03-30
-- Owners: Shopflow Delivery + Release Engineering
+- Status: Public summary
+- Date: 2026-04-18
 - Related:
   - [Testing and Verification Bar](../contracts/testing-and-verification-bar.md)
-  - [Live Receipt Capture Runbook](./live-receipt-capture.md)
+  - [Live Receipt Evidence Boundary](./live-receipt-capture.md)
   - [ADR-002: Release Wave and Product Tiering](../adr/ADR-002-release-wave-and-product-tiering.md)
 
 ## Purpose
 
-This runbook defines the **repo-owned review artifact path** for Shopflow builds.
+This page explains what the Shopflow **review shelf** means and what it does
+**not** mean.
 
 In plain language:
 
-> this is the box label that tells reviewers what bundle they are looking at,
-> what channel it belongs to, and why that still does not equal a public release.
+> the review shelf proves that reviewer-facing bundles and readiness materials
+> exist.
+> it does not mean the product is signed, store-ready, or public-claim-ready.
 
 ## Current Review Channels
 
-Shopflow currently publishes two review channels:
+Shopflow currently exposes two reviewer-facing channels:
 
 - `store-review`
-  - store app bundles intended for engineering or release review
+  - store app bundles for review and verification
 - `internal-alpha-review`
-  - Suite internal alpha bundle intended for internal-only review
+  - the Suite internal-alpha bundle
 
-These channels are for review, not for store submission.
+These are review channels, not store-submission channels.
 
-## Review Artifact Outputs
+## What Review Artifacts Prove
 
-Every CI review bundle should include:
+The review shelf is meant to show:
 
-1. the built extension directory
-2. the generated `shopflow-review-artifact.json`
-3. the extension `manifest.json`
+- that a bundle exists for the app
+- that the repo can package it consistently
+- that a reviewer has a clear starting point
+- that claim-gated versus internal-alpha boundaries are being described honestly
 
-The generated review artifact manifest must record:
+It is useful because it compresses repo-owned release-readiness truth into one
+reader-facing shelf.
 
-- `appId`
-- `packageName`
-- `releaseChannel`
-- `claimState`
-- `reviewChannel`
-- `surface`
-- `extensionName`
-- `extensionVersion`
-- `generatedAt`
-- `githubWorkflow`
-- `githubRunId`
-- `sourceSha`
-- `bundleCompleteness.requiredFiles`
-- `bundleCompleteness.zipArtifacts`
+## What Review Artifacts Must Not Be Mistaken For
 
-After local or CI packaging completes, Shopflow also writes a
-`submission-readiness.json` report in `.runtime-cache/release-artifacts/`.
+Review artifacts are **not**:
 
-This report does **not** claim store submission is ready. It exists to explain:
+- signed production packages
+- Chrome Web Store submissions
+- proof that public support wording is already safe
+- a replacement for reviewed live receipt evidence
 
-- whether the review bundle is complete
-- whether the app is still claim-gated
-- which live-evidence capture ids still matter
-- which blockers are still external, such as signing or real submission review
-- which URL a reviewer should start from when manually checking the store surface
-- which short submission checklist still applies to this app
+## Public-Safe Review Order
 
-Claim-gated and internal-alpha-only states are still repo-owned status labels.
-Do not use `externalBlockers` to hide repo-owned packaging, parity, or
-review-start-path drift.
-
-Once the review bundle is complete, the reviewer start path is trustworthy, and
-verification parity is clean, the report should also surface truly external
-gates under `externalBlockers`, such as:
-
-- reviewed live-evidence packets that still need an external capture/review step
-- signed artifacts that still need the real signing environment
-- actual store submission / review that still happens outside the repo
-
-If the latest repo-local reviewed-records ledger already covers a required
-capture id, whether as reviewed or rejected, keep that finalized packet in the
-submission report instead of continuing to list the same capture id under
-`externalBlockers`.
-
-The report should read like a reviewer handoff card, not a slogan. In practice
-that means each entry should surface:
-
-- a short readiness summary
-- a category-tagged reviewer checklist that names whether drift belongs to
-  artifact integrity, review-start-path truth, claim boundary, live evidence,
-  verification parity, or submission boundary
-- bundle audit details for missing build dir / zip / key bundle files
-- a reviewer start path with channel, surface, artifact-manifest path, and first check
-- that reviewer start path should be derived from the shared store-catalog default review host, so release reporting and parity guards read the same contract truth
-- a readable blocker when the store catalog cannot produce a trustworthy reviewer start URL
-- app-scoped verification parity drift when the repo-owned parity guard has
-  caught claim/path/fixture/package wiring mismatch, so reviewers do not need
-  to cross-reference a second report before starting
-- a clear boundary note explaining why review bundle != signed release != public-ready claim
-
-The manifest writer must also reject mismatched metadata when the requested
-`appId`, `packageName`, `reviewChannel`, `surface`, or bundle directory drift
-away from the verification catalog.
-
-## Reviewer Start Order
-
-Use the reviewer handoff path in this order:
-
-1. open `submission-readiness.json`
-2. pick the target app entry and read:
-   - `repoOwnedStatus`
-   - `readinessSummary`
-   - `reviewerStartPath`
-   - `externalBlockers`
-3. open the per-app `shopflow-review-artifact.json`
-4. open the reviewer start URL if one exists
-5. only then decide whether the remaining blocker is:
-   - still repo-owned packaging/parity/start-path drift
+1. open the latest release shelf
+2. read the submission-readiness summary for the app
+3. inspect the per-app review bundle and reviewer start path
+4. decide whether the remaining blocker is:
+   - still repo-owned packaging or parity drift
    - external live evidence
-   - external signing/submission work
+   - external signing or real submission work
 
 In plain language:
 
-> read the handoff card first, then open the bundle, then open the page.
-> do not guess the order from scattered files.
+> read the handoff card first, then inspect the bundle, then judge the outer
+> blocker honestly.
 
-## Required Separation Rules
+## Required Boundary Rules
 
-1. `ext-shopping-suite` must publish only as `internal-alpha-review`
-2. Store apps must publish only as `store-review`
-3. Review bundles must not be described as signed, store-ready, or public-claim-ready
-4. Review bundles must stay separate from live receipt evidence bundles
+1. `Shopflow Suite` stays explicitly `internal-alpha-review`
+2. store apps stay explicitly `store-review`
+3. review shelf wording must stay below signed/store-ready/public-ready claims
+4. reviewed live evidence and signed release work remain separate outer layers
 
-## CI Flow
+## What This Page Intentionally Does Not Expose
 
-The current CI review flow is:
+This public page does **not** carry:
 
-1. `shopflow-ci` `verify` job runs `pnpm verify:release-readiness`
-2. that serial lane now covers the strongest repo-owned path:
-   - local hygiene
-   - sensitive history
-   - coverage + unit / contract / integration confidence
-   - E2E
-   - review-bundle packaging
-   - submission-readiness reporting
-3. CI uploads the release manifest and `submission-readiness.json`
-4. `package-review-artifacts` builds each app independently
-5. CI sanity-checks key bundle files such as `manifest.json`
-6. CI runs `pnpm release:write-review-artifact-manifest`
-7. CI uploads the built bundle plus the generated review manifest as an artifact
-8. a separate `external-governance` workflow runs `pnpm verify:external-governance` on a scheduled/manual lane
-9. that external lane checks the GitHub-hosted public fallback repos plus GitHub platform security capability status without blocking every PR/push
+- maintainer-only packaging choreography
+- repo-local artifact paths and reproduction commands
+- CI implementation details for author-time workflows
+- release-engineering repair procedures
 
-Local packaging checks should also fail readably when an output is incomplete.
-
-Expected failure details include:
-
-- whether the build directory is missing
-- whether zip artifacts are missing
-- which key bundle files are missing, such as `manifest.json`, `background.js`,
-  `sidepanel.html`, and `popup.html` for store apps
-
-## Local Reproduction
-
-To reproduce the manifest-writing step locally:
-
-```bash
-export SHOPFLOW_APP_ID=ext-temu
-export SHOPFLOW_PACKAGE_NAME=@shopflow/ext-temu
-export SHOPFLOW_REVIEW_CHANNEL=store-review
-export SHOPFLOW_SURFACE=storefront-shell
-export SHOPFLOW_APP_DIR=apps/ext-temu
-pnpm --filter @shopflow/ext-temu build
-pnpm release:write-review-artifact-manifest
-```
-
-## Serial Verification Rule
-
-If you need one repo-owned release-readiness answer, run the release lane
-serially:
-
-```bash
-pnpm verify:release-readiness
-```
-
-Do not run `pnpm test` and `pnpm package:artifacts` in parallel against the
-same workspace.
-
-Do not treat `verify:sensitive-public-surface` or
-`verify:github-platform-security` as the default author-time lane.
-Those belong to the GitHub-hosted external-governance rail, because they audit
-public text surfaces and platform capability state rather than pure local repo
-determinism.
-
-Why:
-
-1. both flows rewrite per-app `.output/` directories
-2. parallel runs can create false-red `ENOENT` failures while one process is
-   rebuilding files the other process is trying to inspect
-3. release review should consume serial evidence, because that is the
-   trustworthy repo-owned signal
-
-## Non-Negotiable Rules
-
-1. Review bundles are not Chrome Web Store submissions
-2. Review bundles are not signed production packages
-3. Review bundles do not replace live-receipt evidence for public-claim decisions
-4. Internal alpha artifacts must stay explicitly internal
-5. The manifest writer must fail if a store app is mislabeled as
-   `internal-alpha-review`, or if the Suite is mislabeled as `store-review`
+Those details are kept off the public docs shelf so this page can stay focused
+on reviewer-facing meaning instead of maintainer operations.

@@ -64,6 +64,20 @@ In plain language:
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)
 
+## Maintainer Boundary
+
+Detailed maintainer-only browser, review, and release procedures are kept off
+the public Pages lobby.
+
+This page is for:
+
+- product-first orientation
+- truthful claim boundaries
+- public review-shelf navigation
+
+It is **not** the operator manual for local browser profiles, repo-local
+artifacts, or release-engineering choreography.
+
 ## What This Repo Is
 
 Shopflow is a **browser extension product repo**.

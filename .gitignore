@@ -10,10 +10,16 @@ test-results/
 build/
 cache/
 .cache/
+logs/
 .agents/
 .agent/
 .claude/
 .codex/
+.cursor/
 .serena/
+.venv/
+.env
+.env.*
+!.env.example
 **/.output/
 **/.wxt/

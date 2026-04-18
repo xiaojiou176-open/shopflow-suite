@@ -236,7 +236,7 @@ Why this matters:
 
 > it keeps the checked-in rack tied to repo-owned generated truth, not a hand-maintained sample shelf.
 
-## Recipe 4: Keep Sync Copy Out of the Public Shelf
+## Recipe 4: Keep Draft Copy Out of the Public Shelf
 
 Use this when repo truth is ahead of external permissions and you need to keep
 public docs clean while still preserving sync material for the next operator.
@@ -245,12 +245,12 @@ public docs clean while still preserving sync material for the next operator.
   - [Builder Start Here](./builder-start-here.md)
   - [Agent Quickstarts](./agent-quickstarts.md)
   - [Agent Distribution Artifacts](./agent-distribution-artifacts.md)
-- L1-owned sync copy packets now live off the public docs shelf
+- maintainer-only draft copy now lives off the public docs shelf
 
 Why this matters:
 
 > public docs should explain the product and the real read-only surfaces.
-> sync copy is still useful, but it belongs in the operator packet drawer, not
+> draft copy can still be useful, but it belongs in the maintainer shelf, not
 > in the customer-facing aisle.
 
 ## Recipe 5: Keep Ecosystem References Honest
