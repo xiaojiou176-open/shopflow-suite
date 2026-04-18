@@ -33,9 +33,9 @@ const liveReceiptTargets: LiveReceiptTarget[] = [
     expectedText: 'Agent Quickstarts',
   },
   {
-    label: 'Release Artifact Review Runbook',
+    label: 'Release Review Shelf Boundary',
     url: 'https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html',
-    expectedText: 'Release Artifact Review Runbook',
+    expectedText: 'Release Review Shelf Boundary',
   },
 ];
 

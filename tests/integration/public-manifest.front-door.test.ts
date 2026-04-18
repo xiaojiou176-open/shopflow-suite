@@ -144,7 +144,7 @@ describe('public manifest and front door', () => {
     expect(docsIndex).toContain('Distribution truth on GitHub');
     expect(docsIndex).toContain('Canonical README on GitHub');
     expect(docsIndex).toContain('## Builder Lane Is Real, But Secondary');
-    expect(docsIndex).toContain('Release Artifact Review Runbook');
+    expect(docsIndex).toContain('Release Review Shelf Boundary');
     expect(docsIndex).toContain('Open an issue');
     expect(docsIndex).toContain('Contributing on GitHub');
     expect(docsIndex).toContain(
@@ -170,7 +170,7 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('Builder Start Here');
     expect(docsIndex).toContain('Builder Start Here');
-    expect(docsIndex).toContain('Release review runbook');
+    expect(docsIndex).toContain('Release review boundary');
     expect(mcpQuickstart).toContain('read-only stdio MCP');
     expect(mcpQuickstart).toContain('get_integration_surface');
     expect(mcpQuickstart).toContain('get_runtime_seam');
@@ -187,18 +187,18 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsReadme, 'Builder Start Here');
     expectPagesSafeFirstHop(docsReadme, 'Public repo README');
     expectPagesSafeFirstHop(docsReadme, 'Distribution truth on GitHub');
-    expectPagesSafeFirstHop(docsReadme, 'Release review runbook');
+    expectPagesSafeFirstHop(docsReadme, 'Release review boundary');
 
     expectPagesSafeFirstHop(docsIndex, 'See the product boundary');
     expectPagesSafeFirstHop(docsIndex, 'See the verification boundary');
     expectPagesSafeFirstHop(docsIndex, 'Open the latest review shelf');
     expectPagesSafeFirstHop(docsIndex, 'Get help');
     expectPagesSafeFirstHop(docsIndex, 'Builder Start Here');
-    expectPagesSafeFirstHop(docsIndex, 'Release review runbook');
+    expectPagesSafeFirstHop(docsIndex, 'Release review boundary');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
-    expectPagesSafeFirstHop(docsIndex, 'Release Artifact Review Runbook');
-    expectPagesSafeFirstHop(docsIndex, 'Live Receipt Capture Runbook');
+    expectPagesSafeFirstHop(docsIndex, 'Release Review Shelf Boundary');
+    expectPagesSafeFirstHop(docsIndex, 'Live Receipt Evidence Boundary');
     expectPagesSafeFirstHop(docsIndex, 'Docs atlas on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Open an issue');
     expectPagesSafeFirstHop(docsIndex, 'Contributing on GitHub');
