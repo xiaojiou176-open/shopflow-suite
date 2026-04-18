@@ -53,8 +53,9 @@ describe('builder discoverability docs coherence', () => {
     expect(docsReadme).toContain('## Start Here First');
     expect(docsReadme).toContain('## First Product Path');
     expect(docsReadme).toContain('## What You Can Inspect Today');
-    expect(docsReadme).toContain('## Verification Layers');
     expect(docsReadme).toContain('## Secondary Builder / Maintainer Shelves');
+    expect(docsReadme).toContain('## Verification Layers');
+    expect(docsReadme).toContain('## Truth Layers');
     expect(docsReadme).toContain(
       'https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html'
     );
@@ -90,6 +91,11 @@ describe('builder discoverability docs coherence', () => {
     );
     expect(docsReadme).not.toContain(
       './ecosystem/evidence-submission-current-scope-readiness.md'
+    );
+    expectInOrder(
+      docsReadme,
+      '## Secondary Builder / Maintainer Shelves',
+      '## Verification Layers'
     );
   });
 
@@ -189,10 +195,19 @@ describe('builder discoverability docs coherence', () => {
   it('keeps the live-budget blocker route explicit in the front door docs', () => {
     const rootReadme = readRepoFile('README.md');
     const docsReadme = readRepoFile('docs/README.md');
+    const rootReadmeFrontDoorSlice =
+      rootReadme.split('## Builder Side Door')[0] ?? rootReadme;
 
-    expect(rootReadme).toContain('browser main-process PID');
-    expect(rootReadme).toContain('requested Shopflow user-data-dir');
-    expect(rootReadme).toContain('requested debugging port');
+    expect(rootReadme).toContain('## Verification Boundary');
+    expect(rootReadme).toContain('repo-owned verification');
+    expect(rootReadme).toContain('reviewed live evidence');
+    expect(rootReadmeFrontDoorSlice).not.toContain('browser main-process PID');
+    expect(rootReadmeFrontDoorSlice).not.toContain(
+      'requested Shopflow user-data-dir'
+    );
+    expect(rootReadmeFrontDoorSlice).not.toContain(
+      'requested debugging port'
+    );
 
     expect(docsReadme).toContain('## Maintainer Boundary');
     expect(docsReadme).toContain(

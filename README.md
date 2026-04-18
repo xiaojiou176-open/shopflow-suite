@@ -25,8 +25,8 @@ In plain language:
 - **What this is:** one shopping-only extension family with `8` storefront
   apps, `1` Suite shell, and one shared engineering kitchen.
 - **Why it is worth opening now:** the repo already ships a product front door,
-  a reviewer-facing release shelf, and a read-only stdio MCP without splitting
-  truth across `9` separate codebases.
+  a reviewer-facing release shelf, and one canonical public repo without
+  splitting truth across `9` separate codebases.
 - **First honest route:** read the product boundary, then the verification bar,
   then the latest review shelf.
 - **Where to get help:** use the Pages front door for the public first touch,
@@ -67,7 +67,6 @@ If you want the shortest truthful product-first read, take this route:
 | public repo          | the canonical product and docs front door       | a packet-only side shelf                       |
 | Pages front door     | the current public product story                | Chrome Web Store readiness                     |
 | latest release shelf | reviewer-facing bundles and readiness materials | a signed store-ready release shelf             |
-| read-only stdio MCP  | repo-truth access for AI tools                  | a public HTTP MCP or official registry listing |
 
 ## Builder Side Door
 

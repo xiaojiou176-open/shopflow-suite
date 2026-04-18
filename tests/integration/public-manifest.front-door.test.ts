@@ -120,7 +120,6 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('## First Product Path');
     expect(docsReadme).toContain('## Need Help or the Deeper Atlas?');
     expect(docsReadme).toContain('## What You Can Inspect Today');
-    expect(docsReadme).toContain('## Verification Layers');
     expect(docsReadme).toContain('## Secondary Builder / Maintainer Shelves');
     expect(docsReadme).toContain('Distribution truth on GitHub');
     expect(docsReadme).toContain('Builder Start Here');
@@ -129,6 +128,11 @@ describe('public manifest and front door', () => {
       docsReadme,
       '## First Product Path',
       '## Secondary Builder / Maintainer Shelves'
+    );
+    expectHeadingOrder(
+      docsReadme,
+      '## Truth Layers',
+      '## Verification Layers'
     );
     expect(docsIndex).toContain('./assets/shopflow-front-door.svg');
     expect(docsIndex).toContain(
@@ -170,7 +174,7 @@ describe('public manifest and front door', () => {
     expect(docsReadme).toContain('pnpm mcp:stdio');
     expect(docsReadme).toContain('Builder Start Here');
     expect(docsIndex).toContain('Builder Start Here');
-    expect(docsIndex).toContain('Release review boundary');
+    expect(docsIndex).toContain('Release Review Shelf Boundary');
     expect(mcpQuickstart).toContain('read-only stdio MCP');
     expect(mcpQuickstart).toContain('get_integration_surface');
     expect(mcpQuickstart).toContain('get_runtime_seam');
@@ -194,9 +198,7 @@ describe('public manifest and front door', () => {
     expectPagesSafeFirstHop(docsIndex, 'Open the latest review shelf');
     expectPagesSafeFirstHop(docsIndex, 'Get help');
     expectPagesSafeFirstHop(docsIndex, 'Builder Start Here');
-    expectPagesSafeFirstHop(docsIndex, 'Release review boundary');
     expectPagesSafeFirstHop(docsIndex, 'Distribution truth on GitHub');
-    expectPagesSafeFirstHop(docsIndex, 'Canonical README on GitHub');
     expectPagesSafeFirstHop(docsIndex, 'Release Review Shelf Boundary');
     expectPagesSafeFirstHop(docsIndex, 'Live Receipt Evidence Boundary');
     expectPagesSafeFirstHop(docsIndex, 'Docs atlas on GitHub');
