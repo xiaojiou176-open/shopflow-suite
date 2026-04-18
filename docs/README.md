@@ -9,7 +9,7 @@
 [Verification bar](https://xiaojiou176-open.github.io/shopflow-suite/contracts/testing-and-verification-bar.html) ·
 [Latest review shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) ·
 [Public repo README](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
-[Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+[Release review boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
 
 This page is the GitHub-local docs atlas and service desk.
 If you want the public first-touch lobby, start with the Pages front door above.
@@ -68,8 +68,8 @@ Important boundary:
 ## Need Help or the Deeper Atlas?
 
 - [Public Pages front door](https://xiaojiou176-open.github.io/shopflow-suite/)
-- [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
-- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+- [Release Review Shelf Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+- [Live Receipt Evidence Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
 - [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)

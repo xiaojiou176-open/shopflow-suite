@@ -176,7 +176,7 @@ three questions before you read any ecosystem packet pages:
    - [Testing and Verification Bar](./docs/contracts/testing-and-verification-bar.md)
 3. What should reviewers and operators treat as real vs still claim-gated?
    - [Docs Front Door](./docs/README.md)
-   - [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
+   - [Release Review Shelf Boundary](./docs/runbooks/release-artifact-review.md)
 
 In plain language:
 
@@ -296,238 +296,33 @@ Current repo-owned adapter truth now covers each app's current MVP focus under
 contract, contract-test, and browser-level verification. That is stronger than
 "shells only," but it is still not public-claim-ready proof.
 
-Reviewable CI artifacts now exist for every app shell, but they are still not the same thing as a public release package.
-
-The repo can now also write live browser preflight/diagnose/probe artifacts
-under `.runtime-cache/live-browser/`, but those artifacts are still not the
-reviewed live evidence bundle itself.
-
-The repo can also turn explicit reviewer decisions into schema-valid
-`reviewed` / `rejected` records, but that helper still requires an explicit
-review input file and does not auto-upgrade action-heavy captures without
-action counts.
-
-The repo can also prebuild that review-input file as a safe pending template,
-so the remaining human step is closer to “fill in the checklist” than “invent
-the JSON from scratch.”
-
-The shortest live-review helper commands are now:
-
-- `pnpm operator-capture-packet:live`
-- `pnpm review-candidate-records:live`
-- `pnpm review-input-template:live`
-- `pnpm reviewed-records:live -- --review-input <path>`
+Reviewable CI artifacts now exist for every app shell, but they are still not
+the same thing as a public release package.
 
 If you are new to Shopflow and need the shortest accurate builder entrypoint, start with [docs/README.md](./docs/README.md).
 
-If you need one strongest repo-owned answer for release readiness, run the lane
-serially:
+## Verification Boundary
 
-```bash
-pnpm verify:release-readiness
-```
+Shopflow keeps three truth layers separate:
 
-Why this matters:
-
-- both `pnpm test` and `pnpm package:artifacts` rewrite per-app `.output/`
-  directories
-- parallel runs can create false-red `ENOENT` noise while one process rebuilds
-  files another process is trying to inspect
-- the serial lane is the honest repo-owned verification path
-
-## Repo Hygiene Gates
-
-Shopflow now uses a **five-layer verification contract** so local authoring,
-hosted CI, external/public-surface drift checks, and manual live proof do not
-all pile into the same gate.
-
-| Layer        | Primary lane                                               | What it is for                                                                                                               | What it must not pretend to prove                                                         |
-| :----------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
-| `pre-commit` | `pnpm verify:local-hygiene`                                | fast local hygiene: lint, typecheck, catalog parity, sensitive worktree scan                                                 | full history safety, browser realism, release packaging, or public-surface drift          |
-| `pre-push`   | `pnpm verify:pre-push`                                     | stronger local gate: pre-commit checks plus coverage, sensitive history, and repo-local unit/contract/integration confidence | E2E/browser realism, release packaging, or external/public-surface drift                  |
-| `hosted`     | `shopflow-ci` -> `pnpm verify:release-readiness`           | strongest repo-owned serial lane: hygiene, history, unit/contract/integration/E2E, and review-bundle packaging               | reviewed live evidence, signing, store submission, or GitHub platform capability presence |
-| `nightly`    | `external-governance` -> `pnpm verify:external-governance` | GitHub-hosted public-surface drift and platform-security capability checks                                                   | local authoring correctness or claim-ready support proof                                  |
-| `manual`     | live/browser/signing/submission commands                   | real browser/session review, explicit review input, signing, and store-console work                                          | deterministic CI or repo-only automation                                                  |
-
-Shopflow now wires these local mechanical gates at the repo root:
-
-- `pre-commit`
-  - runs `pnpm verify:local-hygiene`
-  - blocks obvious local hygiene drift before a commit lands
-- `pre-push`
-  - runs `pnpm hooks:pre-push`
-  - now points at `pnpm verify:pre-push`, so push-time verification stays meaningful without forcing E2E + packaging on every local push
-- `commitlint`
-  - enforces `feat / fix / refactor / docs / test / chore`
-- `verify:sensitive-surfaces`
-  - scans tracked plus non-ignored worktree files for sensitive residue such as keys, user-specific absolute paths, personal emails, and blocked artifact paths
-- `verify:sensitive-history`
-  - scans reachable Git history for the same sensitive classes before the serial release-readiness lane can pass
-- `verify:sensitive-public-surface`
-  - scans the GitHub-hosted public fallback repos plus their issue / PR / release text surfaces for the same sensitive residue
-- `verify:github-platform-security`
-  - checks whether GitHub-native security surfaces such as code scanning, secret scanning, Dependabot alerts, and vulnerability alerts are enabled
-  - if a feature is enabled, open alerts must be zero
-  - if a feature is disabled, the result is recorded as a platform capability gap instead of being mislabeled as a code failure
-- `verify:coverage`
-  - blocks coverage regressions below the current repo baseline while the team works toward a higher global bar
-- `verify:release-readiness`
-  - runs the strongest repo-owned serial lane: pre-push checks, E2E, and review-bundle packaging
-  - use this when you need one honest answer for `can this repo currently verify and package cleanly?`
-- `verify:external-governance`
-  - runs `verify:sensitive-public-surface` plus `verify:github-platform-security`
-  - use this on GitHub-hosted schedule/manual lanes to watch public-surface drift and platform capability gaps without blocking every local push
-
-Additional GitHub workflows now cover:
-
-- `actionlint`
-- `zizmor`
-- `gitleaks`
-- `trufflehog`
-- `trivy`
-- `dependency-review`
-- `codeql`
-
-Current GitHub workflow split:
-
-- `shopflow-ci`
-  - push / PR hosted serial verification and review-bundle packaging
-- `external-governance`
-  - scheduled + manual GitHub-hosted checks for public-surface drift and platform security capability status
-- auxiliary scanner workflows
-  - `actionlint`, `zizmor`, `gitleaks`, `trufflehog`, `trivy`, `dependency-review`, `codeql`
-
-Important boundary:
-
-> repo-owned scanners should fail on real repo findings.
-> GitHub-native security features should only fail when they are enabled and actually report open alerts.
-> A disabled platform feature is a platform gap, not proof that the code failed.
-
-If a leak has already escaped to a public surface that cannot be cleaned with a
-simple tip-only edit, treat it as a blocker-grade incident and follow the
-repo-owned security response process before continuing any public distribution
-work.
-
-## Cache, Profile, and Disk Governance
-
-Shopflow now keeps its cache story in **two owned zones**, not one blurry pile.
+- `repo-owned verification`
+  - the strongest serial repo lane plus the review shelf
+- `reviewed live evidence`
+  - the external proof layer that still gates broader public claims
+- `signing / store submission`
+  - the platform layer that sits beyond repo packaging
 
 In plain language:
 
-> repo-local residue lives under `.runtime-cache/**`, and repo-external but
-> still Shopflow-owned cache lives under `~/.cache/shopflow/**`.
-> Shared machine storage is a different room and is not ours to auto-clean.
+> this repo can already prove a lot.
+> it still does not get to collapse repo verification, live proof, and signed
+> submission into one sentence.
 
-### Repo-local cache family
-
-These are the only repo-internal cache roots:
-
-- `.runtime-cache/builder/`
-- `.runtime-cache/cli/`
-- `.runtime-cache/coverage/`
-- `.runtime-cache/live-browser/`
-- `.runtime-cache/temp/`
-- `.runtime-cache/e2e-browser/`
-- `.runtime-cache/release-artifacts/`
-
-Related disposable build/test outputs still stay repo-local:
-
-- `apps/*/.output/`
-- `apps/*/.wxt/`
-- `coverage/`
-- `test-results/`
-- `playwright-report/`
-
-### Shopflow-owned external cache family
-
-These are the only canonical repo-external cache roots:
-
-- `~/.cache/shopflow/pnpm-store`
-- `~/.cache/shopflow/ms-playwright`
-- `~/.cache/shopflow/webkit-playwright`
-- `~/.cache/shopflow/tmp`
-
-Default policy:
-
-- `SHOPFLOW_CACHE_DIR=~/.cache/shopflow`
-- `SHOPFLOW_CACHE_TTL_DAYS=3`
-- `SHOPFLOW_CACHE_MAX_BYTES=2147483648`
-
-Shopflow now auto-prunes its own external cache before cache-producing local
-commands:
-
-1. delete stale Shopflow cache entries older than `3` days
-2. then trim the remaining Shopflow cache entries by LRU until the total stays
-   under `2 GB`
-
-That policy applies only to the **disposable** cache lanes under
-`~/.cache/shopflow/{pnpm-store,ms-playwright,webkit-playwright,tmp}`.
-It does **not** auto-prune the dedicated browser root under
-`~/.cache/shopflow/browser/chrome-user-data/`.
-
-### Canonical live Chrome root
-
-Local live/dev/browser work now defaults to a **dedicated Shopflow Chrome root**
-instead of borrowing the default Chrome root:
-
-- user data dir: `~/.cache/shopflow/browser/chrome-user-data`
-- profile directory: `Profile 1`
-- profile name: `shopflow`
-
-This is still environment-configured through:
-
-- `SHOPFLOW_LIVE_USER_DATA_DIR`
-- `SHOPFLOW_LIVE_PROFILE_DIRECTORY`
-- `SHOPFLOW_LIVE_PROFILE_NAME`
-- `SHOPFLOW_LIVE_CHROME_EXECUTABLE`
-
-Important boundary:
-
-- first-time setup now starts with `pnpm browser:seed-profile`
-- live/dev/browser lanes use the dedicated Shopflow Chrome root
-- that dedicated browser root is persistent state, not disposable cache
-- smoke/E2E/CI stay on isolated browsers and repo-local temp profiles
-
-### Operator commands
-
-```bash
-pnpm browser:seed-profile
-pnpm close:live-browser
-pnpm audit:disk-footprint
-pnpm audit:disk-footprint --json
-pnpm cleanup:runtime-cache
-pnpm cleanup:runtime-cache --apply
-pnpm cleanup:build-output
-pnpm cleanup:build-output --apply
-pnpm cleanup:release-artifacts
-pnpm cleanup:release-artifacts --apply
-pnpm cleanup:external-cache
-pnpm cleanup:external-cache --apply
-pnpm cleanup:docker
-pnpm cleanup:docker --apply
-```
-
-### Shared and machine-wide boundaries
-
-Shopflow does **not** auto-clean:
-
-- the dedicated browser root at `~/.cache/shopflow/browser/chrome-user-data/**`
-- the backup root at `~/.cache/shopflow/browser/backups/**`
-- the default Chrome root at `~/Library/Application Support/Google/Chrome/**`
-- `~/Library/Containers/com.docker.docker/**`
-- non-Shopflow `~/.cache/**`
-- repo-local MCP/tool state such as `.serena/**`
-- shared tool caches owned by other repos
-- Docker resources without the Shopflow label
-
-`pnpm store path` is now expected to resolve to
-`~/.cache/shopflow/pnpm-store`, while `node_modules/` remains the repo-local
-dependency truth for this workspace.
-
-CI stays GitHub Hosted Runner only:
-
-- standard CI lane: `ubuntu-latest`
-- not allowed as repo standard CI: local `self-hosted` runner drift
+Detailed maintainer verification choreography, browser/profile handling, cache
+governance, and cleanup procedures are intentionally kept off the public front
+door. Public readers should use the product boundary, verification bar, review
+shelf, and docs atlas; maintainers can follow the deeper local guidance from
+those shelves.
 
 So if you are reading this now, treat Shopflow as:
 
@@ -685,8 +480,8 @@ Start with the docs front door if you want the shortest guided map:
 
 ### Runbook
 
-- [Live Receipt Capture Runbook](./docs/runbooks/live-receipt-capture.md)
-- [Release Artifact Review Runbook](./docs/runbooks/release-artifact-review.md)
+- [Live Receipt Evidence Boundary](./docs/runbooks/live-receipt-capture.md)
+- [Release Review Shelf Boundary](./docs/runbooks/release-artifact-review.md)
 
 ### Branding
 

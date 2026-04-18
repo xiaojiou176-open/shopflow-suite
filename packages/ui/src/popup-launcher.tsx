@@ -178,7 +178,7 @@ export function PopupLauncher({
                 {copy.popup.quickRouter}
               </p>
               <p
-                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
+                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
               >
                 {summary}
               </p>
@@ -187,7 +187,7 @@ export function PopupLauncher({
                   claimBoundaryNote
                     ? 'text-[color:var(--shopflow-gold)]'
                     : 'text-[color:var(--shopflow-muted)]'
-                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
+                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden`}
               >
                 {headerNote}
               </p>

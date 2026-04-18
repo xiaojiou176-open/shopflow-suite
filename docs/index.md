@@ -18,7 +18,7 @@ If you are already browsing inside the repo on GitHub, use the docs atlas there 
 
 Secondary doors:
 [Builder Start Here](https://xiaojiou176-open.github.io/shopflow-suite/ecosystem/builder-start-here.html) ·
-[Release review runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) ·
+[Release review boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html) ·
 [Distribution truth on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/DISTRIBUTION.md) ·
 [Canonical README on GitHub](https://github.com/xiaojiou176-open/shopflow-suite#readme) ·
 [Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
@@ -58,8 +58,8 @@ In plain language:
 
 ## Need Help or the Deeper Atlas?
 
-- [Release Artifact Review Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
-- [Live Receipt Capture Runbook](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
+- [Release Review Shelf Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/release-artifact-review.html)
+- [Live Receipt Evidence Boundary](https://xiaojiou176-open.github.io/shopflow-suite/runbooks/live-receipt-capture.html)
 - [Docs atlas on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/docs/README.md)
 - [Open an issue](https://github.com/xiaojiou176-open/shopflow-suite/issues/new/choose)
 - [Contributing on GitHub](https://github.com/xiaojiou176-open/shopflow-suite/blob/main/CONTRIBUTING.md)

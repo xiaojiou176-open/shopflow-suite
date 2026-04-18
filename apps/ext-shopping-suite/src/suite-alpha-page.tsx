@@ -169,12 +169,6 @@ export function SuiteAlphaPage({
                       {localizedAppDefinition.startHere[0]?.ctaLabel}
                     </a>
                   )}
-                  <a
-                    className="inline-flex rounded-xl border border-stone-200 px-3 py-2 text-xs font-medium text-white"
-                    href="#verified-scope-navigator"
-                  >
-                    {copy.verifiedScopeHeading}
-                  </a>
                 </div>
                 {secondaryRoutes.length > 0 ? (
                   <div className="mt-4 space-y-2 rounded-[1.35rem] border border-white/15 bg-white/8 px-3 py-3 backdrop-blur-[10px]">

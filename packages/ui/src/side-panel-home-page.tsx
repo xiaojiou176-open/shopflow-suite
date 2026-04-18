@@ -240,7 +240,7 @@ export function SidePanelHomePage({
                       </p>
                       {operatorRoute ? (
                         <a
-                          className="mt-3 inline-flex rounded-[1.05rem] bg-[var(--shopflow-accent)] px-3 py-2 text-sm font-medium text-white shadow-[0_12px_26px_rgba(24,92,84,0.22)]"
+                          className="mt-3 inline-flex rounded-[1.05rem] border border-[rgba(31,107,87,0.16)] bg-white px-3 py-2 text-sm font-medium text-[var(--shopflow-accent)] shadow-[0_8px_18px_rgba(24,92,84,0.08)]"
                           href={operatorRoute.href}
                           target={operatorRoute.external ? '_blank' : undefined}
                           rel={
