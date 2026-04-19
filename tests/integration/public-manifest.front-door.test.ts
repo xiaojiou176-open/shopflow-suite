@@ -77,7 +77,7 @@ describe('public manifest and front door', () => {
       auth: 'none',
       package: {
         name: '@shopflow/mcp-server',
-        version: '0.1.0',
+        version: '0.1.1',
         bin: 'shopflow-mcp',
       },
       quickstart: 'docs/ecosystem/mcp-quickstart.md',

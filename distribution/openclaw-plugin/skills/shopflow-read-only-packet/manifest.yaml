@@ -4,7 +4,7 @@ artifact: public-skill-listing-manifest
 skill:
   name: shopflow-read-only-packet
   display_name: Shopflow Read-only Packet
-  version: 1.0.0
+  version: 1.0.1
   entrypoint: SKILL.md
   package_shape: skill-folder
 
@@ -13,7 +13,7 @@ registry_targets:
     status: listed-live
     package_shape: skill-folder
     listing_url: https://www.clawhub.ai/skills/shopflow-read-only-packet
-    submit_via: clawhub publish . --slug shopflow-read-only-packet --name "Shopflow Read-only Packet" --version 1.0.0 --tags shopflow,mcp,read-only,distribution,packet
+    submit_via: clawhub publish . --slug shopflow-read-only-packet --name "Shopflow Read-only Packet" --version 1.0.1 --tags shopflow,mcp,read-only,distribution,packet
   openhands-extensions:
     status: review-pending
     package_shape: skill-folder
@@ -24,7 +24,7 @@ boundaries:
   product_identity: Read-only Shopflow packet surface for integration, runtime seam, submission readiness, and public distribution bundle truth.
   packet_role: companion-skill-packet
   primary_product_lane: browser-first extension family under apps/ext-* and apps/ext-shopping-suite
-  canonical_repo_version: 0.1.0
+  canonical_repo_version: 0.1.1
   official_listing_state: clawhub-packet-live-openhands-review-pending
   listing_scope_note: Host-side packet state applies to this skill folder only and does not prove Chrome Web Store listing or broader Shopflow browser/store publication.
   not_claimed:

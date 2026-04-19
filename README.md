@@ -109,8 +109,8 @@ desks:
   `https://xiaojiou176-open.github.io/shopflow-suite/`
 - read-only stdio MCP:
   `pnpm mcp:stdio`
-- latest release tag:
-  [`v0.1.0`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+- latest release:
+  [latest release shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 - current review shelf already includes:
   - `8` store review bundles
   - `1` Suite internal-alpha review bundle

@@ -97,8 +97,8 @@ It is not:
   `https://github.com/xiaojiou176-open/shopflow-suite`
 - public Pages entry:
   `https://xiaojiou176-open.github.io/shopflow-suite/`
-- current release tag:
-  [`v0.1.0`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
+- current release:
+  [latest release shelf](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest)
 - attached release shelf now works as a public review shelf and includes:
   - review bundles for the `8` store apps
   - the `Shopflow Suite` internal-alpha review bundle
