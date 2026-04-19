@@ -495,7 +495,7 @@ const en: LocaleCatalog = {
     openSecondaryRouteSummary:
       'Jump to the next support or claim view without turning the popup into a second console.',
     latestSourceLabel: 'Jump to latest source page',
-    claimBoundaryPrefix: 'Before public claims:',
+    claimBoundaryPrefix: 'Claim limit:',
     evidenceQueuePrefix: 'Evidence queue:',
     evidenceNextStepPrefix: 'Evidence next step:',
     ledgerNote:
@@ -523,7 +523,7 @@ const en: LocaleCatalog = {
     bestRouteHeading: 'Best route right now',
     runnableNowHeading: 'Runnable now',
     needsAttentionHeading: 'Needs attention',
-    claimBoundaryHeading: 'Before public claims',
+    claimBoundaryHeading: 'Claim limit',
     operatorNextStepHeading: 'Do this next',
     currentSiteHeading: 'This page',
     availableOnThisPageHeading: 'What else works here',

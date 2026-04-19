@@ -104,10 +104,9 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('href="sidepanel.html"');
     expect(html).toContain('href="sidepanel.html?locale=zh-CN"');
     expect(html).toContain('aria-current="page"');
-    expect(html).toContain('Use Suite as a lobby');
+    expect(html).toContain('Open store map');
     expect(html).toContain('href="#claim-readiness-board"');
     expect(html).toContain('href="#support-desks"');
-    expect(html).toContain('href="#alpha-guardrails"');
     expect(html).toContain('id="priority-routes"');
     expect(html).toContain('id="claim-readiness-board"');
     expect(html).toContain('id="current-rollout-map"');
@@ -119,17 +118,17 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('id="evidence-gates"');
     expect(html).toContain('id="verified-scope-navigator"');
     expect(html).toContain('id="alpha-guardrails"');
-    expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
-      html.indexOf('id="current-rollout-map"')
-    );
     expect(html.indexOf('id="current-rollout-map"')).toBeLessThan(
+      html.indexOf('id="claim-readiness-board"')
+    );
+    expect(html.indexOf('id="claim-readiness-board"')).toBeLessThan(
       html.indexOf('id="priority-routes"')
     );
     expect(html.indexOf('id="priority-routes"')).toBeLessThan(
       html.indexOf('id="support-desks"')
     );
-    expect(html.indexOf('Check proof before public claims')).toBeLessThan(
-      html.indexOf('Use Suite as a lobby')
+    expect(html.indexOf('Pick the right store first')).toBeLessThan(
+      html.indexOf('Check proof before public claims')
     );
   });
 
@@ -166,7 +165,6 @@ describe('SuiteAlphaPage', () => {
     expect(html).toContain('Alpha 护栏');
     expect(html).toContain('Shopflow for Albertsons Family 的优先路线');
     expect(html).toContain('打开证据门');
-    expect(html).toContain('把 Suite 当作大厅，不是工作流引擎');
     expect(html).toContain('打开辅助服务台');
   });
 

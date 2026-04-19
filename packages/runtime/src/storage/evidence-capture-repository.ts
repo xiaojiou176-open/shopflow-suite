@@ -280,10 +280,10 @@ function createBlockerSummary(
 
   const nextPathSummary =
     next?.operatorPath && next.requirement?.title
-      ? ` Next operator path: ${formatLiveReceiptOperatorPathLabel(next.operatorPath)} for ${next.requirement.title}.`
+      ? ` Next path: ${formatLiveReceiptOperatorPathLabel(next.operatorPath)} for ${next.requirement.title}.`
       : '';
 
-  return `App-level live receipt blocker remains because ${joinParts(parts)}.${nextPathSummary}`;
+  return `Proof still blocked: ${joinParts(parts)}.${nextPathSummary}`;
 }
 
 function createNextSourceRoute(next?: NormalizedEvidenceCaptureItem) {

@@ -4,8 +4,8 @@ This folder is the Codex-facing public fallback packet.
 
 In plain language:
 
-> this is the Codex box on the shelf when no confirmed official Codex shelf has
-> been found.
+> this is the Codex box on the shelf while the official Codex shelf exists but
+> Shopflow is still not listed there.
 
 The canonical Shopflow repo remains:
 
@@ -13,9 +13,8 @@ The canonical Shopflow repo remains:
 
 ## Truthful Position
 
-- Codex does not currently have a confirmed separate official listing surface
-  in this task context.
-- This folder is therefore meant for a public fallback repo, not an official
+- An official Codex surface now exists, but Shopflow is not listed or published there yet.
+- This folder is therefore meant for a public fallback packet, not an official
   marketplace claim.
 - The packet is still useful as a smaller mirror, but it is not the main
   product front door and it is a deprecated-candidate surface if the canonical

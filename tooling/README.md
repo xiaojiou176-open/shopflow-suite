@@ -79,6 +79,23 @@ Current verification helper:
   - writes timestamped screenshots under `.runtime-cache/ui-surface-captures/<run-id>/`
   - refreshes `*.latest.png` aliases and `ui-surface-capture-manifest-latest.json`
   - stays in repo-verification territory by using routed fixtures for store surfaces and seeded shared storage for the Suite surface
+- `tooling/verification/open-native-extension-review.ts`
+  - powers `pnpm review:native-ui`
+  - launches a temporary native Google Chrome profile under `.runtime-cache/native-extension-review/`
+  - loads the requested built extension bundle in real Chrome instead of headless Chromium
+  - opens popup + sidepanel review pages from the installed extension
+  - for store apps, also opens the routed merchant fixture so content-script state is present during manual review
+  - for the Suite app, seeds the shared runtime review state before opening the Suite surface
+  - prints the extension id, debug port, user-data-dir, and opened review URLs so human auditors can continue the session by eye
+  - currently behaves as an honest best-effort helper: if native Chrome does not fully register the unpacked extension in the launched review profile, it still returns a warning packet instead of fake-green success
+- `tooling/verification/write-uiux-review-matrix.ts`
+  - powers `pnpm review:matrix`
+  - writes `.runtime-cache/uiux-review-matrix-latest.json`
+  - enumerates the current deep-review checklist for:
+    - `8+1` extension popup/sidepanel surfaces
+    - public first-touch surfaces such as README, docs atlas, Pages front door, and review shelf
+    - external review lanes such as Designer, Reviewer, Gemini, and Stitch
+  - keeps the “what still must be manually judged” inventory explicit instead of leaving it as chat-only intent
 - `tooling/verification/capture-ui-surface-matrix.ts`
   - powers `pnpm capture:ui-matrix`
   - runs a fixed R3 matrix across multiple apps/locales:

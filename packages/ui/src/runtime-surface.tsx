@@ -154,10 +154,7 @@ function localizeShellSourceText(
       'Keep wording claim-gated. Reviewed live evidence already includes rejected captures for safeway-cancel-live-receipt, and external capture/review is still required for safeway-subscribe-live-receipt.',
       '继续保持 claim-gated。已审核的 live evidence 已包含 safeway-cancel-live-receipt 的 rejected captures，safeway-subscribe-live-receipt 仍需外部采集/审核。'
     )
-    .replace(
-      'App-level live receipt blocker remains because ',
-      '应用级 live receipt 门禁仍然存在，原因是'
-    )
+    .replace('Proof still blocked: ', '当前证据仍被挡住，原因是')
     .replace(
       /(\d+) packets? still need a first capture/g,
       '$1 个证据包仍需首次采集'
@@ -182,7 +179,7 @@ function localizeShellSourceText(
       'Start first capture for Safeway subscribe live receipt.',
       '为 Safeway subscribe live receipt 开始首次采集。'
     )
-    .replace(/Next operator path:/g, '下一步操作路径：')
+    .replace(/Next path:/g, '下一步路径：')
     .replace(/packets still need/g, '个证据包仍需')
     .replace(/subscribe/g, '订阅')
     .replace(/\brepo verification\b/g, 'repo 验证')
@@ -386,6 +383,15 @@ function createPopupRouteModel(
   model: SidePanelHomeViewModel,
   locale: UiLocale = 'en'
 ) {
+  type PopupRouteOption = {
+    label: string;
+    summary: string;
+    href: string;
+    external?: boolean;
+    onClick?: () => void | Promise<void>;
+    originLabel?: string;
+  };
+
   const dynamicCopy = getDynamicCopy(locale);
   const uiCopy = getUiShellCopy(locale);
   const readyCount = model.quickActions.length;
@@ -394,16 +400,61 @@ function createPopupRouteModel(
   const blockerSummary = model.evidenceStatus?.blockerSummary;
   const evidenceSectionHref =
     model.evidenceStatus?.items[0]?.sectionHref ?? '#live-receipt-readiness';
-  const actionItems = model.quickActions.map((action) => ({
-    label: action.label,
-    summary: action.summary,
-    href: action.href,
-    external: action.external,
-  }));
-  const directSecondaryRoute = hasEvidenceQueue
+  const quickActionItems: PopupRouteOption[] = model.quickActions.map(
+    (action) => ({
+      label: action.label,
+      summary: action.summary,
+      href: action.href,
+      external: action.external,
+    })
+  );
+  const knownDirectHrefs = new Set(quickActionItems.map((item) => item.href));
+  const workspaceRoute: PopupRouteOption = {
+    label:
+      readyCount > 0
+        ? uiCopy.popup.openSidePanelQuickActions
+        : uiCopy.popup.openSidePanelReadinessSummary,
+    href: createLocalizedExtensionHref(
+      'sidepanel.html',
+      locale,
+      readyCount > 0 ? 'quick-actions' : 'readiness-summary'
+    ),
+    onClick: createOpenSidePanelRouteAction(
+      createLocalizedExtensionPath(
+        'sidepanel.html',
+        locale,
+        readyCount > 0 ? 'quick-actions' : 'readiness-summary'
+      )
+    ),
+    summary:
+      readyCount > 0
+        ? uiCopy.sidePanel.quickActionsIntro
+        : dynamicCopy.reviewReadinessSummarySummary,
+    originLabel: uiCopy.common.routeOriginLabels.sidePanelSection,
+  };
+  const evidenceQueueRoute: PopupRouteOption = {
+    label:
+      evidenceSectionHref === '#live-receipt-evidence'
+        ? uiCopy.popup.openSidePanelCaptureQueue
+        : uiCopy.popup.openSidePanelReviewLane,
+    href: createLocalizedExtensionHref(
+      'sidepanel.html',
+      locale,
+      evidenceSectionHref.replace(/^#/, '')
+    ),
+    onClick: createOpenSidePanelRouteAction(
+      createLocalizedExtensionPath(
+        'sidepanel.html',
+        locale,
+        evidenceSectionHref.replace(/^#/, '')
+      )
+    ),
+    summary: blockerSummary?.summary ?? dynamicCopy.reviewClaimGateSummary,
+    originLabel: uiCopy.common.routeOriginLabels.evidenceGate,
+  };
+  const directSecondaryRoute: PopupRouteOption | undefined = hasEvidenceQueue
     ? undefined
-    : latestActivity?.href &&
-        !actionItems.some((item) => item.href === latestActivity.href)
+    : latestActivity?.href && !knownDirectHrefs.has(latestActivity.href)
       ? {
           label: uiCopy.popup.openLatestSourcePage,
           href: latestActivity.href,
@@ -411,9 +462,7 @@ function createPopupRouteModel(
             latestActivity.summary ?? dynamicCopy.routeBackToMerchantSummary,
         }
       : model.latestOutputPreview?.href &&
-          !actionItems.some(
-            (item) => item.href === model.latestOutputPreview?.href
-          )
+          !knownDirectHrefs.has(model.latestOutputPreview.href)
         ? {
             label: uiCopy.popup.resumeLatestCapturedPage,
             href: model.latestOutputPreview.href,
@@ -425,18 +474,34 @@ function createPopupRouteModel(
       ? uiCopy.common.routeOriginLabels.merchantSource
       : uiCopy.common.routeOriginLabels.capturedPage
     : undefined;
+  const blockerSourceAction: PopupRouteOption | undefined = blockerSummary?.sourceHref
+    ? {
+        label:
+          blockerSummary.sourceLabel ?? uiCopy.common.openEvidenceSourcePage,
+        summary: blockerSummary.nextStep ?? blockerSummary.summary,
+        href: blockerSummary.sourceHref,
+        external: true,
+        originLabel: uiCopy.common.routeOriginLabels.evidenceSource,
+      }
+    : undefined;
+  const promotedPrimaryRoute: PopupRouteOption = workspaceRoute;
+  const actionItems: PopupRouteOption[] = quickActionItems.filter(
+    (item: PopupRouteOption) =>
+      item.href !== promotedPrimaryRoute?.href ||
+      item.label !== promotedPrimaryRoute?.label
+  );
 
-  if (blockerSummary?.sourceHref) {
-    actionItems.push({
-      label: blockerSummary.sourceLabel ?? uiCopy.common.openEvidenceSourcePage,
-      summary: blockerSummary.nextStep ?? blockerSummary.summary,
-      href: blockerSummary.sourceHref,
-      external: true,
-    });
-  } else if (
+  if (
+    blockerSourceAction &&
+    !actionItems.some((item: PopupRouteOption) => item.href === blockerSourceAction.href)
+  ) {
+    actionItems.unshift(blockerSourceAction);
+  }
+
+  if (
     !readyCount &&
     latestActivity?.href &&
-    !actionItems.some((item) => item.href === latestActivity.href) &&
+    !actionItems.some((item: PopupRouteOption) => item.href === latestActivity.href) &&
     !directSecondaryRoute
   ) {
     actionItems.push({
@@ -457,31 +522,13 @@ function createPopupRouteModel(
     actionItems,
     actionEmptySummary:
       model.readiness.operatorNextStep ?? model.readiness.summary,
-    primaryLabel:
-      readyCount > 0
-        ? uiCopy.popup.openSidePanelQuickActions
-        : uiCopy.popup.openSidePanelReadinessSummary,
-    primaryOriginLabel: uiCopy.common.routeOriginLabels.sidePanelSection,
-    primaryHref: createLocalizedExtensionHref(
-      'sidepanel.html',
-      locale,
-      readyCount > 0 ? 'quick-actions' : 'readiness-summary'
-    ),
-    primaryOnClick: createOpenSidePanelRouteAction(
-      createLocalizedExtensionPath(
-        'sidepanel.html',
-        locale,
-        readyCount > 0 ? 'quick-actions' : 'readiness-summary'
-      )
-    ),
-    primarySummary:
-      readyCount > 0
-        ? uiCopy.sidePanel.quickActionsIntro
-        : dynamicCopy.reviewReadinessSummarySummary,
+    primaryLabel: promotedPrimaryRoute.label,
+    primaryOriginLabel: promotedPrimaryRoute.originLabel,
+    primaryHref: promotedPrimaryRoute.href,
+    primaryOnClick: promotedPrimaryRoute.onClick,
+    primarySummary: promotedPrimaryRoute.summary,
     secondaryLabel: hasEvidenceQueue
-      ? evidenceSectionHref === '#live-receipt-evidence'
-        ? uiCopy.popup.openSidePanelCaptureQueue
-        : uiCopy.popup.openSidePanelReviewLane
+      ? evidenceQueueRoute.label
       : directSecondaryRoute
         ? directSecondaryRoute.label
         : latestActivity
@@ -489,38 +536,34 @@ function createPopupRouteModel(
           : uiCopy.popup.openSidePanelCurrentSiteSummary,
     secondaryHref: directSecondaryRoute
       ? directSecondaryRoute.href
-      : createLocalizedExtensionHref(
-          'sidepanel.html',
-          locale,
-          hasEvidenceQueue
-            ? evidenceSectionHref.replace(/^#/, '')
-            : latestActivity
-              ? 'recent-activity'
-              : 'current-site-summary'
-        ),
+      : hasEvidenceQueue
+        ? evidenceQueueRoute.href
+        : createLocalizedExtensionHref(
+            'sidepanel.html',
+            locale,
+            latestActivity ? 'recent-activity' : 'current-site-summary'
+          ),
     secondaryOnClick:
       directSecondaryRoute == null
-        ? createOpenSidePanelRouteAction(
-            createLocalizedExtensionPath(
-              'sidepanel.html',
-              locale,
-              hasEvidenceQueue
-                ? evidenceSectionHref.replace(/^#/, '')
-                : latestActivity
-                  ? 'recent-activity'
-                  : 'current-site-summary'
+        ? hasEvidenceQueue
+          ? evidenceQueueRoute.onClick
+          : createOpenSidePanelRouteAction(
+              createLocalizedExtensionPath(
+                'sidepanel.html',
+                locale,
+                latestActivity ? 'recent-activity' : 'current-site-summary'
+              )
             )
-          )
         : undefined,
     secondarySummary: hasEvidenceQueue
-      ? (blockerSummary?.summary ?? dynamicCopy.reviewClaimGateSummary)
+      ? evidenceQueueRoute.summary
       : directSecondaryRoute
         ? directSecondaryRoute.summary
         : latestActivity
           ? dynamicCopy.checkRecentActivitySummaryReady
           : dynamicCopy.currentSiteSummaryRoute,
     secondaryOriginLabel: hasEvidenceQueue
-      ? uiCopy.common.routeOriginLabels.evidenceGate
+      ? evidenceQueueRoute.originLabel
       : directSecondaryOriginLabel ??
         uiCopy.common.routeOriginLabels.sidePanelSection,
   };
@@ -1142,14 +1185,14 @@ export function RuntimePopupLauncher({ app }: { app: RuntimeAppDefinition }) {
             `${uiCopy.popup.nextStepPrefix} ${popupModel.readiness.operatorNextStep}`,
           ]
         : []),
-    popup.summary,
+    popupModel.readiness.summary,
   ];
 
   return (
     <PopupLauncher
       title={app.title}
       statusLabel={popupModel.readiness.label}
-      summary={popupModel.readiness.summary}
+      summary={popup.summary}
       claimBoundaryNote={
         popupModel.readiness.claimBoundary
           ? `${uiCopy.popup.claimBoundaryPrefix} ${popupModel.readiness.claimBoundary}`
