@@ -32,11 +32,13 @@ The canonical Shopflow repo remains:
 Main narrative source:
 
 - `docs/ecosystem/codex-quickstart.md`
+- `docs/ecosystem/public-distribution-bundle.md`
+- `README.md`
 
 Supporting copy source:
 
-- `docs/ecosystem/public-copy.ready.md`
-- `docs/ecosystem/repo-description.ready.md`
+- `docs/ecosystem/public-distribution-bundle.md`
+- `README.md`
 
 ## How To Use It
 

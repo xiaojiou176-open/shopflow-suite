@@ -9,7 +9,7 @@
   "screenshotSources": [
     "docs/ecosystem/openclaw-comparison.md",
     "docs/ecosystem/openclaw-public-ready-matrix.md",
-    "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+    "docs/ecosystem/agent-distribution-artifacts.md"
   ],
   "capabilityRefs": [
     "integration-surface",
@@ -33,7 +33,7 @@
     "installDocs": [
       "docs/ecosystem/openclaw-comparison.md",
       "docs/ecosystem/openclaw-public-ready-matrix.md",
-      "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+      "docs/ecosystem/agent-distribution-artifacts.md"
     ],
     "proofLoopCommands": [
       "pnpm cli:read-only -- agent-target-packet --target openclaw",

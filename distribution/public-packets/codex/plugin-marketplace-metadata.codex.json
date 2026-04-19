@@ -1,11 +1,11 @@
 {
   "target": "codex",
-  "placement": "ecosystem-secondary",
+  "placement": "front-door-primary",
   "packagingState": "plugin-level-public-distribution-bundle",
   "suggestedSlug": "shopflow-read-only-builder-packet",
   "title": "Shopflow Read-only Builder Packet",
   "summary": "Plugin-level public distribution bundle for Codex with starter bundle, sample config, install docs, proof loop, and listing payload.",
-  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Do not claim an official Codex plugin, official listing, or marketplace package until the real official surface and auth path are confirmed.",
+  "boundaryNote": "Starter bundle and listing payload are repo-owned today. Official Codex docs and product surfaces exist, but this repo does not prove any Codex-owned listing surface or Shopflow publication there. Do not claim an official Codex plugin, official listing, or marketplace package until a real publication path is confirmed and used.",
   "screenshotSources": [
     "README.md",
     "docs/ecosystem/codex-quickstart.md",
@@ -23,7 +23,7 @@
   ],
   "distributionBundle": {
     "truthfulSurfaceStatus": "plugin-level-public-distribution-bundle",
-    "officialSurfaceStatus": "official-surface-unconfirmed",
+    "officialSurfaceStatus": "official-surface-confirmed-auth-required",
     "starterBundlePaths": [
       "docs/ecosystem/codex-quickstart.md",
       "docs/ecosystem/agent-quickstarts.md",
@@ -37,7 +37,7 @@
     "installDocs": [
       "docs/ecosystem/codex-quickstart.md",
       "docs/ecosystem/agent-quickstarts.md",
-      "docs/ecosystem/public-distribution-bundle.ready.md"
+      "docs/ecosystem/agent-distribution-artifacts.md"
     ],
     "proofLoopCommands": [
       "pnpm cli:read-only -- agent-target-packet --target codex",

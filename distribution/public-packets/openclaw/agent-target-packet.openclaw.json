@@ -15,7 +15,7 @@
   "repoOwnedArtifacts": [
     "docs/ecosystem/openclaw-comparison.md",
     "docs/ecosystem/openclaw-public-ready-matrix.md",
-    "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+    "docs/ecosystem/agent-distribution-artifacts.md"
   ],
   "capabilities": [
     {
@@ -64,7 +64,7 @@
       "sourceDocs": [
         "docs/ecosystem/mcp-quickstart.md",
         "docs/ecosystem/claude-code-quickstart.md",
-        "docs/ecosystem/public-distribution-bundle.ready.md"
+        "docs/runbooks/release-artifact-review.md"
       ],
       "targetFit": [
         "codex",
@@ -82,7 +82,7 @@
       "sourceCommand": "pnpm mcp:stdio -> get_public_distribution_bundle",
       "sourceDocs": [
         "docs/ecosystem/mcp-quickstart.md",
-        "docs/ecosystem/public-distribution-bundle.ready.md"
+        "docs/ecosystem/public-distribution-bundle.md"
       ],
       "targetFit": [
         "codex",
@@ -98,7 +98,7 @@
     {
       "id": "shopflow-builder-facing-discoverability-and-ready-sync",
       "label": "Shopflow builder-facing discoverability and ready-sync",
-      "sourcePath": ".agents/skills/shopflow-builder-facing-discoverability-and-ready-sync/SKILL.md",
+      "sourcePath": "docs/ecosystem/agent-quickstarts.md",
       "distributionState": "repo-local-skill-scaffold",
       "targetFit": [
         "codex",
@@ -122,7 +122,7 @@
     "screenshotSources": [
       "docs/ecosystem/openclaw-comparison.md",
       "docs/ecosystem/openclaw-public-ready-matrix.md",
-      "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+      "docs/ecosystem/agent-distribution-artifacts.md"
     ],
     "capabilityRefs": [
       "integration-surface",
@@ -146,7 +146,7 @@
       "installDocs": [
         "docs/ecosystem/openclaw-comparison.md",
         "docs/ecosystem/openclaw-public-ready-matrix.md",
-        "docs/ecosystem/openclaw-publish-unblock-packet.ready.md"
+        "docs/ecosystem/agent-distribution-artifacts.md"
       ],
       "proofLoopCommands": [
         "pnpm cli:read-only -- agent-target-packet --target openclaw",

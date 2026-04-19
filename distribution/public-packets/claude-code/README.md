@@ -34,11 +34,15 @@ The canonical Shopflow repo remains:
 Main narrative source:
 
 - `docs/ecosystem/claude-code-quickstart.md`
+- `docs/ecosystem/public-distribution-bundle.md`
+- `docs/ecosystem/public-skills-catalog.md`
+- `README.md`
 
 Supporting copy source:
 
-- `docs/ecosystem/public-copy.ready.md`
-- `docs/ecosystem/repo-description.ready.md`
+- `docs/ecosystem/public-distribution-bundle.md`
+- `docs/ecosystem/public-skills-catalog.md`
+- `README.md`
 
 ## How To Use It
 
