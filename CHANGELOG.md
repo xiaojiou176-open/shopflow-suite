@@ -6,6 +6,8 @@ The format is based on Keep a Changelog.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-04-19
+
 ### Fixed
 
 - restored the sync-ready public packet mirrors so packet metadata and

@@ -20,7 +20,7 @@
       {
         packages.default = pkgs.buildGoModule {
           pname = "shopflow-openclaw-plugin";
-          version = "0.1.0";
+          version = "0.1.1";
           src = ./.;
           vendorHash = null;
         };

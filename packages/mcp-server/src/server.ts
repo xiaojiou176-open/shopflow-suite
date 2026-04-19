@@ -38,7 +38,7 @@ export function createShopflowReadOnlyMcpServer() {
   const server = new McpServer(
     {
       name: 'shopflow-read-only-mcp',
-      version: '0.1.0',
+      version: '0.1.1',
     },
     {
       instructions:
