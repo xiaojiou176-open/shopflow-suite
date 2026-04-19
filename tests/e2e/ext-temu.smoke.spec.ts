@@ -68,7 +68,7 @@ test('ext-temu smoke keeps warehouse filtering differentiated but not overclaime
     const popup = await openExtensionPage(context, extensionId, 'popup');
     await expect(popup.getByText('Shopflow for Temu')).toBeVisible();
     await expect(popup.locator('body')).toContainText(
-      /App-level live receipt blocker remains because 1 packet(?:s)? still need(?:s)? a first capture\./i
+      /Proof still blocked: 1 packet(?:s)? still need(?:s)? a first capture\./i
     );
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Latest captured search/i

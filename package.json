@@ -38,6 +38,8 @@
     "typecheck": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'pnpm -r --if-present run typecheck'",
     "verify:catalog": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/check-verification-parity.ts'",
     "capture:ui-surfaces": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/capture-ui-surfaces.ts'",
+    "review:matrix": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/write-uiux-review-matrix.ts'",
+    "review:native-ui": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/open-native-extension-review.ts'",
     "capture:ui-matrix": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/capture-ui-surface-matrix.ts'",
     "verify:sensitive-surfaces": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/check-sensitive-surfaces.ts'",
     "verify:sensitive-history": "tsx tooling/maintenance/run-with-cache-governance.ts -- 'tsx tooling/verification/check-sensitive-history.ts'",

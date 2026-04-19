@@ -65,7 +65,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
       /Runnable now/i
     );
     await expect(sidePanel.locator('#readiness-summary')).toContainText(
-      /Before public claims/i
+      /Claim limit/i
     );
     await sidePanel.close();
 
@@ -84,7 +84,7 @@ test('ext-albertsons smoke reflects cart action state honestly in the side panel
     );
     await expect(popup.locator('body')).toContainText(/Seen \d{1,2}:\d{2}/i);
     await expect(popup.locator('body')).toContainText(
-      /App-level live receipt blocker remains because 2 packets? still need(?:s)? a first capture\./i
+      /Proof still blocked: 2 packets? still need(?:s)? a first capture\./i
     );
     await popup
       .locator('summary')
@@ -236,7 +236,7 @@ test('ext-albertsons smoke keeps verified-scope wording bounded while routing Vo
       /www\.vons\.com · search/i
     );
     await expect(popup.locator('body')).toContainText(
-      /Before public claims: Currently verified on Safeway\./i
+      /Claim limit: Currently verified on Safeway\./i
     );
     await expect(popup.locator('#latest-output-preview')).toContainText(
       /Captured 1 search result/i

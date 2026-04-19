@@ -28,7 +28,22 @@ test('ext-albertsons popup and sidepanel keep the core a11y / reflow contract', 
       )
       .toBe(true);
     await expect(
-      popup.getByRole('link', { name: 'Open main workspace' })
+      popup.locator('#popup-primary-route').getByRole('link', {
+        name: 'Open main workspace',
+      })
+    ).toBeVisible();
+    await popup
+      .locator('summary')
+      .filter({ hasText: /Supporting routes/i })
+      .first()
+      .click();
+    await expect(
+      popup.locator('#popup-secondary-route').getByRole('link', {
+        name: 'Open capture queue',
+      })
+    ).toBeVisible();
+    await expect(
+      popup.getByRole('link', { name: 'Open supported workflow' })
     ).toBeVisible();
     await popup.close();
 

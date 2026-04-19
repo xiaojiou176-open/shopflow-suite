@@ -5,7 +5,8 @@ This folder is the Claude Code-facing public fallback packet.
 In plain language:
 
 > this is the Claude Code box plus the operator notes binder, placed on a
-> public shelf because no confirmed separate official listing shelf is known.
+> public shelf while the official Claude Code shelf exists but Shopflow is not
+> listed there.
 
 The canonical Shopflow repo remains:
 
@@ -13,9 +14,8 @@ The canonical Shopflow repo remains:
 
 ## Truthful Position
 
-- Claude Code does not currently have a confirmed separate official listing
-  surface in this task context.
-- This folder is therefore meant for a public fallback repo, not an official
+- An official Claude Code surface now exists, but Shopflow is not listed or published there yet.
+- This folder is therefore meant for a public fallback packet, not an official
   marketplace claim.
 - The packet is stronger than Codex's by also pointing to the shared
   skills-facing companion packet.

@@ -156,7 +156,7 @@ describe('runtime evidence capture repository', () => {
       rejectedCount: 0,
       expiredCount: 0,
       blockerSummary:
-        'App-level live receipt blocker remains because 1 packet already started and still need capture completion and 1 packet still need a first capture. Next operator path: Finish in-progress capture for Safeway subscribe live receipt.',
+        'Proof still blocked: 1 packet already started and still need capture completion and 1 packet still need a first capture. Next path: Finish in-progress capture for Safeway subscribe live receipt.',
       nextCaptureId: 'safeway-subscribe-live-receipt',
       nextStatus: 'capture-in-progress',
       nextOperatorPath: 'finish-capture',
@@ -259,7 +259,7 @@ describe('runtime evidence capture repository', () => {
       rejectedCount: 1,
       expiredCount: 1,
       blockerSummary:
-        'App-level live receipt blocker remains because 2 packets need a fresh recapture after rejection or expiry. Next operator path: Capture a fresh packet for Fred Meyer verified-scope live receipt.',
+        'Proof still blocked: 2 packets need a fresh recapture after rejection or expiry. Next path: Capture a fresh packet for Fred Meyer verified-scope live receipt.',
       nextCaptureId: 'fred-meyer-verified-scope-live-receipt',
       nextStatus: 'rejected',
       nextOperatorPath: 'recapture',

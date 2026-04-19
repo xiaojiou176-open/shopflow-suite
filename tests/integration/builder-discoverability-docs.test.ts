@@ -764,4 +764,24 @@ describe('builder discoverability docs coherence', () => {
     expect(claudePacketReadme).not.toContain('.ready.md');
     expect(openclawTroubleshooting).not.toContain('.ready.md');
   });
+
+  it('keeps packet mirror README wording aligned with the official-surface truth', () => {
+    const codexPacketReadme = readRepoFile('distribution/public-packets/codex/README.md');
+    const claudePacketReadme = readRepoFile(
+      'distribution/public-packets/claude-code/README.md'
+    );
+
+    expect(codexPacketReadme).toContain(
+      'An official Codex surface now exists, but Shopflow is not listed or published there yet.'
+    );
+    expect(codexPacketReadme).not.toContain(
+      'no confirmed official Codex shelf has been found'
+    );
+    expect(claudePacketReadme).toContain(
+      'An official Claude Code surface now exists, but Shopflow is not listed or'
+    );
+    expect(claudePacketReadme).not.toContain(
+      'no confirmed separate official listing shelf is known'
+    );
+  });
 });

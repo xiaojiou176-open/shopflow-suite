@@ -177,50 +177,50 @@ export function PopupLauncher({
               <p className="shopflow-chip shopflow-chip--accent mt-3">
                 {copy.popup.quickRouter}
               </p>
-              <p
-                className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
-              >
-                {summary}
-              </p>
-              <p
-                className={`mt-3 text-[11px] leading-5 ${
-                  claimBoundaryNote
-                    ? 'text-[color:var(--shopflow-gold)]'
-                    : 'text-[color:var(--shopflow-muted)]'
-                } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden`}
-              >
-                {headerNote}
-              </p>
             </div>
             <div className="flex shrink-0 flex-col items-end gap-2">
               {statusLabel ? (
                 <span className="shopflow-chip">{statusLabel}</span>
               ) : null}
-              {localeOptions.length > 0 ? (
-                <div className="flex flex-col items-end gap-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#756d62]">
-                    {copy.common.displayLanguageLabel}
-                  </p>
-                  <div className="inline-flex rounded-[1.15rem] border border-[color:var(--shopflow-line)] bg-white/82 p-1 shadow-[0_12px_24px_rgba(36,27,20,0.08)] backdrop-blur-[12px]">
-                    {localeOptions.map((option) => (
-                      <a
-                        key={option.href}
-                        aria-current={option.active ? 'page' : undefined}
-                        className={`rounded-xl px-3 py-1 text-xs font-medium ${
-                          option.active
-                            ? 'bg-[#1f1c17] text-white'
-                            : 'text-[#514a42]'
-                        }`}
-                        href={option.href}
-                      >
-                        {option.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
             </div>
           </div>
+          <p
+            className={`mt-3 text-sm ${surfaceTokens.body} [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
+          >
+            {summary}
+          </p>
+          <p
+            className={`mt-3 text-[11px] leading-5 ${
+              claimBoundaryNote
+                ? 'text-[color:var(--shopflow-gold)]'
+                : 'text-[color:var(--shopflow-muted)]'
+            } [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden`}
+          >
+            {headerNote}
+          </p>
+          {localeOptions.length > 0 ? (
+            <div className="mt-3 flex items-center justify-end gap-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#756d62]">
+                {copy.common.displayLanguageLabel}
+              </p>
+              <div className="inline-flex rounded-[1.15rem] border border-[color:var(--shopflow-line)] bg-white/82 p-1 shadow-[0_12px_24px_rgba(36,27,20,0.08)] backdrop-blur-[12px]">
+                {localeOptions.map((option) => (
+                  <a
+                    key={option.href}
+                    aria-current={option.active ? 'page' : undefined}
+                    className={`rounded-xl px-3 py-1 text-xs font-medium whitespace-nowrap ${
+                      option.active
+                        ? 'bg-[#1f1c17] text-white'
+                        : 'text-[#514a42]'
+                    }`}
+                    href={option.href}
+                  >
+                    {option.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           <div className="mt-4 space-y-3">
             <section
@@ -451,8 +451,13 @@ export function PopupLauncher({
                         <a
                           className="inline-flex rounded-2xl border border-[rgba(58,49,38,0.10)] bg-[#f6f1e8] px-3 py-2 text-sm font-medium text-[#514a42]"
                           href={item.href}
-                          target={item.external ? '_blank' : undefined}
-                          rel={item.external ? 'noreferrer' : undefined}
+                          onClick={createClickHandler(item.onClick)}
+                          target={
+                            item.onClick ? undefined : item.external ? '_blank' : undefined
+                          }
+                          rel={
+                            item.onClick ? undefined : item.external ? 'noreferrer' : undefined
+                          }
                         >
                           {item.label}
                         </a>
