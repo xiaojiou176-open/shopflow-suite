@@ -8,6 +8,12 @@ The format is based on Keep a Changelog.
 
 ### Fixed
 
+- restored the sync-ready public packet mirrors so packet metadata and
+  troubleshooting now point at the canonical public `.md` sources instead of
+  stale `.ready.md` paths.
+- OpenClaw packet troubleshooting now re-checks the canonical
+  `docs/ecosystem/public-distribution-bundle.md` path instead of the old
+  nonexistent `docs/ecosystem/examples/*.ready.md` location.
 - public repo topology wording now treats
   `xiaojiou176-open/shopflow-suite` as the only canonical repo, demotes
   `xiaojiou176/shopflow-public-packets` to a secondary fallback mirror and
@@ -182,7 +188,7 @@ The format is based on Keep a Changelog.
   - `docs/ecosystem/builder-read-models.md`
   - `docs/ecosystem/builder-surfaces.md`
   - `docs/ecosystem/integration-recipes.md`
-  - `docs/ecosystem/public-distribution-bundle.ready.md`
+  - `docs/ecosystem/public-distribution-bundle.md`
   - refreshed checked-in `builder-outcome-bundle.*.json` examples
 - Agent-specific onboarding and metadata scaffolds:
   - `packages/contracts/src/agent-integration-bundle.ts`
@@ -318,7 +324,7 @@ The format is based on Keep a Changelog.
   - `tests/integration/read-only-cli.tooling.test.ts`
 - Public distribution bundle slice:
   - `packages/contracts/src/public-distribution-bundle.ts`
-  - `docs/ecosystem/public-distribution-bundle.ready.md`
+  - `docs/ecosystem/public-distribution-bundle.md`
   - `tooling/cli/read-only.ts`
   - `tests/integration/read-only-cli.tooling.test.ts`
 

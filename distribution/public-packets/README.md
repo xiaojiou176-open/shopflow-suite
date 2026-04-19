@@ -34,9 +34,9 @@ The canonical source remains:
 
 | Target | Folder | Truthful public position | Main canonical source |
 | :--- | :--- | :--- | :--- |
-| `codex` | `./codex/` | no confirmed separate official listing surface; use this folder only as the smaller in-repo packet rack while `shopflow-suite` stays canonical | `docs/ecosystem/codex-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.codex.json` |
-| `claude-code` | `./claude-code/` | no confirmed separate official listing surface; use this folder only as the smaller in-repo packet rack while `shopflow-suite` stays canonical | `docs/ecosystem/claude-code-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.claude-code.json` |
-| `openclaw` | `./openclaw/` | keep only as a legacy packet mirror; the canonical install path now uses `shopflow-suite?dir=distribution/openclaw-plugin` | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
+| `codex` | `./codex/` | official Codex surface exists, but Shopflow is not listed or published there yet; use this folder only as the smaller in-repo packet rack while `shopflow-suite` stays canonical | `docs/ecosystem/codex-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.codex.json` |
+| `claude-code` | `./claude-code/` | official Claude Code surface exists, but Shopflow is not listed or published there yet; use this folder only as the smaller in-repo packet rack while `shopflow-suite` stays canonical | `docs/ecosystem/claude-code-quickstart.md` + `docs/ecosystem/examples/agent-target-packet.claude-code.json` |
+| `openclaw` | `./openclaw/` | keep this only as the public-ready fallback packet while the canonical install path uses `shopflow-suite?dir=distribution/openclaw-plugin` and official OpenClaw-owned placement stays external | `docs/ecosystem/openclaw-comparison.md` + `docs/ecosystem/examples/agent-target-packet.openclaw.json` |
 
 ## Shared Supporting Packets
 
@@ -60,15 +60,17 @@ Think of these as the common inserts that multiple boxes reuse.
    files.
 5. Treat the JSON files as checked-in packet payloads and example metadata, not
    as proof that a marketplace submission already happened.
-6. If a real official listing surface later becomes available, keep this repo as
-   a fallback or mirror only when it still serves a real deep-link or packet
-   need; otherwise it is a retirement candidate.
+6. If the official surface later becomes the right place for Shopflow, keep this
+   repo as a fallback or mirror only when it still serves a real deep-link or
+   packet need; otherwise it is a retirement candidate.
 
 ## What This Rack Must Not Claim
 
 - It is not the canonical Shopflow repo.
 - It is not an official Codex listing.
 - It is not an official Claude Code listing.
+- It is not proof that Shopflow is already listed or published on the official
+  Codex or Claude Code surfaces.
 - It is not proof that a Codex or Claude Code plugin is published.
 - It is not proof that a public Shopflow MCP or public skills pack is shipped.
 - It is not proof that OpenClaw publication is already live.

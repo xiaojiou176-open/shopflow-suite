@@ -29,6 +29,9 @@ The canonical Shopflow repo remains:
 - not a second Shopflow runtime or product fork
 - not proof that the last external publish and install receipt already happened
 
+OpenClaw does have an official public registry / discovery surface, but Shopflow
+is not listed or published there yet.
+
 ## Public Install Path
 
 This canonical subdir is meant to be installed through OpenClaw's
@@ -59,7 +62,8 @@ The truthful boundary is simple:
 
 - this subdir is the canonical OpenClaw install route inside `shopflow-suite`
 - this shell can be consumed through `customPlugins`
-- official OpenClaw-owned placement is still **external and approval-gated**
+- official OpenClaw-owned placement is still **external** and may require
+  maintainer approval
 
 > Publicly installable fallback != official listing.
 > It is the difference between putting a product on your own public table and

@@ -742,4 +742,26 @@ describe('builder discoverability docs coherence', () => {
       './examples/plugin-marketplace-metadata.openclaw.json'
     );
   });
+
+  it('keeps packet mirrors aligned with public .md sources instead of ready stubs', () => {
+    const codexPacketReadme = readRepoFile('distribution/public-packets/codex/README.md');
+    const claudePacketReadme = readRepoFile(
+      'distribution/public-packets/claude-code/README.md'
+    );
+    const openclawTroubleshooting = readRepoFile(
+      'distribution/openclaw-plugin/skills/shopflow-read-only-packet/references/TROUBLESHOOTING.md'
+    );
+
+    expect(codexPacketReadme).toContain('docs/ecosystem/public-distribution-bundle.md');
+    expect(codexPacketReadme).toContain('README.md');
+    expect(claudePacketReadme).toContain('docs/ecosystem/public-distribution-bundle.md');
+    expect(claudePacketReadme).toContain('docs/ecosystem/public-skills-catalog.md');
+    expect(claudePacketReadme).toContain('README.md');
+    expect(openclawTroubleshooting).toContain(
+      'docs/ecosystem/public-distribution-bundle.md'
+    );
+    expect(codexPacketReadme).not.toContain('.ready.md');
+    expect(claudePacketReadme).not.toContain('.ready.md');
+    expect(openclawTroubleshooting).not.toContain('.ready.md');
+  });
 });
