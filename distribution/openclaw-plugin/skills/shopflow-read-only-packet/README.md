@@ -48,14 +48,14 @@ Use it when you want one portable folder that teaches an agent four things:
 
 - the latest ClawHub receipt points this packet URL at a public skill page for
   **this companion packet**
-- the latest OpenHands/extensions receipt is PR `#161`, currently open with
-  review still required
+- the latest OpenHands/extensions receipt is PR `#161`, now closed as a
+  historical contribution receipt rather than a live listing
 - neither of those packet-lane receipts proves Chrome Web Store listing, signed
   release artifacts, or broader Shopflow public/live browser claims
 
 ## What this packet must not claim
 
-- no live OpenHands/extensions listing without fresh PR or read-back
+- no live OpenHands/extensions listing without a fresh accepted receipt
 - no official registry, marketplace, or Chrome Web Store listing unless fresh
   receipt exists
 - no hosted runtime or public HTTP MCP transport

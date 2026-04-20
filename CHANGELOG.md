@@ -6,6 +6,19 @@ The format is based on Keep a Changelog.
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-04-19
+
+### Fixed
+
+- refreshed the public release shelf again so the latest GitHub release now
+  includes the post-PR-69 mainline instead of stopping one commit behind.
+- aligned the repo/public version chain to `0.1.3` across workspace packages,
+  the public manifest, MCP server metadata, and the OpenClaw packet version
+  surfaces.
+- corrected the public OpenHands receipt wording from a stale
+  review-pending/live-ish reading to a closed historical receipt that does not
+  imply a live OpenHands listing.
+
 ## [0.1.2] - 2026-04-19
 
 ### Fixed

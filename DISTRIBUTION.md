@@ -11,7 +11,7 @@ This page keeps the public distribution story short, truthful, and reusable.
 | Release review shelf | [`releases/latest`](https://github.com/xiaojiou176-open/shopflow-suite/releases/latest) | live reviewer shelf | a signed/store-ready shelf |
 | Read-only stdio MCP lane | `pnpm mcp:stdio` | live repo-local stdio surface | a public HTTP MCP or official registry listing |
 | Companion packet lane (ClawHub) | [`clawhub.ai/xiaojiou176/shopflow-read-only-packet`](https://clawhub.ai/xiaojiou176/shopflow-read-only-packet) | listed-live for the packet lane | proof that the primary browser/store lane is already published |
-| Companion packet lane (OpenHands) | [`OpenHands/extensions#161`](https://github.com/OpenHands/extensions/pull/161) | submission_done_review_pending (`REVIEW_REQUIRED`) | accepted/live OpenHands publication |
+| Companion packet lane (OpenHands) | [`OpenHands/extensions#161`](https://github.com/OpenHands/extensions/pull/161) | closed historical receipt, not a live listing | accepted/live OpenHands publication |
 
 Reviewer shelf artifacts still include:
 
@@ -30,7 +30,7 @@ Reviewer shelf artifacts still include:
 
 Important boundary:
 
-> a companion skill packet can be listed or under review on its own host lane
+> a companion skill packet can have its own host-lane receipts
 > without proving that Shopflow itself is already Chrome Web Store listed,
 > signed, or public-claim-ready.
 
