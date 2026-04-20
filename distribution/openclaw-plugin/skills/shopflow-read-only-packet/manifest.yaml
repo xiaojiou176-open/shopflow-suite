@@ -15,7 +15,7 @@ registry_targets:
     listing_url: https://www.clawhub.ai/skills/shopflow-read-only-packet
     submit_via: clawhub publish . --slug shopflow-read-only-packet --name "Shopflow Read-only Packet" --version 1.0.1 --tags shopflow,mcp,read-only,distribution,packet
   openhands-extensions:
-    status: review-pending
+    status: closed-historical-receipt
     package_shape: skill-folder
     submission_url: https://github.com/OpenHands/extensions/pull/161
     submit_via: submit this folder as skills/shopflow-read-only-packet/ in OpenHands/extensions
@@ -24,11 +24,11 @@ boundaries:
   product_identity: Read-only Shopflow packet surface for integration, runtime seam, submission readiness, and public distribution bundle truth.
   packet_role: companion-skill-packet
   primary_product_lane: browser-first extension family under apps/ext-* and apps/ext-shopping-suite
-  canonical_repo_version: 0.1.2
-  official_listing_state: clawhub-packet-live-openhands-review-pending
+  canonical_repo_version: 0.1.3
+  official_listing_state: clawhub-packet-live-openhands-closed-historical-receipt
   listing_scope_note: Host-side packet state applies to this skill folder only and does not prove Chrome Web Store listing or broader Shopflow browser/store publication.
   not_claimed:
-    - No live OpenHands/extensions listing exists yet
+    - No live OpenHands/extensions listing is claimed here
     - No official browser-store or main-product listing is claimed here
     - No hosted runtime or public HTTP MCP transport is claimed
 
