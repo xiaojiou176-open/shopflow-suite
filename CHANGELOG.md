@@ -6,6 +6,19 @@ The format is based on Keep a Changelog.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-04-19
+
+### Fixed
+
+- refreshed the public release shelf to a new current-mainline tag so the
+  latest GitHub release no longer stops at the pre-PR-68 snapshot.
+- aligned the repo/public version chain to `0.1.2` across workspace packages,
+  the public manifest, MCP server metadata, and the OpenClaw packet version
+  surfaces.
+- carried the hardened popup/sidepanel/suite review-surface contract and native
+  Chrome review tooling into the release shelf snapshot instead of leaving them
+  as post-release-only mainline changes.
+
 ## [0.1.1] - 2026-04-19
 
 ### Fixed

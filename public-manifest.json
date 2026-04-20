@@ -1,7 +1,7 @@
 {
   "name": "shopflow-suite",
   "description": "Canonical Shopflow repo: Chrome-first shopping extension product family with a read-only stdio MCP surface.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "canonicalRepoUrl": "https://github.com/xiaojiou176-open/shopflow-suite",
   "homepageUrl": "https://xiaojiou176-open.github.io/shopflow-suite/",
@@ -30,7 +30,7 @@
     ],
     "package": {
       "name": "@shopflow/mcp-server",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "bin": "shopflow-mcp"
     },
     "quickstart": "docs/ecosystem/mcp-quickstart.md"
