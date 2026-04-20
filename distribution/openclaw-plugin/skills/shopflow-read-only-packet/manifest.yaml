@@ -24,7 +24,7 @@ boundaries:
   product_identity: Read-only Shopflow packet surface for integration, runtime seam, submission readiness, and public distribution bundle truth.
   packet_role: companion-skill-packet
   primary_product_lane: browser-first extension family under apps/ext-* and apps/ext-shopping-suite
-  canonical_repo_version: 0.1.1
+  canonical_repo_version: 0.1.2
   official_listing_state: clawhub-packet-live-openhands-review-pending
   listing_scope_note: Host-side packet state applies to this skill folder only and does not prove Chrome Web Store listing or broader Shopflow browser/store publication.
   not_claimed:
