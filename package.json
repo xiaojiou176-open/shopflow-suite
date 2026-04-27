@@ -11,7 +11,7 @@
   "pnpm": {
     "overrides": {
       "defu": "6.1.6",
-      "hono": "4.12.14",
+      "hono": "4.12.15",
       "vite": "8.0.5"
     }
   },
@@ -125,7 +125,7 @@
     "@webext-core/proxy-service": "^2.0.0",
     "@wxt-dev/module-react": "^1.2.2",
     "eslint": "^10.1.0",
-    "hono": "4.12.14",
+    "hono": "4.12.15",
     "jsdom": "^26.1.0",
     "lucide-react": "^1.7.0",
     "prettier": "^3.8.1",
