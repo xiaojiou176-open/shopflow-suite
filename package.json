@@ -110,7 +110,7 @@
     "prerelease:write-submission-readiness-report": "pnpm prepare:shopflow-runtime"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
+    "@commitlint/cli": "^20.5.2",
     "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
     "@modelcontextprotocol/sdk": "1.29.0",
