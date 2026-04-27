@@ -115,7 +115,7 @@
     "@eslint/js": "^10.0.1",
     "@modelcontextprotocol/sdk": "1.29.0",
     "@playwright/test": "^1.58.2",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.4",
     "@types/chrome": "^0.1.38",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
