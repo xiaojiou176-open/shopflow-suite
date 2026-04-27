@@ -10,7 +10,7 @@
     "@shopflow/contracts": "workspace:*",
     "@shopflow/core": "workspace:*",
     "@shopflow/runtime": "workspace:*",
-    "lucide-react": "^1.7.0",
+    "lucide-react": "^1.11.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   }
